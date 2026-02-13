@@ -164,6 +164,9 @@ const HeroSection = () => {
             });
 
             triggersRef.current.push(trigger);
+            
+            // Delay refresh to ensure DOM is settled for proper pin spacing
+            setTimeout(() => ScrollTrigger.refresh(), 100);
         }, containerRef);
 
         return () => {
