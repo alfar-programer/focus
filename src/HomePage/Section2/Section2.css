@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+
+.section2-container {
+    --bg: #0f0f0f;
+    --fg: #fff;
+    --card-1: #b2b2b2;
+    --card-2: #ce2017;
+    --card-3: #2f2f2f;
+    font-family: "Instrument Serif", sans-serif;
+    width: 100%;
+    /* Ensure no global bleed */
+}
+
+.section2-container * {
+    box-sizing: border-box;
+}
+
+.section2-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+    /* Fix default inline img spacing */
+}
+
+.section2-container h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+}
+
+.section2-container p {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+}
+
+.section2-section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    padding: 2rem;
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.section2-intro,
+.section2-outro {
+    text-align: center;
+    align-content: center;
+    display: grid;
+    /* Alternative to align-content which works better in some setups */
+    place-content: center;
+}
+
+.section2-sticky {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+    /* Ensure it takes full height for pinning */
+    overflow: hidden;
+    /* Often needed for pinned containers */
+}
+
+.section2-sticky-header {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.section2-sticky-header h1 {
+    position: relative;
+    text-align: center;
+    will-change: transform, opacity;
+    transform: translateY(40px);
+    opacity: 0;
+}
+
+.section2-card-container {
+    position: relative;
+    width: 75%;
+    display: flex;
+    perspective: 1000px;
+    transform: translateY(40px);
+    will-change: width;
+}
+
+.section2-card {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 5 / 7;
+    transform-style: preserve-3d;
+    transform-origin: top;
+}
+
+#section2-card-1 {
+    border-radius: 20px 0 0 20px;
+}
+
+#section2-card-3 {
+    border-radius: 0 20px 20px 0;
+}
+
+.section2-card-front,
+.section2-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: inherit;
+    /* inherit from card */
+    overflow: hidden;
+}
+
+/* Ensure card-front respects border-radius of the parent card logic */
+#section2-card-1 .section2-card-front,
+#section2-card-1 .section2-card-back {
+    border-radius: 20px 0 0 20px;
+}
+
+#section2-card-3 .section2-card-front,
+#section2-card-3 .section2-card-back {
+    border-radius: 0 20px 20px 0;
+}
+
+.section2-card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: rotateY(180deg);
+    padding: 2rem;
+    /* border-radius in original was specific % */
+    /* restoring original logic if needed but it was specific: 3.59281% / 2.58621% */
+}
+
+.section2-card-back span {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    opacity: 0.4;
+    font-size: 2rem;
+}
+
+#section2-card-1 .section2-card-back {
+    background: linear-gradient(165.825deg,
+            rgb(199, 199, 199) 0%,
+            rgb(131, 131, 131) 100%);
+    color: var(--bg);
+}
+
+#section2-card-2 .section2-card-back {
+    background: linear-gradient(177deg,
+            rgb(250, 76, 45) -18%,
+            rgb(191, 24, 21) 31%,
+            rgb(74, 10, 8) 100%);
+}
+
+#section2-card-3 .section2-card-back {
+    background: linear-gradient(rgb(31, 31, 31) 0%, rgb(22, 22, 22) 100%);
+}
+
+@media (max-width: 1000px) {
+    .section2-container h1 {
+        font-size: 3rem;
+    }
+
+    .section2-intro h1,
+    .section2-outro h1 {
+        width: 100%;
+    }
+
+    .section2-sticky {
+        height: max-content;
+        padding: 4rem 2rem;
+        flex-direction: column;
+    }
+
+    .section2-sticky-header {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin-bottom: 4rem;
+    }
+
+    .section2-sticky-header h1 {
+        opacity: 1;
+        transform: none;
+    }
+
+    .section2-card-container {
+        width: 100%;
+        flex-direction: column;
+        gap: 2rem;
+        transform: none;
+    }
+
+    .section2-card {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        border-radius: 20px !important;
+    }
+
+    #section2-card-1,
+    #section2-card-3,
+    /* Fixed missing comma in thought/logic? No, just ensuring specific IDs match */
+    #section2-card-1 .section2-card-front,
+    #section2-card-1 .section2-card-back,
+    #section2-card-3 .section2-card-front,
+    #section2-card-3 .section2-card-back {
+        border-radius: 20px !important;
+    }
+
+    #section2-card-1,
+    #section2-card-2,
+    #section2-card-3,
+    .section2-card-back {
+        transform: none;
+    }
+}
