@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Geist+Mono:wght@100..900&family=Manrope:wght@200..800&display=swap');
+
+/* Use global CSS variables from index.css */
+.hero-section {
+    --fg: var(--text-primary);
+    --bg: var(--bg-primary);
+}
+
+.hero-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-section h1 {
+    font-family: "Host Grotesk", sans-serif;
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.hero-section p {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.hero-section a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.hero-section .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+}
+
+.hero-section .btn-primary {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+}
+
+.hero-section .btn-primary a {
+    color: var(--text-primary);
+}
+
+.hero-section .btn-secondary {
+    background-color: var(--color-primary);
+}
+
+.hero-section .btn-secondary a {
+    color: var(--text-inverse);
+}
+
+.hero-section nav {
+    position: fixed;
+    width: 100vw;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    will-change: opacity;
+    z-index: 100;
+    box-sizing: border-box;
+    background-color: var(--bg-primary);
+}
+
+.hero-section nav>div {
+    flex: 1;
+}
+
+.hero-section nav .nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.hero-section nav .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section nav .logo a {
+    text-transform: none;
+    font-family: "Host Grotesk", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-section nav .nav-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+}
+
+.hero-section .hero {
+    position: relative;
+    width: 100vw;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.hero-section .hero-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-section .hero-content {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    padding: 0.5rem 0;
+}
+
+.hero-section .hero-header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    color: var(--text-primary);
+    transform-origin: center;
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+.hero-section .hero-header h1 {
+    width: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.hero-section .hero-header p {
+    opacity: 0.35;
+}
+
+.hero-section .client-logos {
+    width: 30%;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.hero-section .client-logos .client-logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .client-logos .client-logo svg {
+    width: 100%;
+    height: auto;
+    max-height: 40px;
+}
+
+.hero-section .client-logos .client-logo img {
+    object-fit: contain;
+}
+
+@media (max-width: 1000px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section nav .nav-links,
+    .hero-section nav .nav-buttons {
+        display: none;
+    }
+
+    .hero-section .hero-header h1,
+    .hero-section .client-logos {
+        width: calc(100% - 4rem);
+    }
+
+    .hero-section .client-logos {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-section .hero-header h1 {
+        width: 80%;
+        font-size: 1.5rem;
+    }
+
+    .hero-section .client-logos {
+        width: 80%;
+    }
+}

@@ -5,8 +5,8 @@
   */
     width: 100%;
     position: relative;
-    background-color: #0f0f0f;
-    color: #fff;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     overflow: hidden;
     /* Prevent horizontal scroll from marquee */
 }
@@ -46,7 +46,7 @@
     position: relative;
     width: 100vw;
     /* Using 100vw might cause scrollbar issues on Windows, usually 100% is safer but pins might need viewport */
-    background-color: #0f0f0f;
+    background-color: var(--bg-primary);
     max-width: 100%;
 }
 
