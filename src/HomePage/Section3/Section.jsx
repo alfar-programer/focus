@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
+
 import './section.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -99,7 +99,6 @@ function horizontalLoop(items, config) {
 
 const Section = () => {
     const containerRef = useRef(null);
-    const lenisRef = useRef(null);
 
     useLayoutEffect(() => {
         // Scope GSAP to this component
@@ -326,21 +325,8 @@ const Section = () => {
 
         }, containerRef); // scope
 
-        // Lenis Setup
-        const lenis = new Lenis();
-        lenisRef.current = lenis;
-        lenis.on('scroll', ScrollTrigger.update);
-
-        const ticker = (time) => {
-            lenis.raf(time * 1000);
-        };
-        gsap.ticker.add(ticker);
-        gsap.ticker.lagSmoothing(0);
-
         return () => {
             ctx.revert();
-            gsap.ticker.remove(ticker);
-            lenis.destroy();
         };
     }, []); // Run once on mount
 

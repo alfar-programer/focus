@@ -149,7 +149,7 @@ const Section2 = () => {
                 ScrollTrigger.create({
                     trigger: ".section2-sticky",
                     start: "top top",
-                    end: `+=${window.innerHeight * 4}px`, // 400vh scroll distance for animation
+                    end: () => `+=${window.innerHeight * 4}px`, // 400vh scroll distance for animation
                     scrub: 1,
                     pin: true,
                     pinSpacing: true,
