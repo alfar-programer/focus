@@ -4,6 +4,7 @@
 .hero-section {
     --fg: var(--text-primary);
     --bg: var(--bg-primary);
+    overflow-x: hidden;
 }
 
 .hero-section img {
@@ -220,3 +221,4 @@
         width: 80%;
     }
 }
+
