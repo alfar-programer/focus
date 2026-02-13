@@ -1,4 +1,4 @@
-import { useEffect, useRef, useLayoutEffect } from 'react';
+import { useLayoutEffect, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './HeroSection.css';
@@ -7,153 +7,58 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
     const containerRef = useRef(null);
-    const canvasRef = useRef(null);
     const navRef = useRef(null);
     const headerRef = useRef(null);
-    const imagesRef = useRef([]);
+    const framesRef = useRef([]);
     const videoFramesRef = useRef({ frame: 0 });
-    const contextRef = useRef(null);
     const triggersRef = useRef([]);
 
-    const FRAME_COUNT =116;
+    const FRAME_COUNT = 116;
 
     const getFramePath = (index) => {
         return `/frames/frame_${(index + 1).toString().padStart(5, '0')}.webp`;
     };
 
-    const setCanvasSize = () => {
-        const canvas = canvasRef.current;
-        const context = contextRef.current;
-        if (!canvas || !context) return;
-
-        const pixelRatio = window.devicePixelRatio || 1;
-        canvas.width = window.innerWidth * pixelRatio;
-        canvas.height = window.innerHeight * pixelRatio;
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-        context.scale(pixelRatio, pixelRatio);
-    };
-
-    const render = () => {
-        const canvas = canvasRef.current;
-        const context = contextRef.current;
-        if (!canvas || !context) {
-            console.warn('Canvas or context not available');
-            return;
-        }
-
-        const canvasWidth = window.innerWidth;
-        const canvasHeight = window.innerHeight;
-
-        context.clearRect(0, 0, canvasWidth, canvasHeight);
-
-        const img = imagesRef.current[videoFramesRef.current.frame];
-
-        if (img && img.complete && img.naturalWidth > 0) {
-            const imageAspect = img.naturalWidth / img.naturalHeight;
-            const canvasAspect = canvasWidth / canvasHeight;
-
-            let drawX, drawY, drawWidth, drawHeight;
-
-            if (imageAspect > canvasAspect) {
-                drawHeight = canvasHeight;
-                drawWidth = drawHeight * imageAspect;
-                drawX = (canvasWidth - drawWidth) / 2;
-                drawY = 0;
-            } else {
-                drawWidth = canvasWidth;
-                drawHeight = drawWidth / imageAspect;
-                drawX = 0;
-                drawY = (canvasHeight - drawHeight) / 2;
-            }
-
-            try {
-                context.drawImage(img, drawX, drawY, drawWidth, drawHeight);
-            } catch (e) {
-                console.error('Error drawing image:', e);
-            }
-        } else {
-            console.warn(`Image not ready for frame ${videoFramesRef.current.frame}`);
-        }
-    };
-
-    // Load images
+    // Preload images on mount
     useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        contextRef.current = canvas.getContext('2d');
-        setCanvasSize();
-
-        let imagesToLoad = FRAME_COUNT;
-        let loadedCount = 0;
-        let errorCount = 0;
-
-        const onImageLoad = () => {
-            loadedCount++;
-            imagesToLoad--;
-            console.log(`Image loaded: ${loadedCount}/${FRAME_COUNT}`);
-            if (imagesToLoad === 0) {
-                console.log(`All images loaded. Errors: ${errorCount}`);
-                render();
-            }
-        };
-
-        const onImageError = (e, index) => {
-            errorCount++;
-            imagesToLoad--;
-            console.error(`Failed to load image ${index}:`, e);
-            if (imagesToLoad === 0) {
-                console.log(`All images attempted. Loaded: ${loadedCount}, Errors: ${errorCount}`);
-                render();
-            }
-        };
-
-        imagesRef.current = [];
+        framesRef.current = [];
         for (let i = 0; i < FRAME_COUNT; i++) {
             const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.onload = onImageLoad;
-            img.onerror = (e) => onImageError(e, i);
             img.src = getFramePath(i);
-            imagesRef.current.push(img);
+            framesRef.current.push(img);
         }
-
-        const handleResize = () => {
-            setCanvasSize();
-            render();
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
     }, []);
 
-    // GSAP ScrollTrigger animations
+    // GSAP ScrollTrigger animations - matching Section2/Section3 approach
     useLayoutEffect(() => {
-        if (imagesRef.current.length === 0) return;
-
         const ctx = gsap.context(() => {
+            // Main scroll trigger - pin the section like Section2/Section3
             const trigger = ScrollTrigger.create({
                 trigger: containerRef.current,
                 start: 'top top',
                 end: () => `+=${window.innerHeight * 3.5}`,
                 pin: true,
                 pinSpacing: true,
-                scrub: 0.5,
+                scrub: 1,
 
                 onUpdate: (self) => {
                     const progress = self.progress;
 
-                    // Frame animation (0-90% of scroll)
+                    // Frame animation (0-90% of scroll) - DOM-based frame switching
                     const animationProgress = Math.min(progress / 0.9, 1);
                     const targetFrame = Math.round(animationProgress * (FRAME_COUNT - 1));
-                    videoFramesRef.current.frame = targetFrame;
-                    render();
+                    
+                    // Update frame visibility
+                    const frameElements = containerRef.current.querySelectorAll('.hero-frame');
+                    frameElements.forEach((frame, index) => {
+                        if (index === targetFrame) {
+                            frame.style.opacity = '1';
+                        } else {
+                            frame.style.opacity = '0';
+                        }
+                    });
 
-                    // Nav fade out (0-10%)
+                    // Nav fade out (0-10%) - same as before
                     if (navRef.current) {
                         if (progress <= 0.1) {
                             const navProgress = progress / 0.1;
@@ -164,7 +69,7 @@ const HeroSection = () => {
                         }
                     }
 
-                    // Header 3D animation (0-25%)
+                    // Header 3D animation (0-25%) - same as before
                     if (headerRef.current) {
                         if (progress <= 0.25) {
                             const zProgress = progress / 0.25;
@@ -175,7 +80,7 @@ const HeroSection = () => {
                                 const fadeProgress = Math.min((progress - 0.2) / (0.25 - 0.2), 1);
                                 opacity = 1 - fadeProgress;
                             }
-                    gsap.set(headerRef.current, {
+                            gsap.set(headerRef.current, {
                                 transform: `translate(-50%, -50%) translateZ(${translateZ}px)`,
                                 opacity,
                             });
@@ -188,6 +93,9 @@ const HeroSection = () => {
 
             triggersRef.current.push(trigger);
         }, containerRef);
+
+        // Force refresh like Section2 does
+        ScrollTrigger.refresh();
 
         return () => {
             ctx.revert();
@@ -218,7 +126,18 @@ const HeroSection = () => {
             </nav>
 
             <section className="hero">
-                <canvas ref={canvasRef} className="hero-canvas"></canvas>
+                {/* DOM-based frame animation - 116 frames stacked with opacity toggle */}
+                <div className="hero-frames-container">
+                    {Array.from({ length: FRAME_COUNT }, (_, i) => (
+                        <img
+                            key={i}
+                            src={getFramePath(i)}
+                            alt={`Frame ${i + 1}`}
+                            className="hero-frame"
+                            style={{ opacity: i === 0 ? 1 : 0 }}
+                        />
+                    ))}
+                </div>
 
                 <div className="hero-content">
                     <div ref={headerRef} className="hero-header">
@@ -272,8 +191,7 @@ const HeroSection = () => {
                         </div>
                     </div>
                 </div>
-
-                            </section>
+            </section>
         </div>
     );
 };
