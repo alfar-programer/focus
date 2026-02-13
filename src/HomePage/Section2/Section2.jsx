@@ -188,31 +188,31 @@ const Section2 = () => {
                 <div className="section2-card-container">
                     <div className="section2-card" id="section2-card-1">
                         <div className="section2-card-front">
-                            <img src="https://i.ibb.co/4wShfg0B/image-part-001.jpg" alt="image part 001" border="0" />
+                            <img src="slide1.png" alt="image part 001" border="0" />
                         </div>
                         <div className="section2-card-back">
                             <span>01</span>
-                            <p>Interactive Web Experiences</p>
+                            <p>⚡ Energy</p>
                         </div>
                     </div>
 
                     <div className="section2-card" id="section2-card-2">
                         <div className="section2-card-front">
-                            <img src="https://i.ibb.co/Y4MSmLXB/image-part-002.jpg" alt="image part 002" border="0" />
+                            <img src="slide2.png" alt="image part 002" border="0" />
                         </div>
                         <div className="section2-card-back">
                             <span>02</span>
-                            <p>Thoughtful Design Language</p>
+                            <p>⚙ Automation</p>
                         </div>
                     </div>
 
                     <div className="section2-card" id="section2-card-3">
                         <div className="section2-card-front">
-                            <img src="https://i.ibb.co/NkrBdsq/image-part-003.jpg" alt="image part 003" border="0" />
+                            <img src="slide3.png" alt="image part 003" border="0" />
                         </div>
                         <div className="section2-card-back">
                             <span>03</span>
-                            <p>Visual Design Systems</p>
+                            <p>📡 Monitoring</p>
                         </div>
                     </div>
                 </div>
