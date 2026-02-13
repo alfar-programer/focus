@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './HeroSection.css';
@@ -14,7 +14,6 @@ const HeroSection = () => {
     const videoFramesRef = useRef({ frame: 0 });
     const contextRef = useRef(null);
     const triggersRef = useRef([]);
-    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const FRAME_COUNT =116;
 
@@ -83,7 +82,6 @@ const HeroSection = () => {
             imagesToLoad--;
             if (imagesToLoad === 0) {
                 render();
-                setImagesLoaded(true);
             }
         };
 
@@ -109,8 +107,8 @@ const HeroSection = () => {
     }, []);
 
     // GSAP ScrollTrigger animations
-    useEffect(() => {
-        if (!imagesLoaded) return;
+    useLayoutEffect(() => {
+        if (imagesRef.current.length === 0) return;
 
         const ctx = gsap.context(() => {
             const trigger = ScrollTrigger.create({
@@ -164,9 +162,6 @@ const HeroSection = () => {
             });
 
             triggersRef.current.push(trigger);
-            
-            // Delay refresh to ensure DOM is settled for proper pin spacing
-            setTimeout(() => ScrollTrigger.refresh(), 100);
         }, containerRef);
 
         return () => {
@@ -174,7 +169,7 @@ const HeroSection = () => {
             triggersRef.current.forEach(t => t.kill());
             triggersRef.current = [];
         };
-    }, [imagesLoaded]);
+    }, []);
 
     return (
         <div ref={containerRef} className="hero-section">
