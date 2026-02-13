@@ -1,4 +1,4 @@
-import { useEffect, useRef, useLayoutEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './HeroSection.css';
@@ -14,6 +14,7 @@ const HeroSection = () => {
     const videoFramesRef = useRef({ frame: 0 });
     const contextRef = useRef(null);
     const triggersRef = useRef([]);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const FRAME_COUNT =116;
 
@@ -82,6 +83,7 @@ const HeroSection = () => {
             imagesToLoad--;
             if (imagesToLoad === 0) {
                 render();
+                setImagesLoaded(true);
             }
         };
 
@@ -107,8 +109,8 @@ const HeroSection = () => {
     }, []);
 
     // GSAP ScrollTrigger animations
-    useLayoutEffect(() => {
-        if (imagesRef.current.length === 0) return;
+    useEffect(() => {
+        if (!imagesLoaded) return;
 
         const ctx = gsap.context(() => {
             const trigger = ScrollTrigger.create({
@@ -169,7 +171,7 @@ const HeroSection = () => {
             triggersRef.current.forEach(t => t.kill());
             triggersRef.current = [];
         };
-    }, []);
+    }, [imagesLoaded]);
 
     return (
         <div ref={containerRef} className="hero-section">
