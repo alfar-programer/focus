@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './HeroSection.css';
@@ -14,7 +14,6 @@ const HeroSection = () => {
     const videoFramesRef = useRef({ frame: 0 });
     const contextRef = useRef(null);
     const triggersRef = useRef([]);
-    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const FRAME_COUNT =116;
 
@@ -38,7 +37,10 @@ const HeroSection = () => {
     const render = () => {
         const canvas = canvasRef.current;
         const context = contextRef.current;
-        if (!canvas || !context) return;
+        if (!canvas || !context) {
+            console.warn('Canvas or context not available');
+            return;
+        }
 
         const canvasWidth = window.innerWidth;
         const canvasHeight = window.innerHeight;
@@ -51,7 +53,7 @@ const HeroSection = () => {
             const imageAspect = img.naturalWidth / img.naturalHeight;
             const canvasAspect = canvasWidth / canvasHeight;
 
-            let drawWidth, drawHeight, drawX, drawY;
+            let drawX, drawY, drawWidth, drawHeight;
 
             if (imageAspect > canvasAspect) {
                 drawHeight = canvasHeight;
@@ -65,7 +67,13 @@ const HeroSection = () => {
                 drawY = (canvasHeight - drawHeight) / 2;
             }
 
-            context.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+            try {
+                context.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+            } catch (e) {
+                console.error('Error drawing image:', e);
+            }
+        } else {
+            console.warn(`Image not ready for frame ${videoFramesRef.current.frame}`);
         }
     };
 
@@ -78,20 +86,35 @@ const HeroSection = () => {
         setCanvasSize();
 
         let imagesToLoad = FRAME_COUNT;
+        let loadedCount = 0;
+        let errorCount = 0;
 
         const onImageLoad = () => {
+            loadedCount++;
             imagesToLoad--;
+            console.log(`Image loaded: ${loadedCount}/${FRAME_COUNT}`);
             if (imagesToLoad === 0) {
+                console.log(`All images loaded. Errors: ${errorCount}`);
                 render();
-                setImagesLoaded(true);
+            }
+        };
+
+        const onImageError = (e, index) => {
+            errorCount++;
+            imagesToLoad--;
+            console.error(`Failed to load image ${index}:`, e);
+            if (imagesToLoad === 0) {
+                console.log(`All images attempted. Loaded: ${loadedCount}, Errors: ${errorCount}`);
+                render();
             }
         };
 
         imagesRef.current = [];
         for (let i = 0; i < FRAME_COUNT; i++) {
             const img = new Image();
+            img.crossOrigin = 'anonymous';
             img.onload = onImageLoad;
-            img.onerror = onImageLoad;
+            img.onerror = (e) => onImageError(e, i);
             img.src = getFramePath(i);
             imagesRef.current.push(img);
         }
@@ -109,8 +132,8 @@ const HeroSection = () => {
     }, []);
 
     // GSAP ScrollTrigger animations
-    useEffect(() => {
-        if (!imagesLoaded) return;
+    useLayoutEffect(() => {
+        if (imagesRef.current.length === 0) return;
 
         const ctx = gsap.context(() => {
             const trigger = ScrollTrigger.create({
@@ -164,9 +187,6 @@ const HeroSection = () => {
             });
 
             triggersRef.current.push(trigger);
-            
-            // Delay refresh to ensure DOM is settled for proper pin spacing
-            setTimeout(() => ScrollTrigger.refresh(), 100);
         }, containerRef);
 
         return () => {
@@ -174,7 +194,7 @@ const HeroSection = () => {
             triggersRef.current.forEach(t => t.kill());
             triggersRef.current = [];
         };
-    }, [imagesLoaded]);
+    }, []);
 
     return (
         <div ref={containerRef} className="hero-section">
