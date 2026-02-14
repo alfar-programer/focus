@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 
 .section2-container {
-    --bg: var(--bg-primary);
+    background-color: var(--bg-surface);
     --fg: var(--text-primary);
     --card-1: var(--bg-surface);
     --card-2: var(--color-accent);

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 .section7-container {
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
     font-family: var(--font-family, 'Manrope', sans-serif);
     min-height: 100vh;
     width: 100%;
@@ -45,11 +45,11 @@
 
 /* Stats Dashboard - Glassmorphic */
 .section7-stats {
-    background: rgba(10, 37, 64, 0.4);
+    background: color-mix(in srgb, var(--bg-surface) 40%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(37, 99, 235, 0.2);
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.05);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 5%, transparent);
     border-radius: 16px;
     padding: 48px 64px;
     display: flex;
@@ -81,7 +81,7 @@
     color: var(--text-primary);
     font-size: 3rem;
     font-weight: 800;
-    text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+    text-shadow: 0 0 10px color-mix(in srgb, var(--color-accent) 30%, transparent);
     line-height: 1;
 }
 
@@ -121,20 +121,20 @@
 .project-card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10, 37, 64, 0.95) 0%, rgba(10, 37, 64, 0.4) 50%, rgba(10, 37, 64, 0) 100%);
+    background: linear-gradient(to top, color-mix(in srgb, var(--color-primary) 95%, transparent) 0%, color-mix(in srgb, var(--color-primary) 40%, transparent) 50%, transparent 100%);
 }
 
 .project-card-border {
     position: absolute;
     inset: 0;
-    border: 2px solid rgba(255, 255, 255, 0.05);
+    border: 2px solid color-mix(in srgb, var(--text-inverse) 5%, transparent);
     border-radius: 16px;
     transition: all 0.3s ease;
 }
 
 .project-card:hover .project-card-border {
     border-color: var(--color-accent);
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent) 40%, transparent);
 }
 
 .project-card-content {
@@ -152,7 +152,7 @@
 .project-card-icon {
     width: 56px;
     height: 56px;
-    background: rgba(37, 99, 235, 0.2);
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
     backdrop-filter: blur(12px);
     border-radius: 12px;
     display: flex;
@@ -168,7 +168,7 @@
 }
 
 .project-card:hover .project-card-icon {
-    background: rgba(37, 99, 235, 0.3);
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
     transform: scale(1.05);
 }
 
@@ -196,7 +196,7 @@
     align-items: center;
     gap: 12px;
     background: transparent;
-    border: 1px solid rgba(37, 99, 235, 0.4);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
     color: var(--color-accent);
     padding: 16px 40px;
     border-radius: 8px;
@@ -211,7 +211,7 @@
 
 .section7-cta-button:hover {
     border-color: var(--color-accent);
-    background: rgba(37, 99, 235, 0.05);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
 }
 
 .section7-cta-button:hover svg {

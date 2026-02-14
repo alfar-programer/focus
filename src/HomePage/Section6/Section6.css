@@ -1,6 +1,6 @@
 .section6-container {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-surface);
     color: var(--text-primary);
     overflow-x: hidden;
 }
@@ -429,12 +429,12 @@
     left: 2rem;
     width: 3rem;
     height: 1.5rem;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--text-inverse);
     border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: var(--text-inverse);
     z-index: 10;
 }
 

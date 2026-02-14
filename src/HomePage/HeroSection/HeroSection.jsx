@@ -119,25 +119,7 @@ const HeroSection = () => {
 
     return (
         <div ref={containerRef} className="hero-section">
-            <nav ref={navRef}>
-                <div className="nav-links">
-                    <a href="#">Overview</a>
-                    <a href="#">Solutions</a>
-                    <a href="#">Resources</a>
-                </div>
-
-                <div className="logo">
-                    <a href="#">
-                        <span>FOCUS</span>
-                    </a>
-                </div>
-
-                <div className="nav-buttons">
-                    <div className="btn btn-primary"><a href="#">Live Demo</a></div>
-                    <div className="btn btn-secondary"><a href="#">Get Started</a></div>
-                </div>
-            </nav>
-
+           
             <section className="hero">
                 {/* DOM-based frame animation - 116 frames stacked with visibility toggle */}
                 <div className="hero-frames-container">

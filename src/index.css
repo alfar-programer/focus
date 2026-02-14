@@ -74,29 +74,29 @@
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
 }
-/* Dark Mode Palette - "Cyber-Industrial" Theme */
+/* Dark Mode Palette - Modern Automation Theme */
 [data-theme="dark"],
 .dark {
     /* Background Colors */
-    --bg-primary: #FFFFFF;
-    --bg-surface: #F1F5F9;
+    --bg-primary: #0F172A; /* Midnight Slate */
+    --bg-surface: #1E293B; /* Lighter Slate */
     
     /* Brand Colors */
-    --color-primary: #0A2540;
-    --color-accent: #2563EB;
+    --color-primary: #3B82F6; /* Electric Blue */
+    --color-accent: #06B6D4; /* Neon Cyan */
     
     /* Text Colors */
-    --text-primary: #334155;
-    --text-secondary: #64748B;
-    --text-inverse: #F8FAFC;
+    --text-primary: #F8FAFC; /* Off-White */
+    --text-secondary: #CBD5E1; /* Lighter text */
+    --text-inverse: #0F172A; /* Midnight Slate */
     
     /* Border/Divider */
-    --border-color: #E2E8F0;
+    --border-color: #334155; /* Slate border */
     
     /* Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
     
     /* Transitions */
     --transition-fast: 0.15s ease;
