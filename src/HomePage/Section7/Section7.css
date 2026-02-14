@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+.section7-container {
+    background-color: var(--bg-secondary);
+    font-family: var(--font-family, 'Manrope', sans-serif);
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.section7-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Header Styles */
+.section7-header {
+    text-align: center;
+    width: 100%;
+}
+
+.section7-subtitle {
+    color: var(--color-accent);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.section7-title {
+    color: var(--text-primary);
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* Stats Dashboard - Glassmorphic */
+.section7-stats {
+    background: rgba(10, 37, 64, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.05);
+    border-radius: 16px;
+    padding: 48px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.section7-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    flex: 1;
+}
+
+.section7-stat-label {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.section7-stat-value {
+    color: var(--text-primary);
+    font-size: 3rem;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+    line-height: 1;
+}
+
+/* Project Cards Grid */
+.section7-projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    width: 100%;
+}
+
+.project-card {
+    position: relative;
+    height: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: scale(1.03);
+}
+
+.project-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-card-bg {
+    transform: scale(1.1);
+}
+
+.project-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 37, 64, 0.95) 0%, rgba(10, 37, 64, 0.4) 50%, rgba(10, 37, 64, 0) 100%);
+}
+
+.project-card-border {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-card-border {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+}
+
+.project-card-content {
+    position: absolute;
+    inset: 0;
+    bottom: 0;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 16px;
+    z-index: 10;
+}
+
+.project-card-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(37, 99, 235, 0.2);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.project-card-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--color-accent);
+}
+
+.project-card:hover .project-card-icon {
+    background: rgba(37, 99, 235, 0.3);
+    transform: scale(1.05);
+}
+
+.project-card-title {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.project-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* CTA Button */
+.section7-cta {
+    margin-top: 24px;
+}
+
+.section7-cta-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: 1px solid rgba(37, 99, 235, 0.4);
+    color: var(--color-accent);
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-family: var(--font-family, 'Manrope', sans-serif);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.section7-cta-button:hover {
+    border-color: var(--color-accent);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.section7-cta-button:hover svg {
+    transform: translateX(4px);
+}
+
+.section7-cta-button svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--color-accent);
+    transition: transform 0.3s ease;
+}
+
+/* Footer */
+.section7-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding-top: 40px;
+    opacity: 0.2;
+}
+
+.section7-footer-line {
+    width: 128px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent));
+}
+
+.section7-footer-line:last-child {
+    background: linear-gradient(270deg, transparent, var(--color-accent));
+}
+
+.section7-footer-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .section7-stats {
+        padding: 40px 32px;
+        gap: 32px;
+    }
+    
+    .section7-stat-value {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .section7-projects {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card {
+        height: 400px;
+    }
+    
+    .section7-title {
+        font-size: 2.5rem;
+    }
+    
+    .section7-stats {
+        flex-direction: column;
+        padding: 32px;
+    }
+    
+    .section7-stat-item {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .section7-wrapper {
+        padding: 60px 20px;
+    }
+    
+    .section7-title {
+        font-size: 2rem;
+    }
+    
+    .section7-stats {
+        padding: 24px;
+        gap: 24px;
+    }
+    
+    .section7-stat-value {
+        font-size: 2rem;
+    }
+    
+    .project-card {
+        height: 350px;
+    }
+    
+    .section7-cta-button {
+        padding: 14px 28px;
+        font-size: 0.75rem;
+    }
+}
