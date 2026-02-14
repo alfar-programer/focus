@@ -13,7 +13,7 @@ const HeroSection = () => {
     const videoFramesRef = useRef({ frame: 0 });
     const triggersRef = useRef([]);
 
-    const FRAME_COUNT = 116;
+    const FRAME_COUNT = 168;
 
     const getFramePath = (index) => {
         return `/frames/frame_${(index + 1).toString().padStart(5, '0')}.webp`;
