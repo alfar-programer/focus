@@ -42,10 +42,10 @@ const Section2 = () => {
             // gap timeline
             const gapTl = gsap.timeline({ paused: true });
             gapTl
-                .to(scopedCardContainer, { gap: 30, duration: 1, ease: "power3.out" }, 0)
-                .to("#section2-card-1", { x: -30, duration: 1, ease: "power3.out" }, 0)
-                .to("#section2-card-3", { x: 30, duration: 1, ease: "power3.out" }, 0)
-                .to(scopedCards, { borderRadius: "20px", duration: 1, ease: "power3.out" }, 0);
+                .to(scopedCardContainer, { gap: 30, duration: 0.5, ease: "power3.out" }, 0)
+                .to("#section2-card-1", { x: -30, duration: 0.5, ease: "power3.out" }, 0)
+                .to("#section2-card-3", { x: 30, duration: 0.5, ease: "power3.out" }, 0)
+                .to(scopedCards, { borderRadius: "20px", duration: 0.5, ease: "power3.out" }, 0);
 
             // flip timeline
             const flipTl = gsap.timeline({ paused: true });
@@ -54,7 +54,7 @@ const Section2 = () => {
                     ".section2-card", // scoped by context
                     {
                         rotationY: 180,
-                        duration: 1,
+                        duration: 0.5,
                         ease: "power3.inOut",
                         stagger: 0.1,
                         transformOrigin: "center center"
@@ -66,7 +66,7 @@ const Section2 = () => {
                     {
                         y: 30,
                         rotationZ: (i) => (i === 0 ? -15 : 15),
-                        duration: 1,
+                        duration: 0.5,
                         ease: "power3.inOut"
                     },
                     0
@@ -149,7 +149,7 @@ const Section2 = () => {
                 ScrollTrigger.create({
                     trigger: ".section2-sticky",
                     start: "top top",
-                    end: () => `+=${window.innerHeight * 4}px`, // 400vh scroll distance for animation
+                    end: () => `+=${window.innerHeight * 2.5}px`, // 250vh scroll distance for faster animation
                     scrub: 1,
                     pin: true,
                     pinSpacing: true,

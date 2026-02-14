@@ -182,12 +182,12 @@ const Section6 = () => {
                             <p>Events</p>
                         </div>
                         <h3>
-                            <a href="#">Innovo teams end the year with sports and team spirit</a>
+                            <a href="#">Focus teams end the year with sports and team spirit</a>
                         </h3>
                         <div className="section6-news-image">
                             <img 
                                 src="https://media.innovogroup.com/source/uploads/2025/12/teams-thumb_20251231_5ff01.jpg" 
-                                alt="Innovo teams"
+                                alt="Focus teams"
                             />
                             <div className="section6-news-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -205,12 +205,12 @@ const Section6 = () => {
                             <p>Project</p>
                         </div>
                         <h3>
-                            <a href="#">Innovo Build Egypt awarded Mivida Gardens Villas project</a>
+                            <a href="#">Focus Build Egypt awarded Mivida Gardens Villas project</a>
                         </h3>
                         <div className="section6-news-image">
                             <img 
-                                src="https://media.innovogroup.com/source/uploads/2025/12/ftr-nw_20251219_b0e58.jpg" 
-                                alt="Project award"
+                                src="/img2.jpeg"
+                                alt="Focus Project award"
                             />
                             <div className="section6-news-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
