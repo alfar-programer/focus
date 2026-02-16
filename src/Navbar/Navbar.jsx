@@ -111,19 +111,19 @@ const Navbar = () => {
                 {/* Center: Nav Links */}
                 <div className="navbar-links">
                     <a href="#" className="navbar-link">
-                        ARCHIVE
+                        About Us
                         <span className="navbar-link-underline" />
                     </a>
                     <a href="#" className="navbar-link">
-                        EXPERTISE
+                        Services
                         <span className="navbar-link-underline" />
                     </a>
                     <a href="#" className="navbar-link">
-                        OPERATIONS
+                        Projects
                         <span className="navbar-link-underline" />
                     </a>
                     <a href="#" className="navbar-link">
-                        IMPACT
+                        Contact Us
                         <span className="navbar-link-underline" />
                     </a>
                 </div>
