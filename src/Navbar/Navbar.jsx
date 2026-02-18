@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
+    const location = useLocation();
     const navRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -110,14 +112,14 @@ const Navbar = () => {
 
                 {/* Center: Nav Links */}
                 <div className="navbar-links">
-                    <a href="#" className="navbar-link">
-                        About Us
+                    <Link to="/" className="navbar-link">
+                        Home
                         <span className="navbar-link-underline" />
-                    </a>
-                    <a href="#" className="navbar-link">
+                    </Link>
+                    <Link to="/services" className="navbar-link">
                         Services
                         <span className="navbar-link-underline" />
-                    </a>
+                    </Link>
                     <a href="#" className="navbar-link">
                         Projects
                         <span className="navbar-link-underline" />

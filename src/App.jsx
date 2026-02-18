@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import ServicesPage from './Services/ServicesPage';
 import HeroSection from './HomePage/HeroSection/HeroSection';
 import Section3 from './HomePage/Section3/Section';
 import Section2 from './HomePage/Section2/Section2';
@@ -14,7 +16,22 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
+const HomePage = () => {
+    return (
+        <>
+        
+            <HeroSection />
+            <Section2 />
+            <Section5 />
+            <Section6 />
+            <Section7 />
+            <Section3 />
+        </>
+    );
+};
+
+const AppContent = () => {
+    const location = useLocation();
     const [progress, setProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [resourcesLoaded, setResourcesLoaded] = useState({
@@ -154,14 +171,20 @@ function App() {
         <div data-theme="light" className="app-container">
             <LoadingScreen progress={progress} isLoading={isLoading} />
             <Navbar />
-            <HeroSection />
-            <Section2 />
-            <Section5 />
-            <Section6 />
-            <Section7 />
-            <Section3 />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/services" element={<ServicesPage />} />
+            </Routes>
             <Footer />
         </div>
+    );
+};
+
+function App() {
+    return (
+        <Router>
+            <AppContent />
+        </Router>
     );
 }
 

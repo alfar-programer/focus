@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,52 +11,83 @@ const Footer = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Check if footer is already visible on mount
+            const checkInitialVisibility = () => {
+                const footerRect = footerRef.current.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // If footer is visible or page is too short, show content immediately
+                if (footerRect.top < windowHeight * 0.9 || documentHeight <= windowHeight * 1.5) {
+                    const cadGrid = footerRef.current.querySelector('.cad-grid');
+                    const metadataItems = footerRef.current.querySelectorAll('.footer-metadata-item');
+                    const navGroups = footerRef.current.querySelectorAll('.footer-nav-group');
+                    const blueprintStamp = footerRef.current.querySelector('.footer-stamp');
+                    const techLines = footerRef.current.querySelectorAll('.footer-tech-line');
+
+                    gsap.set(cadGrid, { opacity: 0.4 });
+                    gsap.set(metadataItems, { y: 0, opacity: 1 });
+                    gsap.set(navGroups, { y: 0, opacity: 1 });
+                    gsap.set(blueprintStamp, { scale: 1, opacity: 1 });
+                    gsap.set(techLines, { scaleX: 1, scaleY: 1 });
+                    
+                    return true; // Content is visible
+                }
+                return false; // Content should be hidden initially
+            };
+
+            const isInitiallyVisible = checkInitialVisibility();
+            
             // Footer reveal animation
             const cadGrid = footerRef.current.querySelector('.cad-grid');
             const metadataItems = footerRef.current.querySelectorAll('.footer-metadata-item');
             const navGroups = footerRef.current.querySelectorAll('.footer-nav-group');
             const blueprintStamp = footerRef.current.querySelector('.footer-stamp');
 
-            // Initial states
-            gsap.set(cadGrid, { opacity: 0 });
-            gsap.set(metadataItems, { y: 40, opacity: 0 });
-            gsap.set(navGroups, { y: 50, opacity: 0 });
-            gsap.set(blueprintStamp, { scale: 0.8, opacity: 0 });
+            // Initial states - only set if not already visible
+            if (!isInitiallyVisible) {
+                gsap.set(cadGrid, { opacity: 0 });
+                gsap.set(metadataItems, { y: 40, opacity: 0 });
+                gsap.set(navGroups, { y: 50, opacity: 0 });
+                gsap.set(blueprintStamp, { scale: 0.8, opacity: 0 });
+            }
 
-            // Main reveal timeline
-            const revealTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: 'top 85%',
-                    end: 'top 20%',
-                    toggleActions: 'play none none reverse',
-                    scrub: 1
-                }
-            });
-
-            revealTl
-                .to(cadGrid, { opacity: 0.4, duration: 1 }, 0)
-                .to(metadataItems, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.3)
-                .to(navGroups, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.5)
-                .to(blueprintStamp, { scale: 1, opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.7);
-
-            // Cinematic lines animation
-            const techLines = footerRef.current.querySelectorAll('.footer-tech-line');
-            gsap.fromTo(techLines,
-                { scaleX: 0, scaleY: 0 },
-                {
-                    scaleX: 1,
-                    scaleY: 1,
-                    duration: 1.5,
-                    stagger: 0.2,
-                    ease: 'power3.out',
+            // Main reveal timeline - only if not initially visible
+            if (!isInitiallyVisible) {
+                const revealTl = gsap.timeline({
                     scrollTrigger: {
                         trigger: footerRef.current,
                         start: 'top 90%',
-                        toggleActions: 'play none none reverse'
+                        end: 'top 20%',
+                        toggleActions: 'play none none reverse',
+                        scrub: 1
                     }
-                }
-            );
+                });
+
+                revealTl
+                    .to(cadGrid, { opacity: 0.4, duration: 1 }, 0)
+                    .to(metadataItems, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.3)
+                    .to(navGroups, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.5)
+                    .to(blueprintStamp, { scale: 1, opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.7);
+
+                // Cinematic lines animation
+                const techLines = footerRef.current.querySelectorAll('.footer-tech-line');
+                gsap.fromTo(techLines,
+                    { scaleX: 0, scaleY: 0 },
+                    {
+                        scaleX: 1,
+                        scaleY: 1,
+                        duration: 1.5,
+                        stagger: 0.2,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: footerRef.current,
+                            start: 'top 90%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            }
 
         }, footerRef);
 
@@ -97,7 +129,10 @@ const Footer = () => {
                         <h4 className="footer-nav-title">Directory</h4>
                         <nav className="footer-nav-links">
                             <a href="#">About</a>
-                            <a href="#">Expertise</a>
+                            <Link to="/services" className="navbar-link">
+                        Services
+
+                    </Link>
                             <a href="#">Portfolio</a>
                         </nav>
                     </div>
