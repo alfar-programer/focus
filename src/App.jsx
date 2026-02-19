@@ -168,7 +168,7 @@ const AppContent = () => {
     }, []);
 
     return (
-        <div data-theme="light" className="app-container">
+        <div data-theme="dark" className="app-container">
             <LoadingScreen progress={progress} isLoading={isLoading} />
             <Navbar />
             <Routes>

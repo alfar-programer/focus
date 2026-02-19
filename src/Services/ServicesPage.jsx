@@ -2,6 +2,7 @@ import React from 'react';
 import ServicesHero from './section1/ServicesHero';
 import ServicesOverview from './section2/ServicesOverview';
 import WhyFocus from './section3/WhyFocus';
+import WorkflowSection from './section4/WorkflowSection';
 
 const ServicesPage = () => {
     return (
@@ -9,6 +10,7 @@ const ServicesPage = () => {
             <ServicesHero />
             <ServicesOverview />
             <WhyFocus />
+            <WorkflowSection />
         </div>
     );
 };

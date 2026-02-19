@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Footer.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
     const footerRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -92,7 +93,7 @@ const Footer = () => {
         }, footerRef);
 
         return () => ctx.revert();
-    }, []);
+    }, [location]);
 
     return (
         <footer ref={footerRef} className="footer-container">
