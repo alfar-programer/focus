@@ -1,0 +1,533 @@
+/* ============================================
+   WHY FOCUS SECTION
+   Combined design: Left from Connect with Engineering Team
+   Right from Focus Services Industrial Systems
+   ============================================ */
+
+.why-focus {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+/* Background Grid */
+.why-focus__grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: 
+        linear-gradient(var(--color-accent) 1px, transparent 1px),
+        linear-gradient(to right, var(--color-accent) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Container */
+.why-focus__container {
+    position: relative;
+    z-index: 10;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .why-focus__container {
+        flex-direction: row;
+        gap: 4rem;
+        padding: 0 3rem;
+    }
+}
+
+/* ============================================
+   LEFT COLUMN - Sticky Identity
+   ============================================ */
+
+.why-focus__left {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .why-focus__left {
+        width: 42%;
+        position: sticky;
+        top: 8rem;
+        height: fit-content;
+    }
+}
+
+/* Badge */
+.why-focus__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+    background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    border-radius: 9999px;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.why-focus__badge-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Title */
+.why-focus__title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+    .why-focus__title {
+        font-size: 5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .why-focus__title {
+        font-size: 6rem;
+    }
+}
+
+.why-focus__title-accent {
+    color: transparent;
+    background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Intro Section */
+.why-focus__intro {
+    padding-left: 2rem;
+    border-left: 2px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+.why-focus__lead {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.why-focus__description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Stats */
+.why-focus__stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.why-focus__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.why-focus__stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.why-focus__stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.why-focus__stat-divider {
+    width: 1px;
+    height: 3rem;
+    background-color: var(--border-color);
+}
+
+/* ============================================
+   RIGHT COLUMN - Interactive Pillars
+   ============================================ */
+
+.why-focus__right {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .why-focus__right {
+        width: 58%;
+    }
+}
+
+/* Section Label */
+.why-focus__section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.why-focus__label-line {
+    width: 2rem;
+    height: 2px;
+    background-color: var(--color-accent);
+    opacity: 0.5;
+}
+
+/* Section Intro */
+.why-focus__section-intro {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Accordion */
+.why-focus__accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Accordion Item */
+.why-focus__item {
+    position: relative;
+    background-color: color-mix(in srgb, var(--bg-surface) 50%, transparent);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.why-focus__item:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    box-shadow: 0 0 15px -3px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+.why-focus__item.active {
+    border-color: var(--color-accent);
+    background-color: var(--bg-surface);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Item Header */
+.why-focus__item-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+@media (min-width: 1024px) {
+    .why-focus__item-header {
+        padding: 2rem;
+    }
+}
+
+.why-focus__item-main {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .why-focus__item-main {
+        gap: 2.5rem;
+    }
+}
+
+/* Item Number */
+.why-focus__item-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--text-primary) 20%, transparent);
+    transition: all 0.3s ease;
+}
+
+.why-focus__item:hover .why-focus__item-number {
+    -webkit-text-stroke: 1px var(--color-accent);
+    color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    transform: scale(1.05);
+}
+
+.why-focus__item.active .why-focus__item-number {
+    color: var(--color-accent);
+    -webkit-text-stroke: 1px var(--color-accent);
+}
+
+@media (min-width: 1024px) {
+    .why-focus__item-number {
+        font-size: 4rem;
+    }
+}
+
+/* Item Title */
+.why-focus__item-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.why-focus__item-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.why-focus__item:hover .why-focus__item-title {
+    color: var(--color-accent);
+}
+
+.why-focus__item.active .why-focus__item-title {
+    color: var(--text-primary);
+}
+
+@media (min-width: 1024px) {
+    .why-focus__item-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animated Line */
+.why-focus__item-line {
+    height: 2px;
+    width: 0;
+    background-color: var(--color-accent);
+    transition: width 0.5s ease-out;
+}
+
+.why-focus__item:hover .why-focus__item-line {
+    width: 3rem;
+}
+
+/* Toggle Icon */
+.why-focus__item-toggle {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+.why-focus__item:hover .why-focus__item-toggle {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.why-focus__item.active .why-focus__item-toggle {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--text-inverse);
+}
+
+.why-focus__item-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.why-focus__item-toggle svg.rotated {
+    transform: rotate(180deg);
+}
+
+/* Active Indicator Line */
+.why-focus__item-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--color-accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.why-focus__item.active .why-focus__item-indicator {
+    transform: translateX(0);
+}
+
+/* Item Content */
+.why-focus__item-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.why-focus__item-content.open {
+    max-height: 500px;
+}
+
+.why-focus__item-body {
+    padding: 0 1.5rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .why-focus__item-body {
+        flex-direction: row;
+        padding: 1.5rem 2rem 2rem 7rem;
+    }
+}
+
+/* Item Text */
+.why-focus__item-text {
+    flex: 1;
+}
+
+.why-focus__item-text p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.why-focus__item-text p span {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Features List */
+.why-focus__item-features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.why-focus__item-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.why-focus__feature-icon {
+    font-family: 'Material Symbols Outlined', sans-serif;
+    font-size: 1rem;
+    color: var(--color-accent);
+}
+
+/* Metric Box */
+.why-focus__item-metric {
+    width: 100%;
+    height: 8rem;
+    background-color: color-mix(in srgb, var(--bg-primary) 50%, transparent);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .why-focus__item-metric {
+        width: 12rem;
+        flex-shrink: 0;
+    }
+}
+
+.why-focus__metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.why-focus__metric-unit {
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    vertical-align: super;
+}
+
+.why-focus__metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Section Footer */
+.why-focus__footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.why-focus__status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.why-focus__status-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

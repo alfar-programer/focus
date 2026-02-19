@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Focus Why: Full Technical Pillars</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1392ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#0f1115", 
+                        "surface-dark": "#161b22",
+                        "border-dark": "#233948",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #233948 1px, transparent 1px), linear-gradient(to bottom, #233948 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1115; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233948; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1392ec; 
+        }.writing-vertical-rl {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }.bg-engineering-grid {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }.glow-border:hover {
+            box-shadow: 0 0 15px -3px rgba(19, 146, 236, 0.3);
+            border-color: #1392ec;
+        }.text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+            color: transparent;
+        }
+        .group:hover .text-outline {
+            -webkit-text-stroke: 1px #1392ec;
+            color: rgba(19, 146, 236, 0.1);
+        }details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-[#111b22]/90 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined !text-[24px]">architecture</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] uppercase">Focus Trading &amp; Contracting</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Projects</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Capabilities</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary pb-0.5" href="#">Why Focus</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Careers</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Contact</a>
+</div>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary hover:bg-blue-600 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Client Portal</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col lg:flex-row relative">
+<div class="absolute inset-0 pointer-events-none opacity-[0.03] bg-grid-pattern bg-engineering-grid z-0"></div>
+<aside class="relative z-10 w-full lg:w-32 xl:w-48 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-border-dark bg-background-dark/50 backdrop-blur-sm lg:h-[calc(100vh-73px)] lg:sticky lg:top-[73px] flex flex-row lg:flex-col justify-between p-6 overflow-hidden">
+<div class="hidden lg:flex flex-col gap-1 text-[10px] text-slate-500 font-mono tracking-widest uppercase opacity-60">
+<span>SEC: 02.B</span>
+<span>POS: 24.9N</span>
+</div>
+<div class="flex items-center justify-center h-full py-4">
+<h1 class="text-4xl lg:text-[80px] font-bold tracking-tight text-white/10 lg:writing-vertical-rl lg:rotate-180 select-none uppercase whitespace-nowrap leading-none">
+                    Why Focus
+                </h1>
+</div>
+<div class="lg:hidden w-full flex justify-between items-center">
+<span class="text-xl font-bold tracking-wider">STRATEGIC ADVANTAGE</span>
+<span class="text-xs text-primary font-mono">SCROLL ↓</span>
+</div>
+<div class="hidden lg:block w-px h-24 bg-gradient-to-b from-transparent via-primary to-transparent self-center"></div>
+</aside>
+<section class="relative z-10 flex-1 flex flex-col p-6 lg:p-16 xl:p-24 max-w-7xl mx-auto w-full">
+<div class="mb-16 flex flex-col gap-4 border-l-2 border-primary/50 pl-6">
+<p class="text-primary text-xs font-mono tracking-[0.2em] uppercase">Engineering Excellence</p>
+<p class="text-slate-400 max-w-2xl text-lg font-light leading-relaxed">
+                    Our operational framework is built on precision, speed, and integrated supply chains. We don't just build infrastructure; we engineer certainty in an uncertain world.
+                </p>
+</div>
+<div class="flex flex-col gap-6 w-full">
+<details class="group open:bg-surface-dark/50 transition-all duration-300 rounded-xl border border-border-dark hover:border-slate-600 glow-border overflow-hidden" open="">
+<summary class="flex cursor-pointer items-center justify-between p-6 lg:p-8 select-none list-none relative">
+<div class="flex items-center gap-6 lg:gap-10 w-full">
+<span class="text-5xl lg:text-7xl font-bold text-outline font-display transition-all duration-300 group-hover:scale-105">01</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-xl lg:text-2xl font-bold text-white tracking-wide group-hover:text-primary transition-colors">Rapid Response Capability</h3>
+<div class="h-0.5 w-0 group-hover:w-12 bg-primary transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<div class="text-slate-500 group-hover:text-primary transition-transform duration-300 group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<svg fill="none" height="10" viewBox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1H9V9" stroke="#1392ec" stroke-width="1"></path>
+</svg>
+</div>
+</summary>
+<div class="px-6 pb-8 lg:px-28 lg:pb-10">
+<div class="flex flex-col lg:flex-row gap-8 pt-4 border-t border-slate-800">
+<div class="flex-1">
+<p class="text-slate-300 leading-relaxed text-base">
+                                    Our agile operational framework ensures immediate deployment of resources and specialized engineering teams to critical infrastructure sites within 24 hours of project initiation. We utilize pre-staged logistics hubs to minimize lead times.
+                                </p>
+<ul class="mt-6 space-y-2">
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+                                        24/7 Command Center Activation
+                                    </li>
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+                                        Pre-approved Vendor Network
+                                    </li>
+</ul>
+</div>
+<div class="w-full lg:w-48 h-32 rounded bg-slate-800/50 border border-slate-700 flex flex-col items-center justify-center gap-2">
+<span class="text-3xl font-bold text-primary">24<span class="text-sm align-top">hr</span></span>
+<span class="text-xs text-slate-500 uppercase tracking-widest">Deploy Time</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group open:bg-surface-dark/50 transition-all duration-300 rounded-xl border border-border-dark hover:border-slate-600 glow-border overflow-hidden bg-[#111b22]">
+<summary class="flex cursor-pointer items-center justify-between p-6 lg:p-8 select-none list-none relative">
+<div class="flex items-center gap-6 lg:gap-10 w-full">
+<span class="text-5xl lg:text-7xl font-bold text-outline font-display transition-all duration-300 group-hover:scale-105">02</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-xl lg:text-2xl font-bold text-white tracking-wide group-hover:text-primary transition-colors">Collaborative Engineering</h3>
+<div class="h-0.5 w-0 group-hover:w-12 bg-primary transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<div class="text-slate-500 group-hover:text-primary transition-transform duration-300 group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<svg fill="none" height="10" viewBox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1H9V9" stroke="#1392ec" stroke-width="1"></path>
+</svg>
+</div>
+</summary>
+<div class="px-6 pb-8 lg:px-28 lg:pb-10">
+<div class="flex flex-col lg:flex-row gap-8 pt-4 border-t border-slate-800">
+<div class="flex-1">
+<p class="text-slate-300 leading-relaxed text-base">
+                                    Our multidisciplinary approach breaks down traditional silos through advanced BIM-led synchronization. By integrating structural, mechanical, and electrical teams into a unified digital environment, we eliminate clashes before they manifest on site, fostering a culture of proactive problem-solving.
+                                </p>
+<ul class="mt-6 space-y-2">
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">hub</span>
+                                        Cross-Disciplinary Coordination
+                                    </li>
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">sync</span>
+                                        Real-time Digital Twin Updates
+                                    </li>
+</ul>
+</div>
+<div class="w-full lg:w-48 h-32 rounded bg-slate-800/50 border border-slate-700 flex flex-col items-center justify-center gap-2 relative overflow-hidden group/metric">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover/metric:opacity-100 transition-opacity"></div>
+<span class="text-3xl font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-2xl">groups</span> 100%
+                                    </span>
+<span class="text-xs text-slate-500 uppercase tracking-widest">Team Synergy</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group open:bg-surface-dark/50 transition-all duration-300 rounded-xl border border-border-dark hover:border-slate-600 glow-border overflow-hidden bg-[#111b22]">
+<summary class="flex cursor-pointer items-center justify-between p-6 lg:p-8 select-none list-none relative">
+<div class="flex items-center gap-6 lg:gap-10 w-full">
+<span class="text-5xl lg:text-7xl font-bold text-outline font-display transition-all duration-300 group-hover:scale-105">03</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-xl lg:text-2xl font-bold text-white tracking-wide group-hover:text-primary transition-colors">Integrated Supply Chain</h3>
+<div class="h-0.5 w-0 group-hover:w-12 bg-primary transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<div class="text-slate-500 group-hover:text-primary transition-transform duration-300 group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<svg fill="none" height="10" viewBox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1H9V9" stroke="#1392ec" stroke-width="1"></path>
+</svg>
+</div>
+</summary>
+<div class="px-6 pb-8 lg:px-28 lg:pb-10">
+<div class="flex flex-col lg:flex-row gap-8 pt-4 border-t border-slate-800">
+<div class="flex-1">
+<p class="text-slate-300 leading-relaxed text-base">
+                                    We leverage a robust global network of pre-vetted manufacturers and logistics partners to ensure material availability regardless of market volatility. Our vertical integration strategy secures critical path items months in advance, optimizing logistics for just-in-time delivery.
+                                </p>
+<ul class="mt-6 space-y-2">
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+                                        Pre-vetted Vendor Reliability
+                                    </li>
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">local_shipping</span>
+                                        Automated Logistics Tracking
+                                    </li>
+</ul>
+</div>
+<div class="w-full lg:w-48 h-32 rounded bg-slate-800/50 border border-slate-700 flex flex-col items-center justify-center gap-2 relative overflow-hidden">
+<div class="absolute inset-0 opacity-20">
+<svg class="w-full h-full" fill="none" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M20,50 Q50,20 80,50 T140,50 T180,80" stroke="#1392ec" stroke-dasharray="4 4" stroke-width="1"></path>
+<circle cx="20" cy="50" fill="#1392ec" r="2"></circle>
+<circle cx="80" cy="50" fill="#1392ec" r="2"></circle>
+<circle cx="140" cy="50" fill="#1392ec" r="2"></circle>
+</svg>
+</div>
+<span class="text-3xl font-bold text-primary relative z-10">45+</span>
+<span class="text-xs text-slate-500 uppercase tracking-widest relative z-10">Global Hubs</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group open:bg-surface-dark/50 transition-all duration-300 rounded-xl border border-border-dark hover:border-slate-600 glow-border overflow-hidden bg-[#111b22]">
+<summary class="flex cursor-pointer items-center justify-between p-6 lg:p-8 select-none list-none relative">
+<div class="flex items-center gap-6 lg:gap-10 w-full">
+<span class="text-5xl lg:text-7xl font-bold text-outline font-display transition-all duration-300 group-hover:scale-105">04</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-xl lg:text-2xl font-bold text-white tracking-wide group-hover:text-primary transition-colors">Safety &amp; Quality Standards</h3>
+<div class="h-0.5 w-0 group-hover:w-12 bg-primary transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<div class="text-slate-500 group-hover:text-primary transition-transform duration-300 group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<svg fill="none" height="10" viewBox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1H9V9" stroke="#1392ec" stroke-width="1"></path>
+</svg>
+</div>
+</summary>
+<div class="px-6 pb-8 lg:px-28 lg:pb-10">
+<div class="flex flex-col lg:flex-row gap-8 pt-4 border-t border-slate-800">
+<div class="flex-1">
+<p class="text-slate-300 leading-relaxed text-base">
+                                    Our 'Zero-Harm' philosophy is embedded in every operational layer. We rigorously adhere to ISO 45001 and ISO 9001 standards, employing predictive safety analytics to neutralize risks before they arise. Quality is not inspected in; it is engineered from the start.
+                                </p>
+<ul class="mt-6 space-y-2">
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">shield_with_heart</span>
+                                        Mission-Critical Safety Protocols
+                                    </li>
+<li class="flex items-center gap-3 text-sm text-slate-400">
+<span class="material-symbols-outlined text-primary text-[16px]">workspace_premium</span>
+                                        ISO 9001 &amp; 45001 Compliant
+                                    </li>
+</ul>
+</div>
+<div class="w-full lg:w-48 h-32 rounded bg-slate-800/50 border border-slate-700 flex flex-col items-center justify-center gap-3 p-4">
+<div class="flex gap-2">
+<span class="flex items-center justify-center w-8 h-8 rounded-full border border-primary/30 bg-primary/10 text-primary text-[10px] font-bold">ISO</span>
+<span class="flex items-center justify-center w-8 h-8 rounded-full border border-primary/30 bg-primary/10 text-primary text-[10px] font-bold">HSE</span>
+</div>
+<div class="text-center">
+<span class="block text-xl font-bold text-white">Zero-Harm</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest">Certified</span>
+</div>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="mt-20 border-t border-border-dark pt-8 flex justify-between items-center text-xs text-slate-600 font-mono uppercase tracking-widest">
+<span>Focus System v2.0</span>
+<span class="flex items-center gap-2">
+<span class="block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    System Active
+                </span>
+</div>
+</section>
+</main>
+<footer class="flex flex-col gap-6 px-10 py-10 text-center border-t border-border-dark bg-[#111b22] relative z-20">
+<div class="flex flex-wrap items-center justify-center gap-6 md:justify-around">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-normal leading-normal min-w-40" href="#">Sitemap</a>
+</div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+<p class="text-slate-500 text-xs font-normal leading-normal">© 2024 Focus Trading &amp; Contracting. All rights reserved.</p>
+</footer>
+</body></html>
