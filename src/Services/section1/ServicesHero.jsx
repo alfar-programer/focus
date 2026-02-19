@@ -8,6 +8,11 @@ const ServicesHero = () => {
             {/* Background Grid Decoration */}
             <div class="section2-grid-bg"></div>
             
+            {/* Company Logo Watermark */}
+            <div className="services-hero__logo-watermark">
+                <img src="/imgslide1-removebg-preview.png" alt="" aria-hidden="true" />
+            </div>
+            
             <div className="services-hero__container">
                 {/* Left Column: Content */}
                 <div className="services-hero__content">

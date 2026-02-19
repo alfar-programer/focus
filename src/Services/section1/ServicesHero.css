@@ -28,6 +28,30 @@
     -webkit-mask-image: linear-gradient(to bottom, transparent, 10%, black, 90%, transparent);
 }
 
+/* Logo Watermark */
+.services-hero__logo-watermark {
+    position: absolute;
+    right: -10%;
+    top: 50%;
+    transform: translateY(-50%) rotate(12deg);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.04;
+}
+
+.services-hero__logo-watermark img {
+    width: 600px;
+    height: auto;
+    filter: grayscale(100%) brightness(200%) contrast(0%);
+}
+
+@media (min-width: 1024px) {
+    .services-hero__logo-watermark img {
+        width: 800px;
+    }
+}
+
 /* Container */
 .services-hero__container {
     position: relative;

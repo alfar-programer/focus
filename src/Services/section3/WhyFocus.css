@@ -25,6 +25,35 @@
     background-size: 40px 40px;
 }
 
+/* Logo Watermark */
+.why-focus__logo-watermark {
+    position: absolute;
+    left: 27%;
+    top: 2%;
+    transform: rotate(-8deg);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.03;
+}
+
+.why-focus__logo-watermark img {
+    width: 300px;
+    height: auto;
+    filter: grayscale(100%) brightness(200%) contrast(0%);
+}
+
+@media (min-width: 1024px) {
+    .why-focus__logo-watermark {
+        left: 25%;
+        top: 0%;
+    }
+    
+    .why-focus__logo-watermark img {
+        width: 480px;
+    }
+}
+
 /* Container */
 .why-focus__container {
     position: relative;

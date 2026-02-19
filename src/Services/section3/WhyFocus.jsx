@@ -59,6 +59,11 @@ const WhyFocus = () => {
         <section className="why-focus">
             <div className="why-focus__grid-bg"></div>
             
+            {/* Company Logo Watermark */}
+            <div className="why-focus__logo-watermark">
+                <img src="/imgslide1-removebg-preview.png" alt="" aria-hidden="true" />
+            </div>
+            
             <div className="why-focus__container">
                 {/* Left Column - Sticky Identity */}
                 <div className="why-focus__left">
