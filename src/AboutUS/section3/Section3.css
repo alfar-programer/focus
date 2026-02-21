@@ -1,0 +1,341 @@
+.values-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+    background-color: #101922;
+    color: #f1f5f9;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden;
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to right, rgba(19, 127, 236, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(19, 127, 236, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.values-header {
+    padding: 0 6vw;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.section-label {
+    display: block;
+    color: #137fec;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.values-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    margin: 0;
+    color: white;
+}
+
+.values-title .highlight {
+    color: #137fec;
+}
+
+.accent-line {
+    height: 4px;
+    width: 96px;
+    background-color: #137fec;
+    margin-top: 2rem;
+}
+
+/* Slider */
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+
+.slider-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 0;
+    padding-bottom: 2rem;
+    cursor: grab;
+}
+
+.slider-container:active {
+    cursor: grabbing;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.value-slide {
+    min-width: 100%;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    scroll-snap-align: center;
+}
+
+@media (min-width: 768px) {
+    .value-slide {
+        min-width: 80vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .value-slide {
+        min-width: 60vw;
+    }
+}
+
+.slide-inner {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    background: rgba(19, 127, 236, 0.05);
+    border: 1px solid rgba(19, 127, 236, 0.1);
+    border-radius: 12px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.bg-number {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 15rem;
+    font-weight: 900;
+    color: rgba(19, 127, 236, 0.05);
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
+}
+
+.slide-content-top {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.slide-icon {
+    font-size: 3rem;
+    color: #137fec;
+}
+
+.slide-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: white;
+    margin: 0;
+}
+
+.slide-desc {
+    color: #94a3b8;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 32rem;
+    margin-bottom: 2rem;
+}
+
+.slide-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: gap 0.3s ease;
+}
+
+.value-slide:hover .slide-action {
+    gap: 1.5rem;
+}
+
+.action-text {
+    color: #137fec;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+}
+
+.action-arrow {
+    color: #137fec;
+}
+
+/* Custom slide variations */
+.innovation-slide .slide-inner {
+    background: rgba(30, 41, 59, 0.2);
+    flex-direction: column-reverse;
+}
+
+@media (min-width: 768px) {
+    .innovation-slide .slide-inner {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.innovation-slide .bg-number {
+    top: auto;
+    bottom: -40px;
+    left: -20px;
+    right: auto;
+}
+
+.integrity-slide .slide-inner {
+    justify-content: center;
+    text-align: center;
+}
+
+.integrity-slide .slide-desc {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sustainable-slide .slide-desc {
+    font-style: italic;
+    padding: 1.5rem;
+    border-left: 4px solid #137fec;
+    background: rgba(16, 25, 34, 0.8);
+    color: #cbd5e1;
+}
+
+/* Nav Area */
+.slider-nav-area {
+    padding: 0 6vw;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    z-index: 20;
+}
+
+@media (min-width: 768px) {
+    .slider-nav-area {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid rgba(19, 127, 236, 0.2);
+    background: transparent;
+    color: #137fec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: #137fec;
+    color: white;
+}
+
+.nav-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #137fec;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.nav-helper {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+/* Progress Bar */
+.progress-container {
+    flex: 1;
+    max-width: 512px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.current-step {
+    color: #137fec;
+}
+
+.progress-track {
+    height: 2px;
+    background: rgba(19, 127, 236, 0.2);
+    position: relative;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #137fec;
+    transition: width 0.5s ease;
+}
+
+.progress-glow {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: rgba(19, 127, 236, 0.2);
+    filter: blur(6px);
+    border-radius: 50%;
+}

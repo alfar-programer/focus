@@ -8,6 +8,7 @@ import Section5 from './HomePage/Section5/Section5';
 import Section6 from './HomePage/Section6/Section6';
 import Section7 from './HomePage/Section7/Section7';
 import Navbar from './Navbar/Navbar';
+import AboutUs from './AboutUS/AboutUs';
 import Footer from './Footer/Footer';
 import LoadingScreen from './LoadingScreen/LoadingScreen';
 import Lenis from 'lenis';
@@ -19,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 const HomePage = () => {
     return (
         <>
-        
+
             <HeroSection />
             <Section2 />
             <Section5 />
@@ -111,26 +112,26 @@ const AppContent = () => {
         const stages = Object.values(resourcesLoaded);
         const completedStages = stages.filter(Boolean).length;
         const totalStages = stages.length;
-        
+
         let targetProgress = (completedStages / totalStages) * 100;
-        
+
         // Force 100% when all stages complete
         if (completedStages === totalStages) {
             targetProgress = 100;
         }
-        
+
         // Smooth progress animation
         const currentProgress = progress;
         const diff = targetProgress - currentProgress;
-        
+
         if (Math.abs(diff) > 0.1) {
             const increment = diff * 0.15;
             const newProgress = currentProgress + increment;
-            
+
             const timer = setTimeout(() => {
                 setProgress(newProgress);
             }, 30);
-            
+
             return () => clearTimeout(timer);
         } else if (targetProgress === 100 && progress < 100) {
             // Snap to 100% when close enough
@@ -173,6 +174,7 @@ const AppContent = () => {
             <Navbar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutUs />} />
                 <Route path="/services" element={<ServicesPage />} />
             </Routes>
             <Footer />
