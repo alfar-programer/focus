@@ -192,7 +192,7 @@ const Section2 = () => {
                         </div>
                         <div className="section2-card-back">
                             <span>01</span>
-                            <p>⚡ Energy</p>
+                            <p>⚡ Power Generation</p>
                         </div>
                     </div>
 
@@ -202,7 +202,7 @@ const Section2 = () => {
                         </div>
                         <div className="section2-card-back">
                             <span>02</span>
-                            <p>⚙ Automation</p>
+                            <p>⚙ SCADA and Industrial Automation</p>
                         </div>
                     </div>
 
@@ -212,7 +212,7 @@ const Section2 = () => {
                         </div>
                         <div className="section2-card-back">
                             <span>03</span>
-                            <p>📡 Monitoring</p>
+                            <p>📡 Electro Mechanical Works</p>
                         </div>
                     </div>
                 </div>
