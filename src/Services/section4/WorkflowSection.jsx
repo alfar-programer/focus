@@ -105,7 +105,7 @@ const WorkflowSection = () => {
                 setIsSectionInView(entry.isIntersecting);
             },
             {
-                threshold: 0.7, // Trigger when 10% of section is visible
+                threshold: .5, // Trigger when 50% of section is visible
                 rootMargin: '0px'
             }
         );

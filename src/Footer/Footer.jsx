@@ -17,7 +17,7 @@ const Footer = () => {
                 const footerRect = footerRef.current.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight;
-                
+
                 // If footer is visible or page is too short, show content immediately
                 if (footerRect.top < windowHeight * 0.9 || documentHeight <= windowHeight * 1.5) {
                     const cadGrid = footerRef.current.querySelector('.cad-grid');
@@ -31,14 +31,14 @@ const Footer = () => {
                     gsap.set(navGroups, { y: 0, opacity: 1 });
                     gsap.set(blueprintStamp, { scale: 1, opacity: 1 });
                     gsap.set(techLines, { scaleX: 1, scaleY: 1 });
-                    
+
                     return true; // Content is visible
                 }
                 return false; // Content should be hidden initially
             };
 
             const isInitiallyVisible = checkInitialVisibility();
-            
+
             // Footer reveal animation
             const cadGrid = footerRef.current.querySelector('.cad-grid');
             const metadataItems = footerRef.current.querySelectorAll('.footer-metadata-item');
@@ -118,7 +118,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-metadata-item">
                     <span className="footer-metadata-label">Status</span>
-                    <span className="footer-metadata-value">OPERATIONAL // STABLE</span>
+                    <span className="footer-metadata-value">EGYPT // KSA</span>
                 </div>
             </div>
 
@@ -129,32 +129,26 @@ const Footer = () => {
                     <div className="footer-nav-group">
                         <h4 className="footer-nav-title">Directory</h4>
                         <nav className="footer-nav-links">
-                            <a href="#">About</a>
-                            <Link to="/services" className="navbar-link">
-                        Services
-
-                    </Link>
-                            <a href="#">Portfolio</a>
+                            <Link to="/" className="footer-nav-link">Home</Link>
+                            <Link to="/services" className="footer-nav-link">Services</Link>
+                            <Link to="/about" className="footer-nav-link">About</Link>
+                            <a href="#" className="footer-nav-link">Projects</a>
+                            <a href="#" className="footer-nav-link">Contact Us</a>
                         </nav>
                     </div>
                     {/* Connection */}
                     <div className="footer-nav-group">
                         <h4 className="footer-nav-title">Connection</h4>
                         <nav className="footer-nav-links">
-                            <a href="#">LinkedIn</a>
-                            <a href="#">Instagram</a>
-                            <a href="#">Email</a>
+                            <a href="https://www.linkedin.com/company/focus-for-trading-contracting" target="_blank" rel="noopener noreferrer" className="footer-nav-link">LinkedIn</a>
+                            <a href="https://www.facebook.com/FOCUS.T.C.group/" target="_blank" rel="noopener noreferrer" className="footer-nav-link">Facebook</a>
+                            <a href="https://www.instagram.com/focus.trading.contracting/" target="_blank" rel="noopener noreferrer" className="footer-nav-link">Instagram</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" className="footer-nav-link">Twitter</a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" className="footer-nav-link">Email</a>
                         </nav>
                     </div>
                     {/* Compliance */}
-                    <div className="footer-nav-group">
-                        <h4 className="footer-nav-title">Legal</h4>
-                        <nav className="footer-nav-links">
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms of Service</a>
-                            <a href="#">ISO 9001:2015</a>
-                        </nav>
-                    </div>
+                    
                 </div>
 
                 {/* Blueprint Stamp */}

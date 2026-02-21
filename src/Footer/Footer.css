@@ -377,6 +377,14 @@
     white-space: nowrap;
     color: var(--text-primary);
     margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.footer-bg-logo {
+    height: 25vw;
+    filter: grayscale(100%);
+    opacity: 1;
 }
 
 /* Technical Lines */

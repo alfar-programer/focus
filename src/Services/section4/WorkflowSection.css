@@ -653,7 +653,7 @@
 @media (min-width: 768px) {
     .metrics-panel {
         grid-template-columns: repeat(3, 1fr);
-        margin-top: 22rem;
+        margin-top: 30rem;
     }
 }
 
