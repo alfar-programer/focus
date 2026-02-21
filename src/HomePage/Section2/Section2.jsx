@@ -182,7 +182,7 @@ const Section2 = () => {
 
             <div className="section2-sticky">
                 <div className="section2-sticky-header">
-                    <h1>Three pillars with one purpose</h1>
+                    <h1>Business Lines</h1>
                 </div>
 
                 <div className="section2-card-container">
