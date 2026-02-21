@@ -5,8 +5,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 80px 0;
-    background-color: #101922;
-    color: #f1f5f9;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-family: 'Space Grotesk', sans-serif;
     overflow: hidden;
 }
@@ -14,8 +14,8 @@
 .grid-overlay {
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(to right, rgba(19, 127, 236, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(19, 127, 236, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(to right, color-mix(in srgb, var(--color-accent) 5%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in srgb, var(--color-accent) 5%, transparent) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
     opacity: 0.4;
@@ -30,7 +30,7 @@
 
 .section-label {
     display: block;
-    color: #137fec;
+    color: var(--color-accent);
     font-weight: 700;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -44,17 +44,17 @@
     line-height: 0.9;
     letter-spacing: -0.05em;
     margin: 0;
-    color: white;
+    color: var(--text-inverse);
 }
 
 .values-title .highlight {
-    color: #137fec;
+    color: var(--color-accent);
 }
 
 .accent-line {
     height: 4px;
     width: 96px;
-    background-color: #137fec;
+    background-color: var(--color-accent);
     margin-top: 2rem;
 }
 
@@ -112,8 +112,8 @@
     width: 100%;
     height: 60vh;
     min-height: 400px;
-    background: rgba(19, 127, 236, 0.05);
-    border: 1px solid rgba(19, 127, 236, 0.1);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 10%, transparent);
     border-radius: 12px;
     padding: 3rem;
     display: flex;
@@ -129,7 +129,7 @@
     right: -20px;
     font-size: 15rem;
     font-weight: 900;
-    color: rgba(19, 127, 236, 0.05);
+    color: color-mix(in srgb, var(--color-accent) 5%, transparent);
     user-select: none;
     pointer-events: none;
     line-height: 1;
@@ -143,19 +143,19 @@
 
 .slide-icon {
     font-size: 3rem;
-    color: #137fec;
+    color: var(--color-accent);
 }
 
 .slide-title {
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
     line-height: 1.1;
-    color: white;
+    color: var(--text-inverse);
     margin: 0;
 }
 
 .slide-desc {
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-size: 1.125rem;
     line-height: 1.6;
     max-width: 32rem;
@@ -174,7 +174,7 @@
 }
 
 .action-text {
-    color: #137fec;
+    color: var(--color-accent);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -182,12 +182,12 @@
 }
 
 .action-arrow {
-    color: #137fec;
+    color: var(--color-accent);
 }
 
 /* Custom slide variations */
 .innovation-slide .slide-inner {
-    background: rgba(30, 41, 59, 0.2);
+    background: color-mix(in srgb, var(--bg-surface) 20%, transparent);
     flex-direction: column-reverse;
 }
 
@@ -218,9 +218,9 @@
 .sustainable-slide .slide-desc {
     font-style: italic;
     padding: 1.5rem;
-    border-left: 4px solid #137fec;
-    background: rgba(16, 25, 34, 0.8);
-    color: #cbd5e1;
+    border-left: 4px solid var(--color-accent);
+    background: color-mix(in srgb, var(--bg-primary) 80%, transparent);
+    color: var(--text-secondary);
 }
 
 /* Nav Area */
@@ -257,9 +257,9 @@
     width: 48px;
     height: 48px;
     border-radius: 4px;
-    border: 1px solid rgba(19, 127, 236, 0.2);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
     background: transparent;
-    color: #137fec;
+    color: var(--color-accent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -268,8 +268,8 @@
 }
 
 .nav-btn:hover {
-    background: #137fec;
-    color: white;
+    background: var(--color-accent);
+    color: var(--text-inverse);
 }
 
 .nav-info {
@@ -280,14 +280,14 @@
 .nav-label {
     font-size: 0.75rem;
     font-weight: 700;
-    color: #137fec;
+    color: var(--color-accent);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
 
 .nav-helper {
     font-size: 0.875rem;
-    color: #64748b;
+    color: var(--text-secondary);
 }
 
 /* Progress Bar */
@@ -316,7 +316,7 @@
 
 .progress-track {
     height: 2px;
-    background: rgba(19, 127, 236, 0.2);
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
     position: relative;
 }
 
@@ -325,7 +325,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    background: #137fec;
+    background: var(--color-accent);
     transition: width 0.5s ease;
 }
 
@@ -335,7 +335,7 @@
     transform: translate(-50%, -50%);
     width: 16px;
     height: 16px;
-    background: rgba(19, 127, 236, 0.2);
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
     filter: blur(6px);
     border-radius: 50%;
 }
