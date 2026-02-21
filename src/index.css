@@ -179,12 +179,7 @@ button {
     transition: all var(--transition-normal);
 }
 
-button:hover {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
+
 
 button:focus,
 button:focus-visible {
