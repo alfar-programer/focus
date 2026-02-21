@@ -37,7 +37,7 @@
     z-index: 1;
     pointer-events: none;
     user-select: none;
-    opacity: 0.04;
+    opacity: 0.23;
 }
 
 .services-hero__logo-watermark img {
@@ -48,7 +48,7 @@
 
 @media (min-width: 1024px) {
     .services-hero__logo-watermark img {
-        width: 950px;
+        width: 1150px;
     }
 }
 
