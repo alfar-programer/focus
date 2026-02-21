@@ -38,19 +38,19 @@
 }
 
 .why-focus__logo-watermark img {
-    width: 300px;
+    width: 500px;
     height: auto;
     filter: grayscale(100%) brightness(200%) contrast(0%);
 }
 
 @media (min-width: 1024px) {
     .why-focus__logo-watermark {
-        left: 25%;
-        top: 0%;
+        left: 20%;
+        top: 13%;
     }
     
     .why-focus__logo-watermark img {
-        width: 480px;
+        width: 700px;
     }
 }
 
