@@ -354,10 +354,7 @@
     }
 }
 
-.timeline-item.reverse .mobile-year {
-    display: flex;
-    justify-content: flex-end;
-}
+
 
 .content-card {
     padding: 2rem;
