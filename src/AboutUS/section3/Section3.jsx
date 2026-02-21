@@ -4,6 +4,9 @@ import './Section3.css';
 const Section3 = () => {
     const sliderRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
 
     const values = [
         {
@@ -65,6 +68,42 @@ const Section3 = () => {
         return () => slider.removeEventListener('scroll', handleScroll);
     }, [activeIndex, values.length]);
 
+    // Mouse drag handlers
+    const handleMouseDown = (e) => {
+        if (!sliderRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - sliderRef.current.offsetLeft);
+        setScrollLeft(sliderRef.current.scrollLeft);
+        sliderRef.current.style.cursor = 'grabbing';
+        sliderRef.current.style.userSelect = 'none';
+    };
+
+    const handleMouseLeave = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        if (sliderRef.current) {
+            sliderRef.current.style.cursor = 'grab';
+            sliderRef.current.style.userSelect = '';
+        }
+    };
+
+    const handleMouseUp = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        if (sliderRef.current) {
+            sliderRef.current.style.cursor = 'grab';
+            sliderRef.current.style.userSelect = '';
+        }
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging || !sliderRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - sliderRef.current.offsetLeft;
+        const walk = (x - startX) * 1.5; // Scroll speed multiplier
+        sliderRef.current.scrollLeft = scrollLeft - walk;
+    };
+
     const scroll = (direction) => {
         if (sliderRef.current) {
             const itemWidth = sliderRef.current.scrollWidth / values.length;
@@ -90,7 +129,15 @@ const Section3 = () => {
             </div>
 
             <div className="slider-wrapper">
-                <div className="slider-container no-scrollbar" ref={sliderRef}>
+                <div 
+                    className="slider-container no-scrollbar" 
+                    ref={sliderRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
+                    style={{ cursor: 'grab' }}
+                >
                     {values.map((val) => (
                         <div key={val.id} className={`value-slide snap-center ${val.class}`}>
                             <div className="slide-inner">
