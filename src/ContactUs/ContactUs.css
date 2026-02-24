@@ -497,7 +497,7 @@
 }
 
 /* ================================================
-   MAP SECTION
+   MAP SECTION — React Leaflet
    ================================================ */
 .contact-map {
     position: relative;
@@ -509,121 +509,159 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.contact-map-iframe {
+/* Leaflet map fills the section */
+.contact-leaflet-map {
     position: absolute;
     inset: 0;
-    z-index: 0;
     width: 100%;
     height: 100%;
-    border: none;
-    /* Inverts the map to give a dark mode look matching the theme */
-    filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+    z-index: 0;
+    background: #0d1117;
 }
 
+/* Remove default Leaflet blue outline */
+.contact-leaflet-map:focus { outline: none; }
+
+/* Bottom gradient fade (keeps original look) */
 .contact-map-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, var(--bg-primary) 0%, transparent 60%, transparent 100%);
+    background: linear-gradient(to top, var(--bg-primary) 0%, transparent 40%, transparent 100%);
     pointer-events: none;
+    z-index: 500;
 }
 
-.contact-map-tint {
-    position: absolute;
-    inset: 0;
-    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
-    mix-blend-mode: overlay;
-    pointer-events: none;
-}
-
-.contact-map-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
+/* ── Custom Pulsing Marker (DivIcon) ── */
+.lf-pin {
+    position: relative;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
 }
 
-.contact-map-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-/* Pulsing location pin */
-.contact-map-pin {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-}
-
-.contact-map-ping {
+.lf-ping {
     position: absolute;
-    width: 6rem;
-    height: 6rem;
-    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    background: color-mix(in srgb, var(--color-accent, #38bdf8) 20%, transparent);
+    animation: lf-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-.contact-map-pulse {
+.lf-pulse {
     position: absolute;
-    width: 3rem;
-    height: 3rem;
-    background: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background: color-mix(in srgb, var(--color-accent, #38bdf8) 35%, transparent);
+    animation: lf-fade 2s ease-in-out infinite;
 }
 
-.contact-map-dot {
+.lf-dot {
     position: relative;
-    z-index: 10;
-    width: 1rem;
-    height: 1rem;
-    background: var(--color-accent);
+    z-index: 2;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    border: 2px solid var(--text-primary);
-    box-shadow: 0 0 20px var(--color-accent);
+    background: var(--color-accent, #38bdf8);
+    border: 2px solid #fff;
+    box-shadow: 0 0 12px var(--color-accent, #38bdf8);
 }
 
-@keyframes ping {
-
-    75%,
-    100% {
-        transform: scale(2);
-        opacity: 0;
-    }
+@keyframes lf-ping {
+    75%, 100% { transform: scale(2); opacity: 0; }
 }
 
-.contact-map-label {
-    text-align: center;
-    background: color-mix(in srgb, var(--bg-primary) 80%, transparent);
+@keyframes lf-fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Label card below the dot */
+.lf-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 6px;
+    background: rgba(10, 14, 23, 0.88);
     backdrop-filter: blur(12px);
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    border: 1px solid var(--border-color);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 0.35rem 0.7rem;
+    white-space: nowrap;
+    pointer-events: none;
+    transform: translateX(-40%);
 }
 
-.contact-map-label h3 {
-    color: #fff;
-    font-size: 1.1rem;
+.lf-flag { font-size: 1rem; line-height: 1; }
+
+.lf-name {
+    font-size: 0.72rem;
     font-weight: 700;
+    color: #fff;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin: 0 0 0.25rem;
+    letter-spacing: 0.06em;
+    margin: 0 0 1px;
 }
 
-.contact-map-label p {
-    color: var(--color-accent);
-    font-size: 0.8rem;
+.lf-city {
+    font-size: 0.62rem;
+    color: var(--color-accent, #38bdf8);
     font-family: monospace;
     margin: 0;
 }
+
+/* Popup on click */
+.lf-popup .leaflet-popup-content-wrapper {
+    background: rgba(10, 14, 23, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+.lf-popup .leaflet-popup-tip {
+    background: rgba(10, 14, 23, 0.95);
+}
+
+.lf-popup .leaflet-popup-close-button {
+    color: var(--color-accent, #38bdf8) !important;
+    font-size: 1rem;
+}
+
+.lf-popup-inner { padding: 0.25rem; }
+
+.lf-popup-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.3rem;
+}
+
+.lf-popup-addr {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 0.6rem;
+    line-height: 1.4;
+}
+
+.lf-popup-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-accent, #38bdf8);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: opacity 0.2s;
+}
+
+.lf-popup-link:hover { opacity: 0.75; }
 
 /* ================================================
    CTA SECTION
@@ -737,4 +775,287 @@
 
 .contact-cta-btn-secondary:hover {
     background: var(--bg-surface);
+}
+
+/* ================================================
+   OFFICES SECTION (replaces old MAP section)
+   ================================================ */
+.contact-offices {
+    position: relative;
+    padding: 5rem 1.5rem 6rem;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.contact-offices-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contact-offices-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.contact-offices-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.contact-offices-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+    font-family: 'JetBrains Mono', monospace, sans-serif;
+}
+
+.contact-offices-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    margin: 0 0 0.85rem;
+    text-transform: uppercase;
+}
+
+.contact-offices-highlight {
+    color: var(--color-accent);
+}
+
+.contact-offices-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Cards grid */
+.contact-offices-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+    gap: 1.75rem;
+}
+
+@media (max-width: 960px) {
+    .contact-offices-cards {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+}
+
+/* Individual card */
+.contact-office-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-office-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 40px rgba(56, 189, 248, 0.08);
+}
+
+/* Card top */
+.contact-office-card-top {
+    padding: 1.4rem 1.4rem 0.9rem;
+}
+
+.contact-office-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+}
+
+.contact-office-flag {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.contact-office-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    color: var(--color-accent);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace, sans-serif;
+}
+
+.contact-office-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #4ade80;
+    font-family: 'JetBrains Mono', monospace, sans-serif;
+}
+
+.contact-status-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: contact-pulse-green 1.8s ease-in-out infinite;
+}
+
+@keyframes contact-pulse-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+    50%       { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+}
+
+.contact-office-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.2rem;
+}
+
+.contact-office-region {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Map embed */
+.contact-office-map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.contact-office-map {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    filter: grayscale(70%) invert(90%) hue-rotate(180deg) brightness(0.85) contrast(1.1);
+    transition: filter 0.3s ease;
+}
+
+.contact-office-card:hover .contact-office-map {
+    filter: grayscale(30%) invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.05);
+}
+
+/* Corner brackets */
+.coc-corner {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-color: var(--color-accent);
+    border-style: solid;
+    pointer-events: none;
+}
+
+.coc-tl { top: 8px;    left: 8px;  border-width: 2px 0 0 2px; }
+.coc-tr { top: 8px;    right: 8px; border-width: 2px 2px 0 0; }
+.coc-bl { bottom: 8px; left: 8px;  border-width: 0 0 2px 2px; }
+.coc-br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+/* Card bottom */
+.contact-office-card-bottom {
+    padding: 1.1rem 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.contact-office-address-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+}
+
+.contact-addr-icon {
+    font-size: 1rem;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.contact-office-address {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+    white-space: pre-line;
+}
+
+.contact-office-coord-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-coord-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+    font-family: 'JetBrains Mono', monospace, sans-serif;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    padding: 0.15rem 0.38rem;
+    border-radius: 3px;
+}
+
+.contact-coord-value {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace, sans-serif;
+}
+
+/* Directions button */
+.contact-directions-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+    border-radius: 6px;
+    padding: 0.5rem 0.9rem;
+    align-self: flex-start;
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+
+.contact-directions-btn:hover {
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+    border-color: var(--color-accent);
+    transform: translateX(3px);
+}
+
+.contact-directions-btn .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+    .contact-offices {
+        padding: 3.5rem 1rem 5rem;
+    }
 }

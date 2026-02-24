@@ -3,9 +3,54 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import './ContactUs.css';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Custom pulsing div icon for each office marker
+const makePulseIcon = (flag, name, city) => L.divIcon({
+    className: '',
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -24],
+    html: `
+        <div class="lf-pin">
+            <div class="lf-ping"></div>
+            <div class="lf-pulse"></div>
+            <div class="lf-dot"></div>
+        </div>
+        <div class="lf-label">
+            <span class="lf-flag">${flag}</span>
+            <div>
+                <p class="lf-name">${name}</p>
+                <p class="lf-city">${city}</p>
+            </div>
+        </div>
+    `
+});
+
+const OFFICES = [
+    {
+        id: 'eg',
+        position: [29.9697, 30.9247],
+        flag: '🇪🇬',
+        name: 'City Stars Towers',
+        city: '6th of October City, Giza · Egypt',
+        address: 'Tower No. 7, First 6th of October, Giza 3225014',
+        mapsUrl: 'https://maps.google.com/?q=City+Stars+Towers,+6th+October+City,+Giza,+Egypt'
+    },
+    {
+        id: 'ksa',
+        position: [26.4207, 50.0888],
+        flag: '🇸🇦',
+        name: 'Raya Business Center',
+        city: 'Dammam 34327 · Saudi Arabia',
+        address: '6177 67 St, Dammam 34327, Saudi Arabia',
+        mapsUrl: 'https://maps.google.com/?q=Raya+Business+Center,+Dammam+34327,+Saudi+Arabia'
+    }
+];
 
 const ContactUs = () => {
     const pageRef = useRef(null);
@@ -341,32 +386,40 @@ const ContactUs = () => {
 
             {/* ── MAP ── */}
             <section className="contact-map">
-                <iframe
-                    title="Google Maps Location"
-                    className="contact-map-iframe"
-                    src="https://maps.google.com/maps?q=8XQ6%2B9P3%D8%8C%20%D8%B3%D9%85%D8%A7%D8%AF%D9%88%D9%86%D8%8C%20%D9%85%D8%B1%D9%83%D8%B2%20%D8%A3%D8%B4%D9%85%D9%88%D9%86%D8%8C%20%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D9%88%D9%81%D9%8A%D8%A9%206037103&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                <MapContainer
+                    className="contact-leaflet-map"
+                    center={[28.2, 40.5]}
+                    zoom={5}
+                    scrollWheelZoom={false}
+                    zoomControl={true}
+                    attributionControl={false}
+                >
+                    {/* Dark OpenStreetMap tile layer */}
+                    <TileLayer
+                        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                        attribution='&copy; <a href="https://carto.com">CARTO</a>'
+                    />
+
+                    {/* Geo-locked markers — they move WITH the map */}
+                    {OFFICES.map(office => (
+                        <Marker
+                            key={office.id}
+                            position={office.position}
+                            icon={makePulseIcon(office.flag, office.name, office.city)}
+                        >
+                            <Popup className="lf-popup">
+                                <div className="lf-popup-inner">
+                                    <p className="lf-popup-title">{office.flag} {office.name}</p>
+                                    <p className="lf-popup-addr">{office.address}</p>
+                                    <a href={office.mapsUrl} target="_blank" rel="noopener noreferrer" className="lf-popup-link">
+                                        Get Directions →
+                                    </a>
+                                </div>
+                            </Popup>
+                        </Marker>
+                    ))}
+                </MapContainer>
                 <div className="contact-map-gradient" style={{ pointerEvents: 'none' }} />
-                <div className="contact-map-tint" style={{ pointerEvents: 'none' }} />
-
-                <div className="contact-map-overlay">
-                    <div className="contact-map-content">
-                        {/* Pulsing pin */}
-                        <div className="contact-map-pin">
-                            <div className="contact-map-ping" />
-                            <div className="contact-map-pulse" />
-                            <div className="contact-map-dot" />
-                        </div>
-
-                        <div className="contact-map-label">
-                            <h3>Strategically Positioned</h3>
-                            <p>8XQ6+9P3, سمادون، مركز أشمون، المنوفية</p>
-                        </div>
-                    </div>
-                </div>
             </section>
 
             {/* ── CTA ── */}
