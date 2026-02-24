@@ -133,7 +133,7 @@ const Footer = () => {
                             <Link to="/services" className="footer-nav-link">Services</Link>
                             <Link to="/about" className="footer-nav-link">About</Link>
                             <a href="#" className="footer-nav-link">Projects</a>
-                            <a href="#" className="footer-nav-link">Contact Us</a>
+                            <Link to="/contact" className="footer-nav-link">Contact Us</Link>
                         </nav>
                     </div>
                     {/* Connection */}
@@ -148,7 +148,7 @@ const Footer = () => {
                         </nav>
                     </div>
                     {/* Compliance */}
-                    
+
                 </div>
 
                 {/* Blueprint Stamp */}
