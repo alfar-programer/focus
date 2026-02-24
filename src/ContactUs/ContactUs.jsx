@@ -181,7 +181,7 @@ const ContactUs = () => {
             } else {
                 setFormError('Something went wrong. Please try again later.');
             }
-        } catch (err) {
+        } catch {
             setFormError('Failed to send message. Please check your connection.');
         } finally {
             setIsSubmitting(false);
@@ -192,13 +192,14 @@ const ContactUs = () => {
         {
             icon: '📞',
             label: 'Voice Transmission',
-            value: '+1 (888) 555-0199',
+            value: '+966 53 818 6792',
+            value2: '+201090880401',
             note: 'Priority Line: Secured',
         },
         {
             icon: '✉️',
             label: 'Digital Correspondence',
-            value: 'hello@focuse-tc.com',
+            value: 'info@focus-tc.com',
             note: 'Response time: < 24h',
         },
         {

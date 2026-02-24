@@ -110,7 +110,7 @@ const Footer = () => {
             <div className="footer-metadata">
                 <div className="footer-metadata-item">
                     <span className="footer-metadata-label">Coordinates</span>
-                    <span className="footer-metadata-value">25.2854° N, 51.5310° E</span>
+                    <span className="footer-metadata-value">EGY //29.9697° N, 30.9247° E <br /> KSA // 26.4207° N, 50.0888° E</span>
                 </div>
                 <div className="footer-metadata-item footer-metadata-border">
                     <span className="footer-metadata-label">Local Time</span>
@@ -118,7 +118,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-metadata-item">
                     <span className="footer-metadata-label">Status</span>
-                    <span className="footer-metadata-value">EGYPT // KSA</span>
+                    <span className="footer-metadata-value">EGYPT //City stars towers, tower <br /> KSA // Raya Business Center</span>
                 </div>
             </div>
 
