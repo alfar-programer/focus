@@ -63,7 +63,7 @@ const ContactUs = () => {
         fullName: '',
         company: '',
         email: '',
-        service: 'Robotics Engineering',
+        service: 'Power Generation',
         message: '',
     });
     const [submitted, setSubmitted] = useState(false);
@@ -190,11 +190,16 @@ const ContactUs = () => {
 
     const channels = [
         {
-            icon: '📞',
-            label: 'Voice Transmission',
+            icon: '🇸🇦',
+            label: 'KSA Office',
             value: '+966 53 818 6792',
-            value2: '+201090880401',
-            note: 'Priority Line: Secured',
+            note: 'Saudi Arabia Direct Line',
+        },
+        {
+            icon: '🇪🇬',
+            label: 'Egypt Office',
+            value: '+20 109 088 0401',
+            note: 'Egypt Direct Line',
         },
         {
             icon: '✉️',
@@ -290,7 +295,7 @@ const ContactUs = () => {
                                 <button
                                     className="contact-cta-btn-secondary"
                                     style={{ marginTop: '1rem' }}
-                                    onClick={() => { setSubmitted(false); setFormData({ fullName: '', company: '', email: '', service: 'Robotics Engineering', message: '' }); }}
+                                    onClick={() => { setSubmitted(false); setFormData({ fullName: '', company: '', email: '', service: 'Power Generation', message: '' }); }}
                                 >
                                     Send Another
                                 </button>
@@ -350,11 +355,9 @@ const ContactUs = () => {
                                                 value={formData.service}
                                                 onChange={handleChange}
                                             >
-                                                <option>Robotics Engineering</option>
-                                                <option>AI Integration</option>
-                                                <option>Civil Infrastructure</option>
-                                                <option>Data Security</option>
-                                                <option>Trading & Contracting</option>
+                                                <option>Power Generation</option>
+                                                <option>SCADA and Industrial Automation</option>
+                                                <option>Electro Mechanical Works</option>
                                                 <option>Other</option>
                                             </select>
                                             <span className="contact-select-arrow">⌄</span>
@@ -376,7 +379,7 @@ const ContactUs = () => {
                                 </div>
 
                                 <button type="submit" className="contact-form-submit" disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}>
-                                    <span>{isSubmitting ? 'Transmitting...' : 'Transmit Data'}</span>
+                                    <span>{isSubmitting ? 'Sending...' : 'Send'}</span>
                                     {!isSubmitting && <span className="contact-submit-arrow">→</span>}
                                 </button>
                             </form>
