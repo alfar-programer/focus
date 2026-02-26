@@ -287,7 +287,7 @@ const ContactUs = () => {
                         {submitted ? (
                             <div className="contact-form-success">
                                 <div className="contact-success-icon">✓</div>
-                                <h4 className="contact-success-title">Transmission Received</h4>
+                                <h4 className="contact-success-title">Message Received</h4>
                                 <p className="contact-success-text">
                                     Your message has been securely transmitted. Our team will
                                     respond within 24 hours.
