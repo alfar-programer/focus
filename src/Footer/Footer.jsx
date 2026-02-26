@@ -166,7 +166,7 @@ const Footer = () => {
 
             {/* Massive Background Branding (Cinematic Canvas) */}
             <div className="footer-bg-branding">
-                <h1 className="footer-bg-text">FOCUS</h1>
+                <h1 className="footer-bg-text"><img style={{width: '100%',height:"100%"}} src="/footer.png" alt="" /></h1>
             </div>
 
             {/* Decorative Technical Lines */}
