@@ -100,7 +100,7 @@ const Section1 = () => {
                         <span className="status-text">System Status: Operational</span>
                     </div>
                     <h2 className="hero-title">
-                        Evolutionary <span className="text-primary-color">Roadmap</span>
+                        OUR <span className="text-primary-color">Journey</span>
                     </h2>
                     <p className="hero-description">
                         A chronological schematic of our engineering milestones and technical infrastructure growth since inception. Mapping the trajectory of precision.
