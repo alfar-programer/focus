@@ -114,7 +114,10 @@ const Navbar = () => {
                 {/* Left: Logotype */}
                 <div className="navbar-logo">
                     <div className="navbar-logo-icon">
-                        <img src="/logonobackgroundWhite.png" alt="Focus Trading & Contracting" className="navbar-logo-img" />
+                        <Link to="/" className="navbar-link">
+                      <img src="/logonobackgroundWhite.png" alt="Focus Trading & Contracting" className="navbar-logo-img" />
+                    </Link>
+                        
                     </div>
 
                 </div>

@@ -153,30 +153,7 @@ const Section2 = () => {
                     </div>
                 </div>
 
-                <div className="expertise-footer">
-                    <div className="footer-stats">
-                        <div className="stat-item">
-                            <p className="stat-num">15+</p>
-                            <p className="stat-txt">Years Experience</p>
-                        </div>
-                        <div className="stat-item">
-                            <p className="stat-num">200+</p>
-                            <p className="stat-txt">Projects Completed</p>
-                        </div>
-                        <div className="stat-item">
-                            <p className="stat-num">0</p>
-                            <p className="stat-txt">Safety Incidents</p>
-                        </div>
-                    </div>
-                    <div className="footer-badges">
-                        <div className="cert-box">
-                            <img src="/assets/about/iso_cert.png" alt="ISO 9001 Certification" />
-                        </div>
-                        <div className="cert-box text-badge">
-                            <span>TIER IV CERTIFIED</span>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </section>
     );
