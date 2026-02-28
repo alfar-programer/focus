@@ -9,7 +9,7 @@ import Section6 from './HomePage/Section6/Section6';
 import Section7 from './HomePage/Section7/Section7';
 import Navbar from './Navbar/Navbar';
 import AboutUs from './AboutUS/AboutUs';
-import ContactUs from './contactUS/ContactUs';
+import ContactUs from './ContactUs/ContactUs';
 import Footer from './Footer/Footer';
 import LoadingScreen from './LoadingScreen/LoadingScreen';
 import WhoWeAre from './AboutUS/WhoWeAre';
