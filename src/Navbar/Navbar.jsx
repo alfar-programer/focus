@@ -115,9 +115,9 @@ const Navbar = () => {
                 <div className="navbar-logo">
                     <div className="navbar-logo-icon">
                         <Link to="/" className="navbar-link">
-                      <img src="/logonobackgroundWhite.png" alt="Focus Trading & Contracting" className="navbar-logo-img" />
-                    </Link>
-                        
+                            <img src="/logonobackgroundWhite.png" alt="Focus Trading & Contracting" className="navbar-logo-img" />
+                        </Link>
+
                     </div>
 
                 </div>
@@ -160,10 +160,10 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    <a href="#" className="navbar-link">
+                    <Link to="/projects" className="navbar-link">
                         Projects
                         <span className="navbar-link-underline" />
-                    </a>
+                    </Link>
                     <Link to="/contact" className="navbar-link">
                         Contact Us
                         <span className="navbar-link-underline" />

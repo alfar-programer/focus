@@ -11,6 +11,7 @@ import Navbar from './Navbar/Navbar';
 import AboutUs from './AboutUS/AboutUs';
 import ContactUs from './ContactUs/ContactUs';
 import Footer from './Footer/Footer';
+import ProjectsPage from './projects/ProjectsPage';
 import LoadingScreen from './LoadingScreen/LoadingScreen';
 import WhoWeAre from './AboutUS/WhoWeAre';
 import OurStory from './AboutUS/OurStory';
@@ -183,6 +184,7 @@ const AppContent = () => {
                 <Route path="/about/our-story" element={<OurStory />} />
                 <Route path="/about/our-partners" element={<OurPartners />} />
                 <Route path="/services" element={<ServicesPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/contact" element={<ContactUs />} />
             </Routes>
             <Footer />
