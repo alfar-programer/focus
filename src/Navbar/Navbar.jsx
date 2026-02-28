@@ -129,10 +129,34 @@ const Navbar = () => {
                         Services
                         <span className="navbar-link-underline" />
                     </Link>
-                    <Link to="/about" className="navbar-link">
-                        About
-                        <span className="navbar-link-underline" />
-                    </Link>
+                    <div className="navbar-dropdown-container">
+                        <Link to="/about" className="navbar-link navbar-dropdown-trigger">
+                            About Us
+                            <svg className="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                            <span className="navbar-link-underline" />
+                        </Link>
+                        <div className="navbar-dropdown-menu">
+                            <div className="dropdown-content-inner">
+                                <div className="dropdown-header">
+                                    <h3>About Focus</h3>
+                                    <p>Over Two Decades of Excellence and Innovation</p>
+                                </div>
+                                <div className="dropdown-cards">
+                                    <Link to="/about/who-we-are" className="dropdown-card dropdown-card-primary">
+                                        Who we are
+                                    </Link>
+                                    <Link to="/about/our-story" className="dropdown-card dropdown-card-secondary">
+                                        Our Story
+                                    </Link>
+                                    <Link to="/about/our-partners" className="dropdown-card dropdown-card-secondary">
+                                        Our Partners
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="#" className="navbar-link">
                         Projects
                         <span className="navbar-link-underline" />
