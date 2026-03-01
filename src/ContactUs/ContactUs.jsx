@@ -34,7 +34,7 @@ const makePulseIcon = (flag, name, city) => L.divIcon({
 const OFFICES = [
     {
         id: 'eg',
-        position: [29.9697, 30.9247],
+        position: [ 29.9697, 30.9247],
         flag: '🇪🇬',
         name: 'City Stars Towers',
         city: '6th of October City, Giza · Egypt',

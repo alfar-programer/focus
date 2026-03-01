@@ -1,24 +1,9 @@
-import React, { useEffect } from 'react';
-import Section1 from './section1/Section1';
-import Section2 from './section2/Section2';
-import Section3 from './section3/Section3';
-import Section4 from './section4/Section4';
-import './AboutUs.css'; // Create if needed, or use existing styles
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 const AboutUs = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    return (
-        <div className="about-us-page">
-            <Section1 />
-            <Section2 />
-            <Section3 />
-            <Section4 />
-            {/* Add more sections here later if needed */}
-        </div>
-    );
+    // Redirect the base /about route to the first subpage
+    return <Navigate to="/about/who-we-are" replace />;
 };
 
 export default AboutUs;

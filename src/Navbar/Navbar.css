@@ -104,11 +104,245 @@
     width: 0%;
     height: 1px;
     background-color: var(--color-accent);
-    transition: width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: width .4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .navbar-link:hover .navbar-link-underline {
     width: 100%;
+}
+
+/* Dropdown Container */
+.navbar-dropdown-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropdown-chevron {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+}
+
+.navbar-dropdown-container:hover .dropdown-chevron {
+    transform: rotate(180deg);
+    filter: drop-shadow(0 0 8px var(--color-accent));
+}
+
+.navbar-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    width: max-content;
+    min-width: 650px;
+    /* Modern Glassmorphism */
+    background: color-mix(in srgb, var(--bg-surface) 80%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    /* Futuristic border with subtle gradient glow */
+    border: 1px solid color-mix(in srgb, var(--text-primary) 15%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--text-primary) 25%, transparent);
+    border-radius: 16px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+    overflow: hidden;
+}
+
+/* For dark mode shadow and glow */
+[data-theme="dark"] .navbar-dropdown-menu {
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.6),
+        0 0 40px color-mix(in srgb, var(--color-primary) 10%, transparent),
+        inset 0 1px 0 color-mix(in srgb, #ffffff 5%, transparent);
+    background: color-mix(in srgb, var(--bg-surface) 75%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+.navbar-dropdown-container:hover .navbar-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Invisible hover bridge */
+.navbar-dropdown-container::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 30px;
+}
+
+/* Optional stylistic top highlight line for future look */
+.navbar-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--color-primary) 50%,
+            transparent 100%);
+    opacity: 0.7;
+}
+
+.dropdown-content-inner {
+    padding: 36px;
+    position: relative;
+    z-index: 2;
+}
+
+.dropdown-header {
+    border-bottom: 1px solid color-mix(in srgb, var(--text-primary) 10%, transparent);
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.dropdown-header h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dropdown-header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.dropdown-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.dropdown-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    color: var(--text-inverse);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 90px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    /* Subcard styling */
+    background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);
+    color: var(--text-primary);
+}
+
+/* Animated background gradient hover effect for all cards */
+.dropdown-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--color-primary) 90%, transparent),
+            color-mix(in srgb, var(--color-accent) 90%, transparent));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.dropdown-card span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+/* Staggered entry animations */
+.navbar-dropdown-menu .dropdown-header {
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-dropdown-menu .dropdown-card {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-dropdown-container:hover .navbar-dropdown-menu .dropdown-header {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+}
+
+.navbar-dropdown-container:hover .navbar-dropdown-menu .dropdown-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navbar-dropdown-container:hover .navbar-dropdown-menu .dropdown-card:nth-child(1) {
+    transition-delay: 0.25s;
+}
+
+.navbar-dropdown-container:hover .navbar-dropdown-menu .dropdown-card:nth-child(2) {
+    transition-delay: 0.35s;
+}
+
+.navbar-dropdown-container:hover .navbar-dropdown-menu .dropdown-card:nth-child(3) {
+    transition-delay: 0.45s;
+}
+
+.dropdown-card:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 0 15px 30px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    color: #ffffff;
+    /* Text turns white on hover due to underlying colored background */
+    transition-delay: 0s !important;
+    /* Force cancel the entry animation delay when actively hovered */
+}
+
+.dropdown-card:hover::before {
+    opacity: 1;
+}
+
+/* Differentiate the primary card slightly when not hovered */
+.dropdown-card-primary {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+.dropdown-card-primary::before {
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--color-accent) 95%, transparent),
+            color-mix(in srgb, var(--color-primary) 95%, transparent));
 }
 
 /* Social Media Icons */

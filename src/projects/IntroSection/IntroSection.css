@@ -1,0 +1,126 @@
+.projects-intro {
+    padding: 4rem 0;
+    background-color: var(--bg-surface);
+}
+
+.projects-intro .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.intro-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.intro-text .divider {
+    height: 4px;
+    width: 5rem;
+    background-color: var(--stitch-primary);
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+}
+
+.intro-text p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.read-more {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--stitch-primary);
+    font-weight: 700;
+    cursor: pointer;
+    transition: text-decoration 0.3s;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-card {
+    background-color: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.stat-card:hover {
+    border-color: rgba(19, 146, 236, 0.5);
+    transform: translateY(-2px);
+}
+
+.stat-card .material-symbols-outlined {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s;
+}
+
+.stat-card:hover .material-symbols-outlined {
+    transform: scale(1.1);
+}
+
+.stat-card .bolt {
+    color: var(--stitch-primary);
+}
+
+.stat-card .check {
+    color: var(--stitch-accent);
+}
+
+.stat-card .factory {
+    color: #60a5fa;
+}
+
+.stat-card .public {
+    color: #22c55e;
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .intro-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

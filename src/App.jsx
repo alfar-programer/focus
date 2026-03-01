@@ -11,7 +11,11 @@ import Navbar from './Navbar/Navbar';
 import AboutUs from './AboutUS/AboutUs';
 import ContactUs from './ContactUs/ContactUs';
 import Footer from './Footer/Footer';
+import ProjectsPage from './projects/ProjectsPage';
 import LoadingScreen from './LoadingScreen/LoadingScreen';
+import WhoWeAre from './AboutUS/WhoWeAre';
+import OurStory from './AboutUS/OurStory';
+import OurPartners from './AboutUS/OurPartners';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -176,7 +180,11 @@ const AppContent = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutUs />} />
+                <Route path="/about/who-we-are" element={<WhoWeAre />} />
+                <Route path="/about/our-story" element={<OurStory />} />
+                <Route path="/about/our-partners" element={<OurPartners />} />
                 <Route path="/services" element={<ServicesPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/contact" element={<ContactUs />} />
             </Routes>
             <Footer />
