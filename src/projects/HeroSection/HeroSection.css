@@ -6,25 +6,27 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding-top: 50px;
 }
 
-.hero-background {
+.projects-hero-background {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChLuD3kBuV5dQOTQxlRe-lQhlMmvLhN_g8nNXe_SfXQLSoNxL-SpGf7LYA7jMyHkgu5lYT8SvDS-sFAwGRbtxgQXcxxCqtpx2QomN73rnG-ySOAk6mjbAgD2WuXmsDX09HqsxLXX1FHBzYovOYpAVH1l0FCIRFe6IPllGSbDD4YjTR0VpNM8S2pdQZLmSiD_4HWV9Uw7zixx6n1K1lGcYGPcfmbH79sW8tWZBKB_9nz5ALt4dv7yHQUHh4uaJrt4ckWR5vPm9OoPo');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChLuD3kBuV5dQOTQxlRe-lQhlMmvLhN_g8nNXe_SfXQLSoNxL-SpGf7LYA7jMyHkgu5lYT8SvDS-sFAwGRbtxgQXcxxCqtpx2QomN73rnG-ySOAk6mjbAgD2WuXmsDX09HqsxLXX1FHBzYovOYpAVH1l0FCIRFe6IPllGSbDD4YjTR0VpNM8S2pdQZLmSiD_4HWV9Uw7zixx6n1K1lGcYGPcfmbH79sW8tWZBKB_9nz5ALt4dv7yHQUHh4uaJrt4ckWR5vPm9OoPo');
 }
 
-.hero-overlay {
+.projects-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(17, 27, 34, 0.95), rgba(17, 27, 34, 0.7), transparent);
+    background: linear-gradient(to right, var(--bg-primary) 95%, var(--bg-primary) 70%, transparent);
+    z-index: 1;
 }
 
-.hero-content {
+.projects-hero-content {
     position: relative;
     z-index: 10;
     max-width: 1280px;
@@ -37,82 +39,97 @@
     height: 100%;
 }
 
-.hero-badge {
+.projects-hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.25rem 0.75rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 9999px;
-    background: rgba(19, 146, 236, 0.2);
-    border: 1px solid rgba(19, 146, 236, 0.3);
-    color: var(--stitch-primary);
+    background: rgba(var(--color-primary), 0.2);
+    border: 1px solid rgba(var(--color-primary), 0.3);
+    color: var(--color-primary);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 1.5rem;
-    width: fit-content;
 }
 
-.hero-content h1 {
-    font-size: 4rem;
+.projects-hero-badge-icon {
+    font-size: 0.875rem;
+}
+
+.projects-hero-title {
+    font-size: 3rem;
     font-weight: 700;
-    color: #ffffff;
-    line-height: 1.1;
+    color: white;
+    line-height: 1.2;
     margin-bottom: 1.5rem;
 }
 
-.hero-content p {
+.projects-hero-subtitle {
     font-size: 1.125rem;
-    color: #cbd5e1;
-    max-width: 36rem;
-    line-height: 1.6;
+    color: rgba(203, 213, 225, 1);
     margin-bottom: 2rem;
+    max-width: 28rem;
+    line-height: 1.6;
 }
 
-.hero-actions {
+.projects-hero-buttons {
     display: flex;
     gap: 1rem;
 }
 
-.hero-actions .btn-primary {
+.projects-hero-btn-primary,
+.projects-hero-btn-secondary {
+    height: 3rem;
+    padding: 0 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: var(--stitch-primary);
+}
+
+.projects-hero-btn-primary {
+    background: var(--color-primary);
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 700;
-    box-shadow: 0 10px 15px -3px rgba(19, 146, 236, 0.25);
-    transition: background-color 0.3s;
+    box-shadow: 0 10px 25px -5px rgba(var(--color-primary), 0.25);
 }
 
-.hero-actions .btn-primary:hover {
-    background-color: var(--stitch-primary-dark);
+.projects-hero-btn-primary:hover {
+    background: var(--color-accent);
+    transform: translateY(-1px);
 }
 
-.hero-actions .btn-secondary {
-    background-color: rgba(30, 41, 59, 0.5);
+.projects-hero-btn-secondary {
+    background: rgba(var(--bg-surface), 0.5);
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    border: 1px solid #334155;
-    backdrop-filter: blur(4px);
-    transition: background-color 0.3s;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
 }
 
-.hero-actions .btn-secondary:hover {
-    background-color: #1e293b;
+.projects-hero-btn-secondary:hover {
+    background: var(--bg-surface);
+}
+
+.projects-hero-btn-arrow {
+    font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
-    .hero-content h1 {
+    .projects-hero-title {
         font-size: 2.5rem;
     }
-
-    .hero-actions {
+    
+    .projects-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .projects-hero-buttons {
         flex-direction: column;
     }
 }

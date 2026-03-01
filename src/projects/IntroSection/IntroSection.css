@@ -1,126 +1,130 @@
 .projects-intro {
     padding: 4rem 0;
-    background-color: var(--bg-surface);
+    background: var(--bg-primary);
 }
 
-.projects-intro .container {
+
+
+.projects-intro-container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.intro-grid {
+.projects-intro-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 3rem;
     align-items: center;
 }
 
-.intro-text h2 {
+@media (min-width: 1024px) {
+    .projects-intro-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.projects-intro-content h2 {
     font-size: 2rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 1rem;
 }
 
-.intro-text .divider {
-    height: 4px;
+.projects-intro-divider {
+    height: 0.25rem;
     width: 5rem;
-    background-color: var(--stitch-primary);
+    background: var(--color-primary);
     border-radius: 9999px;
     margin-bottom: 1.5rem;
 }
 
-.intro-text p {
-    font-size: 1.125rem;
+.projects-intro-description {
     color: var(--text-secondary);
+    font-size: 1.125rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
-.read-more {
+.projects-intro-link {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--stitch-primary);
+    color: var(--color-primary);
     font-weight: 700;
     cursor: pointer;
-    transition: text-decoration 0.3s;
+    transition: text-decoration 0.2s ease;
 }
 
-.read-more:hover {
+.projects-intro-link:hover {
     text-decoration: underline;
 }
 
-.stats-grid {
+.projects-intro-arrow {
+    font-size: 0.875rem;
+}
+
+.projects-intro-stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
-.stat-card {
-    background-color: var(--bg-primary);
+.projects-stat-card {
+    background: var(--bg-surface);
     padding: 1.5rem;
     border-radius: 0.75rem;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
     text-align: center;
-    transition: border-color 0.3s, transform 0.3s;
+    transition: all 0.2s ease;
 }
 
-.stat-card:hover {
-    border-color: rgba(19, 146, 236, 0.5);
-    transform: translateY(-2px);
+
+
+.projects-stat-card:hover {
+    border-color: rgba(var(--color-primary), 0.5);
 }
 
-.stat-card .material-symbols-outlined {
+.projects-stat-icon {
     font-size: 2.5rem;
     margin-bottom: 0.75rem;
-    transition: transform 0.3s;
+    display: block;
+    transition: transform 0.2s ease;
+    font-family: 'Material Symbols Outlined', sans-serif;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
 
-.stat-card:hover .material-symbols-outlined {
-    transform: scale(1.1);
+.projects-stat-card:nth-child(1) .projects-stat-icon {
+    color: var(--color-primary);
 }
 
-.stat-card .bolt {
-    color: var(--stitch-primary);
+.projects-stat-card:nth-child(2) .projects-stat-icon {
+    color: var(--color-accent);
 }
 
-.stat-card .check {
-    color: var(--stitch-accent);
-}
-
-.stat-card .factory {
+.projects-stat-card:nth-child(3) .projects-stat-icon {
     color: #60a5fa;
 }
 
-.stat-card .public {
+.projects-stat-card:nth-child(4) .projects-stat-icon {
     color: #22c55e;
 }
 
-.stat-value {
-    font-size: 1.875rem;
+.projects-stat-card:hover .projects-stat-icon {
+    transform: scale(1.1);
+}
+
+.projects-stat-number {
+    font-size: 2rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.25rem;
 }
 
-.stat-label {
+.projects-stat-label {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-secondary);
-}
-
-@media (max-width: 1024px) {
-    .intro-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 640px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
 }
