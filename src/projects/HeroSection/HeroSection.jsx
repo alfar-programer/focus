@@ -22,11 +22,19 @@ const HeroSection = () => {
                 </p>
                 
                 <div className="projects-hero-buttons">
-                    <button className="projects-hero-btn-primary">
+                    <button 
+                        className="projects-hero-btn-primary" 
+                        onClick={() => {
+                            const projectsGrid = document.querySelector('.projects-grid-section');
+                            if (projectsGrid) {
+                                projectsGrid.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                    >
                         View Portfolio
                         <span className="projects-hero-btn-arrow">↓</span>
                     </button>
-                    <button className="projects-hero-btn-secondary">
+                    <button className="projects-hero-btn-secondary" onClick={() => window.location.href = '/contactus'}>
                         Contact Sales
                     </button>
                 </div>

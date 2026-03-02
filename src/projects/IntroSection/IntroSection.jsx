@@ -12,10 +12,12 @@ const IntroSection = () => {
                         <p className="projects-intro-description">
                             From 6th of October City to the wider GCC, Focus TC has a proven track record of delivering high-performance technical solutions for industrial, commercial, and utility sectors. We pride ourselves on precision, safety, and innovation.
                         </p>
-                        <div className="projects-intro-link">
+                        <a href="/about">
+                            <div className="projects-intro-link">
                             <span>Read about our methodology</span>
                             <span className="projects-intro-arrow">→</span>
                         </div>
+                        </a>
                     </div>
                     
                     <div className="projects-intro-stats">
