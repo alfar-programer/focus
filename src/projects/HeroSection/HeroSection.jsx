@@ -5,7 +5,7 @@ const HeroSection = () => {
     return (
         <section className="projects-hero">
             <div className="projects-hero-background" />
-            <div className="projects-hero-overlay" />
+         
             
             <div className="projects-hero-content">
                 <div className="projects-hero-badge">
