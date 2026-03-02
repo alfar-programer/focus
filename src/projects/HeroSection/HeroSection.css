@@ -16,6 +16,10 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-image: url('/WhatsApp Image 2026-03-02 at 2.03.33 AM.jpeg');
+}
+
+[data-theme="dark"] .projects-hero-background {
     background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChLuD3kBuV5dQOTQxlRe-lQhlMmvLhN_g8nNXe_SfXQLSoNxL-SpGf7LYA7jMyHkgu5lYT8SvDS-sFAwGRbtxgQXcxxCqtpx2QomN73rnG-ySOAk6mjbAgD2WuXmsDX09HqsxLXX1FHBzYovOYpAVH1l0FCIRFe6IPllGSbDD4YjTR0VpNM8S2pdQZLmSiD_4HWV9Uw7zixx6n1K1lGcYGPcfmbH79sW8tWZBKB_9nz5ALt4dv7yHQUHh4uaJrt4ckWR5vPm9OoPo');
 }
 
