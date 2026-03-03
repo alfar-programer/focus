@@ -128,11 +128,7 @@ const Navbar = () => {
                         Home
                         <span className="navbar-link-underline" />
                     </Link>
-                    <Link to="/services" className="navbar-link">
-                        Services
-                        <span className="navbar-link-underline" />
-                    </Link>
-                    <div className="navbar-dropdown-container">
+                     <div className="navbar-dropdown-container">
                         <Link to="/about" className="navbar-link navbar-dropdown-trigger">
                             About Us
                             <svg className="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -160,6 +156,11 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
+                    <Link to="/services" className="navbar-link">
+                        Services
+                        <span className="navbar-link-underline" />
+                    </Link>
+                   
                     <Link to="/projects" className="navbar-link">
                         Projects
                         <span className="navbar-link-underline" />
