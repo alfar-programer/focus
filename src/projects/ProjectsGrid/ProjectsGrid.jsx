@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ProjectsGrid.css';
 
 const ProjectsGrid = () => {
+    const navigate = useNavigate();
     const [activeFilter, setActiveFilter] = useState('All');
     const [selectedProject, setSelectedProject] = useState(null);
-    
+
     const projects = [
         {
             id: 1,
@@ -85,22 +87,22 @@ const ProjectsGrid = () => {
             year: '2023'
         }
     ];
-    
+
     const categories = ['All', 'Industrial', 'Commercial', 'Utilities'];
-    
-    const filteredProjects = activeFilter === 'All' 
-        ? projects 
+
+    const filteredProjects = activeFilter === 'All'
+        ? projects
         : projects.filter(project => project.category === activeFilter);
-    
+
     const getCategoryColor = (category) => {
-        switch(category) {
+        switch (category) {
             case 'Industrial': return '#1392ec';
             case 'Commercial': return '#f59e0b';
             case 'Utilities': return '#16a34a';
             default: return '#1392ec';
         }
     };
-    
+
     return (
         <section className="projects-grid-section">
             <div className="projects-grid-container">
@@ -115,23 +117,23 @@ const ProjectsGrid = () => {
                         </button>
                     ))}
                 </div>
-                
+
                 <div className="projects-grid">
                     {filteredProjects.map(project => (
-                        <div 
-                            key={project.id} 
+                        <div
+                            key={project.id}
                             className="projects-page-card"
                             onClick={() => setSelectedProject(project)}
                         >
                             <div className="projects-page-card-image">
-                                <div 
+                                <div
                                     className="projects-page-image-bg"
                                     style={{ backgroundImage: `url(${project.image})` }}
                                 />
                                 <div className="projects-page-category">
-                                    <span 
+                                    <span
                                         className="projects-page-category-badge"
-                                        style={{ 
+                                        style={{
                                             background: `${getCategoryColor(project.category)}ee`,
                                             color: project.category === 'Commercial' ? '#1e293b' : 'white'
                                         }}
@@ -155,34 +157,34 @@ const ProjectsGrid = () => {
                         </div>
                     ))}
                 </div>
-                
+
                 {/* Project Modal */}
                 {selectedProject && (
-                    <div 
+                    <div
                         className="project-modal-overlay"
                         onClick={() => setSelectedProject(null)}
                     >
-                        <div 
+                        <div
                             className="project-modal"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <button 
+                            <button
                                 className="project-modal-close"
                                 onClick={() => setSelectedProject(null)}
                             >
                                 <span className="material-symbols-outlined">close</span>
                             </button>
-                            
+
                             <div className="project-modal-content">
                                 <div className="project-modal-image-section">
-                                    <img 
-                                        src={selectedProject.image} 
+                                    <img
+                                        src={selectedProject.image}
                                         alt={selectedProject.title}
                                         className="project-modal-image"
                                     />
-                                    <span 
+                                    <span
                                         className="project-modal-category"
-                                        style={{ 
+                                        style={{
                                             background: `${getCategoryColor(selectedProject.category)}`,
                                             color: selectedProject.category === 'Commercial' ? '#1e293b' : 'white'
                                         }}
@@ -190,10 +192,10 @@ const ProjectsGrid = () => {
                                         {selectedProject.category}
                                     </span>
                                 </div>
-                                
+
                                 <div className="project-modal-details">
                                     <h2 className="project-modal-title">{selectedProject.title}</h2>
-                                    
+
                                     <div className="project-modal-meta">
                                         <div className="project-meta-item">
                                             <span className="material-symbols-outlined">apartment</span>
@@ -224,16 +226,16 @@ const ProjectsGrid = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="project-modal-location">
                                         <span className="material-symbols-outlined">location_on</span>
                                         <span>{selectedProject.location}</span>
                                     </div>
-                                    
+
                                     <p className="project-modal-description">
                                         {selectedProject.description}
                                     </p>
-                                    
+
                                     <div className="project-modal-services">
                                         <h4>Services Provided</h4>
                                         <div className="project-services-tags">
@@ -244,8 +246,8 @@ const ProjectsGrid = () => {
                                             ))}
                                         </div>
                                     </div>
-                                    
-                                    <button className="project-modal-cta" onClick={() => window.location.href = '/contactus'}>
+
+                                    <button className="project-modal-cta" onClick={() => { setSelectedProject(null); navigate('/contact'); }}>
                                         <span>Request Similar Project</span>
                                         <span className="material-symbols-outlined">arrow_forward</span>
                                     </button>
@@ -254,7 +256,7 @@ const ProjectsGrid = () => {
                         </div>
                     </div>
                 )}
-                
+
                 <div className="projects-load-more">
                     <button className="load-more-btn">
                         Load More Projects

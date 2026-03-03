@@ -148,10 +148,10 @@ const Navbar = () => {
                                 </div>
                                 <div className="dropdown-cards">
                                     <Link to="/about/who-we-are" className="dropdown-card dropdown-card-primary">
-                                        Who we are
+                                        Our Journey
                                     </Link>
                                     <Link to="/about/our-story" className="dropdown-card dropdown-card-secondary">
-                                        Our Story
+                                        Who we are
                                     </Link>
                                     <Link to="/about/our-partners" className="dropdown-card dropdown-card-secondary">
                                         Our Partners
