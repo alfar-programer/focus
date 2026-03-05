@@ -461,10 +461,183 @@
     fill: currentColor;
 }
 
-/* Responsive */
+/* ─── Hamburger Button ─── */
+.navbar-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid color-mix(in srgb, var(--text-primary) 20%, transparent);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 6px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.navbar-hamburger:hover {
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.navbar-hamburger-bar {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s ease,
+        background 0.3s ease;
+}
+
+/* X shape when open */
+.navbar-hamburger--open .navbar-hamburger-bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+    background: var(--color-accent);
+}
+
+.navbar-hamburger--open .navbar-hamburger-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.navbar-hamburger--open .navbar-hamburger-bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+    background: var(--color-accent);
+}
+
+/* ─── Mobile Menu Panel ─── */
+.navbar-mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: color-mix(in srgb, var(--bg-surface) 95%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid color-mix(in srgb, var(--text-primary) 10%, transparent);
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0 20px;
+    z-index: 90;
+    /* subtle top gradient accent line */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.navbar-mobile-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--color-accent) 50%,
+            transparent 100%);
+    opacity: 0.5;
+}
+
+.navbar-mobile-link {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-family, 'Manrope', sans-serif);
+    transition: color 0.25s ease, background 0.25s ease, padding-left 0.25s ease;
+    text-align: left;
+}
+
+.navbar-mobile-link:hover,
+.navbar-mobile-link:focus {
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    padding-left: 30px;
+    outline: none;
+}
+
+.navbar-mobile-link--open {
+    color: var(--color-accent);
+}
+
+.navbar-mobile-chevron {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+}
+
+.navbar-mobile-link--open .navbar-mobile-chevron {
+    transform: rotate(180deg);
+    filter: drop-shadow(0 0 6px var(--color-accent));
+}
+
+/* Sub-links (About accordion) */
+.navbar-mobile-sub {
+    display: flex;
+    flex-direction: column;
+    background: color-mix(in srgb, var(--bg-primary) 60%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--text-primary) 6%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--text-primary) 6%, transparent);
+}
+
+.navbar-mobile-sublink {
+    display: block;
+    padding: 11px 24px 11px 40px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.navbar-mobile-sublink:hover {
+    color: var(--color-accent);
+    padding-left: 48px;
+}
+
+.navbar-mobile-sublink::before {
+    content: '→ ';
+    color: var(--color-accent);
+    opacity: 0.6;
+}
+
+/* Social icons row inside mobile menu */
+.navbar-mobile-socials {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 24px 4px;
+    border-top: 1px solid color-mix(in srgb, var(--text-primary) 8%, transparent);
+    margin-top: 6px;
+}
+
+/* ─── Responsive breakpoints ─── */
 @media (max-width: 1024px) {
     .navbar-links {
-        gap: 32px;
+        gap: 28px;
+    }
+
+    .navbar-content {
+        height: 72px;
     }
 }
 
@@ -473,7 +646,43 @@
         display: none;
     }
 
-    .navbar-logo-text {
-        font-size: 12px;
+    .navbar-hamburger {
+        display: flex;
+    }
+
+    /* Hide social links in the topbar — shown inside mobile menu instead */
+    .navbar-social-link--desktop {
+        display: none;
+    }
+
+    .navbar-content {
+        height: 64px;
+        padding: 0 16px;
+    }
+
+    .navbar-logo-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .navbar-theme-toggle {
+        margin-right: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-content {
+        height: 58px;
+        padding: 0 12px;
+    }
+
+    .navbar-logo-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .navbar-hamburger {
+        width: 32px;
+        height: 32px;
     }
 }

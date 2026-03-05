@@ -258,7 +258,7 @@
         padding: 40px 32px;
         gap: 32px;
     }
-    
+
     .section7-stat-value {
         font-size: 2.5rem;
     }
@@ -268,20 +268,20 @@
     .section7-projects {
         grid-template-columns: 1fr;
     }
-    
+
     .project-card {
         height: 400px;
     }
-    
+
     .section7-title {
         font-size: 2.5rem;
     }
-    
+
     .section7-stats {
         flex-direction: column;
         padding: 32px;
     }
-    
+
     .section7-stat-item {
         width: 100%;
     }
@@ -291,24 +291,24 @@
     .section7-wrapper {
         padding: 60px 20px;
     }
-    
+
     .section7-title {
         font-size: 2rem;
     }
-    
+
     .section7-stats {
         padding: 24px;
         gap: 24px;
     }
-    
+
     .section7-stat-value {
         font-size: 2rem;
     }
-    
+
     .project-card {
         height: 350px;
     }
-    
+
     .section7-cta-button {
         padding: 14px 28px;
         font-size: 0.75rem;

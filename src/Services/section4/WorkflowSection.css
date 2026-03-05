@@ -11,7 +11,7 @@
 .engineered-grid-bg {
     position: absolute;
     inset: 0;
-    background-image: 
+    background-image:
         linear-gradient(to right, #1f3b38 1px, transparent 1px),
         linear-gradient(to bottom, #1f3b38 1px, transparent 1px);
     background-size: 40px 40px;
@@ -47,6 +47,7 @@
 }
 
 @media (min-width: 1280px) {
+
     .tech-coordinates,
     .tech-scale {
         display: block;
@@ -264,6 +265,7 @@
 }
 
 @media (min-width: 768px) {
+
     .workflow-nav.fixed,
     .workflow-nav.absolute {
         bottom: 2rem;
@@ -363,6 +365,7 @@
 }
 
 @media (min-width: 768px) {
+
     .mobile-line-bottom,
     .mobile-line-top {
         display: none;
@@ -498,8 +501,15 @@
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 /* Card Content */
@@ -638,8 +648,17 @@
 }
 
 @keyframes pulse-glow {
-    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
 }
 
 /* Metrics Panel */
@@ -823,6 +842,7 @@
 }
 
 @media (min-width: 640px) {
+
     .cta-button-primary,
     .cta-button-secondary {
         width: auto;
@@ -884,4 +904,546 @@
     inset: 0;
     background: var(--bg-primary);
     z-index: 0;
+}
+
+/* ============================================================
+   RESPONSIVE — Workflow / Engineered Flow  (1024px, 768px, 480px)
+   ============================================================ */
+
+/* ── 1024px Laptop ── */
+@media (max-width: 1024px) {
+    .engineered-flow-section {
+        padding: 6rem 1.25rem;
+    }
+
+    .metrics-panel {
+        margin-top: 4rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .engineered-header {
+        margin-bottom: 3rem;
+    }
+
+    .workflow-cta {
+        padding: 5rem 1.25rem;
+    }
+
+    .cta-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* ── 768px Tablet ── */
+@media (max-width: 768px) {
+    .engineered-flow-section {
+        padding: 5rem 1rem;
+    }
+
+    .engineered-header {
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .engineered-title {
+        font-size: 2rem;
+    }
+
+    .engineered-description {
+        text-align: left;
+        font-size: 0.85rem;
+    }
+
+    .metrics-panel {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-top: 3rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+
+    .glass-panel {
+        padding: 1.25rem;
+    }
+
+    .workflow-cta {
+        padding: 4.5rem 1rem;
+    }
+
+    .cta-title {
+        font-size: 2.25rem;
+    }
+
+    .cta-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .workflow-nav {
+        padding: 0.4rem 0.75rem;
+        gap: 0.75rem;
+    }
+}
+
+/* ── 480px Mobile ── */
+@media (max-width: 480px) {
+    .engineered-flow-section {
+        padding: 4rem 1rem;
+    }
+
+    .engineered-badge {
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+    }
+
+    .engineered-title {
+        font-size: 1.75rem;
+        line-height: 1.25;
+    }
+
+    .engineered-description {
+        font-size: 0.8rem;
+    }
+
+    .engineered-header {
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Nodes: side-by-side with icon on left */
+    .process-node {
+        gap: 0.75rem;
+    }
+
+    .node-circle {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .node-title {
+        font-size: 0.8rem;
+    }
+
+    .node-number {
+        font-size: 0.65rem;
+    }
+
+    /* Metrics: 1 column on mobile */
+    .metrics-panel {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .metric-card {
+        padding: 1.25rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+
+    .metric-label {
+        font-size: 0.8rem;
+    }
+
+    /* Glass info card full-width */
+    .glass-panel {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    .card-description {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-stats {
+        gap: 0.75rem;
+    }
+
+    /* Workflow nav keeps accessible */
+    .workflow-nav {
+        padding: 0.35rem 0.6rem;
+        gap: 0.5rem;
+        bottom: 1rem;
+    }
+
+    /* CTA */
+    .workflow-cta {
+        padding: 3.5rem 1rem;
+    }
+
+    .cta-icon {
+        padding: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-icon .material-symbols-outlined {
+        font-size: 2rem;
+    }
+
+    .cta-title {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .cta-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .cta-buttons {
+        gap: 0.75rem;
+    }
+
+    .cta-button-primary,
+    .cta-button-secondary {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: unset;
+    }
+}
+
+/* ============================================================
+   MOBILE STEPPER — full professional vertical layout
+   Visible only on screens ≤ 767px
+   ============================================================ */
+
+/* ── show / hide ── */
+.desktop-diagram {
+    display: block;
+}
+
+.mobile-stepper {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .desktop-diagram {
+        display: none;
+    }
+
+    .mobile-stepper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* hide the floating fixed nav on mobile (redundant with inline nav) */
+    .workflow-nav {
+        display: none;
+    }
+}
+
+/* ── Active card ── */
+.mobile-active-card {
+    position: relative;
+    background: rgba(21, 42, 40, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(19, 236, 218, 0.25);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+.mobile-active-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #13ecda, transparent);
+}
+
+.mac-phase-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.mac-phase-label {
+    font-size: 0.6rem;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #13ecda;
+    opacity: 0.8;
+}
+
+.mac-live-dot {
+    font-size: 0.9rem;
+    color: #13ecda;
+    animation: pulse 2s infinite;
+}
+
+.mac-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.2rem;
+    letter-spacing: -0.01em;
+}
+
+.mac-subtitle {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #13ecda;
+    margin: 0 0 1rem;
+}
+
+.mac-description {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin: 0 0 1.25rem;
+}
+
+.mac-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mac-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.mac-stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #64748b;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+}
+
+.mac-stat-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.mac-stat-divider {
+    width: 1px;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+/* ── Step Pills ── */
+.mobile-step-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.msp-step {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    align-items: flex-start;
+    gap: 0.875rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+/* Track: circle + vertical line below */
+.msp-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.msp-circle {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #3b5452;
+    background: #0f2220;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.msp-step--active .msp-circle {
+    background: #13ecda;
+    border-color: #13ecda;
+    box-shadow: 0 0 16px rgba(19, 236, 218, 0.4);
+}
+
+.msp-step--past .msp-circle {
+    background: rgba(19, 236, 218, 0.12);
+    border-color: rgba(19, 236, 218, 0.4);
+}
+
+.msp-check {
+    font-size: 0.9rem;
+    color: #13ecda;
+}
+
+.msp-num {
+    font-size: 0.7rem;
+    font-family: ui-monospace, monospace;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.msp-step--active .msp-num {
+    color: #0f2220;
+    font-weight: 800;
+}
+
+.msp-line {
+    width: 1.5px;
+    height: 2.5rem;
+    background: #283937;
+    margin-top: 2px;
+    transition: background 0.3s ease;
+}
+
+.msp-step--past .msp-line {
+    background: linear-gradient(to bottom, rgba(19, 236, 218, 0.5), rgba(19, 236, 218, 0.1));
+}
+
+/* Text */
+.msp-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.35rem 0;
+}
+
+.msp-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #94a3b8;
+    transition: color 0.25s ease;
+    line-height: 1.3;
+}
+
+.msp-step--active .msp-title {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.msp-step--past .msp-title {
+    color: #64748b;
+}
+
+.msp-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #475569;
+    transition: color 0.25s ease;
+}
+
+.msp-step--active .msp-sub {
+    color: rgba(19, 236, 218, 0.7);
+}
+
+/* Step icon (right side) */
+.msp-icon {
+    font-size: 1.1rem;
+    color: #334155;
+    transition: color 0.25s ease;
+    padding-top: 0.3rem;
+}
+
+.msp-step--active .msp-icon {
+    color: #13ecda;
+}
+
+.msp-step--past .msp-icon {
+    color: rgba(19, 236, 218, 0.3);
+}
+
+/* ── Mobile nav bar (Prev / Progress / Next) ── */
+.mobile-nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(21, 42, 40, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(19, 236, 218, 0.15);
+    border-radius: 9999px;
+}
+
+.mnb-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.mnb-btn .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+.mnb-btn--next {
+    color: #13ecda;
+    border-color: rgba(19, 236, 218, 0.3);
+}
+
+.mnb-btn:hover:not(:disabled) {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.mnb-btn--next:hover:not(:disabled) {
+    background: rgba(19, 236, 218, 0.12);
+    border-color: #13ecda;
+    box-shadow: 0 0 12px rgba(19, 236, 218, 0.2);
+}
+
+.mnb-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.mnb-progress {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.mnb-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(19, 236, 218, 0.5), #13ecda);
+    border-radius: 9999px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(19, 236, 218, 0.4);
 }

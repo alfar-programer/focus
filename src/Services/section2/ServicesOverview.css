@@ -145,7 +145,7 @@
 .section2-sidebar-footer {
     padding: 24px;
     border-top: 1px solid var(--border-color, #2a3b45);
-    
+
 }
 
 .section2-support {
@@ -210,7 +210,7 @@
     inset: 0;
     pointer-events: none;
     opacity: 0.03;
-    background-image: 
+    background-image:
         linear-gradient(#fff 1px, transparent 1px),
         linear-gradient(90deg, #fff 1px, transparent 1px);
     background-size: 40px 40px;
@@ -438,9 +438,12 @@
 }
 
 @keyframes pulse-label {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.7;
     }
@@ -467,15 +470,15 @@
     .section2-content-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .section2-content-inner {
         padding: 32px;
     }
-    
+
     .section2-content-header {
         flex-direction: column;
     }
-    
+
     .section2-content-heading {
         font-size: 28px;
     }
@@ -485,15 +488,15 @@
     .section2-sidebar {
         width: 240px;
     }
-    
+
     .section2-content-inner {
         padding: 24px;
     }
-    
+
     .section2-content-heading {
         font-size: 24px;
     }
-    
+
     .section2-diagram-svg {
         max-width: 100%;
     }
@@ -503,26 +506,90 @@
     .section2-wrapper {
         flex-direction: column;
     }
-    
+
     .section2-sidebar {
         width: 100%;
         max-height: 200px;
         border-right: none;
         border-bottom: 1px solid var(--border-color, #2a3b45);
     }
-    
+
     .section2-services-list {
         flex-direction: row;
         overflow-x: auto;
         padding: 12px;
     }
-    
+
     .section2-service-btn {
         min-width: 180px;
         flex-shrink: 0;
     }
-    
+
     .section2-sidebar-footer {
         display: none;
+    }
+}
+
+/* ── 480px Mobile ── */
+@media (max-width: 480px) {
+    .section2-sidebar {
+        max-height: 160px;
+    }
+
+    .section2-sidebar-header {
+        padding: 12px 16px;
+    }
+
+    .section2-sidebar-title {
+        font-size: 10px;
+    }
+
+    .section2-services-list {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .section2-service-btn {
+        min-width: 150px;
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .section2-service-title {
+        font-size: 12px;
+    }
+
+    .section2-content-inner {
+        padding: 16px;
+    }
+
+    .section2-content-heading {
+        font-size: 20px;
+    }
+
+    .section2-content-description {
+        font-size: 14px;
+    }
+
+    .section2-service-badge {
+        font-size: 9px;
+    }
+
+    .section2-stat-number {
+        font-size: 22px;
+    }
+
+    .section2-stat-card {
+        padding: 14px;
+    }
+
+    .section2-download-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 11px;
+    }
+
+    .section2-diagram-container {
+        min-height: 280px;
     }
 }

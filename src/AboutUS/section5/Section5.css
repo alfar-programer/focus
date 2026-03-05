@@ -356,3 +356,180 @@
     text-transform: uppercase;
     color: var(--text-secondary, #CBD5E1);
 }
+
+/* ============================================================
+   RESPONSIVE — Section5 (Stats Hub)
+   ============================================================ */
+
+@media (max-width: 1440px) {
+    .s5 {
+        padding: 110px 32px 90px;
+    }
+
+    .s5__inner {
+        gap: 64px;
+    }
+
+    .s5__hub-circle {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .s5 {
+        padding: 100px 24px 80px;
+    }
+
+    .s5__inner {
+        gap: 56px;
+    }
+
+    .s5__hub-circle {
+        width: 250px;
+        height: 250px;
+    }
+
+    .s5__grid {
+        gap: 40px;
+    }
+
+    .s5__stat-value {
+        font-size: 1.5rem;
+    }
+
+    .s5__body-text {
+        font-size: 0.95rem;
+    }
+
+    .s5__feature-value {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .s5 {
+        padding: 90px 16px 72px;
+    }
+
+    .s5__inner {
+        gap: 48px;
+    }
+
+    /* 3-col grid already collapses at 900px — just scale the hub */
+    .s5__hub-circle {
+        width: 220px;
+        height: 220px;
+    }
+
+    .s5__hub-ring {
+        inset: -6px;
+    }
+
+    .s5__spotlight {
+        width: 400px;
+        height: 400px;
+    }
+
+    .s5__stats {
+        padding-top: 36px;
+        gap: 16px;
+    }
+
+    .s5__stat {
+        padding: 16px 12px;
+    }
+
+    .s5__stat-value {
+        font-size: 1.4rem;
+    }
+
+    .s5__stat-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+    }
+
+    .s5__body-text {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .s5__feature-value {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .s5 {
+        padding: 80px 12px 60px;
+    }
+
+    .s5__inner {
+        gap: 36px;
+    }
+
+    .s5__hub-circle {
+        width: 172px;
+        height: 172px;
+    }
+
+    .s5__hub-ring {
+        inset: -5px;
+    }
+
+    .s5__hub-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .s5__spotlight {
+        width: 280px;
+        height: 280px;
+    }
+
+    .s5__stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding-top: 28px;
+    }
+
+    .s5__stat {
+        padding: 12px 8px;
+    }
+
+    .s5__stat-value {
+        font-size: 1.15rem;
+        margin-bottom: 4px;
+    }
+
+    .s5__stat-label {
+        font-size: 0.55rem;
+        letter-spacing: 0.15em;
+    }
+
+    .s5__body-text {
+        font-size: 0.875rem;
+        max-width: 100%;
+    }
+
+    .s5__feature-value {
+        font-size: 1rem;
+    }
+
+    .s5__feature-label {
+        font-size: 0.6rem;
+    }
+
+    .s5__badge {
+        font-size: 0.6rem;
+        padding: 4px 14px;
+    }
+
+    .s5__analytics-label {
+        font-size: 0.6rem;
+    }
+
+    .s5__divider {
+        width: 48px;
+    }
+}

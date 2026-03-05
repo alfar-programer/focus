@@ -154,6 +154,7 @@
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -250,4 +251,175 @@
     font-weight: 700;
     letter-spacing: 0.5em;
     text-transform: uppercase;
+}
+
+/* ============================================================
+   RESPONSIVE — PartnersGrid (Our Partners page)
+   ============================================================ */
+
+@media (max-width: 1440px) {
+    .partners-grid-container {
+        padding: 0 2rem;
+    }
+
+    .partners-grid-header {
+        margin-bottom: 4rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .partners-grid-section {
+        padding: 4rem 0;
+    }
+
+    .partners-grid-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .partners-grid-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .partners-marquee-wrapper {
+        padding: 3rem 0;
+        margin-bottom: 5rem;
+    }
+
+    .partners-features-grid {
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .partners-grid-section {
+        padding: 3rem 0;
+    }
+
+    .partners-grid-container {
+        padding: 0 1.25rem;
+    }
+
+    .partners-grid-header {
+        margin-bottom: 3rem;
+    }
+
+    .partners-grid-title {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .partners-grid-subtitle {
+        font-size: 1rem;
+    }
+
+    .partners-region-tabs {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .partners-tab {
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+    }
+
+    .partner-logo {
+        height: 4.5rem;
+    }
+
+    .partners-marquee-wrapper {
+        padding: 2.5rem 0;
+        margin-bottom: 4rem;
+    }
+
+    .partners-marquee-track {
+        gap: 3.5rem;
+    }
+
+    .partners-features-grid {
+        gap: 2.5rem;
+    }
+
+    .partners-feature-title {
+        font-size: 1.1rem;
+        letter-spacing: 0.15em;
+    }
+
+    .partners-grid-footer {
+        margin-top: 3.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .partners-grid-section {
+        padding: 2.5rem 0;
+    }
+
+    .partners-grid-container {
+        padding: 0 0.75rem;
+    }
+
+    .partners-grid-header {
+        margin-bottom: 2rem;
+    }
+
+    .partners-grid-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .partners-grid-subtitle {
+        font-size: 0.875rem;
+        letter-spacing: 0.03em;
+    }
+
+    .partners-region-tabs {
+        gap: 1rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .partners-tab {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+    }
+
+    .partner-logo {
+        height: 3.5rem;
+    }
+
+    .partners-marquee-wrapper {
+        padding: 2rem 0;
+        margin-bottom: 3rem;
+    }
+
+    .partners-marquee-track {
+        gap: 2.5rem;
+    }
+
+    .partners-features-grid {
+        gap: 2rem;
+    }
+
+    .partners-feature-icon {
+        font-size: 1.5rem;
+    }
+
+    .partners-feature-title {
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+    }
+
+    .partners-feature-description {
+        font-size: 0.82rem;
+    }
+
+    .partners-footer-line {
+        margin-bottom: 1.25rem;
+    }
+
+    .partners-footer-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+    }
+
+    .partners-grid-footer {
+        margin-top: 2.5rem;
+    }
 }

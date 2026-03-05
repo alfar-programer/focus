@@ -339,3 +339,119 @@
     filter: blur(6px);
     border-radius: 50%;
 }
+
+/* ============================================================
+   RESPONSIVE — Section3 (Values Slider)
+   ============================================================ */
+
+@media (max-width: 1440px) {
+    .values-header {
+        padding: 0 4vw;
+    }
+
+    .slider-nav-area {
+        padding: 0 4vw;
+    }
+}
+
+@media (max-width: 1024px) {
+    .values-section {
+        padding: 60px 0;
+    }
+
+    .slide-inner {
+        padding: 2.5rem;
+    }
+
+    .bg-number {
+        font-size: 12rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .values-section {
+        padding: 50px 0;
+    }
+
+    .values-header {
+        padding: 0 5vw;
+        margin-bottom: 2rem;
+    }
+
+    .slide-inner {
+        padding: 2rem;
+        min-height: 360px;
+        height: auto;
+    }
+
+    .bg-number {
+        font-size: 9rem;
+    }
+
+    .slide-desc {
+        font-size: 1rem;
+    }
+
+    .slider-nav-area {
+        padding: 0 5vw;
+    }
+
+    .progress-container {
+        max-width: 100%;
+    }
+
+    /* Innovation slide: stack vertically on tablet */
+    .innovation-slide .slide-inner {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-section {
+        padding: 40px 0;
+    }
+
+    .values-header {
+        padding: 0 1rem;
+    }
+
+    .value-slide {
+        padding: 0 0.75rem;
+    }
+
+    .slide-inner {
+        padding: 1.5rem;
+        min-height: 300px;
+    }
+
+    .bg-number {
+        font-size: 7rem;
+        top: -10px;
+        right: -10px;
+    }
+
+    .slide-icon {
+        font-size: 2.2rem;
+    }
+
+    .slide-desc {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .slider-nav-area {
+        padding: 0 1rem;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .accent-line {
+        width: 60px;
+        margin-top: 1.25rem;
+    }
+}

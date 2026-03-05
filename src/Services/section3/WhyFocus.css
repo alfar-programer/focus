@@ -19,7 +19,7 @@
     inset: 0;
     pointer-events: none;
     opacity: 0.03;
-    background-image: 
+    background-image:
         linear-gradient(var(--color-accent) 1px, transparent 1px),
         linear-gradient(to right, var(--color-accent) 1px, transparent 1px);
     background-size: 40px 40px;
@@ -48,7 +48,7 @@
         left: 20%;
         top: 13%;
     }
-    
+
     .why-focus__logo-watermark img {
         width: 700px;
     }
@@ -117,8 +117,15 @@
 }
 
 @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 /* Title */
@@ -559,4 +566,155 @@
     border-radius: 50%;
     background-color: var(--color-accent);
     animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ============================================================
+   RESPONSIVE — Why Focus  (768px, 480px)
+   ============================================================ */
+
+/* ── 768px Tablet ── */
+@media (max-width: 768px) {
+    .why-focus {
+        padding: 3rem 0;
+    }
+
+    .why-focus__container {
+        gap: 2.5rem;
+        padding: 0 1.25rem;
+    }
+
+    .why-focus__title {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .why-focus__lead {
+        font-size: 1.25rem;
+    }
+
+    .why-focus__description {
+        font-size: 1rem;
+    }
+
+    .why-focus__section-intro {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .why-focus__item-header {
+        padding: 1.25rem;
+    }
+
+    .why-focus__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+
+    .why-focus__stats {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+}
+
+/* ── 480px Mobile ── */
+@media (max-width: 480px) {
+    .why-focus {
+        padding: 2.5rem 0;
+    }
+
+    .why-focus__container {
+        padding: 0 1rem;
+        gap: 2rem;
+    }
+
+    .why-focus__title {
+        font-size: 3rem;
+        margin-bottom: 1.25rem;
+        line-height: 0.95;
+    }
+
+    .why-focus__badge {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .why-focus__intro {
+        padding-left: 1rem;
+    }
+
+    .why-focus__lead {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .why-focus__description {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .why-focus__stat-value {
+        font-size: 1.5rem;
+    }
+
+    .why-focus__stat-label {
+        font-size: 0.65rem;
+    }
+
+    /* Accordion */
+    .why-focus__section-label {
+        font-size: 0.65rem;
+    }
+
+    .why-focus__section-intro {
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .why-focus__item-header {
+        padding: 1rem;
+    }
+
+    .why-focus__item-number {
+        font-size: 2.25rem;
+    }
+
+    .why-focus__item-title {
+        font-size: 1.05rem;
+    }
+
+    .why-focus__item-body {
+        padding: 0 1rem 1rem;
+    }
+
+    .why-focus__item-text p {
+        font-size: 0.875rem;
+    }
+
+    .why-focus__item-features li {
+        font-size: 0.8rem;
+    }
+
+    .why-focus__metric-value {
+        font-size: 1.5rem;
+    }
+
+    .why-focus__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        font-size: 0.65rem;
+    }
+
+    /* Logo watermark: hide on mobile to avoid overflow */
+    .why-focus__logo-watermark {
+        display: none;
+    }
 }

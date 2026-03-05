@@ -11,7 +11,31 @@ const Navbar = () => {
     const navRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [aboutOpen, setAboutOpen] = useState(false);
     const themeToggleRef = useRef(null);
+    const mobileMenuRef = useRef(null);
+
+    // Close menu on route change
+    useEffect(() => {
+        setMenuOpen(false);
+        setAboutOpen(false);
+    }, [location.pathname]);
+
+    // Animate mobile menu open / close
+    useEffect(() => {
+        const menu = mobileMenuRef.current;
+        if (!menu) return;
+
+        if (menuOpen) {
+            gsap.fromTo(menu,
+                { opacity: 0, y: -16 },
+                { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
+            );
+        } else {
+            gsap.to(menu, { opacity: 0, y: -12, duration: 0.2, ease: 'power2.in' });
+        }
+    }, [menuOpen]);
 
     // Toggle theme function
     const toggleTheme = () => {
@@ -122,13 +146,13 @@ const Navbar = () => {
 
                 </div>
 
-                {/* Center: Nav Links */}
+                {/* Center: Nav Links (Desktop) */}
                 <div className="navbar-links">
                     <Link to="/" className="navbar-link">
                         Home
                         <span className="navbar-link-underline" />
                     </Link>
-                     <div className="navbar-dropdown-container">
+                    <div className="navbar-dropdown-container">
                         <Link to="/about" className="navbar-link navbar-dropdown-trigger">
                             About Us
                             <svg className="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -160,7 +184,7 @@ const Navbar = () => {
                         Services
                         <span className="navbar-link-underline" />
                     </Link>
-                   
+
                     <Link to="/projects" className="navbar-link">
                         Projects
                         <span className="navbar-link-underline" />
@@ -195,29 +219,92 @@ const Navbar = () => {
                         </div>
                     </button>
 
-                    <a href="https://www.linkedin.com/company/focus-for-trading-contracting" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/company/focus-for-trading-contracting" target="_blank" rel="noopener noreferrer" className="navbar-social-link navbar-social-link--desktop" aria-label="LinkedIn">
                         <svg viewBox="0 0 256 256" fill="currentColor">
                             <path d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" />
                         </svg>
                     </a>
-                    <a href="https://www.facebook.com/FOCUS.T.C.group/" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="Facebook">
+                    <a href="https://www.facebook.com/FOCUS.T.C.group/" target="_blank" rel="noopener noreferrer" className="navbar-social-link navbar-social-link--desktop" aria-label="Facebook">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                         </svg>
                     </a>
-                    <a href="https://www.instagram.com/focus.trading.contracting/" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="Instagram">
+                    <a href="https://www.instagram.com/focus.trading.contracting/" target="_blank" rel="noopener noreferrer" className="navbar-social-link navbar-social-link--desktop" aria-label="Instagram">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z" />
                         </svg>
-
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="Twitter">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="navbar-social-link navbar-social-link--desktop" aria-label="Twitter">
                         <svg viewBox="0 0 256 209" fill="currentColor">
                             <path d="M256 25.45c-9.42 4.177-19.542 7-30.166 8.27 10.845-6.5 19.172-16.793 23.093-29.057a105.183 105.183 0 0 1-33.351 12.745C205.995 7.201 192.346.822 177.239.822c-29.006 0-52.523 23.516-52.523 52.52 0 4.117.465 8.125 1.36 11.97-43.65-2.191-82.35-23.1-108.255-54.876-4.52 7.757-7.11 16.78-7.11 26.404 0 18.222 9.273 34.297 23.365 43.716a52.312 52.312 0 0 1-23.79-6.57c-.003.22-.003.44-.003.661 0 25.447 18.104 46.675 42.13 51.5a52.592 52.592 0 0 1-23.718.9c6.683 20.866 26.08 36.05 49.062 36.475-17.975 14.086-40.622 22.483-65.228 22.483-4.24 0-8.42-.249-12.529-.734 23.243 14.902 50.85 23.597 80.51 23.597 96.607 0 149.434-80.031 149.434-149.435 0-2.278-.05-4.543-.152-6.795A106.748 106.748 0 0 0 256 25.45" />
                         </svg>
                     </a>
+
+                    {/* Hamburger Button — mobile only */}
+                    <button
+                        className={`navbar-hamburger${menuOpen ? ' navbar-hamburger--open' : ''}`}
+                        onClick={() => setMenuOpen(o => !o)}
+                        aria-label="Toggle navigation menu"
+                        aria-expanded={menuOpen}
+                    >
+                        <span className="navbar-hamburger-bar" />
+                        <span className="navbar-hamburger-bar" />
+                        <span className="navbar-hamburger-bar" />
+                    </button>
                 </div>
             </div>
+
+            {/* Mobile Menu Panel */}
+            {menuOpen && (
+                <div className="navbar-mobile-menu" ref={mobileMenuRef}>
+                    <Link to="/" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
+                        Home
+                    </Link>
+
+                    {/* About accordion */}
+                    <div className="navbar-mobile-group">
+                        <button
+                            className={`navbar-mobile-link navbar-mobile-link--group${aboutOpen ? ' navbar-mobile-link--open' : ''}`}
+                            onClick={() => setAboutOpen(o => !o)}
+                        >
+                            About Us
+                            <svg className="navbar-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </button>
+                        {aboutOpen && (
+                            <div className="navbar-mobile-sub">
+                                <Link to="/about/who-we-are" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>Our Journey</Link>
+                                <Link to="/about/our-story" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>Who We Are</Link>
+                                <Link to="/about/our-partners" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>Our Partners</Link>
+                            </div>
+                        )}
+                    </div>
+
+                    <Link to="/services" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
+                        Services
+                    </Link>
+                    <Link to="/projects" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
+                        Projects
+                    </Link>
+                    <Link to="/contact" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
+                        Contact Us
+                    </Link>
+
+                    {/* Social icons row inside mobile menu */}
+                    <div className="navbar-mobile-socials">
+                        <a href="https://www.linkedin.com/company/focus-for-trading-contracting" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="LinkedIn">
+                            <svg viewBox="0 0 256 256" fill="currentColor"><path d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" /></svg>
+                        </a>
+                        <a href="https://www.facebook.com/FOCUS.T.C.group/" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                        </a>
+                        <a href="https://www.instagram.com/focus.trading.contracting/" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z" /></svg>
+                        </a>
+                    </div>
+                </div>
+            )}
         </nav>
     );
 };
