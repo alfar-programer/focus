@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import Lenis from 'lenis'; // Disable local Lenis to avoid conflict
@@ -144,6 +144,46 @@ const Section2 = () => {
             // Mobile
             mm.add("(max-width: 999px)", () => {
                 setDefaults();
+                const mobileTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".section2-sticky",
+                        start: "top 80%",
+                        end: "bottom 70%",
+                        scrub: 1
+                    }
+                });
+
+                gsap.set(scopedStickyHeader, { y: 30, opacity: 0 });
+                gsap.set(scopedCardContainer, { gap: 12 });
+                gsap.set(scopedCards, { rotationY: 0, transformOrigin: "center center" });
+                gsap.set(["#section2-card-1", "#section2-card-3"], { y: 0, rotationZ: 0 });
+
+                mobileTl
+                    .to(scopedStickyHeader, { y: 0, opacity: 1, duration: 0.2, ease: "none" }, 0)
+                    .to(scopedCardContainer, { gap: 28, duration: 0.3, ease: "none" }, 0.15)
+                    .to("#section2-card-1", { y: -10, rotationZ: -4, duration: 0.3, ease: "none" }, 0.15)
+                    .to("#section2-card-3", { y: 10, rotationZ: 4, duration: 0.3, ease: "none" }, 0.15)
+                    .to(
+                        scopedCards,
+                        {
+                            rotationY: 180,
+                            duration: 0.4,
+                            ease: "none",
+                            stagger: 0.08
+                        },
+                        0.38
+                    )
+                    .to(
+                        ["#section2-card-1", "#section2-card-3"],
+                        {
+                            y: (i) => (i === 0 ? 8 : 22),
+                            rotationZ: (i) => (i === 0 ? -7 : 7),
+                            duration: 0.85,
+                            ease: "none"
+                        },
+                        0.38
+                    );
+
                 return () => { };
             });
 
