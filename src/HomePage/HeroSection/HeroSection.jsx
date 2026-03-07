@@ -9,16 +9,49 @@ gsap.registerPlugin(ScrollTrigger);
 const HeroSection = () => {
     const { t } = useI18n();
     const containerRef = useRef(null);
+    const canvasRef = useRef(null);
     const navRef = useRef(null);
     const headerRef = useRef(null);
     const framesRef = useRef([]);
-    const videoFramesRef = useRef({ frame: 0 });
     const triggersRef = useRef([]);
 
     const FRAME_COUNT = 131;
 
     const getFramePath = (index) => {
         return `/frames/frame_${(index + 1).toString().padStart(5, '0')}.webp`;
+    };
+
+    // Rendering function for canvas
+    const renderFrame = (index) => {
+        if (!canvasRef.current || !framesRef.current[index]) return;
+
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        const image = framesRef.current[index];
+
+        // Ensure canvas dimensions match actual size with DPR for sharpness
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+
+        // Only update canvas width/height if it changed
+        if (canvas.width !== rect.width * dpr || canvas.height !== rect.height * dpr) {
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+        }
+
+        // Object-fit: cover math
+        ctx.clearRect(0, 0, rect.width, rect.height);
+
+        const scale = Math.max(
+            rect.width / image.width,
+            rect.height / image.height
+        );
+
+        const x = (rect.width / 2) - (image.width / 2) * scale;
+        const y = (rect.height / 2) - (image.height / 2) * scale;
+
+        ctx.drawImage(image, x, y, image.width * scale, image.height * scale);
     };
 
     // Preload images on mount
@@ -30,14 +63,9 @@ const HeroSection = () => {
             const img = new Image();
             img.onload = () => {
                 loadedCount++;
-                if (loadedCount === FRAME_COUNT) {
-                    // All frames loaded - ensure first frame is visible
-                    const frameElements = containerRef.current?.querySelectorAll('.hero-frame');
-                    if (frameElements) {
-                        frameElements.forEach((frame, index) => {
-                            frame.style.visibility = index === 0 ? 'visible' : 'hidden';
-                        });
-                    }
+                if (i === 0) {
+                    // Render first frame as soon as it loads to prevent blank screen
+                    requestAnimationFrame(() => renderFrame(0));
                 }
             };
             img.onerror = () => {
@@ -57,6 +85,21 @@ const HeroSection = () => {
         const handleResize = () => {
             if (resizeDebounceTimer) clearTimeout(resizeDebounceTimer);
             resizeDebounceTimer = setTimeout(() => {
+                // Resize canvas and re-render current frame correctly without reloading
+                const progress = triggersRef.current[0]?.progress || 0;
+                const animationProgress = Math.min(progress / 0.9, 1);
+                const targetFrame = Math.round(animationProgress * (FRAME_COUNT - 1));
+
+                // Force a dimension update check on the canvas by triggering render
+                if (canvasRef.current) {
+                    const canvas = canvasRef.current;
+                    const dpr = window.devicePixelRatio || 1;
+                    const rect = canvas.getBoundingClientRect();
+                    canvas.width = rect.width * dpr;
+                    canvas.height = rect.height * dpr;
+                }
+
+                renderFrame(targetFrame);
                 ScrollTrigger.refresh();
             }, 200);
         };
@@ -78,15 +121,11 @@ const HeroSection = () => {
                 onUpdate: (self) => {
                     const progress = self.progress;
 
-                    // Frame animation (0-90% of scroll) - DOM-based frame switching
+                    // Frame animation (0-90% of scroll) - Canvas drawing
                     const animationProgress = Math.min(progress / 0.9, 1);
                     const targetFrame = Math.round(animationProgress * (FRAME_COUNT - 1));
 
-                    // Update frame visibility using visibility (no transition) to prevent flicker
-                    const frameElements = containerRef.current.querySelectorAll('.hero-frame');
-                    frameElements.forEach((frame, index) => {
-                        frame.style.visibility = index === targetFrame ? 'visible' : 'hidden';
-                    });
+                    renderFrame(targetFrame);
 
                     // Nav fade out (0-10%) - same as before
                     if (navRef.current) {
@@ -142,19 +181,7 @@ const HeroSection = () => {
         <div ref={containerRef} className="hero-section">
 
             <section className="hero">
-                {/* DOM-based frame animation - 116 frames stacked with visibility toggle */}
-                <div className="hero-frames-container">
-                    {Array.from({ length: FRAME_COUNT }, (_, i) => (
-                        <img
-                            key={i}
-                            src={getFramePath(i)}
-                            alt=""
-                            className="hero-frame"
-                            style={{ visibility: i === 0 ? 'visible' : 'hidden' }}
-                            loading="eager"
-                        />
-                    ))}
-                </div>
+                <canvas ref={canvasRef} className="hero-canvas" />
 
                 <div className="hero-content">
                     <div ref={headerRef} className="hero-header">
