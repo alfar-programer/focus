@@ -50,9 +50,8 @@ const HeroSection = () => {
 
     // GSAP ScrollTrigger animations - matching Section2/Section3 approach
     useLayoutEffect(() => {
-        const getViewportHeight = () => (
-            window.visualViewport?.height || document.documentElement?.clientHeight || window.innerHeight
-        );
+        // Lock vh once on mount - never update this on mobile toolbar changes
+        const LOCKED_VH = window.visualViewport?.height || document.documentElement?.clientHeight || window.innerHeight;
 
         let resizeDebounceTimer = null;
         const handleResize = () => {
@@ -63,19 +62,18 @@ const HeroSection = () => {
         };
 
         window.addEventListener('resize', handleResize);
-        // visualViewport fires resize when Android Chrome toolbar hides/shows
-        window.visualViewport?.addEventListener('resize', handleResize);
 
         const ctx = gsap.context(() => {
             // Main scroll trigger - pin the section like Section2/Section3
             const trigger = ScrollTrigger.create({
                 trigger: containerRef.current,
                 start: 'top top',
-                end: () => `+=${getViewportHeight() * 3.5}`,
+                end: () => `+=${LOCKED_VH * 3.5}`,
                 pin: true,
                 pinSpacing: true,
                 scrub: 1,
                 invalidateOnRefresh: true,
+                ignoreMobileResize: true,
 
                 onUpdate: (self) => {
                     const progress = self.progress;
@@ -131,7 +129,6 @@ const HeroSection = () => {
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            window.visualViewport?.removeEventListener('resize', handleResize);
             if (resizeDebounceTimer) {
                 clearTimeout(resizeDebounceTimer);
             }
