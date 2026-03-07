@@ -65,7 +65,6 @@
 .hero-section .hero {
     position: relative;
     width: 100vw;
-    height: var(--hero-vh, 100svh);
     height: 100svh;
     min-height: 100svh;
     overflow: hidden;

@@ -25,7 +25,7 @@ const HeroSection = () => {
     useEffect(() => {
         framesRef.current = [];
         let loadedCount = 0;
-        
+
         for (let i = 0; i < FRAME_COUNT; i++) {
             const img = new Image();
             img.onload = () => {
@@ -51,27 +51,20 @@ const HeroSection = () => {
     // GSAP ScrollTrigger animations - matching Section2/Section3 approach
     useLayoutEffect(() => {
         const getViewportHeight = () => (
-            document.documentElement?.clientHeight || window.innerHeight
+            window.visualViewport?.height || document.documentElement?.clientHeight || window.innerHeight
         );
-
-        // Keep CSS viewport height in sync for mobile browser UI changes.
-        const syncViewportHeight = () => {
-            const viewportHeight = getViewportHeight();
-            document.documentElement.style.setProperty('--hero-vh', `${viewportHeight}px`);
-        };
-
-        syncViewportHeight();
 
         let resizeDebounceTimer = null;
         const handleResize = () => {
             if (resizeDebounceTimer) clearTimeout(resizeDebounceTimer);
             resizeDebounceTimer = setTimeout(() => {
-                syncViewportHeight();
                 ScrollTrigger.refresh();
-            }, 250);
+            }, 200);
         };
 
         window.addEventListener('resize', handleResize);
+        // visualViewport fires resize when Android Chrome toolbar hides/shows
+        window.visualViewport?.addEventListener('resize', handleResize);
 
         const ctx = gsap.context(() => {
             // Main scroll trigger - pin the section like Section2/Section3
@@ -90,7 +83,7 @@ const HeroSection = () => {
                     // Frame animation (0-90% of scroll) - DOM-based frame switching
                     const animationProgress = Math.min(progress / 0.9, 1);
                     const targetFrame = Math.round(animationProgress * (FRAME_COUNT - 1));
-                    
+
                     // Update frame visibility using visibility (no transition) to prevent flicker
                     const frameElements = containerRef.current.querySelectorAll('.hero-frame');
                     frameElements.forEach((frame, index) => {
@@ -138,10 +131,10 @@ const HeroSection = () => {
 
         return () => {
             window.removeEventListener('resize', handleResize);
+            window.visualViewport?.removeEventListener('resize', handleResize);
             if (resizeDebounceTimer) {
                 clearTimeout(resizeDebounceTimer);
             }
-            document.documentElement.style.removeProperty('--hero-vh');
             ctx.revert();
             triggersRef.current.forEach(t => t.kill());
             triggersRef.current = [];
@@ -150,7 +143,7 @@ const HeroSection = () => {
 
     return (
         <div ref={containerRef} className="hero-section">
-           
+
             <section className="hero">
                 {/* DOM-based frame animation - 116 frames stacked with visibility toggle */}
                 <div className="hero-frames-container">
