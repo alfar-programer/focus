@@ -2,10 +2,12 @@ import { useLayoutEffect, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './HeroSection.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
+    const { t } = useI18n();
     const containerRef = useRef(null);
     const navRef = useRef(null);
     const headerRef = useRef(null);
@@ -137,8 +139,8 @@ const HeroSection = () => {
 
                 <div className="hero-content">
                     <div ref={headerRef} className="hero-header">
-                        <h1>What are you looking for?</h1>
-                        <p>Trusted by</p>
+                        <h1>{t('home.hero.title')}</h1>
+                        <p>{t('home.hero.trustedBy')}</p>
 
                         <div className="client-logos">
                             <div className="client-logo">

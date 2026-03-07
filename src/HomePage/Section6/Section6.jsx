@@ -1,34 +1,11 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './Section6.css';
-
-const slidesData = [
-    {
-        id: 0,
-        number: '01',
-        title: 'Supporting people',
-        headline: 'Supporting<br/>people',
-        description: 'We invest in our people, fostering a culture of growth, collaboration, and excellence. Our team is our greatest asset in delivering exceptional results.',
-        image: 'https://media.innovogroup.com/assets/img/sustainable.jpg'
-    },
-    {
-        id: 1,
-        number: '02',
-        title: 'Embracing technology',
-        headline: 'Embracing<br/>technology',
-        description: 'Leveraging cutting-edge technology to streamline processes, enhance precision, and deliver projects that exceed expectations in the digital age.',
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80'
-    },
-    {
-        id: 2,
-        number: '03',
-        title: 'Fostering sustainability',
-        headline: 'Fostering<br/>sustainability',
-        description: 'Innovo works across the value chain to meet new demand and ensure it leaves a lasting, positive impact with every project it takes on.',
-        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
-    }
-];
+import { useI18n } from '../../i18n/I18nProvider';
 
 const Section6 = () => {
+    const { get, t } = useI18n();
+    const slidesData = get('home.section6.slides', []);
+    const stories = get('home.section6.stories', []);
     const sectionRef = useRef(null);
     const [activeSlide, setActiveSlide] = useState(2);
     const [progress, setProgress] = useState(0);
@@ -54,6 +31,7 @@ const Section6 = () => {
     }, []);
 
     const startProgress = useCallback(() => {
+        if (!slidesData.length) return;
         setProgress(0);
         const startTime = Date.now();
         
@@ -67,32 +45,34 @@ const Section6 = () => {
             setProgress(newProgress);
 
             if (newProgress >= 100) {
-                setActiveSlide((prev) => (prev + 1) % slidesData.length);
+                setActiveSlide((prev) => (prev + 1) % (slidesData.length || 1));
             }
         }, 50);
-    }, []);
+    }, [slidesData.length]);
 
     useEffect(() => {
+        if (!slidesData.length) return undefined;
         startProgress();
         return () => {
             if (progressIntervalRef.current) {
                 clearInterval(progressIntervalRef.current);
             }
         };
-    }, [activeSlide, startProgress]);
+    }, [activeSlide, startProgress, slidesData.length]);
 
     const handleSlideClick = (index) => {
         setActiveSlide(index);
     };
 
-    const currentSlide = slidesData[activeSlide];
+    const currentSlide = slidesData[activeSlide] || slidesData[0];
+    if (!currentSlide) return null;
 
     return (
         <section className="section6-container" ref={sectionRef}>
             <div className="section6-wrapper">
                 {/* Our Approach Section with Slider */}
                 <div className="section6-approach" data-animation>
-                    <h2 className="section6-approach-title">Our Approach</h2>
+                    <h2 className="section6-approach-title">{t('home.section6.approachTitle')}</h2>
                     
                     <div className="section6-slider-container">
                         {/* Single Progress Bar */}
@@ -100,7 +80,7 @@ const Section6 = () => {
                             <div className="section6-progress-bg">
                                 <div 
                                     className="section6-progress-single-fill" 
-                                    style={{ width: `${((activeSlide + progress / 100) / slidesData.length) * 100}%` }}
+                                    style={{ width: `${((activeSlide + progress / 100) / (slidesData.length || 1)) * 100}%` }}
                                 />
                             </div>
                         </div>
@@ -139,7 +119,7 @@ const Section6 = () => {
                         <h3 dangerouslySetInnerHTML={{ __html: currentSlide.headline }} />
                         <p>{currentSlide.description}</p>
                         <a href="#" className="section6-btn">
-                            Read more
+                            {t('home.section6.readMore')}
                             <span className="section6-btn-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -164,9 +144,9 @@ const Section6 = () => {
                 {/* Featured Stories Section */}
                 <div className="section6-stories">
                     <div className="section6-stories-header" data-animation>
-                        <h2>Featured<br/>Stories</h2>
+                        <h2 dangerouslySetInnerHTML={{ __html: t('home.section6.featuredStoriesTitle') }} />
                         <a href="#" className="section6-btn">
-                            Read more news
+                            {t('home.section6.readMoreNews')}
                             <span className="section6-btn-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -178,16 +158,16 @@ const Section6 = () => {
                     {/* News Card 1 */}
                     <div className="section6-news-card" data-animation>
                         <div className="section6-news-meta">
-                            <p>30-12-2025</p>
-                            <p>Events</p>
+                            <p>{stories[0]?.date}</p>
+                            <p>{stories[0]?.type}</p>
                         </div>
                         <h3>
-                            <a href="#">Focus teams end the year with sports and team spirit</a>
+                            <a href="#">{stories[0]?.title}</a>
                         </h3>
                         <div className="section6-news-image">
                             <img 
-                                src="https://media.innovogroup.com/source/uploads/2025/12/teams-thumb_20251231_5ff01.jpg" 
-                                alt="Focus teams"
+                                src={stories[0]?.image}
+                                alt={stories[0]?.imageAlt || ''}
                             />
                             <div className="section6-news-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -201,16 +181,16 @@ const Section6 = () => {
                     {/* News Card 2 */}
                     <div className="section6-news-card" data-animation>
                         <div className="section6-news-meta">
-                            <p>15-12-2025</p>
-                            <p>Project</p>
+                            <p>{stories[1]?.date}</p>
+                            <p>{stories[1]?.type}</p>
                         </div>
                         <h3>
-                            <a href="#">Focus Build Egypt awarded Mivida Gardens Villas project</a>
+                            <a href="#">{stories[1]?.title}</a>
                         </h3>
                         <div className="section6-news-image">
                             <img 
-                                src="/img2.jpeg"
-                                alt="Focus Project award"
+                                src={stories[1]?.image}
+                                alt={stories[1]?.imageAlt || ''}
                             />
                             <div className="section6-news-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

@@ -1,71 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './WorkflowSection.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const WorkflowSection = () => {
+    const { get, t, isRTL } = useI18n();
+    const workflowSteps = get('services.workflow.steps', []);
+    const metrics = get('services.workflow.metrics', []);
+    const coordinates = get('services.workflow.coordinates', []);
+    const scale = get('services.workflow.scale', []);
     const [activeStep, setActiveStep] = useState(2);
     const [isSectionInView, setIsSectionInView] = useState(false);
     const sectionRef = useRef(null);
-
-    const workflowSteps = [
-        {
-            id: 1,
-            icon: 'chat_bubble_outline',
-            title: 'Consultation',
-            subtitle: 'Initial Scoping',
-            description: 'We begin with comprehensive stakeholder interviews and requirement gathering. This phase establishes project scope, constraints, and success metrics through detailed analysis.',
-            duration: '1-2 Weeks',
-            techStack: 'Jira / Miro',
-        },
-        {
-            id: 2,
-            icon: 'settings',
-            title: 'Engineering',
-            subtitle: 'Precision Engineering',
-            description: 'We transform conceptual constraints into operational reality through rigorous CAD modeling and stress testing. Every component is simulated for peak load performance.',
-            duration: '4-6 Weeks',
-            techStack: 'AutoCAD / PySim',
-        },
-        {
-            id: 3,
-            icon: 'construction',
-            title: 'Implementation',
-            subtitle: 'Assembly',
-            description: 'Professional installation and integration with existing systems. Our certified technicians ensure seamless deployment with minimal operational disruption.',
-            duration: '3-4 Weeks',
-            techStack: 'Fusion 360 / PLC',
-        },
-        {
-            id: 4,
-            icon: 'published_with_changes',
-            title: 'Commissioning',
-            subtitle: 'Testing',
-            description: 'Rigorous testing protocols and performance validation. We verify all systems meet or exceed specifications before handover.',
-            duration: '2-3 Weeks',
-            techStack: 'LabVIEW / TestStand',
-        },
-        {
-            id: 5,
-            icon: 'support_agent',
-            title: 'Support',
-            subtitle: 'Maintenance',
-            description: '24/7 monitoring and proactive maintenance. Our support team ensures optimal performance and rapid response to any issues.',
-            duration: 'Ongoing',
-            techStack: 'Azure IoT / Teams',
-        }
-    ];
-
-    const metrics = [
-        { id: 'A1', icon: 'description', value: '142', label: 'Technical Drawings' },
-        { id: 'B2', icon: 'memory', value: '850+', label: 'Simulations Run' },
-        { id: 'C3', icon: 'verified_user', value: '100%', label: 'Safety Compliance' },
-    ];
 
     const handleStepClick = (stepId) => setActiveStep(stepId);
     const handleNextStep = () => { if (activeStep < workflowSteps.length) setActiveStep(activeStep + 1); };
     const handlePrevStep = () => { if (activeStep > 1) setActiveStep(activeStep - 1); };
 
-    const progressPercentage = ((activeStep - 1) / (workflowSteps.length - 1)) * 100;
-    const activeStepData = workflowSteps.find(s => s.id === activeStep);
+    const progressPercentage = ((activeStep - 1) / Math.max(workflowSteps.length - 1, 1)) * 100;
+    const activeStepData = workflowSteps.find(s => s.id === activeStep) || workflowSteps[0];
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -76,6 +28,8 @@ const WorkflowSection = () => {
         return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
     }, []);
 
+    if (!workflowSteps.length) return null;
+
     return (
         <>
             {/* ── Engineered Flow Section ── */}
@@ -84,10 +38,10 @@ const WorkflowSection = () => {
 
                 {/* Decorative coordinates — xl only */}
                 <div className="tech-coordinates">
-                    COORD: 45.922, 12.001<br />SYS: ONLINE<br />GRID: ACTIVE
+                    {coordinates[0]}<br />{coordinates[1]}<br />{coordinates[2]}
                 </div>
                 <div className="tech-scale">
-                    SCALE: 1:100<br />REF: ENG-FLOW-V5<br />STATUS: MONITORING
+                    {scale[0]}<br />{scale[1]}<br />{scale[2]}
                 </div>
 
                 <div className="engineered-container">
@@ -95,17 +49,16 @@ const WorkflowSection = () => {
                     {/* Header */}
                     <div className="engineered-header">
                         <div>
-                            <div className="engineered-badge">System Architecture</div>
-                            <h2 className="engineered-title">05 // ENGINEERED FLOW</h2>
+                            <div className="engineered-badge">{t('services.workflow.badge')}</div>
+                            <h2 className="engineered-title">{t('services.workflow.title')}</h2>
                         </div>
                         <p className="engineered-description">
-                            A visual breakdown of our rigorous engineering methodology. From concept to
-                            commissioning, every phase is data-driven.
+                            {t('services.workflow.description')}
                         </p>
                     </div>
 
                     {/* ══ DESKTOP: horizontal node diagram ══ */}
-                    <div className="process-diagram desktop-diagram">
+                    <div className="process-diagram desktop-diagram" dir="ltr">
                         <div className="connecting-line" />
                         <div className="active-line" style={{ width: `${progressPercentage}%` }} />
 
@@ -117,10 +70,10 @@ const WorkflowSection = () => {
                                         <div className="node-circle" onClick={() => handleStepClick(step.id)}>
                                             <span className="material-symbols-outlined node-icon">{step.icon}</span>
                                         </div>
-                                        <div className="node-content">
+                                        <div className="node-content" dir={isRTL ? 'rtl' : 'ltr'}>
                                             <span className="node-number">
                                                 {String(step.id).padStart(2, '0')}
-                                                {isActive && ' // ACTIVE'}
+                                                {isActive && t('services.workflow.activeSuffix')}
                                             </span>
                                             <h3 className="node-title">{step.title}</h3>
                                             <p className="node-subtitle">{step.subtitle}</p>
@@ -130,7 +83,7 @@ const WorkflowSection = () => {
                                         {isActive && (
                                             <div className="active-info-card">
                                                 <div className="card-connector" />
-                                                <div className="glass-panel">
+                                                <div className="glass-panel" dir={isRTL ? 'rtl' : 'ltr'}>
                                                     <div className="card-decoration">
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                                                             <defs>
@@ -142,23 +95,23 @@ const WorkflowSection = () => {
                                                         </svg>
                                                     </div>
                                                     <div className="card-header">
-                                                        <span className="card-phase">PHASE: ACTIVE</span>
+                                                        <span className="card-phase">{t('services.workflow.phaseActive')}</span>
                                                         <span className="material-symbols-outlined pulse-icon">radio_button_checked</span>
                                                     </div>
                                                     <h4 className="card-title">{step.subtitle}</h4>
                                                     <p className="card-description">{step.description}</p>
                                                     <div className="card-stats">
                                                         <div className="stat">
-                                                            <div className="stat-label">Duration</div>
+                                                            <div className="stat-label">{t('services.workflow.durationLabel')}</div>
                                                             <div className="stat-value">{step.duration}</div>
                                                         </div>
                                                         <div className="stat">
-                                                            <div className="stat-label">Tech Stack</div>
+                                                            <div className="stat-label">{t('services.workflow.techStackLabel')}</div>
                                                             <div className="stat-value">{step.techStack}</div>
                                                         </div>
                                                     </div>
                                                     <button className="card-action">
-                                                        View Details
+                                                        {t('services.workflow.viewDetails')}
                                                         <span className="material-symbols-outlined">arrow_forward</span>
                                                     </button>
                                                     <div className="corner-accent top-left" />
@@ -177,21 +130,21 @@ const WorkflowSection = () => {
                         {/* Active card at top */}
                         <div className="mobile-active-card">
                             <div className="mac-phase-row">
-                                <span className="mac-phase-label">PHASE {String(activeStep).padStart(2, '0')} / {String(workflowSteps.length).padStart(2, '0')}</span>
+                                <span className="mac-phase-label">{t('services.workflow.phaseLabel')} {String(activeStep).padStart(2, '0')} / {String(workflowSteps.length).padStart(2, '0')}</span>
                                 <span className="material-symbols-outlined mac-live-dot">radio_button_checked</span>
                             </div>
-                            <h4 className="mac-title">{activeStepData.title}</h4>
-                            <p className="mac-subtitle">{activeStepData.subtitle}</p>
-                            <p className="mac-description">{activeStepData.description}</p>
+                            <h4 className="mac-title">{activeStepData?.title}</h4>
+                            <p className="mac-subtitle">{activeStepData?.subtitle}</p>
+                            <p className="mac-description">{activeStepData?.description}</p>
                             <div className="mac-stats">
                                 <div className="mac-stat">
-                                    <span className="mac-stat-label">Duration</span>
-                                    <span className="mac-stat-value">{activeStepData.duration}</span>
+                                    <span className="mac-stat-label">{t('services.workflow.durationLabel')}</span>
+                                    <span className="mac-stat-value">{activeStepData?.duration}</span>
                                 </div>
                                 <div className="mac-stat-divider" />
                                 <div className="mac-stat">
-                                    <span className="mac-stat-label">Tech Stack</span>
-                                    <span className="mac-stat-value">{activeStepData.techStack}</span>
+                                    <span className="mac-stat-label">{t('services.workflow.techStackLabel')}</span>
+                                    <span className="mac-stat-value">{activeStepData?.techStack}</span>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +190,7 @@ const WorkflowSection = () => {
                                 disabled={activeStep === 1}
                             >
                                 <span className="material-symbols-outlined">arrow_back</span>
-                                Prev
+                                {t('services.workflow.prev')}
                             </button>
                             <div className="mnb-progress">
                                 <div className="mnb-progress-fill" style={{ width: `${progressPercentage}%` }} />
@@ -247,7 +200,7 @@ const WorkflowSection = () => {
                                 onClick={handleNextStep}
                                 disabled={activeStep === workflowSteps.length}
                             >
-                                Next
+                                {t('services.workflow.next')}
                                 <span className="material-symbols-outlined">arrow_forward</span>
                             </button>
                         </div>
@@ -269,7 +222,7 @@ const WorkflowSection = () => {
                 </div>
 
                 {/* Fixed nav dots — desktop only */}
-                <div className={`workflow-nav ${isSectionInView ? 'fixed' : 'absolute'}`}>
+                <div className={`workflow-nav ${isSectionInView ? 'fixed' : 'absolute'}`} dir="ltr">
                     <button className="nav-button-fixed" onClick={handlePrevStep} disabled={activeStep === 1}>
                         <span className="material-symbols-outlined">arrow_back</span>
                     </button>
@@ -296,19 +249,19 @@ const WorkflowSection = () => {
                         <span className="material-symbols-outlined">bolt</span>
                     </div>
                     <h2 className="cta-title">
-                        Ready to Power Your <br />
-                        <span className="cta-title-gradient">Next Project?</span>
+                        {t('services.workflow.cta.titleLine')} <br />
+                        <span className="cta-title-gradient">{t('services.workflow.cta.titleHighlight')}</span>
                     </h2>
                     <p className="cta-description">
-                        Partner with Focus-TC for industry-leading automation solutions that drive efficiency and growth.
+                        {t('services.workflow.cta.description')}
                     </p>
                     <div className="cta-buttons">
                         <button className="cta-button-primary">
-                            <span>Request a Consultation</span>
+                            <span>{t('services.workflow.cta.primary')}</span>
                             <span className="material-symbols-outlined button-arrow">arrow_forward</span>
                         </button>
                         <button className="cta-button-secondary">
-                            <span>View Projects</span>
+                            <span>{t('services.workflow.cta.secondary')}</span>
                         </button>
                     </div>
                 </div>

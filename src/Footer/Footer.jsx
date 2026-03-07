@@ -3,12 +3,14 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
+import { useI18n } from '../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
     const footerRef = useRef(null);
     const location = useLocation();
+    const { t } = useI18n();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -68,24 +70,24 @@ const Footer = () => {
             {/* ── Metadata strip ── */}
             <div className="footer-metadata">
                 <div className="footer-metadata-item">
-                    <span className="footer-metadata-label">Headquarters</span>
+                    <span className="footer-metadata-label">{t('footer.metadata.headquarters.label')}</span>
                     <span className="footer-metadata-value">
-                        🇪🇬 Egypt — City Stars Towers, 6th October City<br />
-                        🇸🇦 KSA — Raya Business Center, Dammam
+                        🇪🇬 {t('footer.metadata.headquarters.line1')}<br />
+                        🇸🇦 {t('footer.metadata.headquarters.line2')}
                     </span>
                 </div>
                 <div className="footer-metadata-item footer-metadata-border">
-                    <span className="footer-metadata-label">Coordinates</span>
+                    <span className="footer-metadata-label">{t('footer.metadata.coordinates.label')}</span>
                     <span className="footer-metadata-value">
-                        EGY 29.9697° N, 30.9247° E<br />
-                        KSA 26.4207° N, 50.0888° E
+                        {t('footer.metadata.coordinates.line1')}<br />
+                        {t('footer.metadata.coordinates.line2')}
                     </span>
                 </div>
                 <div className="footer-metadata-item">
-                    <span className="footer-metadata-label">Operational Hours</span>
+                    <span className="footer-metadata-label">{t('footer.metadata.hours.label')}</span>
                     <span className="footer-metadata-value">
-                        Mon – Fri · 08:00 – 18:00<br />
-                        Weekend Support: Standby
+                        {t('footer.metadata.hours.line1')}<br />
+                        {t('footer.metadata.hours.line2')}
                     </span>
                 </div>
             </div>
@@ -101,8 +103,8 @@ const Footer = () => {
                             <span className="footer-logo-name">FOCUS</span>
                         </Link>
                         <p className="footer-tagline">
-                            Engineering precision. Industrial excellence.<br />
-                            Serving Egypt &amp; Saudi Arabia.
+                            {t('footer.tagline.line1')}<br />
+                            {t('footer.tagline.line2')}
                         </p>
                         <div className="footer-socials">
                             <a href="https://www.linkedin.com/company/focus-for-trading-contracting" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
@@ -119,31 +121,31 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div className="footer-nav-group">
-                        <h4 className="footer-nav-title">Company</h4>
+                        <h4 className="footer-nav-title">{t('footer.company.title')}</h4>
                         <nav className="footer-nav-links">
-                            <Link to="/" className="footer-nav-link">Home</Link>
-                            <Link to="/about" className="footer-nav-link">About Us</Link>
-                            <Link to="/about/who-we-are" className="footer-nav-link">Our Journey</Link>
-                            <Link to="/about/our-story" className="footer-nav-link">Who We Are</Link>
-                            <Link to="/about/our-partners" className="footer-nav-link">Our Partners</Link>
+                            <Link to="/" className="footer-nav-link">{t('footer.company.links.home')}</Link>
+                            <Link to="/about" className="footer-nav-link">{t('footer.company.links.about')}</Link>
+                            <Link to="/about/who-we-are" className="footer-nav-link">{t('footer.company.links.journey')}</Link>
+                            <Link to="/about/our-story" className="footer-nav-link">{t('footer.company.links.whoWeAre')}</Link>
+                            <Link to="/about/our-partners" className="footer-nav-link">{t('footer.company.links.partners')}</Link>
                         </nav>
                     </div>
 
                     {/* Services */}
                     <div className="footer-nav-group">
-                        <h4 className="footer-nav-title">Services</h4>
+                        <h4 className="footer-nav-title">{t('footer.services.title')}</h4>
                         <nav className="footer-nav-links">
-                            <Link to="/services" className="footer-nav-link">Power Generation</Link>
-                            <Link to="/services" className="footer-nav-link">SCADA &amp; Automation</Link>
-                            <Link to="/services" className="footer-nav-link">Electro-Mechanical</Link>
-                            <Link to="/projects" className="footer-nav-link">Projects</Link>
-                            <Link to="/contact" className="footer-nav-link">Contact Us</Link>
+                            <Link to="/services" className="footer-nav-link">{t('footer.services.links.power')}</Link>
+                            <Link to="/services" className="footer-nav-link">{t('footer.services.links.scada')}</Link>
+                            <Link to="/services" className="footer-nav-link">{t('footer.services.links.electro')}</Link>
+                            <Link to="/projects" className="footer-nav-link">{t('footer.services.links.projects')}</Link>
+                            <Link to="/contact" className="footer-nav-link">{t('footer.services.links.contact')}</Link>
                         </nav>
                     </div>
 
                     {/* Contact */}
                     <div className="footer-nav-group">
-                        <h4 className="footer-nav-title">Contact</h4>
+                        <h4 className="footer-nav-title">{t('footer.contact.title')}</h4>
                         <nav className="footer-nav-links">
                             <a href="tel:+966538186792" className="footer-nav-link">🇸🇦 +966 53 818 6792</a>
                             <a href="tel:+201090880401" className="footer-nav-link">🇪🇬 +20 109 088 0401</a>
@@ -156,12 +158,12 @@ const Footer = () => {
                 <div className="footer-stamp">
                     <div className="footer-stamp-box">
                         <p className="footer-stamp-text">
-                            ISSUED FOR DIGITAL REVIEW<br />
-                            REF NO: FT-2024-AC<br />
-                            <span className="footer-stamp-highlight">FOCUS TRADING &amp; CONTRACTING</span>
+                            {t('footer.stamp.line1')}<br />
+                            {t('footer.stamp.line2')}<br />
+                            <span className="footer-stamp-highlight">{t('footer.stamp.company')}</span>
                         </p>
                     </div>
-                    <p className="footer-copyright">© 2025 Focus Trading &amp; Contracting. All Rights Reserved.</p>
+                    <p className="footer-copyright">{t('footer.copyright')}</p>
                 </div>
             </div>
 

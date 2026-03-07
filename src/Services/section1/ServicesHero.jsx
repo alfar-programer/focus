@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './ServicesHero.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const ServicesHero = () => {
+    const { get, t } = useI18n();
+    const breadcrumbs = get('services.hero.breadcrumbs', []);
+    const chips = get('services.hero.chips', []);
+    const stats = get('services.hero.stats', []);
+    const dataRows = get('services.hero.dataRows', []);
+
     return (
         <section className="services-hero">
             {/* Background Grid Decoration */}
-            <div class="section2-grid-bg"></div>
+            <div className="section2-grid-bg"></div>
             
             {/* Company Logo Watermark */}
             <div className="services-hero__logo-watermark">
@@ -18,67 +24,67 @@ const ServicesHero = () => {
                 <div className="services-hero__content">
                     {/* Breadcrumbs / ID */}
                     <div className="services-hero__breadcrumbs">
-                        <span className="services-hero__breadcrumb">Home</span>
+                        <span className="services-hero__breadcrumb">{breadcrumbs[0]}</span>
                         <span className="services-hero__breadcrumb-separator">/</span>
-                        <span className="services-hero__breadcrumb">Solutions</span>
+                        <span className="services-hero__breadcrumb">{breadcrumbs[1]}</span>
                         <span className="services-hero__breadcrumb-separator">/</span>
-                        <span className="services-hero__breadcrumb services-hero__breadcrumb--active">Power</span>
+                        <span className="services-hero__breadcrumb services-hero__breadcrumb--active">{breadcrumbs[2]}</span>
                         <div className="services-hero__service-id">
-                            SERVICE ID: #PWR-002
+                            {t('services.hero.serviceId')}
                         </div>
                     </div>
 
                     {/* Headline */}
                     <h1 className="services-hero__title">
-                        Mission-Critical <br />
-                        <span className="services-hero__title-accent">Power Infrastructure</span>
+                        {t('services.hero.titleLine')} <br />
+                        <span className="services-hero__title-accent">{t('services.hero.titleAccent')}</span>
                     </h1>
 
                     {/* Description */}
                     <p className="services-hero__description">
-                        High-precision engineering for absolute uptime. We deliver industrial-grade power generation solutions for data centers, manufacturing complexes, and national grid support.
+                        {t('services.hero.description')}
                     </p>
 
                     {/* Spec Chips */}
                     <div className="services-hero__chips">
                         <div className="services-hero__chip">
                             <span className="services-hero__chip-icon">bolt</span>
-                            <span className="services-hero__chip-text">800kVA+ Capacity</span>
+                            <span className="services-hero__chip-text">{chips[0]}</span>
                         </div>
                         <div className="services-hero__chip">
                             <span className="services-hero__chip-icon">verified_user</span>
-                            <span className="services-hero__chip-text">ISO 8528 Certified</span>
+                            <span className="services-hero__chip-text">{chips[1]}</span>
                         </div>
                         <div className="services-hero__chip">
                             <span className="services-hero__chip-icon">eco</span>
-                            <span className="services-hero__chip-text">Hybrid Ready</span>
+                            <span className="services-hero__chip-text">{chips[2]}</span>
                         </div>
                     </div>
 
                     {/* CTA Buttons */}
                     <div className="services-hero__cta">
                         <button className="services-hero__btn services-hero__btn--primary">
-                            <span>Request Schematics</span>
+                            <span>{t('services.hero.ctaPrimary')}</span>
                             <span className="services-hero__btn-icon">→</span>
                         </button>
                         <button className="services-hero__btn services-hero__btn--secondary">
-                            View Case Studies
+                            {t('services.hero.ctaSecondary')}
                         </button>
                     </div>
 
                     {/* Mini Stats */}
                     <div className="services-hero__stats">
                         <div className="services-hero__stat">
-                            <div className="services-hero__stat-value">99.99%</div>
-                            <div className="services-hero__stat-label">Uptime Guarantee</div>
+                            <div className="services-hero__stat-value">{stats[0]?.value}</div>
+                            <div className="services-hero__stat-label">{stats[0]?.label}</div>
                         </div>
                         <div className="services-hero__stat">
-                            <div className="services-hero__stat-value">50+</div>
-                            <div className="services-hero__stat-label">Global Projects</div>
+                            <div className="services-hero__stat-value">{stats[1]?.value}</div>
+                            <div className="services-hero__stat-label">{stats[1]?.label}</div>
                         </div>
                         <div className="services-hero__stat">
-                            <div className="services-hero__stat-value">1.2GW</div>
-                            <div className="services-hero__stat-label">Power Generated</div>
+                            <div className="services-hero__stat-value">{stats[2]?.value}</div>
+                            <div className="services-hero__stat-label">{stats[2]?.label}</div>
                         </div>
                     </div>
                 </div>
@@ -131,29 +137,29 @@ const ServicesHero = () => {
                             <path d="M250 190 V310" fill="none" stroke="var(--color-accent)" strokeLinecap="round" strokeWidth="2" filter="url(#heroGlow)" opacity="0.8" className="services-hero__flow-line"></path>
                             
                             {/* Tech Labels */}
-                            <text x="250" y="255" fill="var(--color-accent)" fontSize="10" letterSpacing="2" textAnchor="middle">CORE</text>
-                            <text x="390" y="220" fill="var(--text-secondary)" fontSize="8">OUTPUT: 800V</text>
-                            <text x="110" y="220" fill="var(--text-secondary)" fontSize="8" textAnchor="end">INPUT: HYBRID</text>
+                            <text x="250" y="255" fill="var(--color-accent)" fontSize="10" letterSpacing="2" textAnchor="middle">{t('services.hero.diagram.core')}</text>
+                            <text x="390" y="220" fill="var(--text-secondary)" fontSize="8">{t('services.hero.diagram.output')}</text>
+                            <text x="110" y="220" fill="var(--text-secondary)" fontSize="8" textAnchor="end">{t('services.hero.diagram.input')}</text>
                         </svg>
 
                         {/* Floating Data Card */}
                         <div className="services-hero__data-card">
                             <div className="services-hero__data-card-header">
                                 <div className="services-hero__data-card-dot"></div>
-                                <span className="services-hero__data-card-label">LIVE MONITORING</span>
+                                <span className="services-hero__data-card-label">{t('services.hero.cardLabel')}</span>
                             </div>
                             <div className="services-hero__data-card-content">
                                 <div className="services-hero__data-row">
-                                    <span className="services-hero__data-key">Load</span>
-                                    <span className="services-hero__data-value">84%</span>
+                                    <span className="services-hero__data-key">{dataRows[0]?.key}</span>
+                                    <span className="services-hero__data-value">{dataRows[0]?.value}</span>
                                 </div>
                                 <div className="services-hero__data-row">
-                                    <span className="services-hero__data-key">Temp</span>
-                                    <span className="services-hero__data-value">62°C</span>
+                                    <span className="services-hero__data-key">{dataRows[1]?.key}</span>
+                                    <span className="services-hero__data-value">{dataRows[1]?.value}</span>
                                 </div>
                                 <div className="services-hero__data-row">
-                                    <span className="services-hero__data-key">Freq</span>
-                                    <span className="services-hero__data-value">50.0Hz</span>
+                                    <span className="services-hero__data-key">{dataRows[2]?.key}</span>
+                                    <span className="services-hero__data-value">{dataRows[2]?.value}</span>
                                 </div>
                             </div>
                         </div>

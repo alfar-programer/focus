@@ -139,6 +139,15 @@ body {
     min-height: 100vh;
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html[lang='ar'] body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+.app-container--rtl {
+    direction: rtl;
 }
 
 h1,

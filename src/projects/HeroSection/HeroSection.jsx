@@ -1,7 +1,9 @@
 import React from 'react';
 import './HeroSection.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const HeroSection = () => {
+    const { t } = useI18n();
     return (
         <section className="projects-hero">
             <div className="projects-hero-background" />
@@ -10,15 +12,15 @@ const HeroSection = () => {
             <div className="projects-hero-content">
                 <div className="projects-hero-badge">
                     <span className="projects-hero-badge-icon">⚙️</span>
-                    Excellence in Engineering
+                    {t('projects.hero.badge')}
                 </div>
                 
                 <h1 className="projects-hero-title">
-                    Our Projects
+                    {t('projects.hero.title')}
                 </h1>
                 
                 <p className="projects-hero-subtitle">
-                    Delivering excellence in power, automation, and electromechanical solutions across Egypt and the region. From concept to commissioning.
+                    {t('projects.hero.subtitle')}
                 </p>
                 
                 <div className="projects-hero-buttons">
@@ -31,11 +33,11 @@ const HeroSection = () => {
                             }
                         }}
                     >
-                        View Portfolio
+                        {t('projects.hero.primaryButton')}
                         <span className="projects-hero-btn-arrow">↓</span>
                     </button>
-                    <button className="projects-hero-btn-secondary" onClick={() => window.location.href = '/contactus'}>
-                        Contact Sales
+                    <button className="projects-hero-btn-secondary" onClick={() => window.location.href = '/contact'}>
+                        {t('projects.hero.secondaryButton')}
                     </button>
                 </div>
             </div>

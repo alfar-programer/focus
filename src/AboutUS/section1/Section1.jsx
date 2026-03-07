@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Link } from 'react-router-dom';
 import './Section1.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Section1 = () => {
+    const { get, t } = useI18n();
     useEffect(() => {
         // Reveal animations for timeline items
         const timelineItems = document.querySelectorAll('.timeline-item');
@@ -51,41 +52,9 @@ const Section1 = () => {
         );
     }, []);
 
-    const milestones = [
-        {
-            year: '2005',
-            title: 'System Genesis',
-            description: 'Initial infrastructure framework and foundation of Focus Trading & Contracting. Establishing the core mechanical protocols for large-scale operations.',
-            icon: 'foundation',
-            protocols: ['Protocol 01-A', 'Core Infrastructure'],
-            reverse: false
-        },
-        {
-            year: '2012',
-            title: 'System Expansion',
-            description: 'Integration of advanced MEP (Mechanical, Electrical, Plumbing) systems across regional hubs. Horizontal expansion of technical capacity and resource allocation.',
-            icon: 'hub',
-            protocols: ['MEP Integration', 'Regional Grid'],
-            reverse: true
-        },
-        {
-            year: '2018',
-            title: 'Smart Innovation',
-            description: 'Pivot to smart-city technology and automated system engineering implementation. Digital twin modeling and real-time infrastructure monitoring.',
-            icon: 'smart_assistant',
-            protocols: ['Automation', 'Smart Grid'],
-            reverse: false
-        },
-        {
-            year: '2024',
-            title: 'Future State',
-            description: 'Current status as a premium technology firm; Sustainable infrastructure scaling and Tier 4 Grid architecture. Leading the frontier of mechanical engineering.',
-            icon: 'rocket_launch',
-            protocols: ['Tier 4 Status', 'Sustainable Eng.'],
-            reverse: true,
-            highlight: true
-        }
-    ];
+    const milestones = get('about.section1.milestones', []);
+    const stats = get('about.section1.stats', []);
+    const blueprint = get('about.section1.blueprint', []);
 
     return (
         <div className="evolution-section blueprint-bg">
@@ -97,22 +66,19 @@ const Section1 = () => {
                             <span className="ping-animate"></span>
                             <span className="status-dot"></span>
                         </span>
-                        <span className="status-text">System Status: Operational</span>
+                        <span className="status-text">{t('about.section1.status')}</span>
                     </div>
                     <h2 className="hero-title">
-                        OUR <span className="text-primary-color">Journey</span>
+                        {t('about.section1.titlePrefix')}
+                        {t('about.section1.titleHighlight') ? <span className="text-primary-color">{t('about.section1.titleHighlight')}</span> : null}
                     </h2>
                     <p className="hero-description">
-                        A chronological schematic of our engineering milestones and technical infrastructure growth since inception. Mapping the trajectory of precision.
+                        {t('about.section1.description')}
                     </p>
 
                     {/* Technical Stats Grid */}
                     <div className="stats-grid">
-                        {[
-                            { label: 'Milestones', value: '42+' },
-                            { label: 'Active Nodes', value: '128' },
-                            { label: 'Precision Rate', value: '99.9%' }
-                        ].map((stat, i) => (
+                        {stats.map((stat, i) => (
                             <div key={i} className="stat-card">
                                 <p className="stat-label">{stat.label}</p>
                                 <p className="stat-value">{stat.value}</p>
@@ -184,9 +150,9 @@ const Section1 = () => {
                         <div className="deco-top"></div>
                         <div className="deco-left"></div>
                         <div className="deco-info">
-                            <span>Ref: FTC-SYSTEM-001</span>
-                            <span>Coord: 25.2769° N, 55.2962° E</span>
-                            <span>Scale: 1:1,000,000</span>
+                            <span>{blueprint[0]}</span>
+                            <span>{blueprint[1]}</span>
+                            <span>{blueprint[2]}</span>
                         </div>
                     </div>
                 </div>

@@ -272,6 +272,16 @@
     color: var(--text-inverse);
 }
 
+.nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.nav-btn:disabled:hover {
+    background: transparent;
+    color: var(--color-accent);
+}
+
 .nav-info {
     display: flex;
     flex-direction: column;

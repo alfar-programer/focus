@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import './LoadingScreen.css';
+import { useI18n } from '../i18n/I18nProvider';
 
 const LoadingScreen = ({ progress, isLoading }) => {
+    const { t } = useI18n();
     const containerRef = useRef(null);
     const logoRef = useRef(null);
     const ring1Ref = useRef(null);
@@ -112,7 +114,7 @@ const LoadingScreen = ({ progress, isLoading }) => {
             {/* ── Company name ── */}
             <div className="ls-brand">
                 <span className="ls-brand-name">FOCUS</span>
-                <span className="ls-brand-sub">Trading &amp; Contracting</span>
+                <span className="ls-brand-sub">{t('loading.brandSub')}</span>
             </div>
 
             {/* ── Progress bar ── */}
@@ -121,7 +123,7 @@ const LoadingScreen = ({ progress, isLoading }) => {
                     <div ref={progressBarRef} className="ls-progress-fill" />
                 </div>
                 <div className="ls-progress-labels">
-                    <span className="ls-progress-label">Initializing</span>
+                    <span className="ls-progress-label">{t('loading.initializing')}</span>
                     <span className="ls-progress-pct">{Math.floor(progress)}%</span>
                 </div>
             </div>

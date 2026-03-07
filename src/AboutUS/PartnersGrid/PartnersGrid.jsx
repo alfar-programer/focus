@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PartnersGrid.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const egyptPartners = [
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBLLpp_yfCUnV3j-1br2buSyHrUwjVh-fPcNqNt0XTD9KcPtHHUmwHbKuYyymN88GA11KPAa6bqE2kLYakdOfiuZaTszQWnX5pOBZp6GmTctYJ5VINLQkbh6xcdiDONFLZPA8MZzC0zKZILQPZHVMRnIo2WCLQh7kRxkVQEqbggaVApUZ4mqM1cKkTMroa8RGHS2Rid0LJRxgEQ4U4zk6k8eYVZmzsJgurpTb3Yl8DVfG1Io9NF6Uxb8od1R0AX-5YhassikMVjvVbN',
@@ -13,26 +14,10 @@ const ksaPartners = [
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBLLpp_yfCUnV3j-1br2buSyHrUwjVh-fPcNqNt0XTD9KcPtHHUmwHbKuYyymN88GA11KPAa6bqE2kLYakdOfiuZaTszQWnX5pOBZp6GmTctYJ5VINLQkbh6xcdiDONFLZPA8MZzC0zKZILQPZHVMRnIo2WCLQh7kRxkVQEqbggaVApUZ4mqM1cKkTMroa8RGHS2Rid0LJRxgEQ4U4zk6k8eYVZmzsJgurpTb3Yl8DVfG1Io9NF6Uxb8od1R0AX-5YhassikMVjvVbN',
    ];
 
-const features = [
-    {
-        icon: 'hub',
-        title: 'Regional Hubs',
-        description: 'Strategically located offices in Cairo and Alexandria to serve the Egyptian industrial sector with 24/7 support.',
-    },
-    {
-        icon: 'verified',
-        title: 'Certified Experts',
-        description: 'Our partners are vetted through rigorous quality assurance programs ensuring top-tier engineering standards.',
-    },
-    {
-        icon: 'rocket_launch',
-        title: 'Growth Impact',
-        description: 'Facilitating over 50+ major infrastructure projects across the North African region annually.',
-    },
-];
-
 const PartnersGrid = () => {
+    const { get, t } = useI18n();
     const [activeRegion, setActiveRegion] = useState('egypt');
+    const features = get('about.partners.features', []);
 
     const currentPartners = activeRegion === 'egypt' ? egyptPartners : ksaPartners;
 
@@ -44,10 +29,10 @@ const PartnersGrid = () => {
                 {/* Header */}
                 <div className="partners-grid-header">
                     <h1 className="partners-grid-title">
-                        Strategic <span className="partners-highlight">Partnerships</span>
+                        {t('about.partners.titleStart')}<span className="partners-highlight">{t('about.partners.titleHighlight')}</span>
                     </h1>
                     <p className="partners-grid-subtitle">
-                        Driving industrial excellence through global collaboration and localized expertise in the MENA region.
+                        {t('about.partners.subtitle')}
                     </p>
                     
                     {/* Region Tabs */}
@@ -56,13 +41,13 @@ const PartnersGrid = () => {
                             className={`partners-tab ${activeRegion === 'ksa' ? 'partners-tab-active' : ''}`}
                             onClick={() => setActiveRegion('ksa')}
                         >
-                            KSA
+                            {t('about.partners.regions.ksa')}
                         </button>
                         <button 
                             className={`partners-tab ${activeRegion === 'egypt' ? 'partners-tab-active' : ''}`}
                             onClick={() => setActiveRegion('egypt')}
                         >
-                            Egypt
+                            {t('about.partners.regions.egypt')}
                         </button>
                     </div>
                 </div>
@@ -102,7 +87,7 @@ const PartnersGrid = () => {
                 <div className="partners-grid-footer">
                     <div className="partners-footer-line" />
                     <p className="partners-footer-text">
-                        Powered by trusted partnerships across the region
+                        {t('about.partners.footer')}
                     </p>
                 </div>
             </div>

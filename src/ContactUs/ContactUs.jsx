@@ -7,6 +7,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './ContactUs.css';
+import { useI18n } from '../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,28 +32,12 @@ const makePulseIcon = (flag, name, city) => L.divIcon({
     `
 });
 
-const OFFICES = [
-    {
-        id: 'eg',
-        position: [ 29.9697, 30.9247],
-        flag: '🇪🇬',
-        name: 'City Stars Towers',
-        city: '6th of October City, Giza · Egypt',
-        address: 'Tower No. 7, First 6th of October, Giza 3225014',
-        mapsUrl: 'https://maps.google.com/?q=City+Stars+Towers,+6th+October+City,+Giza,+Egypt'
-    },
-    {
-        id: 'ksa',
-        position: [26.4207, 50.0888],
-        flag: '🇸🇦',
-        name: 'Raya Business Center',
-        city: 'Dammam 34327 · Saudi Arabia',
-        address: '6177 67 St, Dammam 34327, Saudi Arabia',
-        mapsUrl: 'https://maps.google.com/?q=Raya+Business+Center,+Dammam+34327,+Saudi+Arabia'
-    }
-];
-
 const ContactUs = () => {
+    const { get, t } = useI18n();
+    const OFFICES = get('contact.offices', []);
+    const serviceOptions = get('contact.form.serviceOptions', []);
+    const channels = get('contact.channelsSection.channels', []);
+
     const pageRef = useRef(null);
     const heroContentRef = useRef(null);
     const channelCardsRef = useRef([]);
@@ -63,7 +48,7 @@ const ContactUs = () => {
         fullName: '',
         company: '',
         email: '',
-        service: 'Power Generation',
+        service: serviceOptions[0] || '',
         message: '',
     });
     const [submitted, setSubmitted] = useState(false);
@@ -147,13 +132,13 @@ const ContactUs = () => {
         e.preventDefault();
 
         if (!formData.fullName || !formData.email || !formData.message) {
-            setFormError('Please fill in all required fields.');
+            setFormError(t('contact.form.errors.required'));
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
-            setFormError('Please enter a valid email address.');
+            setFormError(t('contact.form.errors.invalidEmail'));
             return;
         }
 
@@ -179,41 +164,22 @@ const ContactUs = () => {
             if (response.status === 200) {
                 setSubmitted(true);
             } else {
-                setFormError('Something went wrong. Please try again later.');
+                setFormError(t('contact.form.errors.generic'));
             }
         } catch {
-            setFormError('Failed to send message. Please check your connection.');
+            setFormError(t('contact.form.errors.connection'));
         } finally {
             setIsSubmitting(false);
         }
     };
 
-    const channels = [
-        {
-            icon: '🇸🇦',
-            label: 'KSA Office',
-            value: '+966 53 818 6792',
-            note: 'Saudi Arabia Direct Line',
-        },
-        {
-            icon: '🇪🇬',
-            label: 'Egypt Office',
-            value: '+20 109 088 0401',
-            note: 'Egypt Direct Line',
-        },
-        {
-            icon: '✉️',
-            label: 'Digital Correspondence',
-            value: 'info@focus-tc.com',
-            note: 'Response time: < 24h',
-        },
-        {
-            icon: '🕐',
-            label: 'Operational Hours',
-            value: 'Mon–Fri / 0800–1800 EST',
-            note: 'Weekend Support: Standby',
-        },
-    ];
+    useEffect(() => {
+        if (!serviceOptions.length) return;
+        setFormData((previous) => ({
+            ...previous,
+            service: serviceOptions.includes(previous.service) ? previous.service : serviceOptions[0]
+        }));
+    }, [serviceOptions]);
 
     return (
         <div ref={pageRef} className="contact-page">
@@ -226,17 +192,16 @@ const ContactUs = () => {
                 <div ref={heroContentRef} className="contact-hero-content">
                     <div className="contact-hero-badge">
                         <span className="contact-hero-badge-dot" />
-                        System Online
+                        {t('contact.hero.badge')}
                     </div>
 
                     <h1 className="contact-hero-title">
-                        Let's Build&nbsp;<br />
-                        <span className="contact-hero-title-gradient">Something Intelligent</span>
+                        {t('contact.hero.titleLine')}&nbsp;<br />
+                        <span className="contact-hero-title-gradient">{t('contact.hero.titleHighlight')}</span>
                     </h1>
 
                     <p className="contact-hero-subtitle">
-                        Engineering solutions for the next century. Establish a secure
-                        connection with our tactical division below.
+                        {t('contact.hero.subtitle')}
                     </p>
                 </div>
             </section>
@@ -247,12 +212,9 @@ const ContactUs = () => {
                 {/* Left: Direct Access */}
                 <div className="contact-channels">
                     <div className="contact-channels-header">
-                        <h2 className="contact-channels-title">
-                            Direct Access<br />
-                            <span>Channels</span>
-                        </h2>
+                        <h2 className="contact-channels-title" dangerouslySetInnerHTML={{ __html: t('contact.channelsSection.title') }} />
                         <p className="contact-channels-subtitle">
-                            Select your preferred communication protocol for immediate assistance.
+                            {t('contact.channelsSection.subtitle')}
                         </p>
                     </div>
 
@@ -280,24 +242,23 @@ const ContactUs = () => {
 
                     <div className="contact-form-inner">
                         <div className="contact-form-header">
-                            <h3>Initiate Request</h3>
-                            <p>Securely submit your mission parameters for analysis.</p>
+                            <h3>{t('contact.form.title')}</h3>
+                            <p>{t('contact.form.subtitle')}</p>
                         </div>
 
                         {submitted ? (
                             <div className="contact-form-success">
                                 <div className="contact-success-icon">✓</div>
-                                <h4 className="contact-success-title">Message Received</h4>
+                                <h4 className="contact-success-title">{t('contact.form.successTitle')}</h4>
                                 <p className="contact-success-text">
-                                    Your message has been securely transmitted. Our team will
-                                    respond within 24 hours.
+                                    {t('contact.form.successText')}
                                 </p>
                                 <button
                                     className="contact-cta-btn-secondary"
                                     style={{ marginTop: '1rem' }}
-                                    onClick={() => { setSubmitted(false); setFormData({ fullName: '', company: '', email: '', service: 'Power Generation', message: '' }); }}
+                                    onClick={() => { setSubmitted(false); setFormData({ fullName: '', company: '', email: '', service: serviceOptions[0] || '', message: '' }); }}
                                 >
-                                    Send Another
+                                    {t('contact.form.sendAnother')}
                                 </button>
                             </div>
                         ) : (
@@ -309,24 +270,24 @@ const ContactUs = () => {
                                 )}
                                 <div className="contact-form-row">
                                     <div className="contact-form-group">
-                                        <label className="contact-form-label">Full Name</label>
+                                        <label className="contact-form-label">{t('contact.form.labels.fullName')}</label>
                                         <input
                                             className="contact-form-input"
                                             type="text"
                                             name="fullName"
-                                            placeholder="ex. John Doe"
+                                            placeholder={t('contact.form.placeholders.fullName')}
                                             value={formData.fullName}
                                             onChange={handleChange}
                                             required
                                         />
                                     </div>
                                     <div className="contact-form-group">
-                                        <label className="contact-form-label">Company</label>
+                                        <label className="contact-form-label">{t('contact.form.labels.company')}</label>
                                         <input
                                             className="contact-form-input"
                                             type="text"
                                             name="company"
-                                            placeholder="ex. Wayne Enterprises"
+                                            placeholder={t('contact.form.placeholders.company')}
                                             value={formData.company}
                                             onChange={handleChange}
                                         />
@@ -335,19 +296,19 @@ const ContactUs = () => {
 
                                 <div className="contact-form-row">
                                     <div className="contact-form-group">
-                                        <label className="contact-form-label">Email Address</label>
+                                        <label className="contact-form-label">{t('contact.form.labels.email')}</label>
                                         <input
                                             className="contact-form-input"
                                             type="email"
                                             name="email"
-                                            placeholder="name@company.com"
+                                            placeholder={t('contact.form.placeholders.email')}
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
                                         />
                                     </div>
                                     <div className="contact-form-group">
-                                        <label className="contact-form-label">Service Interest</label>
+                                        <label className="contact-form-label">{t('contact.form.labels.service')}</label>
                                         <div className="contact-select-wrapper">
                                             <select
                                                 className="contact-form-select"
@@ -355,10 +316,9 @@ const ContactUs = () => {
                                                 value={formData.service}
                                                 onChange={handleChange}
                                             >
-                                                <option>Power Generation</option>
-                                                <option>SCADA and Industrial Automation</option>
-                                                <option>Electro Mechanical Works</option>
-                                                <option>Other</option>
+                                                {serviceOptions.map((option, index) => (
+                                                    <option key={index}>{option}</option>
+                                                ))}
                                             </select>
                                             <span className="contact-select-arrow">⌄</span>
                                         </div>
@@ -366,11 +326,11 @@ const ContactUs = () => {
                                 </div>
 
                                 <div className="contact-form-group">
-                                    <label className="contact-form-label">Mission Brief</label>
+                                    <label className="contact-form-label">{t('contact.form.labels.message')}</label>
                                     <textarea
                                         className="contact-form-textarea"
                                         name="message"
-                                        placeholder="Describe your project requirements..."
+                                        placeholder={t('contact.form.placeholders.message')}
                                         rows={4}
                                         value={formData.message}
                                         onChange={handleChange}
@@ -379,7 +339,7 @@ const ContactUs = () => {
                                 </div>
 
                                 <button type="submit" className="contact-form-submit" disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}>
-                                    <span>{isSubmitting ? 'Sending...' : 'Send'}</span>
+                                    <span>{isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}</span>
                                     {!isSubmitting && <span className="contact-submit-arrow">→</span>}
                                 </button>
                             </form>
@@ -416,7 +376,7 @@ const ContactUs = () => {
                                     <p className="lf-popup-title">{office.flag} {office.name}</p>
                                     <p className="lf-popup-addr">{office.address}</p>
                                     <a href={office.mapsUrl} target="_blank" rel="noopener noreferrer" className="lf-popup-link">
-                                        Get Directions →
+                                        {t('contact.map.directions')}
                                     </a>
                                 </div>
                             </Popup>
@@ -432,12 +392,11 @@ const ContactUs = () => {
 
                 <div ref={ctaContentRef} className="contact-cta-content">
                     <h2 className="contact-cta-title">
-                        Ready to Engineer&nbsp;<br />
-                        <span>The Future?</span>
+                        {t('contact.cta.titleLine')}&nbsp;<br />
+                        <span>{t('contact.cta.titleHighlight')}</span>
                     </h2>
                     <p className="contact-cta-text">
-                        Our specialists are standing by to deploy resources for your
-                        next major undertaking.
+                        {t('contact.cta.description')}
                     </p>
 
                     <div className="contact-cta-buttons">
@@ -445,10 +404,10 @@ const ContactUs = () => {
                             className="contact-cta-btn-primary"
                             onClick={() => document.querySelector('.contact-form-input')?.focus()}
                         >
-                            Schedule Consultation
+                            {t('contact.cta.primaryButton')}
                         </button>
                         <Link to="/services" className="contact-cta-btn-secondary" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            View Our Services
+                            {t('contact.cta.secondaryButton')}
                         </Link>
                     </div>
                 </div>

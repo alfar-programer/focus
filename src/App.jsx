@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ServicesPage from './Services/ServicesPage';
 import HeroSection from './HomePage/HeroSection/HeroSection';
 import Section3 from './HomePage/Section3/Section';
@@ -19,6 +19,7 @@ import OurPartners from './AboutUS/OurPartners';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useI18n } from './i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,7 +38,7 @@ const HomePage = () => {
 };
 
 const AppContent = () => {
-    const location = useLocation();
+    const { isRTL } = useI18n();
     const [progress, setProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [resourcesLoaded, setResourcesLoaded] = useState({
@@ -174,7 +175,7 @@ const AppContent = () => {
     }, []);
 
     return (
-        <div data-theme="dark" className="app-container">
+        <div data-theme="dark" className={`app-container${isRTL ? ' app-container--rtl' : ''}`}>
             <LoadingScreen progress={progress} isLoading={isLoading} />
             <Navbar />
             <Routes>

@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './section.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,7 +98,10 @@ function horizontalLoop(items, config) {
 
 
 const Section = () => {
+    const { get, t } = useI18n();
     const containerRef = useRef(null);
+    const marqueeItems = get('home.section3.marquee', []);
+    const cardsContent = get('home.section3.cards', []);
 
     useLayoutEffect(() => {
         // Scope GSAP to this component
@@ -327,12 +331,12 @@ const Section = () => {
         return () => {
             ctx.revert();
         };
-    }, []); // Run once on mount
+    }, [cardsContent, marqueeItems]); // Re-run when language content changes
 
     return (
         <div className="section3-container" ref={containerRef}>
             <section className="intro">
-                <h1>we design space that dont just exist.</h1>
+                <h1>{t('home.section3.intro')}</h1>
             </section>
 
             <section className="cards">
@@ -340,10 +344,10 @@ const Section = () => {
                 <div className="card">
                     <div className="card-marquee">
                         <div className="marquee">
-                            <h1>Design beyond boundaries</h1>
-                            <h1>Built for tomorrow</h1>
-                            <h1>Real impact</h1>
-                            <h1>Digital visions</h1>
+                            <h1>{marqueeItems[0]}</h1>
+                            <h1>{marqueeItems[1]}</h1>
+                            <h1>{marqueeItems[2]}</h1>
+                            <h1>{marqueeItems[3]}</h1>
                             {/* Duplicate for seamless loop if needed, but horizontalLoop handles it usually if enough items. 
                          The original html had 4 h1s. horizontalLoop will duplicate/loop them. 
                      */}
@@ -352,14 +356,14 @@ const Section = () => {
                     <div className="card-wrapper">
                         <div className="card-content">
                             <div className="card-title">
-                                <h1>Curved Horizon</h1>
+                                <h1>{cardsContent[0]?.title}</h1>
                             </div>
                             <div className="card-description">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, id!</p>
+                                <p>{cardsContent[0]?.description}</p>
                             </div>
                         </div>
                         <div className="card-img">
-                            <img src="/img1.jpeg" alt="Curved Horizon" onError={(e) => e.target.src = '/logo.jpeg'} />
+                            <img src="/img1.jpeg" alt={cardsContent[0]?.imageAlt || ''} onError={(e) => e.target.src = '/logo.jpeg'} />
                         </div>
                     </div>
                 </div>
@@ -369,14 +373,14 @@ const Section = () => {
                     <div className="card-wrapper">
                         <div className="card-content">
                             <div className="card-title">
-                                <h1>Modern Vision</h1>
+                                <h1>{cardsContent[1]?.title}</h1>
                             </div>
                             <div className="card-description">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, id!</p>
+                                <p>{cardsContent[1]?.description}</p>
                             </div>
                         </div>
                         <div className="card-img">
-                            <img src="/img2.jpeg" alt="Modern Vision" onError={(e) => e.target.src = '/logo.jpeg'} />
+                            <img src="/img2.jpeg" alt={cardsContent[1]?.imageAlt || ''} onError={(e) => e.target.src = '/logo.jpeg'} />
                         </div>
                     </div>
                 </div>
@@ -386,21 +390,21 @@ const Section = () => {
                     <div className="card-wrapper">
                         <div className="card-content">
                             <div className="card-title">
-                                <h1>Abstract Space</h1>
+                                <h1>{cardsContent[2]?.title}</h1>
                             </div>
                             <div className="card-description">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, id!</p>
+                                <p>{cardsContent[2]?.description}</p>
                             </div>
                         </div>
                         <div className="card-img">
-                            <img src="/img3.jpeg" alt="Abstract Space" onError={(e) => e.target.src = '/logo.jpeg'} />
+                            <img src="/img3.jpeg" alt={cardsContent[2]?.imageAlt || ''} onError={(e) => e.target.src = '/logo.jpeg'} />
                         </div>
                     </div>
                 </div>
             </section>
 
             <section className="outro">
-                <h1>Architecture for the virtual age.</h1>
+                <h1>{t('home.section3.outro')}</h1>
             </section>
         </div>
     );

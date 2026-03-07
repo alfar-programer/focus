@@ -3,11 +3,14 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import Lenis from 'lenis'; // Disable local Lenis to avoid conflict
 import './Section2.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Section2 = () => {
+    const { get, t } = useI18n();
     const containerRef = useRef(null);
+    const cards = get('home.section2.cards', []);
 
     React.useLayoutEffect(() => {
         // --------------------------
@@ -182,37 +185,37 @@ const Section2 = () => {
 
             <div className="section2-sticky">
                 <div className="section2-sticky-header">
-                    <h1>Business Lines</h1>
+                    <h1>{t('home.section2.title')}</h1>
                 </div>
 
-                <div className="section2-card-container">
+                <div className="section2-card-container" style={{direction:'ltr'}}>
                     <div className="section2-card" id="section2-card-1">
                         <div className="section2-card-front">
-                            <img src="slide1.png" alt="image part 001" border="0" />
+                            <img src="slide1.png" alt={cards[0]?.imageAlt || ''} border="0" />
                         </div>
                         <div className="section2-card-back">
-                            <span>01</span>
-                            <p>⚡ Power Generation</p>
+                            <span>{cards[0]?.number}</span>
+                            <p>⚡ {cards[0]?.title}</p>
                         </div>
                     </div>
 
                     <div className="section2-card" id="section2-card-2">
                         <div className="section2-card-front">
-                            <img src="slide2.png" alt="image part 002" border="0" />
+                            <img src="slide2.png" alt={cards[1]?.imageAlt || ''} border="0" />
                         </div>
                         <div className="section2-card-back">
-                            <span>02</span>
-                            <p>⚙ SCADA and Industrial Automation</p>
+                            <span>{cards[1]?.number}</span>
+                            <p>⚙ {cards[1]?.title}</p>
                         </div>
                     </div>
 
                     <div className="section2-card" id="section2-card-3">
                         <div className="section2-card-front">
-                            <img src="slide3.png" alt="image part 003" border="0" />
+                            <img src="slide3.png" alt={cards[2]?.imageAlt || ''} border="0" />
                         </div>
                         <div className="section2-card-back">
-                            <span>03</span>
-                            <p>📡 Electro Mechanical Works</p>
+                            <span>{cards[2]?.number}</span>
+                            <p>📡 {cards[2]?.title}</p>
                         </div>
                     </div>
                 </div>

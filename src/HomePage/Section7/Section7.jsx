@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Section7.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Section7 = () => {
+    const { get, t } = useI18n();
     const sectionRef = useRef(null);
     const statsRef = useRef(null);
     const [counts, setCounts] = useState({
@@ -15,12 +17,8 @@ const Section7 = () => {
         partners: 0
     });
 
-    const stats = [
-        { key: 'projects', value: 500, suffix: '+', label: 'Projects Completed' },
-        { key: 'years', value: 15, suffix: '+', label: 'Years Experience' },
-        { key: 'hours', value: 1000000, suffix: '+', label: 'Safe Man Hours', format: true },
-        { key: 'partners', value: 50, suffix: '+', label: 'Global Partners' }
-    ];
+    const stats = get('home.section7.stats', []);
+    const cards = get('home.section7.cards', []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -87,7 +85,7 @@ const Section7 = () => {
         }, sectionRef);
 
         return () => ctx.revert();
-    }, []);
+    }, [stats]);
 
     const formatNumber = (num, shouldFormat) => {
         if (shouldFormat && num >= 1000000) {
@@ -101,8 +99,8 @@ const Section7 = () => {
             <div className="section7-wrapper">
                 {/* Typography Header */}
                 <div className="section7-header section7-reveal">
-                    <span className="section7-subtitle">Our Milestones & Projects</span>
-                    <h2 className="section7-title">Driving Global Impact</h2>
+                    <span className="section7-subtitle">{t('home.section7.subtitle')}</span>
+                    <h2 className="section7-title">{t('home.section7.title')}</h2>
                 </div>
 
                 {/* Stats Dashboard: Glassmorphic Bar */}
@@ -136,8 +134,8 @@ const Section7 = () => {
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="project-card-title">Signature Infrastructure</h3>
-                                <p className="project-card-desc">Developing world-class transport networks and monumental structural engineering solutions.</p>
+                                <h3 className="project-card-title">{cards[0]?.title}</h3>
+                                <p className="project-card-desc">{cards[0]?.description}</p>
                             </div>
                         </div>
                     </div>
@@ -159,8 +157,8 @@ const Section7 = () => {
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="project-card-title">Industrial Excellence</h3>
-                                <p className="project-card-desc">Pioneering smart manufacturing hubs and high-efficiency industrial facilities globally.</p>
+                                <h3 className="project-card-title">{cards[1]?.title}</h3>
+                                <p className="project-card-desc">{cards[1]?.description}</p>
                             </div>
                         </div>
                     </div>
@@ -182,8 +180,8 @@ const Section7 = () => {
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="project-card-title">Safety First</h3>
-                                <p className="project-card-desc">Unwavering commitment to zero-incident environments through rigorous safety protocols.</p>
+                                <h3 className="project-card-title">{cards[2]?.title}</h3>
+                                <p className="project-card-desc">{cards[2]?.description}</p>
                             </div>
                         </div>
                     </div>
@@ -192,7 +190,7 @@ const Section7 = () => {
                 {/* CTA Button */}
                 <div className="section7-cta section7-reveal">
                     <button className="section7-cta-button">
-                        <span>View Full Portfolio</span>
+                        <span>{t('home.section7.cta')}</span>
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
                         </svg>

@@ -2,26 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Section5.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FEATURES = [
-    { label: 'Methodology', value: 'Strategic Design' },
-    { label: 'Execution', value: 'Technical Excellence' },
-    { label: 'Infrastructure', value: 'Future-Oriented Systems' },
-    { label: 'Foundation', value: 'Structured Innovation' },
-];
-
-// Each stat: numeric end value, suffix appended after the number, and display for special cases
-const STATS = [
-    { end: 24, suffix: 'k+', label: 'Deployments' },
-    { end: 99.9, suffix: '%', label: 'Precision', decimals: 1 },
-    { end: 12, suffix: '+', label: 'Global Hubs' },
-    { end: null, suffix: '∞', label: 'Innovation' }, // special: no count, just symbol
-];
-
 const Section5 = () => {
+    const { get, t } = useI18n();
     const statsRef = useRef(null);
+    const FEATURES = get('about.section5.features', []);
+    const STATS = get('about.section5.stats', []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -83,7 +72,7 @@ const Section5 = () => {
         }, statsRef);
 
         return () => ctx.revert();
-    }, []);
+    }, [STATS]);
 
     return (
         <section className="s5">
@@ -95,10 +84,10 @@ const Section5 = () => {
             <div className="s5__inner">
                 {/* Header */}
                 <div className="s5__header">
-                    <span className="s5__badge">About Focus</span>
+                    <span className="s5__badge">{t('about.section5.badge')}</span>
                     <h1 className="s5__headline">
-                        Engineering Identity <br />
-                        <span className="s5__headline-accent">Through Precision</span>
+                        {t('about.section5.headlineStart')} <br />
+                        <span className="s5__headline-accent">{t('about.section5.headlineAccent')}</span>
                     </h1>
                 </div>
 
@@ -108,13 +97,11 @@ const Section5 = () => {
                     <div className="s5__col--left">
                         <div className="s5__divider" />
                         <p className="s5__body-text">
-                            We redefine technical paradigms through visionary engineering. Our approach
-                            merges structural integrity with aesthetic purity, ensuring every system we
-                            build serves as a benchmark for the future of industrial excellence.
+                            {t('about.section5.body')}
                         </p>
                         <div className="s5__analytics">
                             <span className="material-symbols-outlined s5__analytics-icon">analytics</span>
-                            <span className="s5__analytics-label">System Analytics</span>
+                            <span className="s5__analytics-label">{t('about.section5.analytics')}</span>
                         </div>
                     </div>
 

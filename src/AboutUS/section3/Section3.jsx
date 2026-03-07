@@ -1,72 +1,52 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Section3.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const Section3 = () => {
+    const { get, t, isRTL } = useI18n();
     const sliderRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
 
-    const values = [
-        {
-            id: '01',
-            title: 'Engineering Precision',
-            desc: 'Focusing on detail-oriented infrastructure and technical mastery. We believe that every millimeter counts in the pursuit of perfection.',
-            icon: 'precision_manufacturing',
-            tag: 'Explore Depth',
-            class: 'precision-slide'
-        },
-        {
-            id: '02',
-            title: 'Industrial Innovation',
-            desc: 'Showcasing cutting-edge technology in industrial contracting. Leveraging BIM and AI-driven site management.',
-            icon: 'memory',
-            tag: 'View Tech Stack',
-            class: 'innovation-slide'
-        },
-        {
-            id: '03',
-            title: 'Unwavering Integrity',
-            desc: 'Emphasizing trust and safety in large-scale engineering projects. Our reputation is built on the solid foundation of our word.',
-            icon: 'verified_user',
-            tag: 'Verified Status',
-            class: 'integrity-slide'
-        },
-        {
-            id: '04',
-            title: 'Sustainable Infrastructure',
-            desc: '"Building today with tomorrow\'s environment in mind. We integrate green energy and recycled materials into every workflow."',
-            icon: 'eco',
-            tag: 'Sustainability',
-            class: 'sustainable-slide'
-        },
-        {
-            id: '05',
-            title: 'Collaborative Excellence',
-            desc: 'Our partnership-driven approach ensures that stakeholders, engineers, and clients move together as one cohesive unit.',
-            icon: 'groups',
-            tag: 'Team Success',
-            class: 'excellence-slide'
-        }
-    ];
+    const values = get('about.section3.values', []);
 
     useEffect(() => {
         const slider = sliderRef.current;
-        if (!slider) return;
+        if (!slider || !values.length) return;
 
-        const handleScroll = () => {
-            const scrollLeft = slider.scrollLeft;
-            const itemWidth = slider.scrollWidth / values.length;
-            const index = Math.round(scrollLeft / itemWidth);
-            if (index !== activeIndex && index >= 0 && index < values.length) {
-                setActiveIndex(index);
-            }
+        const updateActiveIndex = () => {
+            const slides = slider.querySelectorAll('.value-slide');
+            if (!slides.length) return;
+
+            const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
+            let closestIndex = 0;
+            let minDistance = Number.POSITIVE_INFINITY;
+
+            slides.forEach((slide, index) => {
+                const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+                const distance = Math.abs(slideCenter - sliderCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            setActiveIndex((currentIndex) => (
+                currentIndex === closestIndex ? currentIndex : closestIndex
+            ));
         };
 
-        slider.addEventListener('scroll', handleScroll);
-        return () => slider.removeEventListener('scroll', handleScroll);
-    }, [activeIndex, values.length]);
+        updateActiveIndex();
+        slider.addEventListener('scroll', updateActiveIndex, { passive: true });
+        window.addEventListener('resize', updateActiveIndex);
+
+        return () => {
+            slider.removeEventListener('scroll', updateActiveIndex);
+            window.removeEventListener('resize', updateActiveIndex);
+        };
+    }, [values.length]);
 
     // Mouse drag handlers
     const handleMouseDown = (e) => {
@@ -104,26 +84,37 @@ const Section3 = () => {
         sliderRef.current.scrollLeft = scrollLeft - walk;
     };
 
-    const scroll = (direction) => {
-        if (sliderRef.current) {
-            const itemWidth = sliderRef.current.scrollWidth / values.length;
-            sliderRef.current.scrollBy({
-                left: direction === 'right' ? itemWidth : -itemWidth,
-                behavior: 'smooth'
-            });
-        }
+    const scrollToIndex = (targetIndex) => {
+        const slider = sliderRef.current;
+        if (!slider || !values.length) return;
+
+        const slides = slider.querySelectorAll('.value-slide');
+        if (!slides.length) return;
+
+        const nextIndex = Math.max(0, Math.min(targetIndex, slides.length - 1));
+        slider.scrollTo({
+            left: slides[nextIndex].offsetLeft,
+            behavior: 'smooth'
+        });
+        setActiveIndex(nextIndex);
     };
 
-    const progressPercentage = ((activeIndex + 1) / values.length) * 100;
+    const handlePrev = () => scrollToIndex(activeIndex - 1);
+    const handleNext = () => scrollToIndex(activeIndex + 1);
+
+    const progressPercentage = values.length ? ((activeIndex + 1) / values.length) * 100 : 0;
+    const prevIcon = isRTL ? 'east' : 'west';
+    const nextIcon = isRTL ? 'west' : 'east';
+    if (!values.length) return null;
 
     return (
-        <section className="values-section">
+        <section className={`values-section${isRTL ? ' values-section--rtl' : ''}`}>
             <div className="grid-overlay"></div>
 
             <div className="values-header">
-                <span className="section-label">Section 04</span>
+                <span className="section-label">{t('about.section3.sectionLabel')}</span>
                 <h2 className="values-title">
-                    OUR CORE <br /><span className="highlight">VALUES.</span>
+                    {t('about.section3.titleStart')} <br /><span className="highlight">{t('about.section3.titleHighlight')}</span>
                 </h2>
                 <div className="accent-line"></div>
             </div>
@@ -136,11 +127,12 @@ const Section3 = () => {
                     onMouseLeave={handleMouseLeave}
                     onMouseUp={handleMouseUp}
                     onMouseMove={handleMouseMove}
-                    style={{ cursor: 'grab' }}
+                    style={{ cursor: 'grab', direction: 'ltr' }}
+                    dir="ltr"
                 >
                     {values.map((val) => (
                         <div key={val.id} className={`value-slide snap-center ${val.class}`}>
-                            <div className="slide-inner">
+                            <div className="slide-inner" dir={isRTL ? 'rtl' : 'ltr'}>
                                 <div className="bg-number">{val.id}</div>
 
                                 <div className="slide-content-top">
@@ -164,24 +156,24 @@ const Section3 = () => {
             <div className="slider-nav-area">
                 <div className="nav-controls">
                     <div className="nav-buttons">
-                        <button className="nav-btn" onClick={() => scroll('left')}>
-                            <span className="material-symbols-outlined">west</span>
+                        <button className="nav-btn" onClick={handlePrev} disabled={activeIndex === 0}>
+                            <span className="material-symbols-outlined">{prevIcon}</span>
                         </button>
-                        <button className="nav-btn" onClick={() => scroll('right')}>
-                            <span className="material-symbols-outlined">east</span>
+                        <button className="nav-btn" onClick={handleNext} disabled={activeIndex === values.length - 1}>
+                            <span className="material-symbols-outlined">{nextIcon}</span>
                         </button>
                     </div>
                     <div className="nav-info">
-                        <span className="nav-label">Navigate</span>
-                        <span className="nav-helper">Slide {activeIndex + 1} of {values.length}</span>
+                        <span className="nav-label">{t('about.section3.navLabel')}</span>
+                        <span className="nav-helper">{t('about.section3.slideLabel')} {activeIndex + 1} / {values.length}</span>
                     </div>
                 </div>
 
                 <div className="progress-container">
                     <div className="progress-labels">
-                        <span>Initiation</span>
+                        <span>{t('about.section3.progressStart')}</span>
                         <span className="current-step">0{activeIndex + 1} / 0{values.length}</span>
-                        <span>Completion</span>
+                        <span>{t('about.section3.progressEnd')}</span>
                     </div>
                     <div className="progress-track">
                         <div className="progress-fill" style={{ width: `${progressPercentage}%` }}></div>

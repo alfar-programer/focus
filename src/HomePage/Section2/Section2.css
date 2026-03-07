@@ -82,6 +82,7 @@
 }
 
 .section2-card-container {
+    direction: ltr !important;
     position: relative;
     width: 75%;
     display: flex;

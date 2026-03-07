@@ -1,7 +1,10 @@
 import React from 'react';
 import './CTASection.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const CTASection = () => {
+    const { get, t } = useI18n();
+    const features = get('projects.cta.features', []);
     return (
         <section className="projects-cta">
             <div className="projects-cta-background" />
@@ -11,42 +14,41 @@ const CTASection = () => {
                 <div className="projects-cta-content">
                     <div className="projects-cta-badge">
                         <span className="projects-cta-badge-icon material-symbols-outlined">handshake</span>
-                        Partner With Us
+                        {t('projects.cta.badge')}
                     </div>
                     
                     <h2 className="projects-cta-title">
-                        Ready to Power Your
-                        <span className="projects-cta-highlight"> Next Project?</span>
+                        {t('projects.cta.titleLine')}
+                        <span className="projects-cta-highlight">{t('projects.cta.titleHighlight')}</span>
                     </h2>
                     
                     <p className="projects-cta-description">
-                        From initial consultation to final commissioning, Focus TC delivers 
-                        turnkey electromechanical solutions tailored to your specifications.
+                        {t('projects.cta.description')}
                     </p>
                     
                     <div className="projects-cta-features">
                         <div className="projects-cta-feature">
                             <span className="material-symbols-outlined">schedule</span>
-                            24h Response Time
+                            {features[0]}
                         </div>
                         <div className="projects-cta-feature">
                             <span className="material-symbols-outlined">support_agent</span>
-                            Expert Consultation
+                            {features[1]}
                         </div>
                         <div className="projects-cta-feature">
                             <span className="material-symbols-outlined">verified</span>
-                            Guaranteed Quality
+                            {features[2]}
                         </div>
                     </div>
                     
                     <div className="projects-cta-buttons">
-                        <button className="projects-cta-btn-primary" onClick={() => window.location.href = '/contactus'}>
+                        <button className="projects-cta-btn-primary" onClick={() => window.location.href = '/contact'}>
                             <span className="material-symbols-outlined">calendar_month</span>
-                            Schedule Consultation
+                            {t('projects.cta.primaryButton')}
                         </button>
                         <button className="projects-cta-btn-secondary" onClick={() => window.location.href = '/about'}>
                             <span className="material-symbols-outlined">download</span>
-                            Company Profile
+                            {t('projects.cta.secondaryButton')}
                         </button>
                     </div>
                 </div>

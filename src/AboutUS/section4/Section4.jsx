@@ -2,39 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Section4.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const offices = [
-    {
-        id: 'ksa',
-        country: 'Saudi Arabia',
-        flag: '🇸🇦',
-        tag: 'KSA HQ',
-        name: 'Raya Business Center',
-        address: '6177 67 St, Dammam 34327',
-        region: 'Eastern Province',
-        coordinates: '26.4207° N, 50.0888° E',
-        status: 'ACTIVE',
-        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3574.7!2d50.0888!3d26.4207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49e5b7!2sRaya+Business+Center%2C+Dammam!5e0!3m2!1sen!2ssa!4v1'
-    },
-    {
-        id: 'eg',
-        country: 'Egypt',
-        flag: '🇪🇬',
-        tag: 'EG HQ',
-        name: 'City Stars Towers',
-        address: 'Tower No. 7, First 6th of October\n6th of October City, Giza 3225014',
-        region: 'Giza Governorate',
-        coordinates: '29.9697° N, 30.9247° E',
-        status: 'ACTIVE',
-        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.0!2d30.9247!3d29.9697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14585!2sCity+Stars+Towers%2C+6th+October!5e0!3m2!1sen!2seg!4v1'
-    }
-];
-
 const Section4 = () => {
+    const { get, t } = useI18n();
     const sectionRef = useRef(null);
     const cardsRef = useRef([]);
+    const offices = get('about.section4.offices', []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -80,12 +56,12 @@ const Section4 = () => {
             <div className="locations-inner">
                 {/* Header */}
                 <div className="locations-header">
-                    <span className="locations-label">Section 05</span>
+                    <span className="locations-label">{t('about.section4.sectionLabel')}</span>
                     <h2 className="locations-title">
-                        OUR <span className="loc-highlight">OFFICES.</span>
+                        {t('about.section4.titleStart')} {t('about.section4.titleHighlight') ? <span className="loc-highlight">{t('about.section4.titleHighlight')}</span> : null}
                     </h2>
                     <p className="locations-subtitle">
-                        Dual-region presence — engineered for local expertise and global reach.
+                        {t('about.section4.subtitle')}
                     </p>
                     <div className="locations-accent-line" />
                 </div>
@@ -135,7 +111,7 @@ const Section4 = () => {
                                     <p className="office-address">{office.address}</p>
                                 </div>
                                 <div className="coord-row">
-                                    <span className="coord-label">COORD</span>
+                                    <span className="coord-label">{t('about.section4.coordLabel')}</span>
                                     <span className="coord-value">{office.coordinates}</span>
                                 </div>
                                 <a
@@ -144,7 +120,7 @@ const Section4 = () => {
                                     rel="noopener noreferrer"
                                     className="directions-btn"
                                 >
-                                    <span>Get Directions</span>
+                                    <span>{t('about.section4.directions')}</span>
                                     <span className="material-symbols-outlined">arrow_forward</span>
                                 </a>
                             </div>

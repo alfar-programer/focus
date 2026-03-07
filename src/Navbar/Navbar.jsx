@@ -3,11 +3,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+import { useI18n } from '../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
     const location = useLocation();
+    const { language, setLanguage, t } = useI18n();
     const navRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -126,35 +128,37 @@ const Navbar = () => {
         });
     }, [isVisible]);
 
+    const nextMode = isDarkMode ? 'light' : 'dark';
+    const navTexts = {
+        home: t('navbar.links.home'),
+        about: t('navbar.links.about'),
+        services: t('navbar.links.services'),
+        projects: t('navbar.links.projects'),
+        contact: t('navbar.links.contact')
+    };
+
     return (
         <nav ref={navRef} className="navbar-container">
-            {/* Architectural Grid Background */}
             <div className="navbar-grid" />
-
-            {/* CAD Line Border */}
             <div className="navbar-cad-line" />
 
             <div className="navbar-content">
-                {/* Left: Logotype */}
                 <div className="navbar-logo">
                     <div className="navbar-logo-icon">
                         <Link to="/" className="navbar-link">
                             <img src="/logonobackgroundWhite.png" alt="Focus Trading & Contracting" className="navbar-logo-img" />
                         </Link>
-
                     </div>
-
                 </div>
 
-                {/* Center: Nav Links (Desktop) */}
                 <div className="navbar-links">
                     <Link to="/" className="navbar-link">
-                        Home
+                        {navTexts.home}
                         <span className="navbar-link-underline" />
                     </Link>
                     <div className="navbar-dropdown-container">
                         <Link to="/about" className="navbar-link navbar-dropdown-trigger">
-                            About Us
+                            {navTexts.about}
                             <svg className="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
@@ -163,46 +167,61 @@ const Navbar = () => {
                         <div className="navbar-dropdown-menu">
                             <div className="dropdown-content-inner">
                                 <div className="dropdown-header">
-                                    <h3>About Focus</h3>
-                                    <p>Over Two Decades of Excellence and Innovation</p>
+                                    <h3>{t('navbar.aboutDropdown.title')}</h3>
+                                    <p>{t('navbar.aboutDropdown.subtitle')}</p>
                                 </div>
                                 <div className="dropdown-cards">
                                     <Link to="/about/who-we-are" className="dropdown-card dropdown-card-primary">
-                                        Our Journey
+                                        {t('navbar.aboutDropdown.journey')}
                                     </Link>
                                     <Link to="/about/our-story" className="dropdown-card dropdown-card-secondary">
-                                        Who we are
+                                        {t('navbar.aboutDropdown.whoWeAre')}
                                     </Link>
                                     <Link to="/about/our-partners" className="dropdown-card dropdown-card-secondary">
-                                        Our Partners
+                                        {t('navbar.aboutDropdown.partners')}
                                     </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <Link to="/services" className="navbar-link">
-                        Services
+                        {navTexts.services}
                         <span className="navbar-link-underline" />
                     </Link>
 
                     <Link to="/projects" className="navbar-link">
-                        Projects
+                        {navTexts.projects}
                         <span className="navbar-link-underline" />
                     </Link>
                     <Link to="/contact" className="navbar-link">
-                        Contact Us
+                        {navTexts.contact}
                         <span className="navbar-link-underline" />
                     </Link>
                 </div>
 
-                {/* Right: Social Media Icons + Theme Toggle */}
                 <div className="navbar-social">
-                    {/* Theme Toggle Button */}
+                    <div className="navbar-language-switcher" aria-label={t('navbar.languageSwitcherLabel')}>
+                        <button
+                            className={`navbar-language-btn${language === 'en' ? ' navbar-language-btn--active' : ''}`}
+                            onClick={() => setLanguage('en')}
+                            type="button"
+                        >
+                            EN
+                        </button>
+                        <button
+                            className={`navbar-language-btn${language === 'ar' ? ' navbar-language-btn--active' : ''}`}
+                            onClick={() => setLanguage('ar')}
+                            type="button"
+                        >
+                            AR
+                        </button>
+                    </div>
+
                     <button
                         ref={themeToggleRef}
                         onClick={toggleTheme}
                         className="navbar-theme-toggle"
-                        aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+                        aria-label={`Switch to ${nextMode} mode`}
                     >
                         <div className="theme-toggle-track">
                             <div className="theme-toggle-thumb">
@@ -240,11 +259,10 @@ const Navbar = () => {
                         </svg>
                     </a>
 
-                    {/* Hamburger Button — mobile only */}
                     <button
                         className={`navbar-hamburger${menuOpen ? ' navbar-hamburger--open' : ''}`}
                         onClick={() => setMenuOpen(o => !o)}
-                        aria-label="Toggle navigation menu"
+                        aria-label={t('navbar.aria.toggleNavigation')}
                         aria-expanded={menuOpen}
                     >
                         <span className="navbar-hamburger-bar" />
@@ -254,44 +272,58 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu Panel */}
             {menuOpen && (
                 <div className="navbar-mobile-menu" ref={mobileMenuRef}>
                     <Link to="/" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
-                        Home
+                        {navTexts.home}
                     </Link>
 
-                    {/* About accordion */}
                     <div className="navbar-mobile-group">
                         <button
                             className={`navbar-mobile-link navbar-mobile-link--group${aboutOpen ? ' navbar-mobile-link--open' : ''}`}
                             onClick={() => setAboutOpen(o => !o)}
                         >
-                            About Us
+                            {navTexts.about}
                             <svg className="navbar-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="6 9 12 15 18 9" />
                             </svg>
                         </button>
                         {aboutOpen && (
                             <div className="navbar-mobile-sub">
-                                <Link to="/about/who-we-are" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>Our Journey</Link>
-                                <Link to="/about/our-story" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>Who We Are</Link>
-                                <Link to="/about/our-partners" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>Our Partners</Link>
+                                <Link to="/about/who-we-are" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>{t('navbar.aboutDropdown.journey')}</Link>
+                                <Link to="/about/our-story" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>{t('navbar.aboutDropdown.whoWeAre')}</Link>
+                                <Link to="/about/our-partners" className="navbar-mobile-sublink" onClick={() => setMenuOpen(false)}>{t('navbar.aboutDropdown.partners')}</Link>
                             </div>
                         )}
                     </div>
 
                     <Link to="/services" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
-                        Services
+                        {navTexts.services}
                     </Link>
                     <Link to="/projects" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
-                        Projects
+                        {navTexts.projects}
                     </Link>
                     <Link to="/contact" className="navbar-mobile-link" onClick={() => setMenuOpen(false)}>
-                        Contact Us
+                        {navTexts.contact}
                     </Link>
 
-                    {/* Social icons row inside mobile menu */}
+                    <div className="navbar-mobile-languages">
+                        <button
+                            className={`navbar-language-btn${language === 'en' ? ' navbar-language-btn--active' : ''}`}
+                            onClick={() => setLanguage('en')}
+                            type="button"
+                        >
+                            EN
+                        </button>
+                        <button
+                            className={`navbar-language-btn${language === 'ar' ? ' navbar-language-btn--active' : ''}`}
+                            onClick={() => setLanguage('ar')}
+                            type="button"
+                        >
+                            AR
+                        </button>
+                    </div>
+
                     <div className="navbar-mobile-socials">
                         <a href="https://www.linkedin.com/company/focus-for-trading-contracting" target="_blank" rel="noopener noreferrer" className="navbar-social-link" aria-label="LinkedIn">
                             <svg viewBox="0 0 256 256" fill="currentColor"><path d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" /></svg>

@@ -1,14 +1,18 @@
 import React from 'react';
 import './Section5.css';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const Section5 = () => {
+    const { get, t } = useI18n();
+    const services = get('home.section5.services', []);
+
     return (
         <section className="section5-container">
             {/* Intro Section */}
             <div className="section5-intro">
-                <p className="section5-label">Core Capabilities</p>
+                <p className="section5-label">{t('home.section5.label')}</p>
                 <h1 className="section5-title">
-                    Engineering <span>excellence</span> through precision and innovation.
+                    {t('home.section5.titleStart')}<span>{t('home.section5.titleHighlight')}</span>{t('home.section5.titleEnd')}
                 </h1>
             </div>
 
@@ -36,13 +40,13 @@ const Section5 = () => {
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </div>
-                                <h2>MEP Systems</h2>
+                                <h2>{services[0]?.title}</h2>
                             </div>
                         </div>
                         <div className="section5-service-desc">
-                            <p>Comprehensive mechanical, electrical, and plumbing solutions designed for complex, high-performance structures.</p>
+                            <p>{services[0]?.description}</p>
                             <span className="section5-explore">
-                                Explore MEP
+                                {services[0]?.explore}
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                                 </svg>
@@ -74,13 +78,13 @@ const Section5 = () => {
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </div>
-                                <h2>Infrastructure</h2>
+                                <h2>{services[1]?.title}</h2>
                             </div>
                         </div>
                         <div className="section5-service-desc">
-                            <p>Urban planning and large-scale civil frameworks connecting modern cities through sustainable engineering.</p>
+                            <p>{services[1]?.description}</p>
                             <span className="section5-explore">
-                                Explore Infrastructure
+                                {services[1]?.explore}
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                                 </svg>
@@ -111,13 +115,13 @@ const Section5 = () => {
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </div>
-                                <h2>Engineering</h2>
+                                <h2>{services[2]?.title}</h2>
                             </div>
                         </div>
                         <div className="section5-service-desc">
-                            <p>Advanced structural analysis and turnkey design-build execution for industrial and commercial sectors.</p>
+                            <p>{services[2]?.description}</p>
                             <span className="section5-explore">
-                                Explore Engineering
+                                {services[2]?.explore}
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                                 </svg>
@@ -148,13 +152,13 @@ const Section5 = () => {
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </div>
-                                <h2>Consulting</h2>
+                                <h2>{services[3]?.title}</h2>
                             </div>
                         </div>
                         <div className="section5-service-desc">
-                            <p>Strategic oversight and technical consultancy to ensure projects are delivered on time and to specification.</p>
+                            <p>{services[3]?.description}</p>
                             <span className="section5-explore">
-                                Explore Consulting
+                                {services[3]?.explore}
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                                 </svg>
