@@ -21,6 +21,20 @@ const HeroSection = () => {
         return `/frames/frame_${(index + 1).toString().padStart(5, '0')}.webp`;
     };
 
+    const resizeCanvas = () => {
+        if (!canvasRef.current) return;
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
     // Rendering function for canvas
     const renderFrame = (index) => {
         if (!canvasRef.current || !framesRef.current[index]) return;
@@ -28,17 +42,7 @@ const HeroSection = () => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const image = framesRef.current[index];
-
-        // Ensure canvas dimensions match actual size with DPR for sharpness
-        const dpr = window.devicePixelRatio || 1;
         const rect = canvas.getBoundingClientRect();
-
-        // Only update canvas width/height if it changed
-        if (canvas.width !== rect.width * dpr || canvas.height !== rect.height * dpr) {
-            canvas.width = rect.width * dpr;
-            canvas.height = rect.height * dpr;
-            ctx.scale(dpr, dpr);
-        }
 
         // Object-fit: cover math
         ctx.clearRect(0, 0, rect.width, rect.height);
@@ -65,7 +69,10 @@ const HeroSection = () => {
                 loadedCount++;
                 if (i === 0) {
                     // Render first frame as soon as it loads to prevent blank screen
-                    requestAnimationFrame(() => renderFrame(0));
+                    requestAnimationFrame(() => {
+                        resizeCanvas();
+                        renderFrame(0);
+                    });
                 }
             };
             img.onerror = () => {
@@ -87,15 +94,7 @@ const HeroSection = () => {
                 const animationProgress = Math.min(progress / 0.9, 1);
                 const targetFrame = Math.round(animationProgress * (FRAME_COUNT - 1));
 
-                // Force a dimension update check on the canvas by triggering render
-                if (canvasRef.current) {
-                    const canvas = canvasRef.current;
-                    const dpr = window.devicePixelRatio || 1;
-                    const rect = canvas.getBoundingClientRect();
-                    canvas.width = rect.width * dpr;
-                    canvas.height = rect.height * dpr;
-                }
-
+                resizeCanvas();
                 renderFrame(targetFrame);
                 ScrollTrigger.refresh();
             }, 200);
