@@ -50,15 +50,39 @@ const HeroSection = () => {
 
     // GSAP ScrollTrigger animations - matching Section2/Section3 approach
     useLayoutEffect(() => {
+        const getViewportHeight = () => (
+            document.documentElement?.clientHeight || window.innerHeight
+        );
+
+        // Keep CSS viewport height in sync for mobile browser UI changes.
+        const syncViewportHeight = () => {
+            const viewportHeight = getViewportHeight();
+            document.documentElement.style.setProperty('--hero-vh', `${viewportHeight}px`);
+        };
+
+        syncViewportHeight();
+
+        let resizeDebounceTimer = null;
+        const handleResize = () => {
+            if (resizeDebounceTimer) clearTimeout(resizeDebounceTimer);
+            resizeDebounceTimer = setTimeout(() => {
+                syncViewportHeight();
+                ScrollTrigger.refresh();
+            }, 250);
+        };
+
+        window.addEventListener('resize', handleResize);
+
         const ctx = gsap.context(() => {
             // Main scroll trigger - pin the section like Section2/Section3
             const trigger = ScrollTrigger.create({
                 trigger: containerRef.current,
                 start: 'top top',
-                end: () => `+=${window.innerHeight * 3.5}`,
+                end: () => `+=${getViewportHeight() * 3.5}`,
                 pin: true,
                 pinSpacing: true,
                 scrub: 1,
+                invalidateOnRefresh: true,
 
                 onUpdate: (self) => {
                     const progress = self.progress;
@@ -113,6 +137,11 @@ const HeroSection = () => {
         ScrollTrigger.refresh();
 
         return () => {
+            window.removeEventListener('resize', handleResize);
+            if (resizeDebounceTimer) {
+                clearTimeout(resizeDebounceTimer);
+            }
+            document.documentElement.style.removeProperty('--hero-vh');
             ctx.revert();
             triggersRef.current.forEach(t => t.kill());
             triggersRef.current = [];

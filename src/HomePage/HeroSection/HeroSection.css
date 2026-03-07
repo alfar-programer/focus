@@ -4,6 +4,9 @@
 .hero-section {
     --fg: var(--text-primary);
     --bg: var(--bg-primary);
+    position: relative;
+    width: 100%;
+    background-color: var(--bg-primary);
     overflow-x: hidden;
 }
 
@@ -62,8 +65,11 @@
 .hero-section .hero {
     position: relative;
     width: 100vw;
+    height: var(--hero-vh, 100svh);
     height: 100svh;
+    min-height: 100svh;
     overflow: hidden;
+    background-color: var(--bg-primary);
 }
 
 .hero-section .hero-frames-container {
