@@ -78,9 +78,6 @@ const HeroSection = () => {
 
     // GSAP ScrollTrigger animations - matching Section2/Section3 approach
     useLayoutEffect(() => {
-        // Lock vh once on mount - never update this on mobile toolbar changes
-        const LOCKED_VH = window.visualViewport?.height || document.documentElement?.clientHeight || window.innerHeight;
-
         let resizeDebounceTimer = null;
         const handleResize = () => {
             if (resizeDebounceTimer) clearTimeout(resizeDebounceTimer);
@@ -107,13 +104,12 @@ const HeroSection = () => {
         window.addEventListener('resize', handleResize);
 
         const ctx = gsap.context(() => {
-            // Main scroll trigger - pin the section like Section2/Section3
+            // Main scroll trigger
             const trigger = ScrollTrigger.create({
                 trigger: containerRef.current,
-                start: 'top top',
-                end: () => `+=${LOCKED_VH * 3.5}`,
-                pin: true,
-                pinSpacing: true,
+                pin: ".hero",
+                start: "top top",
+                end: "bottom bottom",
                 scrub: 1,
                 invalidateOnRefresh: true,
                 ignoreMobileResize: true,
