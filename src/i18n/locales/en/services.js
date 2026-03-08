@@ -35,24 +35,26 @@ const services = {
             power: {
                 generator: 'GENERATOR UNIT',
                 load: 'CRITICAL LOAD',
-                ats: 'ATS NODE'
-            },
-            mep: {
-                electrical: 'ELECTRICAL',
-                hvac: 'HVAC SYS',
-                plumbing: 'PLUMBING',
-                hub: 'MEP HUB'
+                ats: 'ATS PANEL',
+                grid: 'UTILITY GRID',
+                fuel: 'FUEL TANK'
             },
             electro: {
-                core: 'CORE HUB',
-                electrical: 'ELECTRICAL',
-                hvac: 'HVAC SYS'
+                panel: 'MAIN PANEL',
+                transformer: 'TRANSFORMER',
+                hvac: 'HVAC LOAD',
+                pumps: 'PUMP SKID',
+                mcc: 'MCC'
             },
             automation: {
                 plc: 'PLC CONTROLLER',
                 plcId: 'ID: PLC-X9',
+                io: 'REMOTE I/O',
+                sensors: 'FIELD SENSORS',
                 scada: 'SCADA HMI',
-                scadaId: 'ID: SCADA-01'
+                scadaId: 'ID: SCADA-01',
+                hmi: 'LOCAL HMI',
+                network: 'INDUSTRIAL ETHERNET'
             },
             fallback: {
                 system: 'SYSTEM'
@@ -62,9 +64,9 @@ const services = {
             {
                 id: 'power-generators',
                 icon: 'bolt',
-                title: 'Power Generators',
-                subtitle: 'INDUSTRIAL & BACKUP',
-                serviceId: '#PWR-GEN-04',
+                title: 'Power Generation',
+                subtitle: 'DIESEL GENERATOR SYSTEMS',
+                serviceId: '#PWR-01',
                 heading: 'Industrial Power Infrastructure',
                 description: 'Diesel generator solutions from 20 KVA to 3000 KVA with ATS, grid synchronization, and backup continuity for critical infrastructure.',
                 stats: [
@@ -72,30 +74,30 @@ const services = {
                     { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
                     { icon: 'bolt', label: 'Power Delivered', value: '1.2', unit: 'GW', subtext: 'Total Delivered Capacity' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - POWER FLOW', 'GRID SYNCHRONIZED' ],
+                diagramLabels: [ 'FIG 3.0 - GENSET SINGLE LINE', 'ATS / GRID READY' ],
                 diagramType: 'power'
             },
             {
-                id: 'mep-systems',
-                icon: 'hvac',
-                title: 'MEP Systems',
-                subtitle: 'INTEGRATION & CONTROL',
-                serviceId: '#MEP-01',
-                heading: 'MEP Systems Integration',
-                description: 'Integrated mechanical, electrical, and plumbing systems engineered for industrial and commercial facilities.',
+                id: 'automation',
+                icon: 'precision_manufacturing',
+                title: 'SCADA & Industrial Automation',
+                subtitle: 'PLC / SCADA SYSTEMS',
+                serviceId: '#AUTO-01',
+                heading: 'Industrial Control Intelligence',
+                description: 'PLC and SCADA integration for industrial monitoring, supervisory control, and real-time data visibility.',
                 stats: [
-                    { icon: 'public', label: 'Operational Regions', value: '2', unit: '', progress: 100, subtext: 'Egypt / Saudi Arabia' },
-                    { icon: 'work', label: 'Global Projects', value: '50', unit: '+', progress: 80 },
-                    { icon: 'groups', label: 'Satisfied Clients', value: '75', unit: '+', subtext: 'Across Core Sectors' }
+                    { icon: 'precision_manufacturing', label: 'Core Systems', value: 'PLC', unit: '/SCADA', progress: 100 },
+                    { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
+                    { icon: 'lan', label: 'Control Network', value: 'Live', unit: '', subtext: 'Industrial Ethernet Architecture' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - MEP FLOW', 'SYSTEM ACTIVE' ],
-                diagramType: 'mep'
+                diagramLabels: [ 'FIG 3.0 - CONTROL ARCHITECTURE', 'PLC ⇄ SCADA LIVE' ],
+                diagramType: 'automation'
             },
             {
                 id: 'electromechanical',
                 icon: 'electrical_services',
-                title: 'Electromechanical Contracting',
-                subtitle: 'SYSTEMS & POWER',
+                title: 'ELECTROMECHANICAL CONTRACTING',
+                subtitle: 'SYSTEMS INTEGRATION',
                 serviceId: '#EM-01',
                 heading: 'Integrated Building Systems',
                 description: 'End-to-end electromechanical contracting for power distribution, system integration, and industrial infrastructure delivery.',
@@ -104,24 +106,8 @@ const services = {
                     { icon: 'workspace_premium', label: 'Quality Standard', value: 'ISO', unit: '9001', progress: 100 },
                     { icon: 'shield_with_heart', label: 'Safety Standard', value: 'ISO', unit: '45001', subtext: 'Certified Compliance' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - SYSTEM MAP', 'LIVE SYNC' ],
+                diagramLabels: [ 'FIG 3.0 - ELECTROMECH COORDINATION', 'SYSTEMS INTERLOCKED' ],
                 diagramType: 'electromechanical'
-            },
-            {
-                id: 'automation',
-                icon: 'precision_manufacturing',
-                title: 'Automation & Instrumentation',
-                subtitle: 'SCADA & PLC SYSTEMS',
-                serviceId: '#AUTO-01',
-                heading: 'Industrial Control Intelligence',
-                description: 'PLC and SCADA integration for industrial monitoring, supervisory control, and real-time data visibility.',
-                stats: [
-                    { icon: 'precision_manufacturing', label: 'Core Systems', value: 'PLC', unit: '/SCADA', progress: 100 },
-                    { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'lan', label: 'MEP Integration', value: 'Enabled', unit: '', subtext: 'Cross-Discipline Coordination' }
-                ],
-                diagramLabels: [ 'FIG 3.0 - SCADA LOOP', 'ACTIVE FEED' ],
-                diagramType: 'automation'
             }
         ]
     },

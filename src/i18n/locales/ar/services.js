@@ -35,24 +35,26 @@ const services = {
             power: {
                 generator: 'وحدة التوليد',
                 load: 'حمل حرج',
-                ats: 'عقدة ATS'
-            },
-            mep: {
-                electrical: 'كهرباء',
-                hvac: 'نظام HVAC',
-                plumbing: 'أعمال صحية',
-                hub: 'محور MEP'
+                ats: 'لوحة ATS',
+                grid: 'الشبكة العمومية',
+                fuel: 'خزان الوقود'
             },
             electro: {
-                core: 'محور رئيسي',
-                electrical: 'كهرباء',
-                hvac: 'نظام HVAC'
+                panel: 'اللوحة الرئيسية',
+                transformer: 'المحول',
+                hvac: 'حمل HVAC',
+                pumps: 'وحدة المضخات',
+                mcc: 'MCC'
             },
             automation: {
                 plc: 'وحدة تحكم PLC',
                 plcId: 'المعرّف: PLC-X9',
+                io: 'وحدات I/O',
+                sensors: 'حساسات ميدانية',
                 scada: 'واجهة SCADA',
-                scadaId: 'المعرّف: SCADA-01'
+                scadaId: 'المعرّف: SCADA-01',
+                hmi: 'واجهة HMI محلية',
+                network: 'شبكة إيثرنت صناعية'
             },
             fallback: {
                 system: 'النظام'
@@ -62,9 +64,9 @@ const services = {
             {
                 id: 'power-generators',
                 icon: 'bolt',
-                title: 'مولدات الطاقة',
-                subtitle: 'صناعي واحتياطي',
-                serviceId: '#PWR-GEN-04',
+                title: 'توليد الطاقة',
+                subtitle: 'أنظمة مولدات ديزل',
+                serviceId: '#PWR-01',
                 heading: 'بنية طاقة صناعية',
                 description: 'حلول مولدات ديزل من 20 KVA إلى 3000 KVA مع ATS ومزامنة الشبكة واستمرارية التغذية للبنى الحرجة.',
                 stats: [
@@ -72,30 +74,30 @@ const services = {
                     { icon: 'verified_user', label: 'ضمان الجاهزية', value: '99.99', unit: '%', progress: 99.99 },
                     { icon: 'bolt', label: 'قدرة مسلّمة', value: '1.2', unit: 'GW', subtext: 'إجمالي القدرة المنفذة' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - POWER FLOW', 'GRID SYNCHRONIZED' ],
+                diagramLabels: [ 'FIG 3.0 - GENSET SINGLE LINE', 'ATS / GRID READY' ],
                 diagramType: 'power'
             },
             {
-                id: 'mep-systems',
-                icon: 'hvac',
-                title: 'أنظمة MEP',
-                subtitle: 'تكامل وتحكم',
-                serviceId: '#MEP-01',
-                heading: 'تكامل أنظمة MEP',
-                description: 'حلول ميكانيكية وكهربائية وصحية متكاملة ومصممة للمنشآت الصناعية والتجارية.',
+                id: 'automation',
+                icon: 'precision_manufacturing',
+                title: 'SCADA والأتمتة الصناعية',
+                subtitle: 'أنظمة PLC / SCADA',
+                serviceId: '#AUTO-01',
+                heading: 'ذكاء التحكم الصناعي',
+                description: 'تكامل PLC وSCADA للمراقبة والتحكم الصناعي وإتاحة البيانات اللحظية.',
                 stats: [
-                    { icon: 'public', label: 'نطاق التشغيل', value: '2', unit: '', progress: 100, subtext: 'مصر / السعودية' },
-                    { icon: 'work', label: 'المشاريع العالمية', value: '50', unit: '+', progress: 80 },
-                    { icon: 'groups', label: 'العملاء الراضون', value: '75', unit: '+', subtext: 'في القطاعات الأساسية' }
+                    { icon: 'precision_manufacturing', label: 'الأنظمة الأساسية', value: 'PLC', unit: '/SCADA', progress: 100 },
+                    { icon: 'verified_user', label: 'ضمان الجاهزية', value: '99.99', unit: '%', progress: 99.99 },
+                    { icon: 'lan', label: 'شبكة التحكم', value: 'مباشرة', unit: '', subtext: 'معمارية إيثرنت صناعية' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - MEP FLOW', 'SYSTEM ACTIVE' ],
-                diagramType: 'mep'
+                diagramLabels: [ 'FIG 3.0 - CONTROL ARCHITECTURE', 'PLC ⇄ SCADA LIVE' ],
+                diagramType: 'automation'
             },
             {
                 id: 'electromechanical',
                 icon: 'electrical_services',
                 title: 'المقاولات الكهروميكانيكية',
-                subtitle: 'أنظمة وطاقة',
+                subtitle: 'تكامل الأنظمة',
                 serviceId: '#EM-01',
                 heading: 'أنظمة مبانٍ متكاملة',
                 description: 'تنفيذ كهروميكانيكي متكامل لأنظمة توزيع الطاقة ودمج الأنظمة في البنية التحتية الصناعية.',
@@ -104,24 +106,8 @@ const services = {
                     { icon: 'workspace_premium', label: 'معيار الجودة', value: 'ISO', unit: '9001', progress: 100 },
                     { icon: 'shield_with_heart', label: 'معيار السلامة', value: 'ISO', unit: '45001', subtext: 'امتثال معتمد' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - SYSTEM MAP', 'LIVE SYNC' ],
+                diagramLabels: [ 'FIG 3.0 - ELECTROMECH COORDINATION', 'SYSTEMS INTERLOCKED' ],
                 diagramType: 'electromechanical'
-            },
-            {
-                id: 'automation',
-                icon: 'precision_manufacturing',
-                title: 'الأتمتة والأجهزة',
-                subtitle: 'أنظمة SCADA وPLC',
-                serviceId: '#AUTO-01',
-                heading: 'ذكاء التحكم الصناعي',
-                description: 'تكامل PLC وSCADA للمراقبة والتحكم الصناعي وإتاحة البيانات اللحظية.',
-                stats: [
-                    { icon: 'precision_manufacturing', label: 'الأنظمة الأساسية', value: 'PLC', unit: '/SCADA', progress: 100 },
-                    { icon: 'verified_user', label: 'ضمان الجاهزية', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'lan', label: 'تكامل MEP', value: 'مفعّل', unit: '', subtext: 'تنسيق متعدد التخصصات' }
-                ],
-                diagramLabels: [ 'FIG 3.0 - SCADA LOOP', 'ACTIVE FEED' ],
-                diagramType: 'automation'
             }
         ]
     },
