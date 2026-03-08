@@ -5,7 +5,7 @@ const services = {
         titleLine: 'Mission-Critical',
         titleAccent: 'Power Infrastructure',
         description: 'Focus Trading & Contracting delivers high-precision power generation and industrial engineering solutions for mission-critical operations.',
-        chips: [ '20-3000 KVA Diesel Generators', 'ISO 9001 / ISO 45001', 'ISO 8528 Compliance' ],
+        chips: [ '20-3000 KVA Diesel Generators', 'ISO 9001 / ISO 45001', 'Hybrid Ready' ],
         ctaPrimary: 'Request Schematics',
         ctaSecondary: 'View Case Studies',
         stats: [
@@ -130,7 +130,7 @@ const services = {
         title: 'WHY',
         titleAccent: 'FOCUS',
         lead: 'Engineering precision backed by verified delivery metrics.',
-        description: 'Focus Trading & Contracting combines power generation, automation, and electromechanical execution with ISO-aligned quality and safety standards.',
+        description: 'Focus combines power generation, automation, and electromechanical execution with ISO-aligned quality and safety standards.',
         statValues: [ '6+', '50+', '75+' ],
         statLabels: [ 'Years Experience', 'Global Projects', 'Satisfied Clients' ],
         sectionLabel: 'Engineering Excellence',
@@ -253,7 +253,7 @@ const services = {
         cta: {
             titleLine: 'Ready to Power Your',
             titleHighlight: 'Next Project?',
-            description: 'Partner with Focus Trading & Contracting for generator, automation, and electromechanical solutions built for mission-critical performance.',
+            description: 'Partner with Focus for generator, automation, and electromechanical solutions built for mission-critical performance.',
             primary: 'Request a Consultation',
             secondary: 'View Projects'
         }

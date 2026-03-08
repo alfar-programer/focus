@@ -1,14 +1,14 @@
 const projects = {
     hero: {
         badge: 'Industrial Delivery',
-        title: 'Industrial Power & Automation Projects',
-        subtitle: 'Mission-critical power and automation execution across Egypt and Saudi Arabia.',
+        title: 'Our Projects',
+        subtitle: 'Delivering excellence in power, automation, and electromechanical solutions across Egypt and Saudi Arabia.',
         primaryButton: 'View Portfolio',
         secondaryButton: 'Contact Team'
     },
     intro: {
         title: 'Engineering Performance at Scale',
-        description: 'Focus Trading & Contracting delivers power generation, industrial automation, and electromechanical projects with a metrics-driven approach in Egypt and Saudi Arabia.',
+        description: 'Focus TC has a proven track record of delivering high-performance technical solutions for industrial, commercial, and utility sectors. We pride ourselves on precision, safety, and innovation.',
         readMethodology: 'Read about our methodology',
         stats: [
             { icon: 'bolt', value: '1.2 GW', label: 'Total Power Delivered' },

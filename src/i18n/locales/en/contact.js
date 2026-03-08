@@ -23,7 +23,7 @@ const contact = {
         badge: 'Focus Trading & Contracting',
         titleLine: 'Connect With',
         titleHighlight: 'FOCUS T&C',
-        subtitle: 'Power generation, automation, and electromechanical support across Egypt and Saudi Arabia.'
+        subtitle: 'Engineering solutions for the next century. Establish a secure connection with our tactical division below.'
     },
     channelsSection: {
         title: 'Direct Access<br /><span>Channels</span>',

@@ -1,7 +1,7 @@
 const home = {
     hero: {
-        title: 'Power Generation and Industrial Engineering Solutions',
-        trustedBy: 'Focus Trading & Contracting (FOCUS T&C) delivers generator systems, automation, and electromechanical contracting across Egypt and Saudi Arabia.'
+        title: 'Engineering Intelligent Power Systems',
+        trustedBy: 'From automation to energy infrastructure, we build reliable systems that power industries forward.'
     },
     section2: {
         title: 'Business Lines',
