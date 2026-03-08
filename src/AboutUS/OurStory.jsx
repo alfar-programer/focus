@@ -12,7 +12,6 @@ const OurStory = () => {
 
     return (
         <div className="about-us-page" style={{ paddingTop: '80px' }}>
-            <Section1 />
             <Section5 />
             <Section2 />
             <Section3 />

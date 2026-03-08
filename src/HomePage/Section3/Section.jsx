@@ -1,6 +1,7 @@
 import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link } from 'react-router-dom';
 import './section.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
@@ -17,7 +18,7 @@ const splitTextToSpans = (element) => {
 
     element.innerHTML = '';
     chars.forEach((char) => {
-        const span = document.createElement('div');
+        const span = document.createElement('span');
         span.classList.add('char');
         span.innerHTML = `<span>${char}</span>`;
         element.appendChild(span);
@@ -106,13 +107,15 @@ const Section = () => {
     useLayoutEffect(() => {
         // Scope GSAP to this component
         const ctx = gsap.context(() => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             // 1. Marquee Animation
             const marqueeItems = gsap.utils.toArray(".marquee h1");
-            if (marqueeItems.length > 0) {
+            if (!prefersReducedMotion && marqueeItems.length > 0) {
                 horizontalLoop(marqueeItems, {
                     repeat: -1,
                     paddingRight: 30,
+                    speed: 0.5,
                 });
             }
 
@@ -130,19 +133,31 @@ const Section = () => {
 
             const cardImgWrapper = introCard.querySelector(".card-img");
             const cardImg = introCard.querySelector(".card-img img");
+            const allDescriptions = gsap.utils.toArray(".card-description");
+            gsap.set(allDescriptions, { x: 28, autoAlpha: 0 });
+
             // Initial execution setups
-            gsap.set(cardImgWrapper, { scale: 0.5, borderRadius: "400px" });
-            gsap.set(cardImg, { scale: 1.5 });
+            gsap.set(cardImgWrapper, { scale: 0.92, borderRadius: "140px" });
+            gsap.set(cardImg, { scale: 1.18, yPercent: 5 });
+
+            if (prefersReducedMotion) {
+                gsap.set(".card-title h1 .char span", { x: "0%" });
+                gsap.set(allDescriptions, { x: 0, autoAlpha: 1 });
+                gsap.set(".card-img", { scale: 1, borderRadius: "28px" });
+                gsap.set(".card-img img", { scale: 1.03, yPercent: 0 });
+                gsap.set(".card-marquee .marquee", { autoAlpha: 0 });
+                return;
+            }
 
             // Helper functions for content reveal
             function animateContentIn(titleChars, description) {
-                gsap.to(titleChars, { x: "0%", duration: 0.75, ease: "power4.out", overwrite: true });
+                gsap.to(titleChars, { x: "0%", duration: 0.7, ease: "power3.out", overwrite: true });
                 gsap.to(description, {
                     x: 0,
-                    opacity: 1,
-                    duration: 0.75,
-                    delay: 0.1,
-                    ease: "power4.out",
+                    autoAlpha: 1,
+                    duration: 0.7,
+                    delay: 0.08,
+                    ease: "power3.out",
                     overwrite: true
                 });
             }
@@ -150,15 +165,15 @@ const Section = () => {
             function animateContentOut(titleChars, description) {
                 gsap.to(titleChars, {
                     x: "100%",
-                    duration: 0.5,
-                    ease: "power4.out",
+                    duration: 0.45,
+                    ease: "power3.out",
                     overwrite: true
                 });
                 gsap.to(description, {
-                    x: "40px",
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "power4.out",
+                    x: 30,
+                    autoAlpha: 0,
+                    duration: 0.45,
+                    ease: "power3.out",
                     overwrite: true
                 });
             }
@@ -176,40 +191,31 @@ const Section = () => {
                 scrub: true, // IMPORTANT for continuous sync with scroll
                 onUpdate: (self) => {
                     const progress = self.progress;
-                    const imgScale = 0.5 + progress * 0.5;
-                    const borderRadius = 400 - progress * 375;
-                    const innerImgScale = 1.5 - progress * 0.5;
+                    const imgScale = 0.92 + progress * 0.08;
+                    const borderRadius = 140 - progress * 108;
+                    const innerImgScale = 1.18 - progress * 0.15;
+                    const innerY = 5 - progress * 5;
 
                     gsap.set(cardImgWrapper, {
                         scale: imgScale,
                         borderRadius: borderRadius + "px",
                     });
-                    gsap.set(cardImg, { scale: innerImgScale });
+                    gsap.set(cardImg, { scale: innerImgScale, yPercent: innerY });
 
                     // Marquee fade logic
-                    // 0.5 -> 0.75 progress range corresponds to opacity 1 -> 0?
-                    // Wait, original logic was based on imgScale logic
-                    // imgScale goes from 0.5 to 1.0 as progress 0 to 1
-                    // logic: if (imgScale >= 0.5 && imgScale <= 0.75) 
-
-                    if (imgScale >= 0.5 && imgScale <= 0.75) {
-                        // map 0.5->0.75 to 0->1 fadeProgress
-                        const fadeProgress = (imgScale - 0.5) / (0.75 - 0.5);
-                        gsap.set(marquee, { opacity: 1 - fadeProgress });
-                    } else if (imgScale < 0.5) {
-                        gsap.set(marquee, { opacity: 1 });
-                    } else if (imgScale > 0.75) {
-                        gsap.set(marquee, { opacity: 0 });
+                    if (progress <= 0.65) {
+                        const fadeProgress = gsap.utils.mapRange(0.2, 0.65, 1, 0, progress);
+                        gsap.set(marquee, { autoAlpha: gsap.utils.clamp(0, 1, fadeProgress) });
+                    } else {
+                        gsap.set(marquee, { autoAlpha: 0 });
                     }
 
                     // Content reveal
-                    // Original used a flag contentRevealed. 
-                    // We can check progress directly.
-                    if (progress >= 0.95 && !introCard.contentRevealed) {
+                    if (progress >= 0.88 && !introCard.contentRevealed) {
                         introCard.contentRevealed = true;
                         animateContentIn(titleChars, description);
                     }
-                    if (progress < 0.95 && introCard.contentRevealed) {
+                    if (progress < 0.88 && introCard.contentRevealed) {
                         introCard.contentRevealed = false;
                         animateContentOut(titleChars, description);
                     }
@@ -226,10 +232,7 @@ const Section = () => {
                     // endTrigger logic:
                     endTrigger: isLastCard ? null : cards[cards.length - 1],
                     pin: true,
-                    pinSpacing: false, // Original had pinSpacing: isLastCard, but standard stacking cards often use false for overlap or true if following flow. 
-                    // The original code had: pinSpacing: isLastCard. Let's stick to it.
-                    // Wait, if pinSpacing is false for earlier cards, they might overlap weirdly if not careful.
-                    // Re-reading original: pinSpacing: isLastCard
+                    pinSpacing: isLastCard,
                 });
             });
 
@@ -253,14 +256,14 @@ const Section = () => {
                             const currentCardWrapper = card.querySelector(".card-img"); // Wrapper of current card
                             if (currentCardWrapper) {
                                 gsap.set(currentCardWrapper, {
-                                    scale: 1 - progress * 0.25,
-                                    opacity: 1 - progress, // fade out
+                                    scale: 1 - progress * 0.08,
+                                    yPercent: -progress * 4,
+                                    opacity: 1 - progress * 0.35,
                                 });
                             }
 
                             // 2. Text Content Hide (Title & Description)
-                            // Fade out quickly as the next card starts appearing (e.g., within first 40% of travel)
-                            const textProgress = Math.min(progress * 2.5, 1);
+                            const textProgress = Math.min(progress * 1.6, 1);
 
                             // Select title chars (created by splitTextToSpans) and description
                             const titleChars = card.querySelectorAll(".card-title h1 .char span");
@@ -268,14 +271,14 @@ const Section = () => {
 
                             if (titleChars.length) {
                                 gsap.set(titleChars, {
-                                    opacity: 1 - textProgress,
-                                    x: textProgress * 50, // slide out slightly to right
+                                    opacity: Math.max(0.2, 1 - textProgress),
+                                    x: textProgress * 24,
                                 });
                             }
                             if (description) {
                                 gsap.set(description, {
-                                    opacity: 1 - textProgress,
-                                    x: 40 + textProgress * 50, // slide out further (starts at 0 or 40?, assume 0 reveals to 0)
+                                    autoAlpha: Math.max(0.2, 1 - textProgress),
+                                    x: textProgress * 28,
                                 });
                             }
                         }
@@ -297,9 +300,12 @@ const Section = () => {
                         scrub: true,
                         onUpdate: (self) => {
                             const progress = self.progress;
-                            gsap.set(innerImg, { scale: 2 - progress }); // 2 -> 1
+                            gsap.set(innerImg, {
+                                scale: 1.14 - progress * 0.12,
+                                yPercent: 4 - progress * 4,
+                            });
                             gsap.set(innerContainer, {
-                                borderRadius: (150 - progress * 125) + "px" // 150 -> 25
+                                borderRadius: (100 - progress * 72) + "px"
                             });
                         }
                     });
@@ -401,7 +407,12 @@ const Section = () => {
             </section>
 
             <section className="outro">
-                <h1>{t('home.section3.outro')}</h1>
+                <div className="outro-content">
+                    <h1>{t('home.section3.outro')}</h1>
+                    <Link to="/contact" className="section3-contact-cta">
+                        {t('home.section3.outroCta', t('navbar.links.contact'))}
+                    </Link>
+                </div>
             </section>
         </div>
     );

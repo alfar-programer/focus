@@ -1,17 +1,11 @@
-/* Scoped to avoid polluting global styles */
 .section3-container {
-    /* Ensure overflow is handled within this container if possible, 
-     but sticky/pinned elements often need body or a specific overflow wrapper. 
-  */
     width: 100%;
     position: relative;
     background-color: var(--bg-surface);
     color: var(--text-primary);
     overflow: hidden;
-    /* Prevent horizontal scroll from marquee */
 }
 
-/* Reset for this section */
 .section3-container * {
     box-sizing: border-box;
 }
@@ -21,39 +15,38 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    will-change: transform;
     display: block;
-    /* Remove inline gap */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .section3-container h1 {
     font-family: inherit;
-    /* Use app font or specify 'Inter' */
-    font-size: 5rem;
+    font-size: clamp(2rem, 6vw, 4.75rem);
     font-weight: 500;
-    letter-spacing: -0.1rem;
-    line-height: 1.25;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
     margin: 0;
 }
 
 .section3-container p {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     font-weight: 400;
-    line-height: 1.25;
+    line-height: 1.55;
+    margin: 0;
 }
 
 .section3-container section {
     position: relative;
-    width: 100vw;
-    /* Using 100vw might cause scrollbar issues on Windows, usually 100% is safer but pins might need viewport */
+    width: 100%;
     background-color: var(--bg-surface);
-    max-width: 100%;
 }
 
 .section3-container .intro,
 .section3-container .outro {
-    height: 100svh;
-    padding: 1.5em;
+    min-height: 100svh;
+    padding: clamp(1.25rem, 2.6vw, 2rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,17 +54,50 @@
 
 .section3-container .intro h1,
 .section3-container .outro h1 {
-    width: 60%;
+    width: min(68%, 980px);
     text-align: center;
-    line-height: 1.1;
+    margin-inline: auto;
+}
+
+.section3-container .outro-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.section3-container .section3-contact-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: rgba(var(--bg-surface-rgb), 0.92);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.section3-container .section3-contact-cta:hover {
+    transform: translateY(-1px);
+    background: rgba(var(--bg-surface-rgb), 1);
+    border-color: var(--color-accent);
+}
+
+.section3-container .section3-contact-cta:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 .section3-container .cards {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 25svh;
-    /* Gap between cards logic */
+    gap: 22svh;
 }
 
 .section3-container .card-marquee {
@@ -82,6 +108,7 @@
     transform: translateY(-50%);
     overflow: hidden;
     z-index: 0;
+    pointer-events: none;
 }
 
 .section3-container .marquee {
@@ -91,54 +118,51 @@
 
 .section3-container .marquee h1 {
     white-space: nowrap;
-    font-size: 10vw;
+    font-size: clamp(3.2rem, 9vw, 8.8rem);
     font-weight: 600;
     margin-right: 30px;
     text-transform: uppercase;
-    /* Optional, matches standard marquee styles often */
+    letter-spacing: -0.02em;
+    opacity: 0.16;
 }
 
 .section3-container .card {
     position: relative;
     display: block;
-    text-decoration: none;
-    cursor: pointer;
-    width: 100vw;
+    width: 100%;
     height: 100svh;
-    padding: 1.5em;
-    /* Ensure centering if needed */
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
+    padding: clamp(1rem, 2.4vw, 1.75rem);
+    cursor: default;
 }
 
 .section3-container .card-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
-    will-change: transform;
-    max-width: 1400px;
+    max-width: 1380px;
     margin: 0 auto;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
 }
 
-.section3-container .card:hover .card-wrapper {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: var(--shadow-lg);
-    z-index: 50;
+@media (hover: hover) and (pointer: fine) {
+    .section3-container .card:hover .card-wrapper {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+    }
 }
 
 .section3-container .card-img {
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 150px;
+    border-radius: 110px;
     overflow: hidden;
-    will-change: transform, border-radius;
+    will-change: transform, border-radius, opacity;
 }
 
 .section3-container .card-img img {
-    transform: scale(2);
+    transform: scale(1.14);
     will-change: transform;
 }
 
@@ -151,42 +175,36 @@
     justify-content: center;
     z-index: 10;
     pointer-events: none;
-    /* Allow clicks through to image if needed */
+    padding-inline: clamp(0.5rem, 2.4vw, 1.75rem);
 }
 
 .section3-container .card-content .card-title {
-    width: 100%;
+    width: min(92%, 980px);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     overflow: hidden;
-    /* Hide clips for text reveal */
 }
 
 .section3-container .card-content .card-title h1 {
     display: inline-block;
     overflow: hidden;
-    /* For char reveal masking */
 }
 
 .section3-container .card-content .card-description {
     text-align: center;
-    width: 40%;
-    margin-bottom: 3em;
+    width: min(44ch, 42%);
+    margin-bottom: clamp(2.2rem, 5vh, 3.2rem);
     position: relative;
-    /* transform: translate(40px); handled by GSAP initially? Set in CSS for start state */
-    /* opacity: 0; handled by GSAP */
+    color: var(--text-secondary);
 }
 
-/* Logic for card spacing */
-/* The second card had a margin-top in original CSS, let's keep it if logic requires */
 .section3-container .card:nth-child(2) {
     margin-top: 50vh;
 }
 
-/* Char split styling */
 .section3-container .char {
     position: relative;
     overflow: hidden;
@@ -196,14 +214,23 @@
 .section3-container .char span {
     display: inline-block;
     transform: translateX(100%);
-    /* Start hidden/offset */
-    will-change: transform;
+    will-change: transform, opacity;
+}
+
+@media (max-width: 1024px) {
+    .section3-container .intro h1,
+    .section3-container .outro h1 {
+        width: min(84%, 760px);
+    }
+
+    .section3-container .card-content .card-description {
+        width: min(64ch, 62%);
+    }
 }
 
 @media (max-width: 900px) {
     .section3-container h1 {
-        font-size: 2rem;
-        letter-spacing: 0;
+        letter-spacing: -0.02em;
     }
 
     .section3-container .intro h1,
@@ -212,11 +239,23 @@
     }
 
     .section3-container .card-content .card-description {
-        width: 90%;
+        width: min(90%, 560px);
+        margin-bottom: 2rem;
+        font-size: 1rem;
     }
 
     .section3-container .card-img {
-        border-radius: 20px;
-        /* Smaller radius on mobile */
+        border-radius: 26px;
+    }
+
+    .section3-container .cards {
+        gap: 16svh;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section3-container .card-wrapper,
+    .section3-container .section3-contact-cta {
+        transition: none;
     }
 }

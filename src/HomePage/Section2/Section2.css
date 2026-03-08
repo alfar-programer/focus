@@ -97,7 +97,6 @@
     transform-style: preserve-3d;
     transform-origin: center;
     will-change: transform;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .section2-card:hover {
@@ -188,6 +187,17 @@
 #section2-card-3 .section2-card-back {
     background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-accent) 100%);
     color: var(--text-primary);
+}
+
+@media (min-width: 1000px) {
+    .section2-card {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .section2-card + .section2-card {
+        margin-left: -1px;
+    }
 }
 
 @media (max-width: 1000px) {

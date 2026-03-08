@@ -28,8 +28,9 @@ const home = {
         ]
     },
     section3: {
-        intro: 'we design spaces that do not just exist.',
-        outro: 'Architecture for the virtual age.',
+        intro: 'We engineer high-performance environments where infrastructure, automation, and reliability work as one.',
+        outro: 'Ready to move your project forward? Visit our Contact page and start a conversation with our team.',
+        outroCta: 'Go to Contact Page',
         marquee: [
             'Design beyond boundaries',
             'Built for tomorrow',
