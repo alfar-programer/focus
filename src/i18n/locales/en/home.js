@@ -1,8 +1,7 @@
 const home = {
     hero: {
-        title: 'Engineering Intelligent Power Systems',
-        // trustedBy: 'Trusted by'
-        trustedBy: 'From automation to energy infrastructure, we build reliable systems that power industries forward.'
+        title: 'Power Generation and Industrial Engineering Solutions',
+        trustedBy: 'Focus Trading & Contracting (FOCUS T&C) delivers generator systems, automation, and electromechanical contracting across Egypt and Saudi Arabia.'
     },
     section2: {
         title: 'Business Lines',
@@ -21,37 +20,40 @@ const home = {
             },
             {
                 number: '03',
-                title: 'Electro-Mechanical Works',
-                description: 'Full-service electro-mechanical installation and maintenance for modern facilities.',
-                imageAlt: 'Electro mechanical works service'
+                title: 'Electromechanical Contracting',
+                description: 'End-to-end electromechanical execution for mission-critical and industrial facilities.',
+                imageAlt: 'Electromechanical contracting service'
             }
         ]
     },
     section3: {
+
         intro: 'We engineer high-performance environments where infrastructure, automation, and reliability work as one.',
         outro: 'Ready to move your project forward? Visit our Contact page and start a conversation with our team.',
         outroCta: 'Go to Contact Page',
+
+
         marquee: [
-            'Design beyond boundaries',
-            'Built for tomorrow',
-            'Real impact',
-            'Digital visions'
+            'Diesel Generators 20-3000 KVA',
+            'PLC and SCADA Integration',
+            'MEP Systems Integration',
+            'Electromechanical Contracting'
         ],
         cards: [
             {
-                title: 'Curved Horizon',
-                description: 'Future-ready engineering environments designed for resilient operations.',
-                imageAlt: 'Curved Horizon'
+                title: 'Diesel Generator Systems',
+                description: 'Generator solutions from 20 KVA to 3000 KVA for continuous and backup power applications.',
+                imageAlt: 'Diesel generator systems'
             },
             {
-                title: 'Modern Vision',
-                description: 'Smart infrastructure planning powered by integrated technical systems.',
-                imageAlt: 'Modern Vision'
+                title: 'PLC & SCADA Integration',
+                description: 'Industrial automation architecture for reliable supervision, control, and data acquisition.',
+                imageAlt: 'PLC and SCADA integration'
             },
             {
-                title: 'Abstract Space',
-                description: 'Adaptive industrial design built to scale across complex environments.',
-                imageAlt: 'Abstract Space'
+                title: 'MEP Systems Integration',
+                description: 'Integrated mechanical, electrical, and plumbing systems engineered for industrial performance.',
+                imageAlt: 'MEP systems integration'
             }
         ]
     },
@@ -63,30 +65,31 @@ const home = {
         services: [
             {
                 number: '01',
-                title: 'MEP Systems',
-                description: 'Comprehensive mechanical, electrical, and plumbing solutions designed for complex, high-performance structures.',
-                explore: 'Explore MEP'
+                title: 'Power Generation Solutions',
+                description: 'Diesel generator systems from 20 KVA to 3000 KVA with ATS and grid-synchronization readiness.',
+                explore: 'Explore Power'
             },
             {
                 number: '02',
-                title: 'Infrastructure',
-                description: 'Urban planning and large-scale civil frameworks connecting modern cities through sustainable engineering.',
-                explore: 'Explore Infrastructure'
+                title: 'Industrial Automation',
+                description: 'PLC, SCADA, HMI, and instrumentation integration for precise process control.',
+                explore: 'Explore Automation'
             },
             {
                 number: '03',
-                title: 'Engineering',
-                description: 'Advanced structural analysis and turnkey design-build execution for industrial and commercial sectors.',
-                explore: 'Explore Engineering'
+                title: 'Electromechanical Contracting',
+                description: 'Integrated electromechanical systems and power distribution for critical infrastructure.',
+                explore: 'Explore Contracting'
             },
             {
                 number: '04',
-                title: 'Consulting',
-                description: 'Strategic oversight and technical consultancy to ensure projects are delivered on time and to specification.',
-                explore: 'Explore Consulting'
+                title: 'MEP Systems Integration',
+                description: 'Coordinated MEP delivery for industrial and commercial facilities.',
+                explore: 'Explore MEP'
             }
         ]
     },
+    // TODO: DATA NOT FOUND IN MASTER FILE
     section6: {
         approachTitle: 'Our Approach',
         readMore: 'Read more',
@@ -136,26 +139,26 @@ const home = {
         ]
     },
     section7: {
-        subtitle: 'Our Milestones and Projects',
-        title: 'Driving Global Impact',
+        subtitle: 'Verified Company Metrics',
+        title: 'FOCUS T&C Performance Snapshot',
         stats: [
-            { key: 'projects', value: 500, suffix: '+', label: 'Projects Completed' },
-            { key: 'years', value: 15, suffix: '+', label: 'Years Experience' },
-            { key: 'hours', value: 1000000, suffix: '+', label: 'Safe Man Hours', format: true },
-            { key: 'partners', value: 50, suffix: '+', label: 'Global Partners' }
+            { key: 'projects', value: 50, suffix: '+', label: 'Global Projects' },
+            { key: 'years', value: 6, suffix: '+', label: 'Years Experience' },
+            { key: 'hours', value: 1, suffix: '.2 GW', label: 'Total Power Delivered' },
+            { key: 'partners', value: 99, suffix: '.99%', label: 'Uptime Guarantee' }
         ],
         cards: [
             {
-                title: 'Signature Infrastructure',
-                description: 'Developing world-class transport networks and monumental structural engineering solutions.'
+                title: 'Power Generation',
+                description: 'Diesel generator systems from 20 KVA to 3000 KVA for mission-critical operations.'
             },
             {
-                title: 'Industrial Excellence',
-                description: 'Pioneering smart manufacturing hubs and high-efficiency industrial facilities globally.'
+                title: 'Automation & Control',
+                description: 'PLC and SCADA integration for high-reliability industrial environments.'
             },
             {
-                title: 'Safety First',
-                description: 'Unwavering commitment to zero-incident environments through rigorous safety protocols.'
+                title: 'Electromechanical & MEP',
+                description: 'Integrated electromechanical contracting and MEP delivery across Egypt and Saudi Arabia.'
             }
         ],
         cta: 'View Full Portfolio'

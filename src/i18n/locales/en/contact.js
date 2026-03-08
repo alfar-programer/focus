@@ -20,14 +20,14 @@ const contact = {
         }
     ],
     hero: {
-        badge: 'System Online',
-        titleLine: "Let's Build",
-        titleHighlight: 'Something Intelligent',
-        subtitle: 'Engineering solutions for the next century. Establish a secure connection with our tactical division below.'
+        badge: 'Focus Trading & Contracting',
+        titleLine: 'Connect With',
+        titleHighlight: 'FOCUS T&C',
+        subtitle: 'Power generation, automation, and electromechanical support across Egypt and Saudi Arabia.'
     },
     channelsSection: {
         title: 'Direct Access<br /><span>Channels</span>',
-        subtitle: 'Select your preferred communication protocol for immediate assistance.',
+        subtitle: 'Reach our engineering team through the channels below.',
         channels: [
             {
                 icon: '🇸🇦',
@@ -43,41 +43,42 @@ const contact = {
             },
             {
                 icon: '✉️',
-                label: 'Digital Correspondence',
+                label: 'Email',
                 value: 'info@focus-tc.com',
                 note: 'Response time: < 24h'
             },
             {
                 icon: '🕐',
                 label: 'Operational Hours',
-                value: 'Mon-Fri / 0800-1800 EST',
+                value: 'Mon-Fri / 08:00-18:00',
                 note: 'Weekend Support: Standby'
             }
         ]
     },
     form: {
-        title: 'Initiate Request',
-        subtitle: 'Securely submit your mission parameters for analysis.',
+        title: 'Send an Inquiry',
+        subtitle: 'Share your project requirements and our team will contact you.',
         successTitle: 'Message Received',
-        successText: 'Your message has been securely transmitted. Our team will respond within 24 hours.',
+        successText: 'Your message has been submitted successfully. Our team will respond within 24 hours.',
         sendAnother: 'Send Another',
         labels: {
             fullName: 'Full Name',
             company: 'Company',
             email: 'Email Address',
             service: 'Service Interest',
-            message: 'Mission Brief'
+            message: 'Project Brief'
         },
         placeholders: {
             fullName: 'ex. John Doe',
-            company: 'ex. Wayne Enterprises',
+            company: 'ex. Your Company Name',
             email: 'name@company.com',
             message: 'Describe your project requirements...'
         },
         serviceOptions: [
-            'Power Generation',
-            'SCADA and Industrial Automation',
-            'Electro Mechanical Works',
+            'Power Generation Solutions',
+            'Industrial Automation (PLC / SCADA)',
+            'Electromechanical Contracting',
+            'MEP Systems Integration',
             'Other'
         ],
         submit: 'Send',
@@ -93,9 +94,9 @@ const contact = {
         directions: 'Get Directions →'
     },
     cta: {
-        titleLine: 'Ready to Engineer',
-        titleHighlight: 'The Future?',
-        description: 'Our specialists are standing by to deploy resources for your next major undertaking.',
+        titleLine: 'Ready to Start',
+        titleHighlight: 'Your Project?',
+        description: 'Our specialists are ready to support your next power or industrial engineering requirement.',
         primaryButton: 'Schedule Consultation',
         secondaryButton: 'View Our Services'
     }

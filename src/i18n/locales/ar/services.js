@@ -4,14 +4,14 @@ const services = {
         serviceId: 'SERVICE ID: #PWR-002',
         titleLine: 'بنية طاقة',
         titleAccent: 'حرجة وموثوقة',
-        description: 'هندسة عالية الدقة لضمان الاستمرارية المطلقة. نقدم حلول توليد طاقة صناعية لمراكز البيانات والمجمعات الصناعية ودعم الشبكات الوطنية.',
-        chips: [ 'قدرة +800kVA', 'معتمد ISO 8528', 'جاهز للأنظمة الهجينة' ],
+        description: 'تقدم فوكاس للتجارة والمقاولات حلول توليد طاقة وهندسة صناعية عالية الدقة للعمليات الحرجة.',
+        chips: [ 'مولدات ديزل 20-3000 KVA', 'ISO 9001 / ISO 45001', 'التوافق مع ISO 8528' ],
         ctaPrimary: 'طلب المخططات',
         ctaSecondary: 'عرض دراسات الحالة',
         stats: [
             { value: '99.99%', label: 'ضمان الجاهزية' },
             { value: '+50', label: 'مشروع عالمي' },
-            { value: '1.2GW', label: 'طاقة مولدة' }
+            { value: '1.2 GW', label: 'إجمالي القدرة المسلّمة' }
         ],
         cardLabel: 'مراقبة مباشرة',
         dataRows: [
@@ -66,11 +66,11 @@ const services = {
                 subtitle: 'صناعي واحتياطي',
                 serviceId: '#PWR-GEN-04',
                 heading: 'بنية طاقة صناعية',
-                description: 'حلول توليد طاقة موثوقة وعالية الكفاءة مصممة للبنى الحرجة. نقدم أنظمة احتياطية قوية ووحدات إمداد مستمر مخصصة للمتطلبات الصناعية.',
+                description: 'حلول مولدات ديزل من 20 KVA إلى 3000 KVA مع ATS ومزامنة الشبكة واستمرارية التغذية للبنى الحرجة.',
                 stats: [
-                    { icon: 'offline_bolt', label: 'سعة الطاقة', value: '800', unit: 'kVA', progress: 80 },
-                    { icon: 'speed', label: 'كفاءة المولد', value: '98.5', unit: '%', progress: 98.5 },
-                    { icon: 'rocket_launch', label: 'سرعة التنفيذ', value: '48', unit: 'ساعة', subtext: 'تركيب سريع في الموقع' }
+                    { icon: 'offline_bolt', label: 'نطاق القدرة', value: '20-3000', unit: 'KVA', progress: 85 },
+                    { icon: 'verified_user', label: 'ضمان الجاهزية', value: '99.99', unit: '%', progress: 99.99 },
+                    { icon: 'bolt', label: 'قدرة مسلّمة', value: '1.2', unit: 'GW', subtext: 'إجمالي القدرة المنفذة' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - POWER FLOW', 'GRID SYNCHRONIZED' ],
                 diagramType: 'power'
@@ -82,11 +82,11 @@ const services = {
                 subtitle: 'تكامل وتحكم',
                 serviceId: '#MEP-01',
                 heading: 'تكامل أنظمة MEP',
-                description: 'حلول ميكانيكية وكهربائية وصحية مصممة بدقة للبنية التجارية الكبيرة مع ضمان التشغيل البيني السلس للأنظمة الأساسية.',
+                description: 'حلول ميكانيكية وكهربائية وصحية متكاملة ومصممة للمنشآت الصناعية والتجارية.',
                 stats: [
-                    { icon: 'bolt', label: 'قدرة النظام', value: '50', unit: 'MW', progress: 85 },
-                    { icon: 'timer', label: 'جاهزية مضمونة', value: '99.9', unit: '%', progress: 99 },
-                    { icon: 'groups', label: 'فريق الهندسة', value: '45', unit: '+', subtext: 'متخصصون معتمدون' }
+                    { icon: 'public', label: 'نطاق التشغيل', value: '2', unit: '', progress: 100, subtext: 'مصر / السعودية' },
+                    { icon: 'work', label: 'المشاريع العالمية', value: '50', unit: '+', progress: 80 },
+                    { icon: 'groups', label: 'العملاء الراضون', value: '75', unit: '+', subtext: 'في القطاعات الأساسية' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - MEP FLOW', 'SYSTEM ACTIVE' ],
                 diagramType: 'mep'
@@ -98,11 +98,11 @@ const services = {
                 subtitle: 'أنظمة وطاقة',
                 serviceId: '#EM-01',
                 heading: 'أنظمة مبانٍ متكاملة',
-                description: 'حلول كهروميكانيكية متكاملة من البداية للنهاية لبنية عالية الأداء، توحد الكهرباء وHVAC والصحي ضمن إطار تشغيلي واحد.',
+                description: 'تنفيذ كهروميكانيكي متكامل لأنظمة توزيع الطاقة ودمج الأنظمة في البنية التحتية الصناعية.',
                 stats: [
-                    { icon: 'hub', label: 'تغطية التكامل', value: '100', unit: '%', progress: 100 },
-                    { icon: 'precision_manufacturing', label: 'دقة التركيب', value: '99.8', unit: '%', progress: 99.8 },
-                    { icon: 'rocket_launch', label: 'كفاءة التسليم', value: 'عالية', unit: '', subtext: 'سير عمل محسّن' }
+                    { icon: 'calendar_month', label: 'سنوات الخبرة', value: '6', unit: '+', progress: 70 },
+                    { icon: 'workspace_premium', label: 'معيار الجودة', value: 'ISO', unit: '9001', progress: 100 },
+                    { icon: 'shield_with_heart', label: 'معيار السلامة', value: 'ISO', unit: '45001', subtext: 'امتثال معتمد' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - SYSTEM MAP', 'LIVE SYNC' ],
                 diagramType: 'electromechanical'
@@ -114,11 +114,11 @@ const services = {
                 subtitle: 'أنظمة SCADA وPLC',
                 serviceId: '#AUTO-01',
                 heading: 'ذكاء التحكم الصناعي',
-                description: 'معماريات PLC وSCADA وDCS متقدمة لبيئات صناعية حرجة مع تحكم دقيق واكتساب بيانات لحظي.',
+                description: 'تكامل PLC وSCADA للمراقبة والتحكم الصناعي وإتاحة البيانات اللحظية.',
                 stats: [
-                    { icon: 'speed', label: 'استجابة التحكم', value: '10', unit: 'ms', progress: 95 },
-                    { icon: 'verified_user', label: 'جاهزية النظام', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'my_location', label: 'دقة الحساسات', value: '+/- 0.01', unit: '%', subtext: 'معايرة دقيقة' }
+                    { icon: 'precision_manufacturing', label: 'الأنظمة الأساسية', value: 'PLC', unit: '/SCADA', progress: 100 },
+                    { icon: 'verified_user', label: 'ضمان الجاهزية', value: '99.99', unit: '%', progress: 99.99 },
+                    { icon: 'lan', label: 'تكامل MEP', value: 'مفعّل', unit: '', subtext: 'تنسيق متعدد التخصصات' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - SCADA LOOP', 'ACTIVE FEED' ],
                 diagramType: 'automation'
@@ -129,59 +129,59 @@ const services = {
         badge: 'ميزة استراتيجية',
         title: 'لماذا',
         titleAccent: 'فوكاس',
-        lead: 'دقة هندسية مع تنفيذ سريع.',
-        description: 'نقدم حلول مقاولات معقدة لا تحتمل الفشل. من البنى الحرجة إلى الأطر المستدامة، يحدد نهجنا الانضباط الفني والتفوق التقني.',
-        statValues: [ '24h', '100%', 'ISO' ],
-        statLabels: [ 'التحريك', 'الامتثال', 'معتمد' ],
+        lead: 'دقة هندسية مدعومة بمؤشرات أداء موثقة.',
+        description: 'تجمع فوكاس للتجارة والمقاولات بين توليد الطاقة والأتمتة والتنفيذ الكهروميكانيكي وفق معايير جودة وسلامة معتمدة.',
+        statValues: [ '6+', '50+', '75+' ],
+        statLabels: [ 'سنوات خبرة', 'مشروع عالمي', 'عميل راضٍ' ],
         sectionLabel: 'تميّز هندسي',
-        sectionIntro: 'إطارنا التشغيلي مبني على الدقة والسرعة وسلاسل الإمداد المتكاملة. لا نبني بنية تحتية فقط، بل نبني يقيناً في عالم متغير.',
+        sectionIntro: 'يشمل نطاقنا الفني مولدات 20-3000 KVA وأنظمة PLC وSCADA وتكامل MEP، مع 1.2 GW قدرة مسلّمة وضمان جاهزية 99.99%.',
         items: [
             {
                 id: 1,
                 number: '01',
-                title: 'قدرة استجابة سريعة',
-                description: 'إطارنا التشغيلي المرن يضمن نشر الموارد والفرق المتخصصة للمواقع الحرجة خلال 24 ساعة من بدء المشروع باستخدام مراكز لوجستية مسبقة التجهيز.',
+                title: 'تغطية القدرة الكهربائية',
+                description: 'يغطي نطاق المولدات لدينا متطلبات الطاقة الصناعية من 20 KVA إلى 3000 KVA للتشغيل المستمر والاحتياطي.',
                 features: [
-                    { icon: 'check_circle', text: 'تشغيل مركز القيادة 24/7' },
-                    { icon: 'check_circle', text: 'شبكة موردين معتمدة مسبقاً' }
+                    { icon: 'check_circle', text: 'نطاق مولدات ديزل 20-3000 KVA' },
+                    { icon: 'check_circle', text: 'تكامل ATS ومزامنة الشبكة' }
                 ],
-                metric: { value: '24', unit: 'ساعة', label: 'زمن النشر' }
+                metric: { value: '20-3000', unit: 'KVA', label: 'نطاق المولدات' }
             },
             {
                 id: 2,
                 number: '02',
-                title: 'هندسة تعاونية',
-                description: 'نهج متعدد التخصصات يكسر العزلة التقليدية عبر تنسيق قائم على BIM، مع دمج الفرق الإنشائية والميكانيكية والكهربائية في بيئة رقمية موحدة.',
+                title: 'تكامل الأتمتة',
+                description: 'نصمم معماريات PLC وSCADA وHMI للتحكم اللحظي ورفع وضوح التشغيل الصناعي.',
                 features: [
-                    { icon: 'hub', text: 'تنسيق بين التخصصات' },
-                    { icon: 'sync', text: 'تحديثات توأم رقمي لحظية' }
+                    { icon: 'hub', text: 'برمجة PLC ومنطق التحكم' },
+                    { icon: 'sync', text: 'تكامل SCADA وHMI' }
                 ],
-                metric: { value: '100%', unit: '', label: 'تناغم الفرق' }
+                metric: { value: 'PLC', unit: '/SCADA', label: 'نطاق التحكم' }
             },
             {
                 id: 3,
                 number: '03',
-                title: 'سلسلة إمداد متكاملة',
-                description: 'نعتمد على شبكة عالمية من المصنعين والشركاء اللوجستيين المعتمدين لضمان توفر المواد رغم تقلبات السوق، مع تأمين العناصر الحرجة مسبقاً.',
+                title: 'تنفيذ كهروميكانيكي وMEP',
+                description: 'تنفذ فرقنا أنظمة كهروميكانيكية وتوزيع طاقة وتكامل MEP مع تنسيق موقعي كامل.',
                 features: [
-                    { icon: 'verified_user', text: 'موثوقية موردين معتمدين' },
-                    { icon: 'local_shipping', text: 'تتبع لوجستي مؤتمت' }
+                    { icon: 'verified_user', text: 'تنفيذ المقاولات الكهروميكانيكية' },
+                    { icon: 'local_shipping', text: 'تكامل MEP والتشغيل' }
                 ],
-                metric: { value: '45+', unit: '', label: 'مراكز عالمية' }
+                metric: { value: '2', unit: '', label: 'نطاق التشغيل' }
             },
             {
                 id: 4,
                 number: '04',
                 title: 'معايير السلامة والجودة',
-                description: 'فلسفة صفر أذى مدمجة في كل طبقات التشغيل، مع التزام صارم بمعايير ISO 45001 وISO 9001 وتحليلات استباقية لتقليل المخاطر.',
+                description: 'نلتزم بمعايير ISO 9001 وISO 45001 والتوافق مع ISO 8528 للمولدات مع المحافظة على ضمان جاهزية 99.99%.',
                 features: [
-                    { icon: 'shield_with_heart', text: 'بروتوكولات سلامة حرجة' },
-                    { icon: 'workspace_premium', text: 'متوافق مع ISO 9001 و45001' }
+                    { icon: 'shield_with_heart', text: 'امتثال السلامة ISO 45001' },
+                    { icon: 'workspace_premium', text: 'مواءمة ISO 9001 وISO 8528' }
                 ],
-                metric: { value: 'Zero', unit: '', label: 'اعتماد بدون حوادث' }
+                metric: { value: '99.99%', unit: '', label: 'ضمان الجاهزية' }
             }
         ],
-        footerVersion: 'Focus System v2.0',
+        footerVersion: 'FOCUS T&C',
         footerStatus: 'النظام نشط'
     },
     workflow: {
@@ -189,7 +189,7 @@ const services = {
         scale: [ 'SCALE: 1:100', 'REF: ENG-FLOW-V5', 'STATUS: MONITORING' ],
         badge: 'هيكل النظام',
         title: '05 // ENGINEERED FLOW',
-        description: 'عرض بصري لمنهجيتنا الهندسية الصارمة. من الفكرة حتى التشغيل، كل مرحلة مدفوعة بالبيانات.',
+        description: 'مسار تنفيذ منظم يغطي الهندسة والنشر والتشغيل والصيانة للأنظمة الحرجة.',
         activeSuffix: ' // ACTIVE',
         phaseActive: 'المرحلة: نشطة',
         phaseLabel: 'المرحلة',
@@ -202,58 +202,58 @@ const services = {
             {
                 id: 1,
                 icon: 'chat_bubble_outline',
-                title: 'الاستشارة',
-                subtitle: 'تحديد أولي',
-                description: 'نبدأ بمقابلات شاملة مع أصحاب المصلحة وجمع المتطلبات لتحديد نطاق المشروع والقيود ومؤشرات النجاح.',
+                title: 'التقييم الهندسي',
+                subtitle: 'تحديد النطاق',
+                description: 'نحدد متطلبات المشروع وظروف التشغيل وأولويات الأنظمة في الطاقة والأتمتة والتنفيذ الكهروميكانيكي.',
                 duration: '1-2 أسبوع',
-                techStack: 'Jira / Miro'
+                techStack: 'معاينة موقع / مراجعة فنية'
             },
             {
                 id: 2,
                 icon: 'settings',
-                title: 'الهندسة',
-                subtitle: 'هندسة دقيقة',
-                description: 'نحوّل القيود المفاهيمية إلى واقع تشغيلي عبر نمذجة CAD واختبارات إجهاد صارمة مع محاكاة للأداء الأقصى.',
-                duration: '4-6 أسابيع',
-                techStack: 'AutoCAD / PySim'
+                title: 'هندسة الأنظمة',
+                subtitle: 'تكامل التصميم',
+                description: 'نستكمل تصميم سعات المولدات ومعمارية PLC وSCADA وتنسيق MEP قبل التنفيذ.',
+                duration: '2-4 أسابيع',
+                techStack: 'حزم تصميم / معمارية تحكم'
             },
             {
                 id: 3,
                 icon: 'construction',
-                title: 'التنفيذ',
+                title: 'النشر',
                 subtitle: 'التركيب',
-                description: 'تنفيذ ودمج احترافي مع الأنظمة القائمة بواسطة فنيين معتمدين لضمان نشر سلس بأقل توقف.',
-                duration: '3-4 أسابيع',
-                techStack: 'Fusion 360 / PLC'
+                description: 'تنفذ الفرق الميدانية تركيب ودمج الأنظمة الكهروميكانيكية ولوحات التحكم وبنية الطاقة حسب المخططات المعتمدة.',
+                duration: '2-6 أسابيع',
+                techStack: 'تنفيذ موقعي / إعداد PLC'
             },
             {
                 id: 4,
                 icon: 'published_with_changes',
                 title: 'التشغيل التجريبي',
-                subtitle: 'الاختبارات',
-                description: 'بروتوكولات اختبار صارمة وتحقق من الأداء لضمان مطابقة المواصفات أو تجاوزها قبل التسليم.',
-                duration: '2-3 أسابيع',
-                techStack: 'LabVIEW / TestStand'
+                subtitle: 'التحقق',
+                description: 'يتم التحقق المتكامل من أداء المولدات ومنطق PLC وSCADA وجاهزية النظام قبل التسليم.',
+                duration: '1-2 أسبوع',
+                techStack: 'اختبارات قبول / تحقق أداء'
             },
             {
                 id: 5,
                 icon: 'support_agent',
-                title: 'الدعم',
+                title: 'الصيانة',
                 subtitle: 'الصيانة',
-                description: 'مراقبة 24/7 وصيانة استباقية لضمان الأداء الأمثل والاستجابة السريعة لأي حالات.',
+                description: 'الصيانة المستمرة والدعم الفني يحافظان على الجاهزية وأداء التشغيل طويل المدى.',
                 duration: 'مستمر',
-                techStack: 'Azure IoT / Teams'
+                techStack: 'صيانة وقائية / دعم خدمة'
             }
         ],
         metrics: [
-            { id: 'A1', icon: 'description', value: '142', label: 'رسومات فنية' },
-            { id: 'B2', icon: 'memory', value: '850+', label: 'محاكاة منفذة' },
-            { id: 'C3', icon: 'verified_user', value: '100%', label: 'امتثال السلامة' }
+            { id: 'A1', icon: 'calendar_month', value: '6+', label: 'سنوات الخبرة' },
+            { id: 'B2', icon: 'work', value: '50+', label: 'المشاريع العالمية' },
+            { id: 'C3', icon: 'verified_user', value: '99.99%', label: 'ضمان الجاهزية' }
         ],
         cta: {
             titleLine: 'جاهز لدعم',
             titleHighlight: 'مشروعك القادم؟',
-            description: 'تعاون مع فوكاس للحصول على حلول أتمتة رائدة تعزز الكفاءة والنمو.',
+            description: 'تعاون مع فوكاس للتجارة والمقاولات لحلول المولدات والأتمتة والتنفيذ الكهروميكانيكي للمهام الحرجة.',
             primary: 'طلب استشارة',
             secondary: 'عرض المشاريع'
         }

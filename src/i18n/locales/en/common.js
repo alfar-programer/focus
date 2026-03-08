@@ -1,7 +1,7 @@
 const common = {
     app: {
         titles: {
-            projectsPage: 'Focus TC - Projects Showcase'
+            projectsPage: 'Focus Trading & Contracting - Projects Showcase'
         }
     },
     common: {
@@ -24,7 +24,7 @@ const common = {
         },
         aboutDropdown: {
             title: 'About Focus',
-            subtitle: 'Over Two Decades of Excellence and Innovation',
+            subtitle: 'Established in 2020 - Power Generation and Industrial Engineering',
             journey: 'Our Journey',
             whoWeAre: 'Who We Are',
             partners: 'Our Partners'
@@ -70,8 +70,8 @@ const common = {
             title: 'Services',
             links: {
                 power: 'Power Generation',
-                scada: 'SCADA and Automation',
-                electro: 'Electro-Mechanical',
+                scada: 'Industrial Automation',
+                electro: 'Electromechanical Contracting',
                 projects: 'Projects',
                 contact: 'Contact Us'
             }

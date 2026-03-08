@@ -1,7 +1,7 @@
 const common = {
     app: {
         titles: {
-            projectsPage: 'فوكاس تي سي - معرض المشاريع'
+            projectsPage: 'فوكاس للتجارة والمقاولات - معرض المشاريع'
         }
     },
     common: {
@@ -24,7 +24,7 @@ const common = {
         },
         aboutDropdown: {
             title: 'عن فوكاس',
-            subtitle: 'أكثر من عقدين من التميز والابتكار',
+            subtitle: 'تأسست في 2020 - حلول توليد الطاقة والهندسة الصناعية',
             journey: 'رحلتنا',
             whoWeAre: 'من نحن',
             partners: 'شركاؤنا'
@@ -70,8 +70,8 @@ const common = {
             title: 'الخدمات',
             links: {
                 power: 'توليد الطاقة',
-                scada: 'سكادا والأتمتة',
-                electro: 'الأعمال الكهروميكانيكية',
+                scada: 'الأتمتة الصناعية',
+                electro: 'المقاولات الكهروميكانيكية',
                 projects: 'المشاريع',
                 contact: 'تواصل معنا'
             }

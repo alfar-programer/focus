@@ -4,14 +4,14 @@ const services = {
         serviceId: 'SERVICE ID: #PWR-002',
         titleLine: 'Mission-Critical',
         titleAccent: 'Power Infrastructure',
-        description: 'High-precision engineering for absolute uptime. We deliver industrial-grade power generation solutions for data centers, manufacturing complexes, and national grid support.',
-        chips: [ '800kVA+ Capacity', 'ISO 8528 Certified', 'Hybrid Ready' ],
+        description: 'Focus Trading & Contracting delivers high-precision power generation and industrial engineering solutions for mission-critical operations.',
+        chips: [ '20-3000 KVA Diesel Generators', 'ISO 9001 / ISO 45001', 'ISO 8528 Compliance' ],
         ctaPrimary: 'Request Schematics',
         ctaSecondary: 'View Case Studies',
         stats: [
             { value: '99.99%', label: 'Uptime Guarantee' },
             { value: '50+', label: 'Global Projects' },
-            { value: '1.2GW', label: 'Power Generated' }
+            { value: '1.2 GW', label: 'Total Power Delivered' }
         ],
         cardLabel: 'LIVE MONITORING',
         dataRows: [
@@ -66,11 +66,11 @@ const services = {
                 subtitle: 'INDUSTRIAL & BACKUP',
                 serviceId: '#PWR-GEN-04',
                 heading: 'Industrial Power Infrastructure',
-                description: 'Reliable, high-efficiency power generation solutions designed for critical infrastructure. We deliver robust backup systems and continuous power supply units tailored to industrial demands.',
+                description: 'Diesel generator solutions from 20 KVA to 3000 KVA with ATS, grid synchronization, and backup continuity for critical infrastructure.',
                 stats: [
-                    { icon: 'offline_bolt', label: 'Power Capacity', value: '800', unit: 'kVA', progress: 80 },
-                    { icon: 'speed', label: 'Generator Efficiency', value: '98.5', unit: '%', progress: 98.5 },
-                    { icon: 'rocket_launch', label: 'Deployment Speed', value: '48', unit: 'hrs', subtext: 'Rapid On-site Setup' }
+                    { icon: 'offline_bolt', label: 'Power Range', value: '20-3000', unit: 'KVA', progress: 85 },
+                    { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
+                    { icon: 'bolt', label: 'Power Delivered', value: '1.2', unit: 'GW', subtext: 'Total Delivered Capacity' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - POWER FLOW', 'GRID SYNCHRONIZED' ],
                 diagramType: 'power'
@@ -82,11 +82,11 @@ const services = {
                 subtitle: 'INTEGRATION & CONTROL',
                 serviceId: '#MEP-01',
                 heading: 'MEP Systems Integration',
-                description: 'Precision-engineered mechanical, electrical, and plumbing solutions optimized for large-scale commercial infrastructure. We ensure seamless interoperability between core building systems.',
+                description: 'Integrated mechanical, electrical, and plumbing systems engineered for industrial and commercial facilities.',
                 stats: [
-                    { icon: 'bolt', label: 'System Capacity', value: '50', unit: 'MW', progress: 85 },
-                    { icon: 'timer', label: 'Guaranteed Uptime', value: '99.9', unit: '%', progress: 99 },
-                    { icon: 'groups', label: 'Engineering Team', value: '45', unit: '+', subtext: 'Certified Specialists' }
+                    { icon: 'public', label: 'Operational Regions', value: '2', unit: '', progress: 100, subtext: 'Egypt / Saudi Arabia' },
+                    { icon: 'work', label: 'Global Projects', value: '50', unit: '+', progress: 80 },
+                    { icon: 'groups', label: 'Satisfied Clients', value: '75', unit: '+', subtext: 'Across Core Sectors' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - MEP FLOW', 'SYSTEM ACTIVE' ],
                 diagramType: 'mep'
@@ -98,11 +98,11 @@ const services = {
                 subtitle: 'SYSTEMS & POWER',
                 serviceId: '#EM-01',
                 heading: 'Integrated Building Systems',
-                description: 'End-to-end electromechanical solutions designed for high-performance infrastructure. We unify electrical, HVAC, and plumbing networks into a single, cohesive operational framework for maximum efficiency.',
+                description: 'End-to-end electromechanical contracting for power distribution, system integration, and industrial infrastructure delivery.',
                 stats: [
-                    { icon: 'hub', label: 'Integration Coverage', value: '100', unit: '%', progress: 100 },
-                    { icon: 'precision_manufacturing', label: 'Installation Accuracy', value: '99.8', unit: '%', progress: 99.8 },
-                    { icon: 'rocket_launch', label: 'Delivery Efficiency', value: 'High', unit: '', subtext: 'Optimized Workflow' }
+                    { icon: 'calendar_month', label: 'Years Experience', value: '6', unit: '+', progress: 70 },
+                    { icon: 'workspace_premium', label: 'Quality Standard', value: 'ISO', unit: '9001', progress: 100 },
+                    { icon: 'shield_with_heart', label: 'Safety Standard', value: 'ISO', unit: '45001', subtext: 'Certified Compliance' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - SYSTEM MAP', 'LIVE SYNC' ],
                 diagramType: 'electromechanical'
@@ -114,11 +114,11 @@ const services = {
                 subtitle: 'SCADA & PLC SYSTEMS',
                 serviceId: '#AUTO-01',
                 heading: 'Industrial Control Intelligence',
-                description: 'Advanced PLC, SCADA, and DCS architectures designed for mission-critical industrial environments. We deliver real-time data acquisition and precise automated control systems.',
+                description: 'PLC and SCADA integration for industrial monitoring, supervisory control, and real-time data visibility.',
                 stats: [
-                    { icon: 'speed', label: 'Control Response', value: '10', unit: 'ms', progress: 95 },
-                    { icon: 'verified_user', label: 'System Uptime', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'my_location', label: 'Sensor Accuracy', value: '+/- 0.01', unit: '%', subtext: 'Calibrated Precision' }
+                    { icon: 'precision_manufacturing', label: 'Core Systems', value: 'PLC', unit: '/SCADA', progress: 100 },
+                    { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
+                    { icon: 'lan', label: 'MEP Integration', value: 'Enabled', unit: '', subtext: 'Cross-Discipline Coordination' }
                 ],
                 diagramLabels: [ 'FIG 3.0 - SCADA LOOP', 'ACTIVE FEED' ],
                 diagramType: 'automation'
@@ -129,59 +129,59 @@ const services = {
         badge: 'Strategic Advantage',
         title: 'WHY',
         titleAccent: 'FOCUS',
-        lead: 'Engineering precision meets rapid execution.',
-        description: 'We deliver complex contracting solutions where failure is not an option. From critical infrastructure to sustainable frameworks, our approach is defined by rigorous standards and technical superiority.',
-        statValues: [ '24h', '100%', 'ISO' ],
-        statLabels: [ 'Mobilization', 'Compliance', 'Certified' ],
+        lead: 'Engineering precision backed by verified delivery metrics.',
+        description: 'Focus Trading & Contracting combines power generation, automation, and electromechanical execution with ISO-aligned quality and safety standards.',
+        statValues: [ '6+', '50+', '75+' ],
+        statLabels: [ 'Years Experience', 'Global Projects', 'Satisfied Clients' ],
         sectionLabel: 'Engineering Excellence',
-        sectionIntro: 'Our operational framework is built on precision, speed, and integrated supply chains. We do not just build infrastructure; we engineer certainty in an uncertain world.',
+        sectionIntro: 'Our technical scope covers 20-3000 KVA generators, PLC and SCADA systems, and MEP integration, with 1.2 GW delivered and 99.99% uptime commitment.',
         items: [
             {
                 id: 1,
                 number: '01',
-                title: 'Rapid Response Capability',
-                description: 'Our agile operational framework ensures immediate deployment of resources and specialized engineering teams to critical infrastructure sites within 24 hours of project initiation. We utilize pre-staged logistics hubs to minimize lead times.',
+                title: 'Power Capacity Coverage',
+                description: 'Our generator portfolio supports industrial power requirements from 20 KVA to 3000 KVA for continuous and backup applications.',
                 features: [
-                    { icon: 'check_circle', text: '24/7 Command Center Activation' },
-                    { icon: 'check_circle', text: 'Pre-approved Vendor Network' }
+                    { icon: 'check_circle', text: '20-3000 KVA Diesel Generator Scope' },
+                    { icon: 'check_circle', text: 'ATS and Grid Synchronization Integration' }
                 ],
-                metric: { value: '24', unit: 'hr', label: 'Deploy Time' }
+                metric: { value: '20-3000', unit: 'KVA', label: 'Generator Range' }
             },
             {
                 id: 2,
                 number: '02',
-                title: 'Collaborative Engineering',
-                description: 'Our multidisciplinary approach breaks down traditional silos through advanced BIM-led synchronization. By integrating structural, mechanical, and electrical teams into a unified digital environment, we eliminate clashes before they manifest on site.',
+                title: 'Automation Integration',
+                description: 'We engineer PLC, SCADA, and HMI architectures for real-time control and industrial process visibility.',
                 features: [
-                    { icon: 'hub', text: 'Cross-Disciplinary Coordination' },
-                    { icon: 'sync', text: 'Real-time Digital Twin Updates' }
+                    { icon: 'hub', text: 'PLC Programming and Control Logic' },
+                    { icon: 'sync', text: 'SCADA and HMI Integration' }
                 ],
-                metric: { value: '100%', unit: '', label: 'Team Synergy' }
+                metric: { value: 'PLC', unit: '/SCADA', label: 'Control Scope' }
             },
             {
                 id: 3,
                 number: '03',
-                title: 'Integrated Supply Chain',
-                description: 'We leverage a robust global network of pre-vetted manufacturers and logistics partners to ensure material availability regardless of market volatility. Our vertical integration strategy secures critical path items months in advance.',
+                title: 'Electromechanical & MEP Delivery',
+                description: 'Our teams execute electromechanical systems, power distribution, and MEP integration with coordinated field implementation.',
                 features: [
-                    { icon: 'verified_user', text: 'Pre-vetted Vendor Reliability' },
-                    { icon: 'local_shipping', text: 'Automated Logistics Tracking' }
+                    { icon: 'verified_user', text: 'Electromechanical Contracting Execution' },
+                    { icon: 'local_shipping', text: 'MEP Integration and Commissioning' }
                 ],
-                metric: { value: '45+', unit: '', label: 'Global Hubs' }
+                metric: { value: '2', unit: '', label: 'Operational Regions' }
             },
             {
                 id: 4,
                 number: '04',
                 title: 'Safety and Quality Standards',
-                description: 'Our Zero-Harm philosophy is embedded in every operational layer. We rigorously adhere to ISO 45001 and ISO 9001 standards, employing predictive safety analytics to neutralize risks before they arise.',
+                description: 'We align delivery with ISO 9001, ISO 45001, and ISO 8528 generator compliance standards while maintaining a 99.99% uptime service commitment.',
                 features: [
-                    { icon: 'shield_with_heart', text: 'Mission-Critical Safety Protocols' },
-                    { icon: 'workspace_premium', text: 'ISO 9001 and 45001 Compliant' }
+                    { icon: 'shield_with_heart', text: 'ISO 45001 Safety Compliance' },
+                    { icon: 'workspace_premium', text: 'ISO 9001 and ISO 8528 Alignment' }
                 ],
-                metric: { value: 'Zero', unit: '', label: 'Harm Certified' }
+                metric: { value: '99.99%', unit: '', label: 'Uptime Guarantee' }
             }
         ],
-        footerVersion: 'Focus System v2.0',
+        footerVersion: 'FOCUS T&C',
         footerStatus: 'System Active'
     },
     workflow: {
@@ -189,7 +189,7 @@ const services = {
         scale: [ 'SCALE: 1:100', 'REF: ENG-FLOW-V5', 'STATUS: MONITORING' ],
         badge: 'System Architecture',
         title: '05 // ENGINEERED FLOW',
-        description: 'A visual breakdown of our rigorous engineering methodology. From concept to commissioning, every phase is data-driven.',
+        description: 'A structured delivery path covering engineering, deployment, commissioning, and maintenance for mission-critical systems.',
         activeSuffix: ' // ACTIVE',
         phaseActive: 'PHASE: ACTIVE',
         phaseLabel: 'PHASE',
@@ -202,58 +202,58 @@ const services = {
             {
                 id: 1,
                 icon: 'chat_bubble_outline',
-                title: 'Consultation',
-                subtitle: 'Initial Scoping',
-                description: 'We begin with comprehensive stakeholder interviews and requirement gathering. This phase establishes project scope, constraints, and success metrics through detailed analysis.',
+                title: 'Engineering Assessment',
+                subtitle: 'Scope Definition',
+                description: 'We define project requirements, operating conditions, and system priorities for power, automation, and electromechanical delivery.',
                 duration: '1-2 Weeks',
-                techStack: 'Jira / Miro'
+                techStack: 'Site Audit / Technical Review'
             },
             {
                 id: 2,
                 icon: 'settings',
-                title: 'Engineering',
-                subtitle: 'Precision Engineering',
-                description: 'We transform conceptual constraints into operational reality through rigorous CAD modeling and stress testing. Every component is simulated for peak load performance.',
-                duration: '4-6 Weeks',
-                techStack: 'AutoCAD / PySim'
+                title: 'System Engineering',
+                subtitle: 'Design Integration',
+                description: 'Our engineering teams finalize generator sizing, PLC and SCADA architecture, and MEP coordination for implementation readiness.',
+                duration: '2-4 Weeks',
+                techStack: 'Design Packages / Control Architecture'
             },
             {
                 id: 3,
                 icon: 'construction',
-                title: 'Implementation',
-                subtitle: 'Assembly',
-                description: 'Professional installation and integration with existing systems. Our certified technicians ensure seamless deployment with minimal operational disruption.',
-                duration: '3-4 Weeks',
-                techStack: 'Fusion 360 / PLC'
+                title: 'Deployment',
+                subtitle: 'Installation',
+                description: 'Field teams install and integrate electromechanical systems, control panels, and power infrastructure according to approved engineering plans.',
+                duration: '2-6 Weeks',
+                techStack: 'On-Site Execution / PLC Commission Setup'
             },
             {
                 id: 4,
                 icon: 'published_with_changes',
                 title: 'Commissioning',
-                subtitle: 'Testing',
-                description: 'Rigorous testing protocols and performance validation. We verify all systems meet or exceed specifications before handover.',
-                duration: '2-3 Weeks',
-                techStack: 'LabVIEW / TestStand'
+                subtitle: 'Validation',
+                description: 'Integrated testing validates generator performance, PLC and SCADA logic, and overall system readiness before handover.',
+                duration: '1-2 Weeks',
+                techStack: 'Acceptance Testing / Performance Checks'
             },
             {
                 id: 5,
                 icon: 'support_agent',
-                title: 'Support',
+                title: 'Maintenance',
                 subtitle: 'Maintenance',
-                description: '24/7 monitoring and proactive maintenance. Our support team ensures optimal performance and rapid response to any issues.',
+                description: 'Ongoing maintenance and service support sustain uptime performance and long-term operational reliability.',
                 duration: 'Ongoing',
-                techStack: 'Azure IoT / Teams'
+                techStack: 'Preventive Maintenance / Service Support'
             }
         ],
         metrics: [
-            { id: 'A1', icon: 'description', value: '142', label: 'Technical Drawings' },
-            { id: 'B2', icon: 'memory', value: '850+', label: 'Simulations Run' },
-            { id: 'C3', icon: 'verified_user', value: '100%', label: 'Safety Compliance' }
+            { id: 'A1', icon: 'calendar_month', value: '6+', label: 'Years Experience' },
+            { id: 'B2', icon: 'work', value: '50+', label: 'Global Projects' },
+            { id: 'C3', icon: 'verified_user', value: '99.99%', label: 'Uptime Guarantee' }
         ],
         cta: {
             titleLine: 'Ready to Power Your',
             titleHighlight: 'Next Project?',
-            description: 'Partner with Focus-TC for industry-leading automation solutions that drive efficiency and growth.',
+            description: 'Partner with Focus Trading & Contracting for generator, automation, and electromechanical solutions built for mission-critical performance.',
             primary: 'Request a Consultation',
             secondary: 'View Projects'
         }

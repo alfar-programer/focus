@@ -1,20 +1,20 @@
 const projects = {
     hero: {
-        badge: 'Excellence in Engineering',
-        title: 'Our Projects',
-        subtitle: 'Delivering excellence in power, automation, and electromechanical solutions across Egypt and the region. From concept to commissioning.',
+        badge: 'Industrial Delivery',
+        title: 'Industrial Power & Automation Projects',
+        subtitle: 'Mission-critical power and automation execution across Egypt and Saudi Arabia.',
         primaryButton: 'View Portfolio',
-        secondaryButton: 'Contact Sales'
+        secondaryButton: 'Contact Team'
     },
     intro: {
-        title: 'Building Future of Industry',
-        description: 'From 6th of October City to the wider GCC, Focus TC has a proven track record of delivering high-performance technical solutions for industrial, commercial, and utility sectors. We pride ourselves on precision, safety, and innovation.',
+        title: 'Engineering Performance at Scale',
+        description: 'Focus Trading & Contracting delivers power generation, industrial automation, and electromechanical projects with a metrics-driven approach in Egypt and Saudi Arabia.',
         readMethodology: 'Read about our methodology',
         stats: [
-            { icon: 'bolt', value: '500+', label: 'Megawatts Delivered' },
-            { icon: 'check_circle', value: '120+', label: 'Successful Installs' },
-            { icon: 'factory', value: '15', label: 'Industries Served' },
-            { icon: 'public', value: '4', label: 'Countries Active' }
+            { icon: 'bolt', value: '1.2 GW', label: 'Total Power Delivered' },
+            { icon: 'check_circle', value: '50+', label: 'Global Projects' },
+            { icon: 'factory', value: '6+', label: 'Years Experience' },
+            { icon: 'public', value: '2', label: 'Operational Regions' }
         ]
     },
     grid: {
@@ -34,6 +34,7 @@ const projects = {
             requestSimilar: 'Request Similar Project'
         },
         loadMore: 'Load More Projects',
+        // TODO: DATA NOT FOUND IN MASTER FILE
         projects: [
             {
                 id: 1,
@@ -120,7 +121,7 @@ const projects = {
         titleLine: 'Ready to Power Your',
         titleHighlight: ' Next Project?',
         description: 'From initial consultation to final commissioning, Focus TC delivers turnkey electromechanical solutions tailored to your specifications.',
-        features: [ '24h Response Time', 'Expert Consultation', 'Guaranteed Quality' ],
+        features: [ '6+ Years Experience', '99.99% Uptime Guarantee', 'ISO 9001 / ISO 45001' ],
         primaryButton: 'Schedule Consultation',
         secondaryButton: 'Company Profile'
     }
