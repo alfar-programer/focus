@@ -23,31 +23,32 @@
 
 [data-theme="light"],
 .light {
-    /* Background Colors */
-    --bg-primary: #FFFFFF;
-    --bg-surface: #F1F5F9;
+    /* Background Colors - Multi-layered depth */
+    --bg-primary: #F8FAFC;   /* Very soft off-white for main background */
+    --bg-surface: #FFFFFF;   /* Pure white for floating elements/cards */
+    --bg-accent:  #F1F5F9;   /* Subtle gray for alternating sections */
+    --bg-accent2:  #d0d2d4;   /* Subtle gray for alternating sections */
 
-    /* Brand Colors */
-    --color-primary: #0A2540;
-    --color-accent: #2563EB;
+    /* Brand Colors - High-end Tech palette */
+    --color-primary: #0F172A; /* Deep Navy/Slate for authority */
+    --color-accent:  #2563EB; /* Professional Action Blue */
+    --color-cyan:    #0EA5E9; /* Sky Blue for tech details */
 
-    /* Text Colors */
-    --text-primary: #334155;
-    --text-secondary: #64748B;
-    --text-inverse: #0A2540;
+    /* Text Colors - Optimized Contrast */
+    --text-primary:   #1E293B; /* Soft black/slate for long-form comfort */
+    --text-secondary: #475569; /* Muted slate for metadata/descriptions */
+    --text-muted:     #94A3B8; /* Disabled or placeholder state */
+    --text-inverse:   #F8FAFC; /* Steel White for dark surfaces */
+    --text-heading:   var(--color-primary); /* For large titles */
 
-    /* Border/Divider */
-    --border-color: #E2E8F0;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-
-    /* Transitions */
-    --transition-fast: 0.15s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    /* UI Elements */
+    --border-color: #E2E8F0; /* Soft dividers */
+    --input-bg:     #F8FAFC;
+    
+    /* Shadows - Diffused Modern Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -1px rgba(15, 23, 42, 0.02);
+    --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
 }
 
 /* Dark Mode Palette - Modern Automation Theme */
@@ -70,8 +71,9 @@
     /* Off-White */
     --text-secondary: #CBD5E1;
     /* Lighter text */
-    --text-inverse: #3B82F6;
-    /* Midnight Slate */
+    --text-inverse: #F8FAFC;
+    /* Soft white for dark surfaces */
+    --text-heading: #F8FAFC;
 
     /* Border/Divider */
     --border-color: #334155;
@@ -105,7 +107,7 @@
         --color-accent: #06B6D4;
         --text-primary: #F8FAFC;
         --text-secondary: #94A3B8;
-        --text-inverse: #0F172A;
+        --text-inverse: #F8FAFC;
         --border-color: #334155;
         --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
         --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);

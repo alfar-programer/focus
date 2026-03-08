@@ -41,6 +41,11 @@
     width: 500px;
     height: auto;
     filter: grayscale(100%) brightness(200%) contrast(0%);
+    opacity: 0.1;
+}
+
+[data-theme="dark"] .why-focus__logo-watermark img {
+    filter: grayscale(100%) brightness(200%) contrast(0%);
 }
 
 @media (min-width: 1024px) {
@@ -134,7 +139,7 @@
     font-weight: 900;
     line-height: 0.9;
     letter-spacing: -0.03em;
-    color: var(--text-primary);
+    color: var(--text-heading);
     margin-bottom: 2rem;
 }
 
@@ -152,7 +157,7 @@
 
 .why-focus__title-accent {
     color: transparent;
-    background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+    background: linear-gradient(to right, var(--color-primary), var(--color-accent));
     -webkit-background-clip: text;
     background-clip: text;
 }
@@ -281,7 +286,7 @@
 .why-focus__item.active {
     border-color: var(--color-accent);
     background-color: var(--bg-surface);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Item Header */
@@ -369,6 +374,10 @@
     .why-focus__item-title {
         font-size: 1.5rem;
     }
+}
+
+[data-theme="light"] .why-focus__item:not(.active) .why-focus__item-title {
+    color: var(--text-secondary);
 }
 
 /* Animated Line */

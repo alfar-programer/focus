@@ -44,6 +44,12 @@
     width: 750px;
     height: auto;
     filter: grayscale(100%) brightness(200%) contrast(0%);
+    opacity: 0.1;
+}
+
+[data-theme="dark"] .services-hero__logo-watermark img {
+    filter: grayscale(100%) brightness(200%) contrast(0%);
+    opacity: 0.23;
 }
 
 @media (min-width: 1024px) {
@@ -143,7 +149,7 @@
     font-weight: 700;
     line-height: 0.95;
     letter-spacing: -0.02em;
-    color: var(--text-primary);
+    color: var(--text-heading);
     margin-bottom: 1.5rem;
 }
 
@@ -278,12 +284,12 @@
 .services-hero__btn--secondary {
     background-color: transparent;
     color: var(--text-primary);
-    border: 1px solid var(--text-secondary);
+    border: 1px solid var(--border-color);
 }
 
 .services-hero__btn--secondary:hover {
-    border-color: var(--text-primary);
-    background-color: color-mix(in srgb, var(--text-primary) 5%, transparent);
+    border-color: var(--color-accent);
+    background-color: var(--bg-surface);
 }
 
 /* Stats */

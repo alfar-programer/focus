@@ -156,7 +156,7 @@
         inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
     z-index: 100;
     overflow: hidden;
 }
@@ -287,13 +287,13 @@
 .navbar-dropdown-menu .dropdown-header {
     opacity: 0;
     transform: translateY(-5px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar-dropdown-menu .dropdown-card {
     opacity: 0;
     transform: translateY(15px);
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar-dropdown-container:hover .navbar-dropdown-menu .dropdown-header {
@@ -323,7 +323,7 @@
     transform: translateY(-4px) scale(1.02) !important;
     box-shadow: 0 15px 30px color-mix(in srgb, var(--color-primary) 20%, transparent);
     border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
-    color: #ffffff;
+    color: var(--text-inverse);
     /* Text turns white on hover due to underlying colored background */
     transition-delay: 0s !important;
     /* Force cancel the entry animation delay when actively hovered */

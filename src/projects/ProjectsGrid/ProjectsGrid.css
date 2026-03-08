@@ -3,10 +3,9 @@
     background: var(--bg-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-    .projects-grid-section {
-        background: var(--bg-surface);
-    }
+[data-theme="dark"] .projects-grid-section,
+.dark .projects-grid-section {
+    background: var(--bg-surface);
 }
 
 .projects-grid-container {
@@ -35,8 +34,8 @@
 
 .projects-filter-btn.active {
     background: var(--color-primary);
-    color: white;
-    box-shadow: 0 10px 25px -5px rgba(var(--color-primary), 0.25);
+    color: var(--text-inverse);
+    box-shadow: 0 10px 25px -5px color-mix(in srgb, var(--color-primary) 25%, transparent);
     transform: translateY(-1px);
 }
 
@@ -46,12 +45,11 @@
     color: var(--text-secondary);
 }
 
-@media (prefers-color-scheme: dark) {
-    .projects-filter-btn:not(.active) {
-        background: var(--bg-surface);
-        border-color: var(--border-color);
-        color: var(--text-secondary);
-    }
+[data-theme="dark"] .projects-filter-btn:not(.active),
+.dark .projects-filter-btn:not(.active) {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
 }
 
 .projects-filter-btn:not(.active):hover {
@@ -59,11 +57,10 @@
     color: var(--color-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-    .projects-filter-btn:not(.active):hover {
-        background: var(--bg-surface);
-        color: var(--color-primary);
-    }
+[data-theme="dark"] .projects-filter-btn:not(.active):hover,
+.dark .projects-filter-btn:not(.active):hover {
+    background: var(--bg-primary);
+    color: var(--color-primary);
 }
 
 .projects-grid {
@@ -97,16 +94,15 @@
     cursor: pointer;
 }
 
-@media (prefers-color-scheme: dark) {
-    .projects-page-card {
-        background: var(--bg-surface);
-        border-color: var(--border-color);
-    }
+[data-theme="dark"] .projects-page-card,
+.dark .projects-page-card {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
 }
 
 .projects-page-card:hover {
-    border-color: rgba(var(--color-primary), 0.5);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(var(--color-primary), 0.1);
+    border-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px color-mix(in srgb, var(--color-primary) 10%, transparent);
 }
 
 .projects-page-card-image {
@@ -162,10 +158,9 @@
     transition: color 0.2s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-    .projects-page-title {
-        color: white;
-    }
+[data-theme="dark"] .projects-page-title,
+.dark .projects-page-title {
+    color: var(--text-primary);
 }
 
 .projects-page-card:hover .projects-page-title {
@@ -244,21 +239,19 @@
     background: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-    .load-more-btn {
-        border-color: var(--border-color);
-        color: var(--text-secondary);
-    }
+[data-theme="dark"] .load-more-btn,
+.dark .load-more-btn {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
 }
 
 .load-more-btn:hover {
     background: var(--bg-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-    .load-more-btn:hover {
-        background: var(--bg-surface);
-    }
+[data-theme="dark"] .load-more-btn:hover,
+.dark .load-more-btn:hover {
+    background: var(--bg-primary);
 }
 
 /* Project Modal */
@@ -466,13 +459,13 @@
 }
 
 .project-service-tag {
-    background: rgba(59, 130, 246, 0.15);
+    background: color-mix(in srgb, var(--color-primary) 15%, transparent);
     color: var(--color-primary);
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-size: 0.875rem;
     font-weight: 500;
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
 
 .project-modal-cta {
@@ -494,7 +487,7 @@
 
 .project-modal-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 10px 30px -5px color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
 
 .project-modal-cta .material-symbols-outlined {

@@ -9,8 +9,8 @@
     position: absolute;
     inset: 0;
     background: 
-        radial-gradient(ellipse at 20% 50%, rgba(var(--color-primary), 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(var(--color-accent), 0.1) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 50%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0%, transparent 50%);
     z-index: 1;
 }
 
@@ -18,8 +18,8 @@
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(rgba(var(--color-primary), 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(var(--color-primary), 0.03) 1px, transparent 1px);
+        linear-gradient(color-mix(in srgb, var(--color-primary) 3%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 3%, transparent) 1px, transparent 1px);
     background-size: 60px 60px;
     z-index: 1;
 }
@@ -43,8 +43,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(var(--color-primary), 0.15);
-    border: 1px solid rgba(var(--color-primary), 0.3);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
     border-radius: 9999px;
     color: var(--color-primary);
     font-size: 0.875rem;
@@ -142,14 +142,15 @@
 }
 
 .projects-cta-btn-primary {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    color: white;
-    box-shadow: 0 10px 30px -5px rgba(var(--color-primary), 0.4);
+    background: var(--color-primary);
+    color: var(--text-inverse);
+    box-shadow: 0 10px 30px -5px color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
 
 .projects-cta-btn-primary:hover {
+    background: var(--color-accent);
     transform: translateY(-2px);
-    box-shadow: 0 15px 40px -5px rgba(var(--color-primary), 0.5);
+    box-shadow: 0 15px 40px -8px color-mix(in srgb, var(--color-accent) 40%, transparent);
 }
 
 .projects-cta-btn-primary span {

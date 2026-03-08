@@ -104,11 +104,11 @@
 }
 
 .projects-stat-card:nth-child(3) .projects-stat-icon {
-    color: #60a5fa;
+    color: var(--color-cyan);
 }
 
 .projects-stat-card:nth-child(4) .projects-stat-icon {
-    color: #22c55e;
+    color: #10B981; /* Professional Emerald instead of high-viz green */
 }
 
 .projects-stat-card:hover .projects-stat-icon {
@@ -118,7 +118,7 @@
 .projects-stat-number {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--text-heading);
     margin-bottom: 0.25rem;
 }
 

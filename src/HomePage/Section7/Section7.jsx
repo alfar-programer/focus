@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useNavigate } from 'react-router-dom';
 import './Section7.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
@@ -8,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Section7 = () => {
     const { get, t } = useI18n();
+    const navigate = useNavigate();
     const sectionRef = useRef(null);
     const statsRef = useRef(null);
     const [counts, setCounts] = useState({
@@ -189,7 +191,13 @@ const Section7 = () => {
 
                 {/* CTA Button */}
                 <div className="section7-cta section7-reveal">
-                    <button className="section7-cta-button">
+                    <button 
+                        className="section7-cta-button" 
+                        onClick={() => {
+                            window.scrollTo(0, 0);
+                            navigate('/projects');
+                        }}
+                    >
                         <span>{t('home.section7.cta')}</span>
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>

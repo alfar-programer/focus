@@ -173,14 +173,14 @@
 }
 
 .project-card-title {
-    color: var(--text-primary);
+    color: var(--text-inverse);
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0 0 8px 0;
 }
 
 .project-card-desc {
-    color: var(--text-secondary);
+    color: color-mix(in srgb, var(--text-inverse) 80%, transparent);
     font-size: 0.875rem;
     line-height: 1.6;
     margin: 0;

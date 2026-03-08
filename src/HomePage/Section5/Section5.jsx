@@ -19,7 +19,7 @@ const Section5 = () => {
             {/* Service Rows */}
             <div className="section5-services">
                 {/* Service 1: MEP Systems */}
-                <article className="section5-service-row">
+                <div className="section5-service-row">
                     <div
                         className="section5-service-bg"
                         style={{
@@ -53,10 +53,10 @@ const Section5 = () => {
                             </span>
                         </div>
                     </div>
-                </article>
+                </div>
 
                 {/* Service 2: Infrastructure */}
-                <article className="section5-service-row">
+                <div className="section5-service-row">
                     <div
                         className="section5-service-bg"
                         style={{
@@ -91,10 +91,10 @@ const Section5 = () => {
                             </span>
                         </div>
                     </div>
-                </article>
+                </div>
 
                 {/* Service 3: Engineering */}
-                <article className="section5-service-row">
+                <div className="section5-service-row">
                     <div
                         className="section5-service-bg"
                         style={{
@@ -128,10 +128,10 @@ const Section5 = () => {
                             </span>
                         </div>
                     </div>
-                </article>
+                </div>
 
                 {/* Service 4: Consulting */}
-                <article className="section5-service-row">
+                <div className="section5-service-row">
                     <div
                         className="section5-service-bg"
                         style={{
@@ -165,7 +165,7 @@ const Section5 = () => {
                             </span>
                         </div>
                     </div>
-                </article>
+                </div>
             </div>
         </section>
     );

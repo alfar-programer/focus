@@ -41,7 +41,7 @@
     letter-spacing: -0.05em;
     margin-bottom: 1rem;
     text-transform: uppercase;
-    color: var(--text-inverse);
+    color: var(--text-primary);
 }
 
 .expertise-title .highlight {
@@ -163,7 +163,7 @@
 .content-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-inverse);
+    color: var(--text-primary);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -221,7 +221,7 @@
 }
 
 .feature-title {
-    color: var(--text-inverse);
+    color: var(--text-primary);
     font-weight: 600;
     margin-bottom: 0.25rem;
 }
@@ -292,7 +292,7 @@
 .metric-value {
     font-size: 2.25rem;
     font-weight: 900;
-    color: var(--text-inverse);
+    color: var(--text-primary);
     letter-spacing: -0.02em;
 }
 
@@ -340,7 +340,7 @@
 .stat-num {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-inverse);
+    color: var(--text-primary);
     margin-bottom: 0.25rem;
 }
 

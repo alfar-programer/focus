@@ -29,7 +29,8 @@ const HeroSection = () => {
                         onClick={() => {
                             const projectsGrid = document.querySelector('.projects-grid-section');
                             if (projectsGrid) {
-                                projectsGrid.scrollIntoView({ behavior: 'smooth' });
+                                const y = projectsGrid.getBoundingClientRect().top + window.scrollY - 80;
+                                window.scrollTo({ top: y, behavior: 'smooth' });
                             }
                         }}
                     >

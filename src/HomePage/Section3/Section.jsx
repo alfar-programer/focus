@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './section.css';
@@ -348,9 +348,6 @@ const Section = () => {
                             <h1>{marqueeItems[1]}</h1>
                             <h1>{marqueeItems[2]}</h1>
                             <h1>{marqueeItems[3]}</h1>
-                            {/* Duplicate for seamless loop if needed, but horizontalLoop handles it usually if enough items. 
-                         The original html had 4 h1s. horizontalLoop will duplicate/loop them. 
-                     */}
                         </div>
                     </div>
                     <div className="card-wrapper">

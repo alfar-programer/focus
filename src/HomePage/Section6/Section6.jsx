@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import './Section6.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
@@ -118,14 +119,14 @@ const Section6 = () => {
                     <div className="section6-hero-content">
                         <h3 dangerouslySetInnerHTML={{ __html: currentSlide.headline }} />
                         <p>{currentSlide.description}</p>
-                        <a href="#" className="section6-btn">
+                        <Link to="/about/our-story" className="section6-btn">
                             {t('home.section6.readMore')}
                             <span className="section6-btn-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>
                             </span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -145,14 +146,14 @@ const Section6 = () => {
                 <div className="section6-stories">
                     <div className="section6-stories-header" data-animation>
                         <h2 dangerouslySetInnerHTML={{ __html: t('home.section6.featuredStoriesTitle') }} />
-                        <a href="#" className="section6-btn">
+                        <Link to="/about/who-we-are" className="section6-btn">
                             {t('home.section6.readMoreNews')}
                             <span className="section6-btn-arrow">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>
                             </span>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* News Card 1 */}
@@ -175,7 +176,6 @@ const Section6 = () => {
                                 </svg>
                             </div>
                         </div>
-                        <a href="#" className="section6-news-link"></a>
                     </div>
 
                     {/* News Card 2 */}
@@ -198,7 +198,6 @@ const Section6 = () => {
                                 </svg>
                             </div>
                         </div>
-                        <a href="#" className="section6-news-link"></a>
                     </div>
                 </div>
             </div>

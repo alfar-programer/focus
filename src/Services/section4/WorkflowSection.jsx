@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './WorkflowSection.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
@@ -20,12 +21,13 @@ const WorkflowSection = () => {
     const activeStepData = workflowSteps.find(s => s.id === activeStep) || workflowSteps[0];
 
     useEffect(() => {
+        const currentSection = sectionRef.current;
         const observer = new IntersectionObserver(
             ([entry]) => setIsSectionInView(entry.isIntersecting),
             { threshold: 0.5 }
         );
-        if (sectionRef.current) observer.observe(sectionRef.current);
-        return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
+        if (currentSection) observer.observe(currentSection);
+        return () => { if (currentSection) observer.unobserve(currentSection); };
     }, []);
 
     if (!workflowSteps.length) return null;
@@ -256,13 +258,13 @@ const WorkflowSection = () => {
                         {t('services.workflow.cta.description')}
                     </p>
                     <div className="cta-buttons">
-                        <button className="cta-button-primary">
+                        <Link to="/contact" className="cta-button-primary">
                             <span>{t('services.workflow.cta.primary')}</span>
                             <span className="material-symbols-outlined button-arrow">arrow_forward</span>
-                        </button>
-                        <button className="cta-button-secondary">
+                        </Link>
+                        <Link to="/projects" className="cta-button-secondary">
                             <span>{t('services.workflow.cta.secondary')}</span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
                 <div className="cta-bottom-gradient" />

@@ -67,6 +67,8 @@
 /* Service Row */
 .section5-service-row {
     position: relative;
+    display: block;
+    text-decoration: none;
     width: 100%;
     border-bottom: 1px solid var(--border-color);
     overflow: hidden;
@@ -76,6 +78,9 @@
 
 .section5-service-row:hover {
     background-color: var(--bg-surface);
+    box-shadow: var(--shadow-lg);
+    z-index: 20;
+    transform: translateY(-2px);
 }
 
 /* Background Image */
@@ -93,8 +98,19 @@
     mix-blend-mode: overlay;
 }
 
+[data-theme="light"] .section5-service-bg,
+.light .section5-service-bg {
+    mix-blend-mode: multiply;
+    filter: brightness(0.9);
+}
+
 .section5-service-row:hover .section5-service-bg {
     opacity: 0.15;
+}
+
+[data-theme="light"] .section5-service-row:hover .section5-service-bg,
+.light .section5-service-row:hover .section5-service-bg {
+    opacity: 0.25;
 }
 
 /* Service Content */
@@ -161,7 +177,6 @@
 
 .section5-service-row:hover .section5-service-icon {
     transform: scale(1.05) translateX(10px);
-    color: var(--color-accent);
 }
 
 /* Service Title Wrap */
@@ -212,9 +227,7 @@
     transition: color 0.3s ease;
 }
 
-.section5-service-row:hover .section5-service-title-wrap h2 {
-    color: var(--color-accent);
-}
+
 
 @media (min-width: 768px) {
     .section5-service-title-wrap h2 {

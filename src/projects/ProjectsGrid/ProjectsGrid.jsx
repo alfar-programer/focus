@@ -19,15 +19,20 @@ const ProjectsGrid = () => {
     useEffect(() => {
         if (!selectedProject) return;
         const updated = projects.find((project) => project.id === selectedProject.id);
-        if (updated) setSelectedProject(updated);
+        if (updated) {
+            setTimeout(() => {
+                setSelectedProject(updated);
+            }, 0);
+        }
     }, [projects, selectedProject]);
 
     const getCategoryColor = (category) => {
+        const isDark = document.querySelector('.app-container')?.getAttribute('data-theme') === 'dark';
         switch (category) {
-            case 'industrial': return '#1392ec';
-            case 'commercial': return '#f59e0b';
-            case 'utilities': return '#16a34a';
-            default: return '#1392ec';
+            case 'industrial': return isDark ? 'var(--color-primary)' : '#0F172A';
+            case 'commercial': return 'var(--color-accent)';
+            case 'utilities': return '#10B981';
+            default: return 'var(--color-primary)';
         }
     };
 
@@ -63,7 +68,7 @@ const ProjectsGrid = () => {
                                         className="projects-page-category-badge"
                                         style={{
                                             background: `${getCategoryColor(project.category)}ee`,
-                                            color: project.category === 'commercial' ? '#1e293b' : 'white'
+                                            color: 'var(--text-inverse)'
                                         }}
                                     >
                                         {categoryLabels[project.category]}
@@ -114,7 +119,7 @@ const ProjectsGrid = () => {
                                         className="project-modal-category"
                                         style={{
                                             background: `${getCategoryColor(selectedProject.category)}`,
-                                            color: selectedProject.category === 'commercial' ? '#1e293b' : 'white'
+                                            color: 'var(--text-inverse)'
                                         }}
                                     >
                                         {categoryLabels[selectedProject.category]}

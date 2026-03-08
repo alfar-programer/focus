@@ -100,10 +100,12 @@
 
 .section3-container .card {
     position: relative;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
     width: 100vw;
     height: 100svh;
     padding: 1.5em;
-    display: flex;
     /* Ensure centering if needed */
     justify-content: center;
     align-items: center;
@@ -116,8 +118,14 @@
     height: 100%;
     will-change: transform;
     max-width: 1400px;
-    /* Optional constraint */
     margin: 0 auto;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section3-container .card:hover .card-wrapper {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    z-index: 50;
 }
 
 .section3-container .card-img {

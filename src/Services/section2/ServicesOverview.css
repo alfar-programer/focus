@@ -5,7 +5,7 @@
 .section2-services {
     min-height: 100vh;
     width: 100%;
-    background-color: var(--bg-primary, #0F172A);
+    background-color: var(--bg-primary);
     font-family: 'Manrope', sans-serif;
     position: relative;
     overflow: hidden;
@@ -15,15 +15,15 @@
     display: flex;
     min-height: 100vh;
     width: 100%;
-    border-top: 1px solid var(--border-color, #2a3b45);
-    border-bottom: 1px solid var(--border-color, #2a3b45);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* Left Sidebar */
 .section2-sidebar {
     width: 288px;
     background: var(--bg-primary);
-    border-right: 1px solid var(--border-color, #2a3b45);
+    border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -33,11 +33,11 @@
 
 .section2-sidebar-header {
     padding: 24px;
-    border-bottom: 1px solid var(--border-color, #2a3b45);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .section2-sidebar-title {
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
@@ -46,7 +46,8 @@
 }
 
 .section2-sidebar-subtitle {
-    color: #64748b;
+    color: var(--text-secondary);
+    opacity: 0.8;
     font-size: 11px;
     font-weight: 400;
     margin: 0;
@@ -76,8 +77,8 @@
 }
 
 .section2-service-btn:hover {
-    background: #1a262d;
-    border-left-color: #475569;
+    background: var(--bg-surface);
+    border-left-color: var(--text-secondary);
 }
 
 .section2-service-btn.active {
@@ -93,7 +94,7 @@
 }
 
 .section2-service-btn:hover .section2-service-icon {
-    color: #fff;
+    color: var(--color-accent);
     transform: scale(1.1);
 }
 
@@ -108,7 +109,7 @@
 }
 
 .section2-service-title {
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-size: 13px;
     font-weight: 500;
     line-height: 1.2;
@@ -116,16 +117,16 @@
 }
 
 .section2-service-btn:hover .section2-service-title {
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .section2-service-btn.active .section2-service-title {
-    color: #fff;
+    color: var(--text-primary);
     font-weight: 700;
 }
 
 .section2-service-subtitle {
-    color: #475569;
+    color: var(--text-muted);
     font-size: 9px;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -134,11 +135,12 @@
 }
 
 .section2-service-btn:hover .section2-service-subtitle {
-    color: #64748b;
+    color: var(--color-accent);
 }
 
 .section2-service-btn.active .section2-service-subtitle {
-    color: rgba(6, 182, 212, 0.6);
+    color: var(--color-accent);
+    opacity: 0.8;
 }
 
 /* Sidebar Footer */
@@ -159,7 +161,7 @@
     height: 32px;
     border-radius: 50%;
     overflow: hidden;
-    background: #334155;
+    background: var(--bg-accent);
 }
 
 .section2-support-avatar img {
@@ -175,27 +177,28 @@
 }
 
 .section2-support-text {
-    color: #fff;
+    color: var(--text-primary);
     font-size: 12px;
     font-weight: 500;
 }
 
 .section2-support-link {
-    color: var(--color-accent, #06B6D4);
+    color: var(--color-accent);
     font-size: 10px;
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .section2-support-link:hover {
     text-decoration: underline;
-    opacity: 0.8;
+    opacity: 1;
+    filter: brightness(1.1);
 }
 
 /* Right Content Area */
 .section2-content {
     flex: 1;
-    background: var(--bg-primary, #0F172A);
+    background: var(--bg-primary);
     position: relative;
     overflow-y: auto;
     transition: opacity 0.2s ease;
@@ -209,10 +212,10 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.03;
+    opacity: 0.15;
     background-image:
-        linear-gradient(#fff 1px, transparent 1px),
-        linear-gradient(90deg, #fff 1px, transparent 1px);
+        linear-gradient(var(--text-muted) 1px, transparent 1px),
+        linear-gradient(90deg, var(--text-muted) 1px, transparent 1px);
     background-size: 40px 40px;
 }
 
@@ -231,7 +234,7 @@
     align-items: flex-start;
     gap: 24px;
     padding-bottom: 32px;
-    border-bottom: 1px solid var(--border-color, #2a3b45);
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 40px;
 }
 
@@ -253,7 +256,7 @@
 }
 
 .section2-content-heading {
-    color: #fff;
+    color: var(--text-heading);
     font-size: 36px;
     font-weight: 800;
     line-height: 1.2;
@@ -262,10 +265,10 @@
 }
 
 .section2-content-description {
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-size: 16px;
     line-height: 1.7;
-    font-weight: 300;
+    font-weight: 400;
     margin: 0;
 }
 
@@ -311,8 +314,8 @@
 }
 
 .section2-stat-card {
-    background: var(--bg-surface, #1E293B);
-    border: 1px solid var(--border-color, #2a3b45);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 20px;
     position: relative;
@@ -321,7 +324,8 @@
 }
 
 .section2-stat-card:hover {
-    border-color: rgba(6, 182, 212, 0.3);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
 }
 
 .section2-stat-icon {
@@ -334,7 +338,7 @@
 
 .section2-stat-icon span.material-symbols-outlined {
     font-size: 40px;
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .section2-stat-card:hover .section2-stat-icon {
@@ -358,7 +362,7 @@
 }
 
 .section2-stat-number {
-    color: #fff;
+    color: var(--text-primary);
     font-size: 28px;
     font-weight: 700;
     font-family: 'Courier New', monospace;
@@ -374,7 +378,7 @@
 .section2-stat-progress {
     width: 100%;
     height: 4px;
-    background: #1e293b;
+    background: var(--bg-accent);
     border-radius: 2px;
     overflow: hidden;
 }
@@ -399,8 +403,8 @@
 }
 
 .section2-diagram-container {
-    background: var(--bg-surface, #1E293B);
-    border: 1px solid var(--border-color, #2a3b45);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 4px;
     position: relative;
@@ -424,8 +428,8 @@
     backdrop-filter: blur(4px);
     padding: 4px 8px;
     border-radius: 4px;
-    border: 1px solid #334155;
-    color: #fff;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
     font-size: 10px;
     font-family: 'Courier New', monospace;
 }
@@ -511,7 +515,7 @@
         width: 100%;
         max-height: 200px;
         border-right: none;
-        border-bottom: 1px solid var(--border-color, #2a3b45);
+        border-bottom: 1px solid var(--border-color);
     }
 
     .section2-services-list {

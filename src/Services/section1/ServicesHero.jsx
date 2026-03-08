@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ServicesHero.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
@@ -63,13 +64,13 @@ const ServicesHero = () => {
 
                     {/* CTA Buttons */}
                     <div className="services-hero__cta">
-                        <button className="services-hero__btn services-hero__btn--primary">
+                        <Link to="/contact" className="services-hero__btn services-hero__btn--primary">
                             <span>{t('services.hero.ctaPrimary')}</span>
                             <span className="services-hero__btn-icon">→</span>
-                        </button>
-                        <button className="services-hero__btn services-hero__btn--secondary">
+                        </Link>
+                        <Link to="/projects" className="services-hero__btn services-hero__btn--secondary">
                             {t('services.hero.ctaSecondary')}
-                        </button>
+                        </Link>
                     </div>
 
                     {/* Mini Stats */}

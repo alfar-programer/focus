@@ -93,11 +93,21 @@
 
 .section2-card {
     position: relative;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
     flex: 1;
     aspect-ratio: 5 / 7;
     transform-style: preserve-3d;
     transform-origin: top;
     will-change: transform;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section2-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    z-index: 50;
 }
 
 #section2-card-1 {
@@ -158,10 +168,10 @@
 }
 
 #section2-card-2 .section2-card-back {
-    background: linear-gradient(177deg,
-            var(--color-accent) -18%,
-            var(--color-primary) 31%,
-            var(--text-primary) 100%);
+    background: linear-gradient(135deg,
+            var(--color-primary) 0%,
+            var(--color-accent) 100%);
+    color: #FFFFFF;
 }
 
 #section2-card-3 .section2-card-back {

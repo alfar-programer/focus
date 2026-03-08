@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './ServicesOverview.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
@@ -145,7 +146,7 @@ const ServicesOverview = () => {
                             </div>
                             <div className="section2-support-info">
                                 <span className="section2-support-text">{t('services.overview.supportTitle')}</span>
-                                <span className="section2-support-link">{t('services.overview.supportLink')}</span>
+                                <Link to="/contact" className="section2-support-link">{t('services.overview.supportLink')}</Link>
                             </div>
                         </div>
                     </div>
