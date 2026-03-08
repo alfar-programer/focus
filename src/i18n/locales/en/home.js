@@ -1,14 +1,30 @@
 const home = {
     hero: {
-        title: 'What are you looking for?',
-        trustedBy: 'Trusted by'
+        title: 'Engineering Intelligent Power Systems',
+        // trustedBy: 'Trusted by'
+        trustedBy: 'From automation to energy infrastructure, we build reliable systems that power industries forward.'
     },
     section2: {
         title: 'Business Lines',
         cards: [
-            { number: '01', title: 'Power Generation', imageAlt: 'Power generation service' },
-            { number: '02', title: 'SCADA and Industrial Automation', imageAlt: 'SCADA and automation service' },
-            { number: '03', title: 'Electro Mechanical Works', imageAlt: 'Electro mechanical works service' }
+            {
+                number: '01',
+                title: 'Power Generation',
+                description: 'High-efficiency energy solutions for critical infrastructure and industrial demands.',
+                imageAlt: 'Power generation service'
+            },
+            {
+                number: '02',
+                title: 'SCADA & Industrial Automation',
+                description: 'Intelligent monitoring and automation systems for real-time industrial control.',
+                imageAlt: 'SCADA and automation service'
+            },
+            {
+                number: '03',
+                title: 'Electro-Mechanical Works',
+                description: 'Full-service electro-mechanical installation and maintenance for modern facilities.',
+                imageAlt: 'Electro mechanical works service'
+            }
         ]
     },
     section3: {

@@ -25,13 +25,17 @@
 .light {
     /* Background Colors - Multi-layered depth */
     --bg-primary: #F8FAFC;   /* Very soft off-white for main background */
+    --bg-primary-rgb: 248, 250, 252;
     --bg-surface: #FFFFFF;   /* Pure white for floating elements/cards */
+    --bg-surface-rgb: 255, 255, 255;
     --bg-accent:  #F1F5F9;   /* Subtle gray for alternating sections */
     --bg-accent2:  #d0d2d4;   /* Subtle gray for alternating sections */
 
     /* Brand Colors - High-end Tech palette */
     --color-primary: #0F172A; /* Deep Navy/Slate for authority */
+    --color-primary-rgb: 15, 23, 42;
     --color-accent:  #2563EB; /* Professional Action Blue */
+    --color-accent-rgb: 37, 99, 235;
     --color-cyan:    #0EA5E9; /* Sky Blue for tech details */
 
     /* Text Colors - Optimized Contrast */
@@ -56,14 +60,18 @@
 .dark {
     /* Background Colors */
     --bg-primary: #0F172A;
+    --bg-primary-rgb: 15, 23, 42;
     /* Midnight Slate */
     --bg-surface: #1E293B;
+    --bg-surface-rgb: 30, 41, 59;
     /* Lighter Slate */
 
     /* Brand Colors */
     --color-primary: #3B82F6;
+    --color-primary-rgb: 59, 130, 246;
     /* Electric Blue */
     --color-accent: #06B6D4;
+    --color-accent-rgb: 6, 182, 212;
     /* Neon Cyan */
 
     /* Text Colors */

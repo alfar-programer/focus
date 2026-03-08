@@ -34,7 +34,7 @@
 .projects-intro-divider {
     height: 0.25rem;
     width: 5rem;
-    background: var(--color-primary);
+    background: var(--color-accent);
     border-radius: 9999px;
     margin-bottom: 1.5rem;
 }
@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-weight: 700;
     cursor: pointer;
     transition: text-decoration 0.2s ease;
@@ -73,17 +73,17 @@
 .projects-stat-card {
     background: var(--bg-surface);
     padding: 1.5rem;
-    border-radius: 0.75rem;
+    border-radius: 1rem;
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     text-align: center;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-
 .projects-stat-card:hover {
-    border-color: rgba(var(--color-primary), 0.5);
+    border-color: var(--color-accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .projects-stat-icon {
@@ -96,19 +96,19 @@
 }
 
 .projects-stat-card:nth-child(1) .projects-stat-icon {
-    color: var(--color-primary);
-}
-
-.projects-stat-card:nth-child(2) .projects-stat-icon {
     color: var(--color-accent);
 }
 
-.projects-stat-card:nth-child(3) .projects-stat-icon {
+.projects-stat-card:nth-child(2) .projects-stat-icon {
     color: var(--color-cyan);
 }
 
+.projects-stat-card:nth-child(3) .projects-stat-icon {
+    color: color-mix(in srgb, var(--color-accent) 70%, white);
+}
+
 .projects-stat-card:nth-child(4) .projects-stat-icon {
-    color: #10B981; /* Professional Emerald instead of high-viz green */
+    color: color-mix(in srgb, var(--color-cyan) 70%, white);
 }
 
 .projects-stat-card:hover .projects-stat-icon {

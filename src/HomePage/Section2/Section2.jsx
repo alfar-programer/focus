@@ -234,8 +234,11 @@ const Section2 = () => {
                             <img src="slide1.png" alt={cards[0]?.imageAlt || ''} border="0" />
                         </div>
                         <div className="section2-card-back">
-                            <span>{cards[0]?.number}</span>
-                            <p>⚡ {cards[0]?.title}</p>
+                            <span className="section2-number">{cards[0]?.number}</span>
+                            <div className="section2-card-info">
+                                <h3 className="section2-card-title">⚡ {cards[0]?.title}</h3>
+                                <p className="section2-card-desc">{cards[0]?.description}</p>
+                            </div>
                         </div>
                     </div>
 
@@ -244,8 +247,11 @@ const Section2 = () => {
                             <img src="slide2.png" alt={cards[1]?.imageAlt || ''} border="0" />
                         </div>
                         <div className="section2-card-back">
-                            <span>{cards[1]?.number}</span>
-                            <p>⚙ {cards[1]?.title}</p>
+                            <span className="section2-number">{cards[1]?.number}</span>
+                            <div className="section2-card-info">
+                                <h3 className="section2-card-title">⚙ {cards[1]?.title}</h3>
+                                <p className="section2-card-desc">{cards[1]?.description}</p>
+                            </div>
                         </div>
                     </div>
 
@@ -254,8 +260,11 @@ const Section2 = () => {
                             <img src="slide3.png" alt={cards[2]?.imageAlt || ''} border="0" />
                         </div>
                         <div className="section2-card-back">
-                            <span>{cards[2]?.number}</span>
-                            <p>📡 {cards[2]?.title}</p>
+                            <span className="section2-number">{cards[2]?.number}</span>
+                            <div className="section2-card-info">
+                                <h3 className="section2-card-title">🔧 {cards[2]?.title}</h3>
+                                <p className="section2-card-desc">{cards[2]?.description}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

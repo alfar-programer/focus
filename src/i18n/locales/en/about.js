@@ -11,35 +11,51 @@ const about = {
         ],
         milestones: [
             {
-                year: '2005',
-                title: 'System Genesis',
-                description: 'Initial infrastructure framework and foundation of Focus Trading and Contracting. Establishing the core mechanical protocols for large-scale operations.',
+                year: '2020',
+                title: 'Foundation in Egypt',
+                description: 'Focus for trading & Contracting Co. is established in Egypt, laying the groundwork for engineering excellence.',
                 icon: 'foundation',
-                protocols: [ 'Protocol 01-A', 'Core Infrastructure' ],
+                protocols: [ 'FTC-01: Establishment', 'Egypt Market Entry' ],
                 reverse: false
             },
             {
-                year: '2012',
-                title: 'System Expansion',
-                description: 'Integration of advanced MEP systems across regional hubs. Horizontal expansion of technical capacity and resource allocation.',
-                icon: 'hub',
-                protocols: [ 'MEP Integration', 'Regional Grid' ],
+                year: '2021',
+                title: 'Consolidation of Operations',
+                description: 'Strengthening our internal systems and operational frameworks to support growing project demands.',
+                icon: 'architecture',
+                protocols: [ 'Operational Efficiency', 'Process Optimization' ],
                 reverse: true
             },
             {
-                year: '2018',
-                title: 'Smart Innovation',
-                description: 'Pivot to smart-city technology and automated system engineering implementation. Digital twin modeling and real-time infrastructure monitoring.',
-                icon: 'smart_assistant',
-                protocols: [ 'Automation', 'Smart Grid' ],
+                year: '2022',
+                title: 'After-Sales Service Established',
+                description: 'Launching a dedicated department for long-term maintenance and technical support for our clients.',
+                icon: 'engineering',
+                protocols: [ 'Client Success', 'Technical Support' ],
                 reverse: false
             },
             {
+                year: '2023',
+                title: 'Leading Energy Provider',
+                description: 'Focus Co. becomes a leading energy solution provider in the Egyptian market, achieving industry benchmarks.',
+                icon: 'bolt',
+                protocols: [ 'Market Leadership', 'Energy Standards' ],
+                reverse: true
+            },
+            {
                 year: '2024',
-                title: 'Future State',
-                description: 'Current status as a premium technology firm; sustainable infrastructure scaling and Tier 4 Grid architecture. Leading the frontier of mechanical engineering.',
-                icon: 'rocket_launch',
-                protocols: [ 'Tier 4 Status', 'Sustainable Eng.' ],
+                title: 'Expansion into Saudi Arabia',
+                description: 'Cross-border expansion into KSA, establishing regional headquarters in Dammam.',
+                icon: 'public',
+                protocols: [ 'Regional Expansion', 'KSA Operations' ],
+                reverse: false
+            },
+            {
+                year: '2025',
+                title: 'AL Faddaghi Partnership',
+                description: 'Forming a strategic partnership with AL Faddaghi Industries to drive large-scale industrial impact.',
+                icon: 'handshake',
+                protocols: [ 'Strategic Alliance', 'Industrial Scale' ],
                 reverse: true,
                 highlight: true
             }
@@ -248,6 +264,31 @@ const about = {
             }
         ],
         footer: 'Powered by trusted partnerships across the region'
+    },
+    section_iso: {
+        title: 'ISO Certificates',
+        subtitle: 'We are ISO certified',
+        description: 'Our commitment to quality, environmental responsibility, and occupational health and safety is demonstrated through our internationally recognized certifications.',
+        certificates: [
+            {
+                id: 'iso9001',
+                title: 'ISO 9001',
+                standard: 'Quality Management System',
+                description: 'Requirement for a quality management system.'
+            },
+            {
+                id: 'iso14001',
+                title: 'ISO 14001',
+                standard: 'Environmental Management System',
+                description: 'Environmental management standards to help organizations minimize their impact.'
+            },
+            {
+                id: 'iso45001',
+                title: 'ISO 45001',
+                standard: 'Occupational Health & Safety Management',
+                description: 'Guidance to improve employee safety, reduce workplace risks.'
+            }
+        ]
     }
 };
 

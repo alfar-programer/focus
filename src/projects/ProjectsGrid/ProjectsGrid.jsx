@@ -27,12 +27,11 @@ const ProjectsGrid = () => {
     }, [projects, selectedProject]);
 
     const getCategoryColor = (category) => {
-        const isDark = document.querySelector('.app-container')?.getAttribute('data-theme') === 'dark';
         switch (category) {
-            case 'industrial': return isDark ? 'var(--color-primary)' : '#0F172A';
-            case 'commercial': return 'var(--color-accent)';
-            case 'utilities': return '#10B981';
-            default: return 'var(--color-primary)';
+            case 'industrial': return '#0F172A'; // Deep Slate
+            case 'commercial': return 'var(--color-accent)'; // Blue
+            case 'utilities': return '#334155'; // Medium Slate
+            default: return 'var(--color-accent)';
         }
     };
 

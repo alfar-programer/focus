@@ -1,16 +1,16 @@
 .projects-cta {
     position: relative;
-    padding: 6rem 0;
+    padding: 8rem 0;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-surface) 50%, var(--bg-primary) 100%);
+    background: var(--bg-surface);
 }
 
 .projects-cta-background {
     position: absolute;
     inset: 0;
     background: 
-        radial-gradient(ellipse at 20% 50%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 50%, color-mix(in srgb, var(--color-accent) 10%, transparent) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, color-mix(in srgb, var(--color-cyan) 8%, transparent) 0%, transparent 50%);
     z-index: 1;
 }
 
@@ -18,8 +18,8 @@
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(color-mix(in srgb, var(--color-primary) 3%, transparent) 1px, transparent 1px),
-        linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 3%, transparent) 1px, transparent 1px);
+        linear-gradient(color-mix(in srgb, var(--color-accent) 3%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 3%, transparent) 1px, transparent 1px);
     background-size: 60px 60px;
     z-index: 1;
 }
@@ -43,10 +43,10 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
     border-radius: 9999px;
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -67,10 +67,7 @@
 }
 
 .projects-cta-highlight {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-accent);
 }
 
 @media (min-width: 768px) {
@@ -107,7 +104,7 @@
 }
 
 .projects-cta-feature span {
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-variation-settings: 'FILL' 1;
 }
 
@@ -142,13 +139,19 @@
 }
 
 .projects-cta-btn-primary {
-    background: var(--color-primary);
+    background: var(--color-accent);
     color: var(--text-inverse);
-    box-shadow: 0 10px 30px -5px color-mix(in srgb, var(--color-primary) 30%, transparent);
+    box-shadow: 0 10px 30px -5px rgba(var(--color-accent-rgb), 0.3);
+}
+
+[data-theme="dark"] .projects-cta-btn-primary,
+.dark .projects-cta-btn-primary {
+    background: var(--color-primary);
+    box-shadow: 0 10px 30px -5px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .projects-cta-btn-primary:hover {
-    background: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 90%, transparent);
     transform: translateY(-2px);
     box-shadow: 0 15px 40px -8px color-mix(in srgb, var(--color-accent) 40%, transparent);
 }
@@ -158,16 +161,30 @@
 }
 
 .projects-cta-btn-secondary {
-    background: transparent;
-    border: 2px solid var(--border-color);
+    background: var(--color-primary);
+    color: var(--text-inverse);
+    border: none;
+    box-shadow: 0 10px 30px -5px rgba(var(--color-primary-rgb), 0.2);
 }
 
 .projects-cta-btn-secondary:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 90%, transparent);
+    color: var(--text-inverse);
     transform: translateY(-2px);
+    box-shadow: 0 15px 40px -8px rgba(var(--color-primary-rgb), 0.3);
 }
 
-.projects-cta-btn-secondary span {
-    font-variation-settings: 'FILL' 1;
+[data-theme="dark"] .projects-cta-btn-secondary,
+.dark .projects-cta-btn-secondary {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    box-shadow: none;
+}
+
+[data-theme="dark"] .projects-cta-btn-secondary:hover,
+.dark .projects-cta-btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: none;
 }

@@ -8,7 +8,10 @@
     --card-3: var(--bg-surface);
     font-family: "Instrument Serif", sans-serif;
     width: 100%;
-    /* Ensure no global bleed */
+}
+
+[data-theme="light"] .section2-container {
+    background-color: rgb(201, 206, 211);
 }
 
 .section2-container * {
@@ -24,35 +27,22 @@
 }
 
 .section2-container h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.1;
     margin: 0;
 }
 
-.section2-container p {
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1;
-    margin: 0;
-}
-
-.section2-section {
-    position: relative;
-    width: 100%;
-    height: 100svh;
-    padding: 2rem;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-}
-
-.section2-intro,
-.section2-outro {
-    text-align: center;
-    align-content: center;
-    display: grid;
-    /* Alternative to align-content which works better in some setups */
-    place-content: center;
+.section2-subtitle {
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
 }
 
 .section2-sticky {
@@ -60,34 +50,40 @@
     justify-content: center;
     align-items: center;
     height: 100svh;
-    /* Ensure it takes full height for pinning */
     overflow: hidden;
-    /* Often needed for pinned containers */
 }
 
 .section2-sticky-header {
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
 }
 
 .section2-sticky-header h1 {
     position: relative;
-    text-align: center;
     will-change: transform, opacity;
     transform: translateY(40px);
+    opacity: 0;
+}
+
+.section2-subtitle {
+    will-change: transform, opacity;
+    transform: translateY(30px);
     opacity: 0;
 }
 
 .section2-card-container {
     direction: ltr !important;
     position: relative;
-    width: 75%;
+    width: 80%;
     display: flex;
-    perspective: 1000px;
-    transform: translateY(40px);
+    perspective: 1200px;
+    transform: translateY(60px);
     will-change: width;
 }
 
@@ -99,23 +95,14 @@
     flex: 1;
     aspect-ratio: 5 / 7;
     transform-style: preserve-3d;
-    transform-origin: top;
+    transform-origin: center;
     will-change: transform;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .section2-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-12px);
     z-index: 50;
-}
-
-#section2-card-1 {
-    border-radius: 20px 0 0 20px;
-}
-
-#section2-card-3 {
-    border-radius: 0 20px 20px 0;
 }
 
 .section2-card-front,
@@ -126,71 +113,96 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     border-radius: inherit;
-    /* inherit from card */
     overflow: hidden;
-}
-
-/* Ensure card-front respects border-radius of the parent card logic */
-#section2-card-1 .section2-card-front,
-#section2-card-1 .section2-card-back {
-    border-radius: 20px 0 0 20px;
-}
-
-#section2-card-3 .section2-card-front,
-#section2-card-3 .section2-card-back {
-    border-radius: 0 20px 20px 0;
 }
 
 .section2-card-back {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     transform: rotateY(180deg);
-    padding: 2rem;
-    /* border-radius in original was specific % */
-    /* restoring original logic if needed but it was specific: 3.59281% / 2.58621% */
+    padding: 3rem 2rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
 }
 
-.section2-card-back span {
+.section2-number {
     position: absolute;
     top: 2rem;
-    left: 2rem;
-    opacity: 0.4;
-    font-size: 2rem;
+    left: 2.5rem;
+    opacity: 0.15;
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.section2-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.section2-card-title {
+    font-family: "Instrument Serif", serif;
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0;
+    color: inherit;
+}
+
+.section2-card-desc {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 85%;
+    opacity: 0.9;
 }
 
 #section2-card-1 .section2-card-back {
-    background: linear-gradient(165.825deg,
-            var(--bg-surface) 0%,
-            var(--border-color) 100%);
+    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-accent) 100%);
     color: var(--text-primary);
 }
 
 #section2-card-2 .section2-card-back {
-    background: linear-gradient(135deg,
-            var(--color-primary) 0%,
-            var(--color-accent) 100%);
+    background: linear-gradient(180deg, var(--color-primary) 0%, #1e293b 100%);
     color: #FFFFFF;
+    border: none;
+}
+
+#section2-card-2 .section2-card-desc {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+#section2-card-2 p {
+    color: inherit;
 }
 
 #section2-card-3 .section2-card-back {
-    background: linear-gradient(var(--bg-surface) 0%, var(--border-color) 100%);
+    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-accent) 100%);
+    color: var(--text-primary);
 }
 
 @media (max-width: 1000px) {
     .section2-container h1 {
-        font-size: 3rem;
+        font-size: 2.75rem;
     }
 
-    .section2-intro h1,
-    .section2-outro h1 {
-        width: 100%;
+    .section2-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
     }
 
     .section2-sticky {
-        height: max-content;
-        padding: 4rem 2rem;
+        height: auto;
+        padding: 6rem 2rem;
         flex-direction: column;
     }
 
@@ -199,13 +211,13 @@
         top: 0;
         left: 0;
         transform: none;
-        margin-bottom: 4rem;
+        margin-bottom: 5rem;
     }
 
     .section2-card-container {
         width: 100%;
         flex-direction: column;
-        gap: 2rem;
+        gap: 3rem;
         transform: none;
     }
 

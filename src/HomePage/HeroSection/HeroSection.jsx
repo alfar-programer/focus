@@ -183,7 +183,7 @@ const HeroSection = () => {
                         <h1>{t('home.hero.title')}</h1>
                         <p>{t('home.hero.trustedBy')}</p>
 
-                        <div className="client-logos">
+                        {/* <div className="client-logos">
                             <div className="client-logo">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="147" height="21" fill="currentColor">
                                     <path fillRule="evenodd"
@@ -227,7 +227,7 @@ const HeroSection = () => {
                                     </path>
                                 </svg>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>
