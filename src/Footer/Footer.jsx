@@ -76,13 +76,7 @@ const Footer = () => {
                         🇸🇦 {t('footer.metadata.headquarters.line2')}
                     </span>
                 </div>
-                <div className="footer-metadata-item footer-metadata-border">
-                    <span className="footer-metadata-label">{t('footer.metadata.coordinates.label')}</span>
-                    <span className="footer-metadata-value">
-                        {t('footer.metadata.coordinates.line1')}<br />
-                        {t('footer.metadata.coordinates.line2')}
-                    </span>
-                </div>
+                
                 <div className="footer-metadata-item">
                     <span className="footer-metadata-label">{t('footer.metadata.hours.label')}</span>
                     <span className="footer-metadata-value">

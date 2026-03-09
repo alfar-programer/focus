@@ -174,7 +174,7 @@ const services = {
         coordinates: [ 'COORD: 45.922, 12.001', 'SYS: ONLINE', 'GRID: ACTIVE' ],
         scale: [ 'SCALE: 1:100', 'REF: ENG-FLOW-V5', 'STATUS: MONITORING' ],
         badge: 'هيكل النظام',
-        title: '05 // ENGINEERED FLOW',
+        title: 'آلية التنفيذ',
         description: 'مسار تنفيذ منظم يغطي الهندسة والنشر والتشغيل والصيانة للأنظمة الحرجة.',
         activeSuffix: ' // ACTIVE',
         phaseActive: 'المرحلة: نشطة',

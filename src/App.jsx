@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ServicesPage from './Services/ServicesPage';
 import HeroSection from './HomePage/HeroSection/HeroSection';
 import Section3 from './HomePage/Section3/Section';
@@ -39,8 +39,10 @@ const HomePage = () => {
 
 const AppContent = () => {
     const { isRTL } = useI18n();
+    const { pathname } = useLocation();
     const [progress, setProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const lenisRef = useRef(null);
     const [resourcesLoaded, setResourcesLoaded] = useState({
         images: false,
         fonts: false,
@@ -159,6 +161,7 @@ const AppContent = () => {
 
     useEffect(() => {
         const lenis = new Lenis();
+        lenisRef.current = lenis;
 
         lenis.on('scroll', ScrollTrigger.update);
 
@@ -170,9 +173,18 @@ const AppContent = () => {
 
         return () => {
             lenis.destroy();
+            lenisRef.current = null;
             gsap.ticker.remove((time) => lenis.raf(time * 1000));
         };
     }, []);
+
+    useEffect(() => {
+        if (lenisRef.current) {
+            lenisRef.current.scrollTo(0, { immediate: true });
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [pathname]);
 
     return (
         <div data-theme="dark" className={`app-container${isRTL ? ' app-container--rtl' : ''}`}>
