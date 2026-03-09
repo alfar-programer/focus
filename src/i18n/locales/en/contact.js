@@ -23,11 +23,11 @@ const contact = {
         badge: 'Focus Trading & Contracting',
         titleLine: 'Connect With',
         titleHighlight: 'FOCUS T&C',
-        subtitle: 'Engineering solutions for the next century. Establish a secure connection with our tactical division below.'
+        subtitle: 'Tell us what you are building, and our engineering team will connect with the right support.'
     },
     channelsSection: {
         title: 'Direct Access<br /><span>Channels</span>',
-        subtitle: 'Reach our engineering team through the channels below.',
+        subtitle: 'Reach our team through the channels below.',
         channels: [
             {
                 icon: '🇸🇦',
@@ -45,7 +45,7 @@ const contact = {
                 icon: '✉️',
                 label: 'Email',
                 value: 'info@focus-tc.com',
-                note: 'Response time: < 24h'
+                note: 'Typical response: < 24h'
             },
             {
                 icon: '🕐',
@@ -57,9 +57,9 @@ const contact = {
     },
     form: {
         title: 'Send an Inquiry',
-        subtitle: 'Share your project requirements and our team will contact you.',
+        subtitle: 'Share your project details and we will get back to you.',
         successTitle: 'Message Received',
-        successText: 'Your message has been submitted successfully. Our team will respond within 24 hours.',
+        successText: 'Your message was sent successfully. Our team will respond within 24 hours.',
         sendAnother: 'Send Another',
         labels: {
             fullName: 'Full Name',
@@ -96,7 +96,7 @@ const contact = {
     cta: {
         titleLine: 'Ready to Start',
         titleHighlight: 'Your Project?',
-        description: 'Our specialists are ready to support your next power or industrial engineering requirement.',
+        description: 'Our specialists are ready to support your next power or industrial engineering project.',
         primaryButton: 'Schedule Consultation',
         secondaryButton: 'View Our Services'
     }

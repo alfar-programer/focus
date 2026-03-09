@@ -3,7 +3,7 @@ const about = {
         status: 'System Status: Operational',
         titlePrefix: 'OUR ',
         titleHighlight: 'Journey',
-        description: 'A chronological schematic of our engineering milestones and technical infrastructure growth since inception. Mapping the trajectory of precision.',
+        description: 'A clear timeline of how Focus has grown, expanded capabilities, and delivered stronger engineering outcomes year after year.',
         stats: [
             { label: 'Milestones', value: '42+' },
             { label: 'Active Nodes', value: '128' },
@@ -13,7 +13,7 @@ const about = {
             {
                 year: '2020',
                 title: 'Foundation in Egypt',
-                description: 'Focus for trading & Contracting Co. is established in Egypt, laying the groundwork for engineering excellence.',
+                description: 'Focus for Trading & Contracting was established in Egypt, setting the foundation for our engineering work.',
                 icon: 'foundation',
                 protocols: [ 'FTC-01: Establishment', 'Egypt Market Entry' ],
                 reverse: false
@@ -21,7 +21,7 @@ const about = {
             {
                 year: '2021',
                 title: 'Consolidation of Operations',
-                description: 'Strengthening our internal systems and operational frameworks to support growing project demands.',
+                description: 'We strengthened internal systems and delivery workflows to support a growing project pipeline.',
                 icon: 'architecture',
                 protocols: [ 'Operational Efficiency', 'Process Optimization' ],
                 reverse: true
@@ -29,7 +29,7 @@ const about = {
             {
                 year: '2022',
                 title: 'After-Sales Service Established',
-                description: 'Launching a dedicated department for long-term maintenance and technical support for our clients.',
+                description: 'A dedicated after-sales department was launched to provide long-term maintenance and technical support.',
                 icon: 'engineering',
                 protocols: [ 'Client Success', 'Technical Support' ],
                 reverse: false
@@ -37,7 +37,7 @@ const about = {
             {
                 year: '2023',
                 title: 'Leading Energy Provider',
-                description: 'Focus Co. becomes a leading energy solution provider in the Egyptian market, achieving industry benchmarks.',
+                description: 'Focus became one of the leading energy solution providers in Egypt, reaching key market benchmarks.',
                 icon: 'bolt',
                 protocols: [ 'Market Leadership', 'Energy Standards' ],
                 reverse: true
@@ -45,7 +45,7 @@ const about = {
             {
                 year: '2024',
                 title: 'Expansion into Saudi Arabia',
-                description: 'Cross-border expansion into KSA, establishing regional headquarters in Dammam.',
+                description: 'We expanded into Saudi Arabia and established our regional headquarters in Dammam.',
                 icon: 'public',
                 protocols: [ 'Regional Expansion', 'KSA Operations' ],
                 reverse: false
@@ -53,7 +53,7 @@ const about = {
             {
                 year: '2025',
                 title: 'AL Faddaghi Partnership',
-                description: 'Forming a strategic partnership with AL Faddaghi Industries to drive large-scale industrial impact.',
+                description: 'We formed a strategic partnership with AL Faddaghi Industries to support larger-scale industrial delivery.',
                 icon: 'handshake',
                 protocols: [ 'Strategic Alliance', 'Industrial Scale' ],
                 reverse: true,
@@ -70,7 +70,7 @@ const about = {
         domainLabel: 'Technical Domains',
         titleStart: 'Expertise and ',
         titleHighlight: 'Capabilities',
-        intro: 'Pioneering premium infrastructure through data-driven engineering. Our specialized divisions deliver mission-critical solutions for global enterprises.',
+        intro: 'Our specialized divisions deliver practical engineering solutions for power, automation, and industrial infrastructure projects.',
         downloadSpecs: 'Download Technical Specifications',
         metricsHeading: 'Technical Metrics',
         tabs: [
@@ -83,26 +83,26 @@ const about = {
             power: {
                 title: 'Advanced Power Infrastructure',
                 badge: 'Core Specialty',
-                description: 'We design and deploy high-performance electrical infrastructure with a focus on Tier IV data center certification and sustainable energy management. Our HV/LV solutions ensure maximum reliability for industrial complexes.',
+                description: 'We design and deploy electrical infrastructure with strong reliability targets, including Tier IV readiness and sustainable energy management.',
                 features: [
-                    { title: 'Substation Design', desc: 'Full lifecycle engineering for high-voltage distribution networks.', icon: 'subtitles' },
-                    { title: 'Sustainable Grid', desc: 'Integration of renewable assets and smart metering systems.', icon: 'energy_savings_leaf' },
-                    { title: 'Tier IV Compliance', desc: 'Rigorous certification standards for mission-critical facilities.', icon: 'verified_user' },
-                    { title: 'HV/LV Maintenance', desc: '24/7 technical support and preventative monitoring services.', icon: 'engineering' }
+                    { title: 'Substation Design', desc: 'End-to-end engineering for high-voltage distribution networks.', icon: 'subtitles' },
+                    { title: 'Sustainable Grid', desc: 'Integration of renewable sources and smart metering systems.', icon: 'energy_savings_leaf' },
+                    { title: 'Tier IV Compliance', desc: 'Structured compliance for mission-critical facilities.', icon: 'verified_user' },
+                    { title: 'HV/LV Maintenance', desc: 'Continuous support and preventive monitoring services.', icon: 'engineering' }
                 ],
                 metrics: [
-                    { value: '99.99%', label: 'System Reliability', desc: 'Average uptime maintained across 45+ enterprise-level deployments globally.', icon: 'radar' },
-                    { value: '500MW+', label: 'Managed Capacity', desc: 'Total power distribution infrastructure engineered and currently under management.', icon: 'power' },
-                    { value: '12', label: 'Global Tier IV Sites', desc: 'Successfully certified high-availability data centers across EMEA and APAC.', icon: 'public' }
+                    { value: '99.99%', label: 'System Reliability', desc: 'Average uptime maintained across 45+ enterprise deployments.', icon: 'radar' },
+                    { value: '500MW+', label: 'Managed Capacity', desc: 'Total power distribution capacity engineered and under management.', icon: 'power' },
+                    { value: '12', label: 'Global Tier IV Sites', desc: 'High-availability data center sites certified across EMEA and APAC.', icon: 'public' }
                 ]
             },
             electro: {
                 title: 'Electromechanical Solutions',
                 badge: 'Industrial Grade',
-                description: 'Integrated mechanical and electrical systems for large-scale industrial applications, ensuring seamless operational flow and energy efficiency.',
+                description: 'Integrated mechanical and electrical systems for large-scale projects, designed for smooth operation and better efficiency.',
                 features: [
                     { title: 'HVAC Systems', desc: 'Precision climate control for industrial and data center environments.', icon: 'ac_unit' },
-                    { title: 'Pumping Stations', desc: 'High-capacity fluid management and distribution systems.', icon: 'water_drop' }
+                    { title: 'Pumping Stations', desc: 'High-capacity fluid management and distribution solutions.', icon: 'water_drop' }
                 ],
                 metrics: [
                     { value: '150+', label: 'Units Installed', desc: 'High-performance electromechanical units deployed and maintained.', icon: 'settings' }
@@ -111,22 +111,22 @@ const about = {
             auto: {
                 title: 'Industrial Automation',
                 badge: 'Smart Tech',
-                description: 'Next-generation automation and control systems that optimize production lines and enhance operational safety through intelligent monitoring.',
+                description: 'Automation and control systems that improve production performance and strengthen operational safety through intelligent monitoring.',
                 features: [
                     { title: 'SCADA Systems', desc: 'Real-time data acquisition and supervisory control solutions.', icon: 'monitoring' },
-                    { title: 'Robotic Integration', desc: 'Automated workflow optimization using advanced robotics.', icon: 'smart_toy' }
+                    { title: 'Robotic Integration', desc: 'Workflow optimization through advanced robotic integration.', icon: 'smart_toy' }
                 ],
                 metrics: [
-                    { value: '40%', label: 'Efficiency Gain', desc: 'Average operational efficiency increase after automation implementation.', icon: 'trending_up' }
+                    { value: '40%', label: 'Efficiency Gain', desc: 'Average efficiency increase measured after automation implementation.', icon: 'trending_up' }
                 ]
             },
             infra: {
                 title: 'Civil Infrastructure',
                 badge: 'Built for Scale',
-                description: 'Foundational engineering and structural solutions for complex infrastructure projects, from subterranean works to high-rise frameworks.',
+                description: 'Foundational and structural engineering for complex infrastructure projects, from underground works to high-rise frameworks.',
                 features: [
-                    { title: 'Site Preparation', desc: 'Comprehensive land grading and foundation engineering.', icon: 'agriculture' },
-                    { title: 'Structural Integrity', desc: 'Advanced material testing and seismic-resistant design.', icon: 'architecture' }
+                    { title: 'Site Preparation', desc: 'Comprehensive grading and foundation engineering.', icon: 'agriculture' },
+                    { title: 'Structural Integrity', desc: 'Advanced material testing and seismic-resilient design.', icon: 'architecture' }
                 ],
                 metrics: [
                     { value: '2M+', label: 'Sq Ft Constructed', desc: 'Total foundational and structural footprint delivered.', icon: 'square_foot' }
@@ -146,7 +146,7 @@ const about = {
             {
                 id: '01',
                 title: 'Engineering Precision',
-                desc: 'Focusing on detail-oriented infrastructure and technical mastery. We believe that every millimeter counts in the pursuit of perfection.',
+                desc: 'We approach every scope with technical discipline, because small details create major performance differences.',
                 icon: 'precision_manufacturing',
                 tag: 'Explore Depth',
                 class: 'precision-slide'
@@ -154,7 +154,7 @@ const about = {
             {
                 id: '02',
                 title: 'Industrial Innovation',
-                desc: 'Showcasing cutting-edge technology in industrial contracting. Leveraging BIM and AI-driven site management.',
+                desc: 'We apply modern tools like BIM and intelligent planning systems to deliver projects more efficiently.',
                 icon: 'memory',
                 tag: 'View Tech Stack',
                 class: 'innovation-slide'
@@ -162,7 +162,7 @@ const about = {
             {
                 id: '03',
                 title: 'Unwavering Integrity',
-                desc: 'Emphasizing trust and safety in large-scale engineering projects. Our reputation is built on the solid foundation of our word.',
+                desc: 'Trust and safety guide every engagement, from first discussions through final handover.',
                 icon: 'verified_user',
                 tag: 'Verified Status',
                 class: 'integrity-slide'
@@ -170,7 +170,7 @@ const about = {
             {
                 id: '04',
                 title: 'Sustainable Infrastructure',
-                desc: 'Building today with tomorrow\'s environment in mind. We integrate green energy and recycled materials into every workflow.',
+                desc: 'We plan with long-term environmental impact in mind and integrate sustainable practices where they add value.',
                 icon: 'eco',
                 tag: 'Sustainability',
                 class: 'sustainable-slide'
@@ -178,7 +178,7 @@ const about = {
             {
                 id: '05',
                 title: 'Collaborative Excellence',
-                desc: 'Our partnership-driven approach ensures that stakeholders, engineers, and clients move together as one cohesive unit.',
+                desc: 'We work as one team with clients, consultants, and field stakeholders to keep delivery aligned.',
                 icon: 'groups',
                 tag: 'Team Success',
                 class: 'excellence-slide'
@@ -189,7 +189,7 @@ const about = {
         sectionLabel: 'Section 05',
         titleStart: 'OUR ',
         titleHighlight: 'OFFICES.',
-        subtitle: 'Dual-region presence engineered for local expertise and global reach.',
+        subtitle: 'Our two-region presence combines local responsiveness with broader regional coverage.',
         coordLabel: 'COORD',
         directions: 'Get Directions',
         offices: [
@@ -223,7 +223,7 @@ const about = {
         badge: 'About Focus',
         headlineStart: 'Engineering Identity',
         headlineAccent: 'Through Precision',
-        body: 'We redefine technical paradigms through visionary engineering. Our approach merges structural integrity with aesthetic clarity, ensuring every system we build becomes a benchmark for future industrial excellence.',
+        body: 'We build practical engineering solutions with clear standards, disciplined execution, and a long-term performance mindset.',
         analytics: 'System Analytics',
         features: [
             { label: 'Methodology', value: 'Strategic Design' },
@@ -241,7 +241,7 @@ const about = {
     partners: {
         titleStart: 'Strategic ',
         titleHighlight: 'Partnerships',
-        subtitle: 'Driving industrial excellence through global collaboration and localized expertise in the MENA region.',
+        subtitle: 'We deliver stronger outcomes through trusted regional partnerships and aligned technical teams.',
         regions: {
             ksa: 'KSA',
             egypt: 'Egypt'
@@ -250,17 +250,17 @@ const about = {
             {
                 icon: 'hub',
                 title: 'Regional Hubs',
-                description: 'Strategically located offices in Cairo and Dammam to support high-availability industrial operations.'
+                description: 'Offices in Cairo and Dammam positioned to support high-availability industrial operations.'
             },
             {
                 icon: 'verified',
                 title: 'Certified Experts',
-                description: 'Our partners are vetted through rigorous quality assurance programs to maintain top-tier engineering standards.'
+                description: 'Our partners are vetted through strict quality assurance processes and engineering standards.'
             },
             {
                 icon: 'rocket_launch',
                 title: 'Growth Impact',
-                description: 'Facilitating over 50 major infrastructure projects across North Africa and the Gulf annually.'
+                description: 'Supporting more than 50 major infrastructure projects across North Africa and the Gulf each year.'
             }
         ],
         footer: 'Powered by trusted partnerships across the region'
@@ -268,7 +268,7 @@ const about = {
     section_iso: {
         title: 'ISO Certificates',
         subtitle: 'We are ISO certified',
-        description: 'Our commitment to quality, environmental responsibility, and occupational health and safety is demonstrated through our internationally recognized certifications.',
+        description: 'Our commitment to quality, environmental responsibility, and occupational health and safety is backed by internationally recognized certifications.',
         certificates: [
             {
                 id: 'iso9001',

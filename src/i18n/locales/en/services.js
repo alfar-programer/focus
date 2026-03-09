@@ -4,16 +4,16 @@ const services = {
         serviceId: 'SERVICE ID: #PWR-002',
         titleLine: 'Mission-Critical',
         titleAccent: 'Power Infrastructure',
-        description: 'Focus Trading & Contracting delivers high-precision power generation and industrial engineering solutions for mission-critical operations.',
+        description: 'Focus Trading & Contracting designs and delivers power and industrial engineering solutions for operations that need to stay online.',
         chips: [ '20-3000 KVA Diesel Generators', 'ISO 9001 / ISO 45001', 'Hybrid Ready' ],
-        ctaPrimary: 'Request Schematics',
+        ctaPrimary: 'Request Technical Details',
         ctaSecondary: 'View Case Studies',
         stats: [
             { value: '99.99%', label: 'Uptime Guarantee' },
             { value: '50+', label: 'Global Projects' },
             { value: '1.2 GW', label: 'Total Power Delivered' }
         ],
-        cardLabel: 'LIVE MONITORING',
+        cardLabel: 'Live Monitoring',
         dataRows: [
             { key: 'Load', value: '84%' },
             { key: 'Temp', value: '62°C' },
@@ -27,7 +27,7 @@ const services = {
     },
     overview: {
         sidebarTitle: 'Services Overview',
-        sidebarSubtitle: 'Select a domain to view details',
+        sidebarSubtitle: 'Choose a service area to explore details',
         supportTitle: 'Need Assistance?',
         supportLink: 'Contact Support',
         downloadButton: 'Tech Spec PDF',
@@ -68,7 +68,7 @@ const services = {
                 subtitle: 'DIESEL GENERATOR SYSTEMS',
                 serviceId: '#PWR-01',
                 heading: 'Industrial Power Infrastructure',
-                description: 'Diesel generator solutions from 20 KVA to 3000 KVA with ATS, grid synchronization, and backup continuity for critical infrastructure.',
+                description: 'Diesel generator solutions from 20 KVA to 3000 KVA with ATS, grid synchronization, and dependable backup continuity.',
                 stats: [
                     { icon: 'offline_bolt', label: 'Power Range', value: '20-3000', unit: 'KVA', progress: 85 },
                     { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
@@ -84,7 +84,7 @@ const services = {
                 subtitle: 'PLC / SCADA SYSTEMS',
                 serviceId: '#AUTO-01',
                 heading: 'Industrial Control Intelligence',
-                description: 'PLC and SCADA integration for industrial monitoring, supervisory control, and real-time data visibility.',
+                description: 'PLC and SCADA integration that gives teams better visibility, stronger control, and faster response on site.',
                 stats: [
                     { icon: 'precision_manufacturing', label: 'Core Systems', value: 'PLC', unit: '/SCADA', progress: 100 },
                     { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
@@ -100,7 +100,7 @@ const services = {
                 subtitle: 'SYSTEMS INTEGRATION',
                 serviceId: '#EM-01',
                 heading: 'Integrated Building Systems',
-                description: 'End-to-end electromechanical contracting for power distribution, system integration, and industrial infrastructure delivery.',
+                description: 'End-to-end electromechanical contracting for power distribution, systems integration, and coordinated field delivery.',
                 stats: [
                     { icon: 'calendar_month', label: 'Years Experience', value: '6', unit: '+', progress: 70 },
                     { icon: 'workspace_premium', label: 'Quality Standard', value: 'ISO', unit: '9001', progress: 100 },
@@ -115,21 +115,21 @@ const services = {
         badge: 'Strategic Advantage',
         title: 'WHY',
         titleAccent: 'FOCUS',
-        lead: 'Engineering precision backed by verified delivery metrics.',
-        description: 'Focus combines power generation, automation, and electromechanical execution with ISO-aligned quality and safety standards.',
+        lead: 'Proven engineering, measured by real delivery outcomes.',
+        description: 'Focus brings power generation, automation, and electromechanical execution together under consistent quality and safety standards.',
         statValues: [ '6+', '50+', '75+' ],
         statLabels: [ 'Years Experience', 'Global Projects', 'Satisfied Clients' ],
         sectionLabel: 'Engineering Excellence',
-        sectionIntro: 'Our technical scope covers 20-3000 KVA generators, PLC and SCADA systems, and MEP integration, with 1.2 GW delivered and 99.99% uptime commitment.',
+        sectionIntro: 'Our scope includes 20-3000 KVA generators, PLC and SCADA systems, and MEP integration, backed by 1.2 GW delivered and a 99.99% uptime commitment.',
         items: [
             {
                 id: 1,
                 number: '01',
                 title: 'Power Capacity Coverage',
-                description: 'Our generator portfolio supports industrial power requirements from 20 KVA to 3000 KVA for continuous and backup applications.',
+                description: 'Our generator portfolio covers 20 KVA to 3000 KVA for both continuous-duty and backup applications.',
                 features: [
-                    { icon: 'check_circle', text: '20-3000 KVA Diesel Generator Scope' },
-                    { icon: 'check_circle', text: 'ATS and Grid Synchronization Integration' }
+                    { icon: 'check_circle', text: '20-3000 KVA diesel generator coverage' },
+                    { icon: 'check_circle', text: 'ATS and grid synchronization integration' }
                 ],
                 metric: { value: '20-3000', unit: 'KVA', label: 'Generator Range' }
             },
@@ -137,10 +137,10 @@ const services = {
                 id: 2,
                 number: '02',
                 title: 'Automation Integration',
-                description: 'We engineer PLC, SCADA, and HMI architectures for real-time control and industrial process visibility.',
+                description: 'We design PLC, SCADA, and HMI architectures that keep industrial processes visible and under control.',
                 features: [
-                    { icon: 'hub', text: 'PLC Programming and Control Logic' },
-                    { icon: 'sync', text: 'SCADA and HMI Integration' }
+                    { icon: 'hub', text: 'PLC programming and control logic' },
+                    { icon: 'sync', text: 'SCADA and HMI integration' }
                 ],
                 metric: { value: 'PLC', unit: '/SCADA', label: 'Control Scope' }
             },
@@ -148,10 +148,10 @@ const services = {
                 id: 3,
                 number: '03',
                 title: 'Electromechanical & MEP Delivery',
-                description: 'Our teams execute electromechanical systems, power distribution, and MEP integration with coordinated field implementation.',
+                description: 'Our teams execute electromechanical systems, power distribution, and MEP integration through coordinated field work.',
                 features: [
-                    { icon: 'verified_user', text: 'Electromechanical Contracting Execution' },
-                    { icon: 'local_shipping', text: 'MEP Integration and Commissioning' }
+                    { icon: 'verified_user', text: 'Electromechanical contracting execution' },
+                    { icon: 'local_shipping', text: 'MEP integration and commissioning' }
                 ],
                 metric: { value: '2', unit: '', label: 'Operational Regions' }
             },
@@ -159,10 +159,10 @@ const services = {
                 id: 4,
                 number: '04',
                 title: 'Safety and Quality Standards',
-                description: 'We align delivery with ISO 9001, ISO 45001, and ISO 8528 generator compliance standards while maintaining a 99.99% uptime service commitment.',
+                description: 'We align delivery with ISO 9001, ISO 45001, and ISO 8528 standards while maintaining a 99.99% uptime commitment.',
                 features: [
-                    { icon: 'shield_with_heart', text: 'ISO 45001 Safety Compliance' },
-                    { icon: 'workspace_premium', text: 'ISO 9001 and ISO 8528 Alignment' }
+                    { icon: 'shield_with_heart', text: 'ISO 45001 safety compliance' },
+                    { icon: 'workspace_premium', text: 'ISO 9001 and ISO 8528 alignment' }
                 ],
                 metric: { value: '99.99%', unit: '', label: 'Uptime Guarantee' }
             }
@@ -175,7 +175,7 @@ const services = {
         scale: [ 'SCALE: 1:100', 'REF: ENG-FLOW-V5', 'STATUS: MONITORING' ],
         badge: 'System Architecture',
         title: '05 // ENGINEERED FLOW',
-        description: 'A structured delivery path covering engineering, deployment, commissioning, and maintenance for mission-critical systems.',
+        description: 'Our delivery path moves from engineering to deployment, commissioning, and long-term maintenance.',
         activeSuffix: ' // ACTIVE',
         phaseActive: 'PHASE: ACTIVE',
         phaseLabel: 'PHASE',
@@ -190,7 +190,7 @@ const services = {
                 icon: 'chat_bubble_outline',
                 title: 'Engineering Assessment',
                 subtitle: 'Scope Definition',
-                description: 'We define project requirements, operating conditions, and system priorities for power, automation, and electromechanical delivery.',
+                description: 'We align on requirements, site conditions, and priorities before design begins.',
                 duration: '1-2 Weeks',
                 techStack: 'Site Audit / Technical Review'
             },
@@ -199,7 +199,7 @@ const services = {
                 icon: 'settings',
                 title: 'System Engineering',
                 subtitle: 'Design Integration',
-                description: 'Our engineering teams finalize generator sizing, PLC and SCADA architecture, and MEP coordination for implementation readiness.',
+                description: 'Our teams finalize generator sizing, PLC and SCADA architecture, and MEP coordination for implementation.',
                 duration: '2-4 Weeks',
                 techStack: 'Design Packages / Control Architecture'
             },
@@ -208,7 +208,7 @@ const services = {
                 icon: 'construction',
                 title: 'Deployment',
                 subtitle: 'Installation',
-                description: 'Field teams install and integrate electromechanical systems, control panels, and power infrastructure according to approved engineering plans.',
+                description: 'Field teams install and integrate electromechanical systems, control panels, and power infrastructure on site.',
                 duration: '2-6 Weeks',
                 techStack: 'On-Site Execution / PLC Commission Setup'
             },
@@ -217,7 +217,7 @@ const services = {
                 icon: 'published_with_changes',
                 title: 'Commissioning',
                 subtitle: 'Validation',
-                description: 'Integrated testing validates generator performance, PLC and SCADA logic, and overall system readiness before handover.',
+                description: 'Integrated testing confirms performance, control logic, and full system readiness before handover.',
                 duration: '1-2 Weeks',
                 techStack: 'Acceptance Testing / Performance Checks'
             },
@@ -226,7 +226,7 @@ const services = {
                 icon: 'support_agent',
                 title: 'Maintenance',
                 subtitle: 'Maintenance',
-                description: 'Ongoing maintenance and service support sustain uptime performance and long-term operational reliability.',
+                description: 'Ongoing maintenance and support keep uptime high and operations stable over the long term.',
                 duration: 'Ongoing',
                 techStack: 'Preventive Maintenance / Service Support'
             }
@@ -239,7 +239,7 @@ const services = {
         cta: {
             titleLine: 'Ready to Power Your',
             titleHighlight: 'Next Project?',
-            description: 'Partner with Focus for generator, automation, and electromechanical solutions built for mission-critical performance.',
+            description: 'Partner with Focus for generator, automation, and electromechanical solutions built for reliable performance.',
             primary: 'Request a Consultation',
             secondary: 'View Projects'
         }

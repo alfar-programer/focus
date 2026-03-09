@@ -24,7 +24,7 @@ const common = {
         },
         aboutDropdown: {
             title: 'About Focus',
-            subtitle: 'Established in 2020 - Power Generation and Industrial Engineering',
+            subtitle: 'Established in 2020, focused on power generation and industrial engineering',
             journey: 'Our Journey',
             whoWeAre: 'Who We Are',
             partners: 'Our Partners'
@@ -54,7 +54,7 @@ const common = {
         },
         tagline: {
             line1: 'Engineering precision. Industrial excellence.',
-            line2: 'Serving Egypt and Saudi Arabia.'
+            line2: 'Proudly serving Egypt and Saudi Arabia.'
         },
         company: {
             title: 'Company',
