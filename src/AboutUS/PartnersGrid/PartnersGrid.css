@@ -160,26 +160,62 @@
     }
 }
 
+.partner-logo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
 .partner-logo {
     height: 5rem;
     width: auto;
     filter: grayscale(100%);
     opacity: 0.4;
-    transition: all 0.5s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     flex-shrink: 0;
 }
 
-@media (min-width: 768px) {
-    .partner-logo {
-        height: 6rem;
-    }
-}
-
-.partner-logo:hover {
+.partner-logo-container:hover .partner-logo {
     filter: grayscale(0%);
     opacity: 1;
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+    transform: scale(1.05);
+}
+
+.partner-region-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.partner-logo-container:hover .partner-region-indicator {
+    opacity: 1;
+}
+
+.region-bullet {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary);
+}
+
+.region-name {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.partner-logo-container:hover .region-name {
+    color: var(--text-primary);
 }
 
 /* Features Grid */

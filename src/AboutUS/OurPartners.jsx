@@ -12,7 +12,6 @@ const OurPartners = () => {
     return (
         <div className="about-us-page" style={{ paddingTop: '40px' }}>
             <PartnersGrid />
-            <ISOSection />
             <Section4 />
         </div>
     );

@@ -7,7 +7,7 @@
 }
 
 .iso-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
     position: relative;
@@ -16,7 +16,7 @@
 
 .iso-layout {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
 }
@@ -87,6 +87,15 @@
 
 .iso-image-right {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iso-stack-wrapper {
+    position: relative;
+    width: 400px;
+    height: 550px;
 }
 
 .iso-image-container {
@@ -123,11 +132,12 @@
     gap: 10px;
     box-shadow: var(--shadow-md);
     font-weight: 700;
-    z-index: 5;
+    z-index: 20;
+    pointer-events: none;
 }
 
 .iso-image-badge span:first-child {
-    font-variation-settings: 'FILL' 1;
+    font-size: 24px;
 }
 
 .iso-bg-element {
@@ -157,30 +167,22 @@
     direction: rtl;
 }
 
-.app-container--rtl .iso-image-container {
-    transform: perspective(1000px) rotateY(5deg);
-}
-
-.app-container--rtl .iso-image-container:hover {
-    transform: perspective(1000px) rotateY(0deg);
-}
-
 .app-container--rtl .iso-image-badge {
     right: auto;
     left: -20px;
 }
 
+@media (max-width: 1200px) {
+    .iso-stack-wrapper {
+        width: 320px;
+        height: 440px;
+    }
+}
+
 @media (max-width: 992px) {
     .iso-layout {
         grid-template-columns: 1fr;
-        gap: 60px;
-    }
-    
-    .iso-content-left {
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
     
     .iso-description {
@@ -189,17 +191,50 @@
     }
     
     .iso-list {
-        align-items: flex-start;
+        align-items: center;
         text-align: left;
-    }
-
-    .app-container--rtl .iso-list {
-        text-align: right;
-    }
     
     .iso-image-right {
         max-width: 600px;
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .iso-main-title {
+        font-size: 2.8rem;
+    }
+    
+    .iso-container {
+        padding: 0 20px;
+    }
+    
+    .iso-image-badge {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        right: 0;
+        bottom: -10px;
+    }
+}
+        padding-top: 50px;
+    }
+
+    .iso-certs-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        height: auto;
+        perspective: none;
+    }
+
+    .iso-cert-card {
+        position: relative;
+        transform: none !important;
+        opacity: 1 !important;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
     }
 }
 

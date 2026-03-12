@@ -49,6 +49,7 @@ const about = {
                 icon: 'public',
                 protocols: [ 'Regional Expansion', 'KSA Operations' ],
                 reverse: false
+
             },
             {
                 year: '2025',
@@ -245,6 +246,10 @@ const about = {
         regions: {
             ksa: 'KSA',
             egypt: 'Egypt'
+        },
+        tabs: {
+            partners: 'Partners',
+            customers: 'Key Customers'
         },
         features: [
             {
