@@ -228,8 +228,7 @@ const Section = () => {
                 ScrollTrigger.create({
                     trigger: card,
                     start: "top top",
-                    end: isLastCard ? "+=100vh" : "top top",
-                    // endTrigger logic:
+                    end: isLastCard ? "+=80vh" : "top top", // Optimized: 80vh instead of 100vh
                     endTrigger: isLastCard ? null : cards[cards.length - 1],
                     pin: true,
                     pinSpacing: isLastCard,
