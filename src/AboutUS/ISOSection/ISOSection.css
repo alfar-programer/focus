@@ -193,6 +193,7 @@
     .iso-list {
         align-items: center;
         text-align: left;
+    }
     
     .iso-image-right {
         max-width: 600px;
