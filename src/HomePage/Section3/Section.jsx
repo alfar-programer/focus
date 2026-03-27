@@ -137,8 +137,8 @@ const Section = () => {
             gsap.set(allDescriptions, { x: 28, autoAlpha: 0 });
 
             // Initial execution setups
-            gsap.set(cardImgWrapper, { scale: 0.92, borderRadius: "140px" });
-            gsap.set(cardImg, { scale: 1.18, yPercent: 5 });
+            gsap.set(cardImgWrapper, { scale: 0.7, borderRadius: "140px" });
+            gsap.set(cardImg, { scale: 1.25, yPercent: 5 });
 
             if (prefersReducedMotion) {
                 gsap.set(".card-title h1 .char span", { x: "0%" });
@@ -191,7 +191,7 @@ const Section = () => {
                 scrub: true, // IMPORTANT for continuous sync with scroll
                 onUpdate: (self) => {
                     const progress = self.progress;
-                    const imgScale = 0.92 + progress * 0.08;
+                    const imgScale = 0.7 + progress * 0.3;
                     const borderRadius = 140 - progress * 108;
                     const innerImgScale = 1.18 - progress * 0.15;
                     const innerY = 5 - progress * 5;
@@ -301,11 +301,12 @@ const Section = () => {
                         onUpdate: (self) => {
                             const progress = self.progress;
                             gsap.set(innerImg, {
-                                scale: 1.14 - progress * 0.12,
+                                scale: 1.25 - progress * 0.1,
                                 yPercent: 4 - progress * 4,
                             });
                             gsap.set(innerContainer, {
-                                borderRadius: (100 - progress * 72) + "px"
+                                scale: 0.7 + progress * 0.3,
+                                borderRadius: (110 - progress * 82) + "px"
                             });
                         }
                     });
@@ -329,6 +330,42 @@ const Section = () => {
                 });
             });
 
+            // 8. Outro Animation
+            const outro = containerRef.current.querySelector(".outro");
+            if (outro) {
+                const outroContent = outro.querySelectorAll(".outro-eyebrow, .outro-title, .outro-subtext, .section3-contact-cta");
+                const outroBgText = outro.querySelector(".outro-bg-text");
+
+                gsap.fromTo(outroContent,
+                    { y: 40, opacity: 0 },
+                    {
+                        y: 0, opacity: 1,
+                        duration: 1.2,
+                        stagger: 0.12,
+                        ease: "power4.out",
+                        scrollTrigger: {
+                            trigger: outro,
+                            start: "top 70%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+
+                gsap.fromTo(outroBgText,
+                    { y: "20%" },
+                    {
+                        y: "-20%",
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: outro,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true
+                        }
+                    }
+                );
+            }
+
             // Refresh ST
             ScrollTrigger.refresh();
 
@@ -341,9 +378,6 @@ const Section = () => {
 
     return (
         <div className="section3-container" ref={containerRef}>
-            <section className="intro">
-                <h1>{t('home.section3.intro')}</h1>
-            </section>
 
             <section className="cards">
                 {/* Card 1 (Intro Card with Marquee) */}
@@ -407,10 +441,18 @@ const Section = () => {
             </section>
 
             <section className="outro">
+                <div className="outro-bg-text">CONTACT US</div>
                 <div className="outro-content">
-                    <h1>{t('home.section3.outro')}</h1>
+                    <p className="outro-eyebrow">Ready to Innovate?</p>
+                    <h2 className="outro-title">Let's Build the Future <span className="accent-text">Together</span></h2>
+                    <p className="outro-subtext">
+                        Partner with us for high-performance engineering solutions and next-gen technology implementation.
+                    </p>
                     <Link to="/contact" className="section3-contact-cta">
                         {t('home.section3.outroCta', t('navbar.links.contact'))}
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                     </Link>
                 </div>
             </section>

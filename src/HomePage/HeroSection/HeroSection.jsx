@@ -3,12 +3,13 @@ import './HeroSection.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
 const HERO_IMAGES = [
-    '/WhatsApp Image 2026-02-10 at 7.16.09 PM (1).jpeg',
-    '/WhatsApp Image 2026-02-10 at 7.16.10 PM (1).jpeg',
-    '/WhatsApp Image 2026-02-10 at 7.16.11 PM (1).jpeg',
-    '/WhatsApp Image 2026-02-10 at 7.16.12 PM (2).jpeg',
-    '/WhatsApp Image 2026-02-10 at 7.16.13 PM (1).jpeg',
-    '/WhatsApp Image 2026-03-02 at 2.03.33 AM.jpeg',
+    '/heroimg1.png',
+    '/heroimg2.png',
+    '/heroimg3.png',
+    '/heroimg4.png',
+    '/heroimg5.png',
+    '/heroimg6.png',
+    
 ];
 
 const ROTATING_WORDS = ['Power', 'Control', 'Automation', 'Delivery', 'Excellence'];
