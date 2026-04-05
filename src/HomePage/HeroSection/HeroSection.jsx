@@ -1,403 +1,59 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import "./HeroSection.css";
-import { useI18n } from "../../i18n/I18nProvider";
 
-const HERO_IMAGES = [
-  "/heroimg1.png",
-  "/heroimg2.png",
-  "/heroimg3.png",
-  "/heroimg4.png",
-  "/heroimg5.png",
-  "/heroimg6.png",
+const SLIDES = [
+  {
+    place: "High Voltage Systems",
+    title: "POWER",
+    title2: "SUBSTATIONS",
+    description:
+      "Engineering and commissioning of high-voltage substations delivering reliable power distribution for industrial and utility networks across the region.",
+    image: "/heroimg1.png",
+  },
+  {
+    place: "Industrial Automation",
+    title: "CONTROL",
+    title2: "SYSTEMS",
+    description:
+      "Advanced PLC and SCADA integration for manufacturing plants, ensuring seamless automation, real-time monitoring, and optimized production workflows.",
+    image: "/heroimg2.png",
+  },
+  {
+    place: "Renewable Energy",
+    title: "SOLAR",
+    title2: "INSTALLATIONS",
+    description:
+      "Large-scale solar power plant design and installation, contributing to sustainable energy generation with cutting-edge photovoltaic technology.",
+    image: "/heroimg3.png",
+  },
+  {
+    place: "Infrastructure Projects",
+    title: "ELECTRICAL",
+    title2: "NETWORKS",
+    description:
+      "Comprehensive electrical network design for infrastructure projects, from underground cabling to overhead transmission lines and distribution systems.",
+    image: "/heroimg4.png",
+  },
+  {
+    place: "Energy Solutions",
+    title: "POWER",
+    title2: "GENERATION",
+    description:
+      "Turnkey power generation solutions including gas turbines, diesel generators, and hybrid energy systems for industrial and commercial applications.",
+    image: "/heroimg5.png",
+  },
+  {
+    place: "Smart Systems",
+    title: "BUILDING",
+    title2: "MANAGEMENT",
+    description:
+      "Intelligent building management systems integrating HVAC, lighting, security, and energy management for modern commercial and industrial facilities.",
+    image: "/heroimg6.png",
+  },
 ];
 
-const ROTATING_WORDS = [
-  "Power",
-  "Control",
-  "Automation",
-  "Delivery",
-  "Excellence",
-];
-const DRAG_THRESHOLD = 60;
-
-const HeroSection = () => {
-  const { t } = useI18n();
-
-  // Slider state
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [nextIndex, setNextIndex] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [direction, setDirection] = useState("left");
-  const sliderTimer = useRef(null);
-
-  // Drag state — use plain state for render-visible values
-  const [isDragging, setIsDragging] = useState(false); // true after 5px movement
-  const [isGrabbing, setIsGrabbing] = useState(false); // true on mousedown
-  const [dragOffset, setDragOffset] = useState(0);
-  // internal ref tracks raw values (no re-render needed)
-  const drag = useRef({ startX: 0, startY: 0, delta: 0 });
-
-  // Rotating word
-  const [wordIndex, setWordIndex] = useState(0);
-  const [wordVisible, setWordVisible] = useState(true);
-
-  // Stats
-  const [counted, setCounted] = useState(false);
-  const statsRef = useRef(null);
-
-  // ── go to slide ──
-  const goTo = useCallback(
-    (target, dir = "left") => {
-      if (isTransitioning || target === currentIndex) return;
-      setDirection(dir);
-      setNextIndex(target);
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex(target);
-        setIsTransitioning(false);
-      }, 700);
-    },
-    [isTransitioning, currentIndex],
-  );
-
-  const goNext = useCallback(
-    () => goTo((currentIndex + 1) % HERO_IMAGES.length, "left"),
-    [currentIndex, goTo],
-  );
-  const goPrev = useCallback(
-    () =>
-      goTo(
-        (currentIndex - 1 + HERO_IMAGES.length) % HERO_IMAGES.length,
-        "right",
-      ),
-    [currentIndex, goTo],
-  );
-
-  const resetAutoplay = useCallback(() => {
-    clearInterval(sliderTimer.current);
-    sliderTimer.current = setInterval(goNext, 4500);
-  }, [goNext]);
-
-  // Auto-advance
-  useEffect(() => {
-    sliderTimer.current = setInterval(goNext, 4500);
-    return () => clearInterval(sliderTimer.current);
-  }, [goNext]);
-
-  // Rotating words
-  useEffect(() => {
-    const id = setInterval(() => {
-      setWordVisible(false);
-      setTimeout(() => {
-        setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
-        setWordVisible(true);
-      }, 380);
-    }, 2500);
-    return () => clearInterval(id);
-  }, []);
-
-  // Stats counter
-  useEffect(() => {
-    const el = statsRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting && !counted) setCounted(true);
-      },
-      { threshold: 0.3 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [counted]);
-
-  // ── Drag handlers ──
-  const onPointerDown = (e) => {
-    if (isTransitioning) return;
-    if (e.type === "mousedown") e.preventDefault();
-    drag.current = {
-      startX: e.clientX ?? e.touches[0].clientX,
-      startY: e.clientY ?? e.touches[0].clientY,
-      delta: 0,
-    };
-    setIsGrabbing(true);
-    clearInterval(sliderTimer.current);
-  };
-
-  const onPointerMove = (e) => {
-    if (!isGrabbing) return;
-    const clientX = e.clientX ?? e.touches?.[0]?.clientX;
-    if (clientX == null) return;
-    const delta = clientX - drag.current.startX;
-    drag.current.delta = delta;
-    if (Math.abs(delta) > 5) setIsDragging(true);
-    setDragOffset(Math.max(-130, Math.min(130, delta)));
-  };
-
-  const onPointerUp = () => {
-    if (!isGrabbing) return;
-    const { delta } = drag.current;
-    setIsGrabbing(false);
-    setIsDragging(false);
-    setDragOffset(0);
-    if (delta < -DRAG_THRESHOLD) goNext();
-    else if (delta > DRAG_THRESHOLD) goPrev();
-    resetAutoplay();
-  };
-
-  // touch‑move: prevent vertical scroll when swiping horizontally
-  const onTouchMove = (e) => {
-    if (!isGrabbing) return;
-    const dx = Math.abs(e.touches[0].clientX - drag.current.startX);
-    const dy = Math.abs(e.touches[0].clientY - drag.current.startY);
-    if (dx > dy) e.preventDefault();
-    onPointerMove(e);
-  };
-
-  const outClass = direction === "left" ? "slide-out-left" : "slide-out-right";
-  const inClass = direction === "left" ? "slide-in-right" : "slide-in-left";
-
-  // adjacent image shown as peek while dragging
-  const peekIndex =
-    dragOffset < 0
-      ? (currentIndex + 1) % HERO_IMAGES.length
-      : (currentIndex - 1 + HERO_IMAGES.length) % HERO_IMAGES.length;
-
-  const peekTranslate =
-    dragOffset < 0
-      ? `calc(100% + ${dragOffset}px)`
-      : `calc(-100% + ${dragOffset}px)`;
-
-  return (
-    <section className="hero-v2">
-      {/* ── Full-screen Image Slider ── */}
-      <div
-        className={`hero-v2__slider${isDragging ? " is-dragging" : ""}`}
-        style={{ cursor: isGrabbing ? "grabbing" : "grab" }}
-        onMouseDown={onPointerDown}
-        onMouseMove={onPointerMove}
-        onMouseUp={onPointerUp}
-        onMouseLeave={onPointerUp}
-        onTouchStart={onPointerDown}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onPointerUp}
-      >
-        {/* Current slide */}
-        <div
-          className={`hero-v2__slide hero-v2__slide--current${isTransitioning ? ` ${outClass}` : ""}`}
-          style={
-            !isTransitioning && isGrabbing
-              ? { transform: `translateX(${dragOffset}px)`, transition: "none" }
-              : {}
-          }
-        >
-          <img
-            src={HERO_IMAGES[currentIndex]}
-            alt="Focus project"
-            draggable={false}
-          />
-          <div className="hero-v2__slide-overlay" />
-        </div>
-
-        {/* Incoming slide (transition) */}
-        {isTransitioning && (
-          <div className={`hero-v2__slide hero-v2__slide--next ${inClass}`}>
-            <img
-              src={HERO_IMAGES[nextIndex]}
-              alt="Focus project"
-              draggable={false}
-            />
-            <div className="hero-v2__slide-overlay" />
-          </div>
-        )}
-
-        {/* Peek at adjacent image while dragging */}
-        {!isTransitioning && isGrabbing && dragOffset !== 0 && (
-          <div
-            className="hero-v2__slide hero-v2__slide--peek"
-            style={{
-              transform: `translateX(${peekTranslate})`,
-              transition: "none",
-            }}
-          >
-            <img
-              src={HERO_IMAGES[peekIndex]}
-              alt="Focus project"
-              draggable={false}
-            />
-            <div className="hero-v2__slide-overlay" />
-          </div>
-        )}
-
-        {/* Drag hint — fades while grabbing */}
-        <div className={`hero-v2__drag-hint${isGrabbing ? " hidden" : ""}`}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M15 18l-6-6 6-6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          Drag to explore
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 18l6-6-6-6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-
-        {/* Arrow buttons */}
-        <button
-          className="hero-v2__arrow hero-v2__arrow--prev"
-          onClick={(e) => {
-            e.stopPropagation();
-            goPrev();
-            resetAutoplay();
-          }}
-          aria-label="Previous slide"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path
-              d="M12.5 15L7.5 10L12.5 5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-        <button
-          className="hero-v2__arrow hero-v2__arrow--next"
-          onClick={(e) => {
-            e.stopPropagation();
-            goNext();
-            resetAutoplay();
-          }}
-          aria-label="Next slide"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path
-              d="M7.5 5L12.5 10L7.5 15"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-
-        {/* Dots */}
-        <div className="hero-v2__dots">
-          {HERO_IMAGES.map((_, i) => (
-            <button
-              key={i}
-              className={`hero-v2__dot${i === currentIndex ? " active" : ""}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                goTo(i, i > currentIndex ? "left" : "right");
-                resetAutoplay();
-              }}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Counter */}
-        <div className="hero-v2__counter">
-          <span className="hero-v2__counter-current">
-            {String(currentIndex + 1).padStart(2, "0")}
-          </span>
-          <span className="hero-v2__counter-sep"> / </span>
-          <span className="hero-v2__counter-total">
-            {String(HERO_IMAGES.length).padStart(2, "0")}
-          </span>
-        </div>
-
-        {/* Progress bar */}
-        <div className="hero-v2__progress-track">
-          <div
-            className="hero-v2__progress-fill"
-            style={{
-              width: `${((currentIndex + 1) / HERO_IMAGES.length) * 100}%`,
-              transition: "width 0.7s ease",
-            }}
-          />
-        </div>
-      </div>
-
-      {/* ── Content overlay ── */}
-      <div className="hero-v2__content">
-        <div className="hero-v2__eyebrow">
-          <span className="hero-v2__eyebrow-dot" />
-          Engineering Solutions
-        </div>
-
-        <h1 className="hero-v2__title">
-          <span className="hero-v2__title-line">Industrial</span>
-          <span className="hero-v2__title-line accent">
-            <span
-              className={`hero-v2__rotating-word${wordVisible ? " visible" : ""}`}
-              key={wordIndex}
-            >
-              {ROTATING_WORDS[wordIndex]}
-            </span>
-          </span>
-          <span className="hero-v2__title-line">Delivered.</span>
-        </h1>
-
-        <p className="hero-v2__description">{t("home.hero.trustedBy")}</p>
-
-        <div className="hero-v2__actions">
-          <a href="/contact" className="hero-v2__btn hero-v2__btn--primary">
-            Start a Project
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M3 8h10M9 4l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
-          <a href="/projects" className="hero-v2__btn hero-v2__btn--ghost">
-            View Projects
-          </a>
-        </div>
-
-        <div className="hero-v2__stats" ref={statsRef}>
-          <StatItem
-            value={50}
-            suffix="+"
-            label="Projects Delivered"
-            counted={counted}
-          />
-          <div className="hero-v2__stats-divider" />
-          <StatItem
-            value={6}
-            suffix="+"
-            label="Years of Excellence"
-            counted={counted}
-          />
-          <div className="hero-v2__stats-divider" />
-          <StatItem
-            value={1.2}
-            suffix=" GW"
-            label="Power Delivered"
-            counted={counted}
-            decimal
-          />
-        </div>
-      </div>
-    </section>
-  );
-};
-
+/* ── tiny stat counter (reused from old design) ── */
 const StatItem = ({ value, suffix, label, counted, decimal }) => {
   const [display, setDisplay] = useState(0);
   const raf = useRef(null);
@@ -417,13 +73,319 @@ const StatItem = ({ value, suffix, label, counted, decimal }) => {
     return () => cancelAnimationFrame(raf.current);
   }, [counted, value, decimal]);
   return (
-    <div className="hero-v2__stat">
-      <span className="hero-v2__stat-value">
+    <div className="hero-stat">
+      <span className="hero-stat__value">
         {decimal ? display.toFixed(1) : display}
         {suffix}
       </span>
-      <span className="hero-v2__stat-label">{label}</span>
+      <span className="hero-stat__label">{label}</span>
     </div>
+  );
+};
+
+/* ═══════════════════════════════════════════
+   HERO SECTION — GSAP card-based slider
+   ═══════════════════════════════════════════ */
+const HeroSection = () => {
+  const handleNextRef = useRef(null);
+
+  /* stats */
+  const [counted, setCounted] = useState(false);
+  const statsRef = useRef(null);
+
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !counted) setCounted(true);
+      },
+      { threshold: 0.3 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [counted]);
+
+  /* ── main GSAP slider logic (runs once) ── */
+  useEffect(() => {
+    const order = [0, 1, 2, 3, 4, 5];
+    let detailsEven = true;
+    let running = true;
+    let busy = false;
+
+    const cardWidth = 300;
+    const cardHeight = 200;
+    const gap = 40;
+    const numberSize = 50;
+    const ease = "sine.inOut";
+    let offsetTop = 0;
+    let offsetLeft = 0;
+
+    const gc = (i) => `#hero-card-${i}`;
+    const gcc = (i) => `#hero-card-content-${i}`;
+    const gsi = (i) => `#hero-slide-item-${i}`;
+
+    const anim = (target, dur, props) =>
+      new Promise((res) => gsap.to(target, { ...props, duration: dur, onComplete: res }));
+
+    /* ── INIT ── */
+    function init() {
+      const [active, ...rest] = order;
+      const dA = detailsEven ? "#hero-details-even" : "#hero-details-odd";
+      const dI = detailsEven ? "#hero-details-odd" : "#hero-details-even";
+      const { innerHeight: h, innerWidth: w } = window;
+
+      offsetTop = h - 330;
+      offsetLeft = w - 830;
+
+      gsap.set("#hero-pagination", { top: offsetTop + 230, left: offsetLeft, y: 200, opacity: 0, zIndex: 60 });
+      gsap.set(gc(active), { x: 0, y: 0, width: w, height: h });
+      gsap.set(gcc(active), { x: 0, y: 0, opacity: 0 });
+      gsap.set(dA, { opacity: 0, zIndex: 22, x: -200 });
+      gsap.set(dI, { opacity: 0, zIndex: 12 });
+      gsap.set(`${dI} .hero-text`, { y: 100 });
+      gsap.set(`${dI} .hero-title-1`, { y: 100 });
+      gsap.set(`${dI} .hero-title-2`, { y: 100 });
+      gsap.set(`${dI} .hero-desc`, { y: 50 });
+      gsap.set(`${dI} .hero-cta`, { y: 60 });
+      gsap.set(".hero-progress-sub-foreground", { width: 500 * (1 / order.length) * (active + 1) });
+
+      rest.forEach((i, idx) => {
+        gsap.set(gc(i), { x: offsetLeft + 400 + idx * (cardWidth + gap), y: offsetTop, width: cardWidth, height: cardHeight, zIndex: 30, borderRadius: 10 });
+        gsap.set(gcc(i), { x: offsetLeft + 400 + idx * (cardWidth + gap), zIndex: 40, y: offsetTop + cardHeight - 100 });
+        gsap.set(gsi(i), { x: (idx + 1) * numberSize });
+      });
+
+      gsap.set(".hero-indicator", { x: -w });
+
+      const d = 0.6;
+      gsap.to(".hero-cover", { x: w + 400, delay: 0.5, ease, onComplete: () => setTimeout(() => { if (running) loop(); }, 500) });
+      rest.forEach((i, idx) => {
+        gsap.to(gc(i), { x: offsetLeft + idx * (cardWidth + gap), zIndex: 30, ease, delay: d });
+        gsap.to(gcc(i), { x: offsetLeft + idx * (cardWidth + gap), zIndex: 40, ease, delay: d });
+      });
+      gsap.to("#hero-pagination", { y: 0, opacity: 1, ease, delay: d });
+      gsap.to(dA, { opacity: 1, x: 0, ease, delay: d });
+    }
+
+    /* ── STEP (one transition) ── */
+    function step() {
+      return new Promise((resolve) => {
+        order.push(order.shift());
+        detailsEven = !detailsEven;
+
+        const dA = detailsEven ? "#hero-details-even" : "#hero-details-odd";
+        const dI = detailsEven ? "#hero-details-odd" : "#hero-details-even";
+
+        const el = document.querySelector(dA);
+        if (el) {
+          el.querySelector(".hero-place-box .hero-text").textContent = SLIDES[order[0]].place;
+          el.querySelector(".hero-title-1").textContent = SLIDES[order[0]].title;
+          el.querySelector(".hero-title-2").textContent = SLIDES[order[0]].title2;
+          el.querySelector(".hero-desc").textContent = SLIDES[order[0]].description;
+        }
+
+        gsap.set(dA, { zIndex: 22 });
+        gsap.to(dA, { opacity: 1, delay: 0.4, ease });
+        gsap.to(`${dA} .hero-text`, { y: 0, delay: 0.1, duration: 0.7, ease });
+        gsap.to(`${dA} .hero-title-1`, { y: 0, delay: 0.15, duration: 0.7, ease });
+        gsap.to(`${dA} .hero-title-2`, { y: 0, delay: 0.15, duration: 0.7, ease });
+        gsap.to(`${dA} .hero-desc`, { y: 0, delay: 0.3, duration: 0.4, ease });
+        gsap.to(`${dA} .hero-cta`, { y: 0, delay: 0.35, duration: 0.4, onComplete: resolve, ease });
+        gsap.set(dI, { zIndex: 12 });
+
+        const [active, ...rest] = order;
+        const prv = rest[rest.length - 1];
+
+        gsap.set(gc(prv), { zIndex: 10 });
+        gsap.set(gc(active), { zIndex: 20 });
+        gsap.to(gc(prv), { scale: 1.5, ease });
+
+        gsap.to(gcc(active), { y: offsetTop + cardHeight - 10, opacity: 0, duration: 0.3, ease });
+        gsap.to(gsi(active), { x: 0, ease });
+        gsap.to(gsi(prv), { x: -numberSize, ease });
+        gsap.to(".hero-progress-sub-foreground", { width: 500 * (1 / order.length) * (active + 1), ease });
+
+        gsap.to(gc(active), {
+          x: 0, y: 0, ease,
+          width: window.innerWidth, height: window.innerHeight, borderRadius: 0,
+          onComplete: () => {
+            const xNew = offsetLeft + (rest.length - 1) * (cardWidth + gap);
+            gsap.set(gc(prv), { x: xNew, y: offsetTop, width: cardWidth, height: cardHeight, zIndex: 30, borderRadius: 10, scale: 1 });
+            gsap.set(gcc(prv), { x: xNew, y: offsetTop + cardHeight - 100, opacity: 1, zIndex: 40 });
+            gsap.set(gsi(prv), { x: rest.length * numberSize });
+            gsap.set(dI, { opacity: 0 });
+            gsap.set(`${dI} .hero-text`, { y: 100 });
+            gsap.set(`${dI} .hero-title-1`, { y: 100 });
+            gsap.set(`${dI} .hero-title-2`, { y: 100 });
+            gsap.set(`${dI} .hero-desc`, { y: 50 });
+            gsap.set(`${dI} .hero-cta`, { y: 60 });
+          },
+        });
+
+        rest.forEach((i, idx) => {
+          if (i !== prv) {
+            const xNew = offsetLeft + idx * (cardWidth + gap);
+            gsap.set(gc(i), { zIndex: 30 });
+            gsap.to(gc(i), { x: xNew, y: offsetTop, width: cardWidth, height: cardHeight, ease, delay: 0.1 * (idx + 1) });
+            gsap.to(gcc(i), { x: xNew, y: offsetTop + cardHeight - 100, opacity: 1, zIndex: 40, ease, delay: 0.1 * (idx + 1) });
+            gsap.to(gsi(i), { x: (idx + 1) * numberSize, ease });
+          }
+        });
+      });
+    }
+
+    /* ── LOOP ── */
+    async function loop() {
+      if (!running) return;
+      await anim(".hero-indicator", 2, { x: 0 });
+      if (!running) return;
+      await anim(".hero-indicator", 0.8, { x: window.innerWidth, delay: 0.3 });
+      if (!running) return;
+      gsap.set(".hero-indicator", { x: -window.innerWidth });
+      busy = true;
+      await step();
+      busy = false;
+      if (running) loop();
+    }
+
+    /* ── click handler exposed via ref ── */
+    handleNextRef.current = () => {
+      if (busy) return;
+      gsap.killTweensOf(".hero-indicator");
+      gsap.set(".hero-indicator", { x: -window.innerWidth });
+      busy = true;
+      step().then(() => {
+        busy = false;
+        if (running) loop();
+      });
+    };
+
+    /* ── preload & start ── */
+    (async () => {
+      try {
+        await Promise.all(
+          SLIDES.map(
+            ({ image }) =>
+              new Promise((res, rej) => {
+                const img = new Image();
+                img.onload = () => res(img);
+                img.onerror = rej;
+                img.src = image;
+              }),
+          ),
+        );
+      } catch (e) {
+        console.error("Image preload failed", e);
+      }
+      init();
+    })();
+
+    return () => {
+      running = false;
+      handleNextRef.current = null;
+      gsap.killTweensOf([
+        ".hero-card", ".hero-card-content", ".hero-indicator",
+        ".hero-cover", "#hero-pagination", ".hero-details",
+        ".hero-text", ".hero-title-1", ".hero-title-2",
+        ".hero-desc", ".hero-cta", ".hero-progress-sub-foreground",
+        ".hero-slide-item",
+      ]);
+    };
+  }, []);
+
+  /* ═══════════ JSX ═══════════ */
+  return (
+    <section className="hero-v2">
+      {/* Indicator bar (top) */}
+      <div className="hero-indicator" />
+
+      {/* Card slides */}
+      <div id="hero-demo">
+        {SLIDES.map((s, i) => (
+          <div
+            className="hero-card"
+            id={`hero-card-${i}`}
+            key={`c${i}`}
+            style={{ backgroundImage: `url(${s.image})` }}
+          />
+        ))}
+        {SLIDES.map((s, i) => (
+          <div className="hero-card-content" id={`hero-card-content-${i}`} key={`cc${i}`}>
+            <div className="hero-content-start" />
+            <div className="hero-content-place">{s.place}</div>
+            <div className="hero-content-title-1">{s.title}</div>
+            <div className="hero-content-title-2">{s.title2}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Details – EVEN */}
+      <div className="hero-details" id="hero-details-even">
+        <div className="hero-place-box">
+          <div className="hero-text">{SLIDES[0].place}</div>
+        </div>
+        <div className="hero-title-box-1"><div className="hero-title-1">{SLIDES[0].title}</div></div>
+        <div className="hero-title-box-2"><div className="hero-title-2">{SLIDES[0].title2}</div></div>
+        <div className="hero-desc">{SLIDES[0].description}</div>
+        <div className="hero-cta">
+          <a href="/projects" className="hero-discover-btn">Discover Projects</a>
+          <a href="/contact" className="hero-contact-btn">Start a Project</a>
+        </div>
+      </div>
+
+      {/* Details – ODD */}
+      <div className="hero-details" id="hero-details-odd">
+        <div className="hero-place-box">
+          <div className="hero-text">{SLIDES[0].place}</div>
+        </div>
+        <div className="hero-title-box-1"><div className="hero-title-1">{SLIDES[0].title}</div></div>
+        <div className="hero-title-box-2"><div className="hero-title-2">{SLIDES[0].title2}</div></div>
+        <div className="hero-desc">{SLIDES[0].description}</div>
+        <div className="hero-cta">
+          <a href="/projects" className="hero-discover-btn">Discover Projects</a>
+          <a href="/contact" className="hero-contact-btn">Start a Project</a>
+        </div>
+      </div>
+
+      {/* Pagination */}
+      <div className="hero-pagination" id="hero-pagination">
+        <div className="hero-arrow hero-arrow-left" onClick={() => handleNextRef.current?.()}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </div>
+        <div className="hero-arrow hero-arrow-right" onClick={() => handleNextRef.current?.()}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </div>
+        <div className="hero-progress-sub-container">
+          <div className="hero-progress-sub-background">
+            <div className="hero-progress-sub-foreground" />
+          </div>
+        </div>
+        <div className="hero-slide-numbers" id="hero-slide-numbers">
+          {SLIDES.map((_, i) => (
+            <div className="hero-slide-item" id={`hero-slide-item-${i}`} key={i}>
+              {i + 1}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Initial cover reveal */}
+      <div className="hero-cover" />
+
+      {/* Stats bar */}
+      <div className="hero-stats-bar" ref={statsRef}>
+        <StatItem value={50} suffix="+" label="Projects Delivered" counted={counted} />
+        <div className="hero-stats-divider" />
+        <StatItem value={6} suffix="+" label="Years of Excellence" counted={counted} />
+        <div className="hero-stats-divider" />
+        <StatItem value={1.2} suffix=" GW" label="Power Delivered" counted={counted} decimal />
+      </div>
+    </section>
   );
 };
 
