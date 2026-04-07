@@ -1,7 +1,45 @@
 const home = {
     hero: {
-        title: 'Engineering Intelligent Power Systems',
-        trustedBy: 'From automation to power infrastructure, we help industrial teams run with confidence every day.'
+        slides: [
+            {
+                place: 'High Voltage Systems',
+                title: 'POWER',
+                title2: 'SUBSTATIONS',
+                description: 'Engineering and commissioning of high-voltage substations delivering reliable power distribution for industrial and utility networks across the region.'
+            },
+            {
+                place: 'Industrial Automation',
+                title: 'CONTROL',
+                title2: 'SYSTEMS',
+                description: 'Advanced PLC and SCADA integration for manufacturing plants, ensuring seamless automation, real-time monitoring, and optimized production workflows.'
+            },
+            {
+                place: 'Renewable Energy',
+                title: 'SOLAR',
+                title2: 'INSTALLATIONS',
+                description: 'Large-scale solar power plant design and installation, contributing to sustainable energy generation with cutting-edge photovoltaic technology.'
+            },
+            {
+                place: 'Infrastructure Projects',
+                title: 'ELECTRICAL',
+                title2: 'NETWORKS',
+                description: 'Comprehensive electrical network design for infrastructure projects, from underground cabling to overhead transmission lines and distribution systems.'
+            },
+            {
+                place: 'Energy Solutions',
+                title: 'POWER',
+                title2: 'GENERATION',
+                description: 'Turnkey power generation solutions including gas turbines, diesel generators, and hybrid energy systems for industrial and commercial applications.'
+            },
+            {
+                place: 'Smart Systems',
+                title: 'BUILDING',
+                title2: 'MANAGEMENT',
+                description: 'Intelligent building management systems integrating HVAC, lighting, security, and energy management for modern commercial and industrial facilities.'
+            }
+        ],
+        ctaDiscover: 'Discover Projects',
+        ctaStart: 'Start a Project'
     },
     section2: {
         title: 'Business Lines',
@@ -29,7 +67,10 @@ const home = {
     section3: {
 
         intro: 'We bring infrastructure, automation, and field execution together so your operation performs as one system.',
-        outro: 'If you are planning your next upgrade or new facility, talk with our team and we will map the right starting point.',
+        outroEyebrow: 'Ready to Innovate?',
+        outroTitle: 'Let\'s Build the Future <span class="accent-text">Together</span>',
+        outroBgText: 'CONTACT US',
+        outro: 'Partner with us for high-performance engineering solutions and next-gen technology implementation.',
         outroCta: 'Go to Contact Page',
 
 

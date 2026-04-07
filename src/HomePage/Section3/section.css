@@ -104,8 +104,12 @@
     background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-cyan) 100%);
     -webkit-background-clip: text;
     background-clip: text;
+    color: var(--color-accent);
     -webkit-text-fill-color: transparent;
     display: inline-block;
+}
+ .section3-container .outro-title .accent-text {
+    -webkit-text-fill-color: var(--color-accent);
 }
 
 .section3-container .outro-subtext {

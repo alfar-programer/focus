@@ -1,56 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import "./HeroSection.css";
+import { useI18n } from "../../i18n/I18nProvider";
 
-const SLIDES = [
-  {
-    place: "High Voltage Systems",
-    title: "POWER",
-    title2: "SUBSTATIONS",
-    description:
-      "Engineering and commissioning of high-voltage substations delivering reliable power distribution for industrial and utility networks across the region.",
-    image: "/heroimg1.png",
-  },
-  {
-    place: "Industrial Automation",
-    title: "CONTROL",
-    title2: "SYSTEMS",
-    description:
-      "Advanced PLC and SCADA integration for manufacturing plants, ensuring seamless automation, real-time monitoring, and optimized production workflows.",
-    image: "/heroimg2.png",
-  },
-  {
-    place: "Renewable Energy",
-    title: "SOLAR",
-    title2: "INSTALLATIONS",
-    description:
-      "Large-scale solar power plant design and installation, contributing to sustainable energy generation with cutting-edge photovoltaic technology.",
-    image: "/heroimg3.png",
-  },
-  {
-    place: "Infrastructure Projects",
-    title: "ELECTRICAL",
-    title2: "NETWORKS",
-    description:
-      "Comprehensive electrical network design for infrastructure projects, from underground cabling to overhead transmission lines and distribution systems.",
-    image: "/heroimg4.png",
-  },
-  {
-    place: "Energy Solutions",
-    title: "POWER",
-    title2: "GENERATION",
-    description:
-      "Turnkey power generation solutions including gas turbines, diesel generators, and hybrid energy systems for industrial and commercial applications.",
-    image: "/heroimg5.png",
-  },
-  {
-    place: "Smart Systems",
-    title: "BUILDING",
-    title2: "MANAGEMENT",
-    description:
-      "Intelligent building management systems integrating HVAC, lighting, security, and energy management for modern commercial and industrial facilities.",
-    image: "/heroimg6.png",
-  },
+const IMAGES = [
+  "/heroimg1.png",
+  "/heroimg2.png",
+  "/heroimg3.png",
+  "/heroimg4.png",
+  "/heroimg5.png",
+  "/heroimg6.png",
 ];
 
 /* ── tiny stat counter (reused from old design) ── */
@@ -87,6 +46,9 @@ const StatItem = ({ value, suffix, label, counted, decimal }) => {
    HERO SECTION — GSAP card-based slider
    ═══════════════════════════════════════════ */
 const HeroSection = () => {
+  const { t, get } = useI18n();
+  const rawSlides = get("home.hero.slides", []);
+  const slides = rawSlides.map((s, i) => ({ ...s, image: IMAGES[i] }));
   const handleNextRef = useRef(null);
 
   /* stats */
@@ -108,7 +70,9 @@ const HeroSection = () => {
 
   /* ── main GSAP slider logic (runs once) ── */
   useEffect(() => {
-    const order = [0, 1, 2, 3, 4, 5];
+    if (slides.length === 0) return undefined;
+
+    const order = [...Array(slides.length).keys()];
     let detailsEven = true;
     let running = true;
     let busy = false;
@@ -168,10 +132,14 @@ const HeroSection = () => {
       gsap.to(dA, { opacity: 1, x: 0, ease, delay: d });
     }
 
-    /* ── STEP (one transition) ── */
-    function step() {
+    /* ── STEP (direction: 1 = forward, -1 = backward) ── */
+    function step(direction = 1) {
       return new Promise((resolve) => {
-        order.push(order.shift());
+        if (direction === 1) {
+          order.push(order.shift());
+        } else {
+          order.unshift(order.pop());
+        }
         detailsEven = !detailsEven;
 
         const dA = detailsEven ? "#hero-details-even" : "#hero-details-odd";
@@ -179,10 +147,10 @@ const HeroSection = () => {
 
         const el = document.querySelector(dA);
         if (el) {
-          el.querySelector(".hero-place-box .hero-text").textContent = SLIDES[order[0]].place;
-          el.querySelector(".hero-title-1").textContent = SLIDES[order[0]].title;
-          el.querySelector(".hero-title-2").textContent = SLIDES[order[0]].title2;
-          el.querySelector(".hero-desc").textContent = SLIDES[order[0]].description;
+          el.querySelector(".hero-place-box .hero-text").textContent = slides[order[0]].place;
+          el.querySelector(".hero-title-1").textContent = slides[order[0]].title;
+          el.querySelector(".hero-title-2").textContent = slides[order[0]].title2;
+          el.querySelector(".hero-desc").textContent = slides[order[0]].description;
         }
 
         gsap.set(dA, { zIndex: 22 });
@@ -244,28 +212,40 @@ const HeroSection = () => {
       if (!running) return;
       gsap.set(".hero-indicator", { x: -window.innerWidth });
       busy = true;
-      await step();
+      await step(1);
       busy = false;
       if (running) loop();
     }
 
-    /* ── click handler exposed via ref ── */
-    handleNextRef.current = () => {
-      if (busy) return;
-      gsap.killTweensOf(".hero-indicator");
-      gsap.set(".hero-indicator", { x: -window.innerWidth });
-      busy = true;
-      step().then(() => {
-        busy = false;
-        if (running) loop();
-      });
+    /* ── click handlers exposed via ref ── */
+    handleNextRef.current = {
+      next: () => {
+        if (busy) return;
+        gsap.killTweensOf(".hero-indicator");
+        gsap.set(".hero-indicator", { x: -window.innerWidth });
+        busy = true;
+        step(1).then(() => {
+          busy = false;
+          if (running) loop();
+        });
+      },
+      prev: () => {
+        if (busy) return;
+        gsap.killTweensOf(".hero-indicator");
+        gsap.set(".hero-indicator", { x: -window.innerWidth });
+        busy = true;
+        step(-1).then(() => {
+          busy = false;
+          if (running) loop();
+        });
+      },
     };
 
     /* ── preload & start ── */
     (async () => {
       try {
         await Promise.all(
-          SLIDES.map(
+          slides.map(
             ({ image }) =>
               new Promise((res, rej) => {
                 const img = new Image();
@@ -292,7 +272,7 @@ const HeroSection = () => {
         ".hero-slide-item",
       ]);
     };
-  }, []);
+  }, [t, slides]);
 
   /* ═══════════ JSX ═══════════ */
   return (
@@ -302,7 +282,7 @@ const HeroSection = () => {
 
       {/* Card slides */}
       <div id="hero-demo">
-        {SLIDES.map((s, i) => (
+        {slides.map((s, i) => (
           <div
             className="hero-card"
             id={`hero-card-${i}`}
@@ -310,7 +290,7 @@ const HeroSection = () => {
             style={{ backgroundImage: `url(${s.image})` }}
           />
         ))}
-        {SLIDES.map((s, i) => (
+        {slides.map((s, i) => (
           <div className="hero-card-content" id={`hero-card-content-${i}`} key={`cc${i}`}>
             <div className="hero-content-start" />
             <div className="hero-content-place">{s.place}</div>
@@ -323,39 +303,39 @@ const HeroSection = () => {
       {/* Details – EVEN */}
       <div className="hero-details" id="hero-details-even">
         <div className="hero-place-box">
-          <div className="hero-text">{SLIDES[0].place}</div>
+          <div className="hero-text">{slides[0].place}</div>
         </div>
-        <div className="hero-title-box-1"><div className="hero-title-1">{SLIDES[0].title}</div></div>
-        <div className="hero-title-box-2"><div className="hero-title-2">{SLIDES[0].title2}</div></div>
-        <div className="hero-desc">{SLIDES[0].description}</div>
+        <div className="hero-title-box-1"><div className="hero-title-1">{slides[0].title}</div></div>
+        <div className="hero-title-box-2"><div className="hero-title-2">{slides[0].title2}</div></div>
+        <div className="hero-desc">{slides[0].description}</div>
         <div className="hero-cta">
-          <a href="/projects" className="hero-discover-btn">Discover Projects</a>
-          <a href="/contact" className="hero-contact-btn">Start a Project</a>
+          <a href="/projects" className="hero-discover-btn">{t("home.hero.ctaDiscover")}</a>
+          <a href="/contact" className="hero-contact-btn">{t("home.hero.ctaStart")}</a>
         </div>
       </div>
 
       {/* Details – ODD */}
       <div className="hero-details" id="hero-details-odd">
         <div className="hero-place-box">
-          <div className="hero-text">{SLIDES[0].place}</div>
+          <div className="hero-text">{slides[0].place}</div>
         </div>
-        <div className="hero-title-box-1"><div className="hero-title-1">{SLIDES[0].title}</div></div>
-        <div className="hero-title-box-2"><div className="hero-title-2">{SLIDES[0].title2}</div></div>
-        <div className="hero-desc">{SLIDES[0].description}</div>
+        <div className="hero-title-box-1"><div className="hero-title-1">{slides[0].title}</div></div>
+        <div className="hero-title-box-2"><div className="hero-title-2">{slides[0].title2}</div></div>
+        <div className="hero-desc">{slides[0].description}</div>
         <div className="hero-cta">
-          <a href="/projects" className="hero-discover-btn">Discover Projects</a>
-          <a href="/contact" className="hero-contact-btn">Start a Project</a>
+          <a href="/projects" className="hero-discover-btn">{t("home.hero.ctaDiscover")}</a>
+          <a href="/contact" className="hero-contact-btn">{t("home.hero.ctaStart")}</a>
         </div>
       </div>
 
       {/* Pagination */}
-      <div className="hero-pagination" id="hero-pagination">
-        <div className="hero-arrow hero-arrow-left" onClick={() => handleNextRef.current?.()}>
+      <div className="hero-pagination" id="hero-pagination" dir="ltr">
+        <div className="hero-arrow hero-arrow-left" onClick={() => handleNextRef.current?.prev()}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </div>
-        <div className="hero-arrow hero-arrow-right" onClick={() => handleNextRef.current?.()}>
+        <div className="hero-arrow hero-arrow-right" onClick={() => handleNextRef.current?.next()}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
           </svg>
@@ -366,7 +346,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="hero-slide-numbers" id="hero-slide-numbers">
-          {SLIDES.map((_, i) => (
+          {slides.map((_, i) => (
             <div className="hero-slide-item" id={`hero-slide-item-${i}`} key={i}>
               {i + 1}
             </div>

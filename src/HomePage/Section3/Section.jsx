@@ -440,15 +440,15 @@ const Section = () => {
             </section>
 
             <section className="outro">
-                <div className="outro-bg-text">CONTACT US</div>
+                <div className="outro-bg-text">{t('home.section3.outroBgText')}</div>
                 <div className="outro-content">
-                    <p className="outro-eyebrow">Ready to Innovate?</p>
-                    <h2 className="outro-title">Let's Build the Future <span className="accent-text">Together</span></h2>
+                    <p className="outro-eyebrow">{t('home.section3.outroEyebrow')}</p>
+                    <h2 className="outro-title" dangerouslySetInnerHTML={{ __html: t('home.section3.outroTitle') }} />
                     <p className="outro-subtext">
-                        Partner with us for high-performance engineering solutions and next-gen technology implementation.
+                        {t('home.section3.outro')}
                     </p>
                     <Link to="/contact" className="section3-contact-cta">
-                        {t('home.section3.outroCta', t('navbar.links.contact'))}
+                        {t('home.section3.outroCta')}
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
