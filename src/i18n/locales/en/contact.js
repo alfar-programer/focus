@@ -4,16 +4,16 @@ const contact = {
             id: 'eg',
             position: [ 29.9697, 30.9247 ],
             flag: '🇪🇬',
-            name: 'City Stars Towers',
+            name: 'Eg focus',
             city: '6th of October City, Giza · Egypt',
             address: 'Tower No. 7, First 6th of October, Giza 3225014',
-            mapsUrl: 'https://maps.google.com/?q=City+Stars+Towers,+6th+October+City,+Giza,+Egypt'
+            mapsUrl: 'https://www.google.com/maps/place/Focus+T%26C/@29.9591251,30.9157229,17z/data=!3m1!4b1!4m6!3m5!1s0x14585719011ba7c5:0xd4704ae969fed09d!8m2!3d29.9591205!4d30.9182978!16s%2Fg%2F11l38sqpk9?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQxMy4wlKXMDSoASAFQAw%3D%3D'
         },
         {
             id: 'ksa',
             position: [ 26.4207, 50.0888 ],
             flag: '🇸🇦',
-            name: 'Raya Business Center',
+            name: 'Focus KSA',
             city: 'Dammam 34327 · Saudi Arabia',
             address: '6177 67 St, Dammam 34327, Saudi Arabia',
             mapsUrl: 'https://maps.google.com/?q=Raya+Business+Center,+Dammam+34327,+Saudi+Arabia'
@@ -23,7 +23,7 @@ const contact = {
         badge: 'Focus Trading & Contracting',
         titleLine: 'Connect With',
         titleHighlight: 'FOCUS T&C',
-        subtitle: 'Tell us what you are building, and our engineering team will connect with the right support.'
+        subtitle: 'your power challenge ends here'
     },
     channelsSection: {
         title: 'Direct Access<br /><span>Channels</span>',
@@ -50,7 +50,7 @@ const contact = {
             {
                 icon: '🕐',
                 label: 'Operational Hours',
-                value: 'Mon-Fri / 08:00-18:00',
+                value: 'Sun - Thu / 08:00 - 16:00',
                 note: 'Weekend Support: Standby'
             }
         ]
@@ -76,9 +76,9 @@ const contact = {
         },
         serviceOptions: [
             'Power Generation Solutions',
-            'Industrial Automation (PLC / SCADA)',
-            'Electromechanical Contracting',
-            'MEP Systems Integration',
+            'Hybrid Solution',
+            'BESS',
+            'Solar system',
             'Other'
         ],
         submit: 'Send',

@@ -114,7 +114,7 @@
 }
 
 .contact-hero-title {
-    color: #fff;
+    color: var(--text-primary);
     font-size: clamp(2.8rem, 8vw, 6rem);
     font-weight: 900;
     line-height: 1.05;
