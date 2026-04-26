@@ -42,7 +42,6 @@ const ContactUs = () => {
     const heroContentRef = useRef(null);
     const channelCardsRef = useRef([]);
     const formPanelRef = useRef(null);
-    const ctaContentRef = useRef(null);
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -99,21 +98,6 @@ const ContactUs = () => {
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: formPanelRef.current,
-                        start: 'top 85%',
-                        toggleActions: 'play none none reverse',
-                    },
-                });
-            }
-
-            // CTA content reveal on scroll
-            if (ctaContentRef.current) {
-                gsap.to(ctaContentRef.current, {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.9,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: ctaContentRef.current,
                         start: 'top 85%',
                         toggleActions: 'play none none reverse',
                     },
@@ -384,33 +368,6 @@ const ContactUs = () => {
                     ))}
                 </MapContainer>
                 <div className="contact-map-gradient" style={{ pointerEvents: 'none' }} />
-            </section>
-
-            {/* ── CTA ── */}
-            <section className="contact-cta">
-                <div className="contact-cta-grid" />
-
-                <div ref={ctaContentRef} className="contact-cta-content">
-                    <h2 className="contact-cta-title">
-                        {t('contact.cta.titleLine')}&nbsp;<br />
-                        <span>{t('contact.cta.titleHighlight')}</span>
-                    </h2>
-                    <p className="contact-cta-text">
-                        {t('contact.cta.description')}
-                    </p>
-
-                    <div className="contact-cta-buttons">
-                        <button
-                            className="contact-cta-btn-primary"
-                            onClick={() => document.querySelector('.contact-form-input')?.focus()}
-                        >
-                            {t('contact.cta.primaryButton')}
-                        </button>
-                        <Link to="/services" className="contact-cta-btn-secondary" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            {t('contact.cta.secondaryButton')}
-                        </Link>
-                    </div>
-                </div>
             </section>
 
         </div>
