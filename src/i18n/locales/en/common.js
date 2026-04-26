@@ -48,7 +48,7 @@ const common = {
             },
             hours: {
                 label: 'Operational Hours',
-                line1: 'Mon - Fri · 08:00 - 18:00',
+                line1: 'Sun - Thur · 08:00 - 16:00',
                 line2: 'Weekend Support: Standby'
             }
         },

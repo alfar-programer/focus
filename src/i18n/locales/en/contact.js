@@ -50,7 +50,7 @@ const contact = {
             {
                 icon: '🕐',
                 label: 'Operational Hours',
-                value: 'Mon-Fri / 08:00-18:00',
+                value: 'Sun-Thur / 08:00-16:00',
                 note: 'Weekend Support: Standby'
             }
         ]

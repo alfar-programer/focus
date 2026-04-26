@@ -7,7 +7,7 @@ const services = {
         description: 'تصمم وتنفذ فوكاس للتجارة والمقاولات حلول الطاقة والهندسة الصناعية للعمليات التي تحتاج جاهزية مستمرة.',
         chips: [ 'مولدات ديزل 20-3000 KVA', 'ISO 9001 / ISO 45001', 'جاهز للأنظمة الهجينة' ],
         ctaPrimary: 'طلب التفاصيل الفنية',
-        ctaSecondary: 'عرض دراسات الحالة',
+        ctaSecondary: 'عرض المشاريع',
         stats: [
             { value: '99.99%', label: 'ضمان الجاهزية' },
             { value: '+50', label: 'مشروع عالمي' },
@@ -32,29 +32,36 @@ const services = {
         supportLink: 'تواصل مع الدعم',
         downloadButton: 'ملف المواصفات الفنية',
         diagramTexts: {
-            power: {
-                generator: 'وحدة التوليد',
-                load: 'حمل حرج',
-                ats: 'لوحة ATS',
-                grid: 'الشبكة العمومية',
-                fuel: 'خزان الوقود'
+            diesel: {
+                generator: 'وحدة المولد',
+                output: 'خرج الطاقة',
+                fuel: 'مصدر الوقود'
             },
-            electro: {
-                panel: 'اللوحة الرئيسية',
-                transformer: 'المحول',
-                hvac: 'حمل HVAC',
-                pumps: 'وحدة المضخات',
-                mcc: 'MCC'
+            sync: {
+                panel: 'لوحة التزامن',
+                gen1: 'مولد 1',
+                gen2: 'مولد 2',
+                load: 'حمل مشترك'
             },
-            automation: {
-                plc: 'وحدة تحكم PLC',
-                plcId: 'المعرّف: PLC-X9',
-                io: 'وحدات I/O',
-                sensors: 'حساسات ميدانية',
-                scada: 'واجهة SCADA',
-                scadaId: 'المعرّف: SCADA-01',
-                hmi: 'واجهة HMI محلية',
-                network: 'شبكة إيثرنت صناعية'
+            testing: {
+                station: 'محطة الاختبار',
+                loadBank: 'بنك الأحمال',
+                metrics: 'بيانات الأداء'
+            },
+            commissioning: {
+                site: 'التركيب بالموقع',
+                verify: 'التحقق من النظام',
+                ready: 'جاهز للتشغيل'
+            },
+            training: {
+                docs: 'التوثيق',
+                operator: 'المُشَغِّل',
+                knowledge: 'نقل المعرفة'
+            },
+            support: {
+                maintenance: 'الصيانة',
+                parts: 'قطع الغيار',
+                service: 'دعم على مدار الساعة'
             },
             fallback: {
                 system: 'النظام'
@@ -62,52 +69,100 @@ const services = {
         },
         services: [
             {
-                id: 'power-generators',
+                id: 'diesel-generator',
                 icon: 'bolt',
-                title: 'توليد الطاقة',
-                subtitle: 'أنظمة مولدات ديزل',
+                title: 'توريد مولدات الديزل',
+                subtitle: 'حلول طاقة موثوقة',
                 serviceId: '#PWR-01',
-                heading: 'بنية طاقة صناعية',
-                description: 'حلول مولدات ديزل من 20 KVA إلى 3000 KVA مع ATS ومزامنة الشبكة واستمرارية تشغيل موثوقة.',
+                heading: 'مولدات ديزل عالية الجودة',
+                description: 'تقوم فوكاس بتوريد مولدات ديزل عالية الجودة تتراوح من 30 كيلو فولت أمبير إلى 3.75 ميجا فولت أمبير، وتناسب المستشفيات والمنشآت الحيوية والمصانع ومشاريع البنية التحتية. صُممت مُولّداتنا للعمل في البيئات القاسية في مصر والخليج.',
                 stats: [
-                    { icon: 'offline_bolt', label: 'نطاق القدرة', value: '20-3000', unit: 'KVA', progress: 85 },
-                    { icon: 'verified_user', label: 'ضمان الجاهزية', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'bolt', label: 'قدرة مسلّمة', value: '1.2', unit: 'GW', subtext: 'إجمالي القدرة المنفذة' }
+                    { icon: 'offline_bolt', label: 'نطاق القدرة', value: '30-3750', unit: 'KVA', progress: 100 },
+                    { icon: 'thermostat', label: 'مصمم لـ', value: 'بيئات', unit: 'قاسية', subtext: 'حرارة عالية وغبار' },
+                    { icon: 'local_gas_station', label: 'نظام الوقود', value: 'متكامل', unit: '', subtext: 'تشغيل مستمر' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - GENSET SINGLE LINE', 'ATS / GRID READY' ],
-                diagramType: 'power'
+                diagramLabels: [ 'FIG 2.1 - DIESEL GENSET', 'POWER OUTPUT LOOP' ],
+                diagramType: 'diesel'
             },
             {
-                id: 'automation',
-                icon: 'precision_manufacturing',
-                title: 'SCADA والأتمتة الصناعية',
-                subtitle: 'أنظمة PLC / SCADA',
-                serviceId: '#AUTO-01',
-                heading: 'ذكاء التحكم الصناعي',
-                description: 'تكامل PLC وSCADA يمنح فرق التشغيل رؤية أدق وتحكماً أفضل واستجابة أسرع في الموقع.',
+                id: 'synchronization',
+                icon: 'sync',
+                title: 'التزامن ومشاركة الأحمال',
+                subtitle: 'أنظمة مشاركة الأحمال',
+                serviceId: '#PWR-02',
+                heading: 'لوحات تزامن المولدات',
+                description: 'نصمم ونورد لوحات تزامن المولدات التي تتيح تشغيل مولدات متعددة بكفاءة على التوازي، مما يوفر مشاركة متوازنة للأحمال، وتوافرية عالية، وإمكانية توسيع النظام عند الحاجة.',
                 stats: [
-                    { icon: 'precision_manufacturing', label: 'الأنظمة الأساسية', value: 'PLC', unit: '/SCADA', progress: 100 },
-                    { icon: 'verified_user', label: 'ضمان الجاهزية', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'lan', label: 'شبكة التحكم', value: 'مباشرة', unit: '', subtext: 'معمارية إيثرنت صناعية' }
+                    { icon: 'balance', label: 'مشاركة الأحمال', value: 'متوازنة', unit: '', progress: 100 },
+                    { icon: 'library_add', label: 'التوسعة', value: 'قابلة للتوسع', unit: '', subtext: 'ترقيات مستقبلية سهلة' },
+                    { icon: 'speed', label: 'الأداء', value: 'مُحَسَّن', unit: '', subtext: 'كفاءة عالية' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - CONTROL ARCHITECTURE', 'PLC ⇄ SCADA LIVE' ],
-                diagramType: 'automation'
+                diagramLabels: [ 'FIG 2.2 - SYNC PANEL ARCHITECTURE', 'PARALLEL OPERATION' ],
+                diagramType: 'sync'
             },
             {
-                id: 'electromechanical',
-                icon: 'electrical_services',
-                title: 'المقاولات الكهروميكانيكية',
-                subtitle: 'تكامل الأنظمة',
-                serviceId: '#EM-01',
-                heading: 'أنظمة مبانٍ متكاملة',
-                description: 'تنفيذ كهروميكانيكي متكامل لتوزيع الطاقة ودمج الأنظمة مع تنسيق فعلي في الموقع.',
+                id: 'testing',
+                icon: 'fact_check',
+                title: 'اختبار المصنع (FAT)',
+                subtitle: 'ضمان الجودة',
+                serviceId: '#QA-01',
+                heading: 'اختبار المصنع وضمان الجودة',
+                description: 'تخضع جميع المعدات لاختبارات وفحوصات داخل المصنع قبل التوريد. يشمل ذلك اختبارات التحميل الكاملة، والتحقق من الأداء، وضمان الامتثال للمعايير الدولية.',
                 stats: [
-                    { icon: 'calendar_month', label: 'سنوات الخبرة', value: '6', unit: '+', progress: 70 },
-                    { icon: 'workspace_premium', label: 'معيار الجودة', value: 'ISO', unit: '9001', progress: 100 },
-                    { icon: 'shield_with_heart', label: 'معيار السلامة', value: 'ISO', unit: '45001', subtext: 'امتثال معتمد' }
+                    { icon: 'battery_charging_full', label: 'نطاق الاختبار', value: 'حمل كامل', unit: '', progress: 100 },
+                    { icon: 'workspace_premium', label: 'الامتثال', value: 'عالمي', unit: '', subtext: 'المعايير الدولية' },
+                    { icon: 'speed', label: 'التشغيل', value: 'أسرع', unit: '', subtext: 'مخاطر أقل في الموقع' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - ELECTROMECH COORDINATION', 'SYSTEMS INTERLOCKED' ],
-                diagramType: 'electromechanical'
+                diagramLabels: [ 'FIG 2.3 - FAT PROCESS', 'PERFORMANCE VERIFICATION' ],
+                diagramType: 'testing'
+            },
+            {
+                id: 'installation',
+                icon: 'construction',
+                title: 'التركيب والتشغيل',
+                subtitle: 'النشر في الموقع',
+                serviceId: '#OPS-01',
+                heading: 'خدمات التركيب والتشغيل التجريبي',
+                description: 'نقدم خدمات كاملة للتركيب والتشغيل في الموقع، مما يضمن عمل الأنظمة بشكل صحيح من اليوم الأول. يتضمن ذلك الإشراف على التركيب والتحقق الكهروميكانيكي.',
+                stats: [
+                    { icon: 'engineering', label: 'الإشراف', value: 'خبراء', unit: '', progress: 100 },
+                    { icon: 'verified', label: 'التحقق', value: 'شامل', unit: '', subtext: 'فحص كهروميكانيكي' },
+                    { icon: 'task_alt', label: 'اختبار الأحمال', value: 'مُعتمد', unit: '', subtext: 'تحسين النظام' }
+                ],
+                diagramLabels: [ 'FIG 2.4 - COMMISSIONING WORKFLOW', 'SITE STARTUP' ],
+                diagramType: 'commissioning'
+            },
+            {
+                id: 'training',
+                icon: 'school',
+                title: 'التدريب والتسليم',
+                subtitle: 'نقل المعرفة',
+                serviceId: '#OPS-02',
+                heading: 'تدريب المشغلين والتسليم',
+                description: 'لضمان جاهزية فريقك لتشغيل النظام، نقدم تدريباً شاملاً للمشغلين، وإرشادات الصيانة، ونسلّمك المستندات التوثيقية بالكامل.',
+                stats: [
+                    { icon: 'person', label: 'التدريب', value: 'للمشغل', unit: '', progress: 100 },
+                    { icon: 'book', label: 'الإرشادات', value: 'للصيانة', unit: '', subtext: 'تعليمات واضحة' },
+                    { icon: 'folder_open', label: 'التوثيق', value: 'كامل', unit: '', subtext: 'تسليم شامل' }
+                ],
+                diagramLabels: [ 'FIG 2.5 - HANDOVER PROCESS', 'TEAM READINESS' ],
+                diagramType: 'training'
+            },
+            {
+                id: 'support',
+                icon: 'support_agent',
+                title: 'دعم ما بعد البيع',
+                subtitle: 'خدمات الصيانة',
+                serviceId: '#SVC-01',
+                heading: 'خدمات دعم ما بعد البيع والصيانة',
+                description: 'دعم وصيانة موثوقة لضمان استمرارية عمل النظام على المدى الطويل، يشمل عقود الصيانة الوقائية، تقديم الدعم في الحالات الطارئة، وتوفير قطع الغيار الأصلية.',
+                stats: [
+                    { icon: 'build', label: 'الصيانة', value: 'وقائية', unit: '', progress: 100 },
+                    { icon: 'emergency', label: 'الدعم', value: 'طوارئ', unit: '', subtext: 'استجابة سريعة' },
+                    { icon: 'inventory', label: 'قطع الغيار', value: 'متوفرة', unit: '', subtext: 'مكونات أصلية' }
+                ],
+                diagramLabels: [ 'FIG 2.6 - SUPPORT NETWORK', 'LONG-TERM RELIABILITY' ],
+                diagramType: 'support'
             }
         ]
     },
@@ -147,17 +202,6 @@ const services = {
             {
                 id: 3,
                 number: '03',
-                title: 'تنفيذ كهروميكانيكي وMEP',
-                description: 'تنفذ فرقنا أنظمة كهروميكانيكية وتوزيع طاقة وتكامل MEP عبر تنسيق ميداني متكامل.',
-                features: [
-                    { icon: 'verified_user', text: 'تنفيذ المقاولات الكهروميكانيكية' },
-                    { icon: 'local_shipping', text: 'تكامل MEP والتشغيل' }
-                ],
-                metric: { value: '2', unit: '', label: 'نطاق التشغيل' }
-            },
-            {
-                id: 4,
-                number: '04',
                 title: 'معايير السلامة والجودة',
                 description: 'نلتزم بمعايير ISO 9001 وISO 45001 وISO 8528 للمولدات مع الحفاظ على ضمان جاهزية 99.99%.',
                 features: [

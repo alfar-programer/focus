@@ -7,7 +7,7 @@ const services = {
         description: 'Focus Trading & Contracting designs and delivers power and industrial engineering solutions for operations that need to stay online.',
         chips: [ '20-3000 KVA Diesel Generators', 'ISO 9001 / ISO 45001', 'Hybrid Ready' ],
         ctaPrimary: 'Request Technical Details',
-        ctaSecondary: 'View Case Studies',
+        ctaSecondary: 'View Projects',
         stats: [
             { value: '99.99%', label: 'Uptime Guarantee' },
             { value: '50+', label: 'Global Projects' },
@@ -32,29 +32,36 @@ const services = {
         supportLink: 'Contact Support',
         downloadButton: 'Tech Spec PDF',
         diagramTexts: {
-            power: {
-                generator: 'GENERATOR UNIT',
-                load: 'CRITICAL LOAD',
-                ats: 'ATS PANEL',
-                grid: 'UTILITY GRID',
-                fuel: 'FUEL TANK'
+            diesel: {
+                generator: 'GENSET UNIT',
+                output: 'POWER OUTPUT',
+                fuel: 'FUEL SUPPLY'
             },
-            electro: {
-                panel: 'MAIN PANEL',
-                transformer: 'TRANSFORMER',
-                hvac: 'HVAC LOAD',
-                pumps: 'PUMP SKID',
-                mcc: 'MCC'
+            sync: {
+                panel: 'SYNC PANEL',
+                gen1: 'GEN-01',
+                gen2: 'GEN-02',
+                load: 'SHARED LOAD'
             },
-            automation: {
-                plc: 'PLC CONTROLLER',
-                plcId: 'ID: PLC-X9',
-                io: 'REMOTE I/O',
-                sensors: 'FIELD SENSORS',
-                scada: 'SCADA HMI',
-                scadaId: 'ID: SCADA-01',
-                hmi: 'LOCAL HMI',
-                network: 'INDUSTRIAL ETHERNET'
+            testing: {
+                station: 'TEST STATION',
+                loadBank: 'LOAD BANK',
+                metrics: 'PERFORMANCE DATA'
+            },
+            commissioning: {
+                site: 'SITE INSTALLATION',
+                verify: 'SYSTEM VERIFICATION',
+                ready: 'READY FOR STARTUP'
+            },
+            training: {
+                docs: 'DOCUMENTATION',
+                operator: 'OPERATOR',
+                knowledge: 'KNOWLEDGE TRANSFER'
+            },
+            support: {
+                maintenance: 'MAINTENANCE',
+                parts: 'SPARE PARTS',
+                service: '24/7 SUPPORT'
             },
             fallback: {
                 system: 'SYSTEM'
@@ -62,52 +69,100 @@ const services = {
         },
         services: [
             {
-                id: 'power-generators',
+                id: 'diesel-generator',
                 icon: 'bolt',
-                title: 'Power Generation',
-                subtitle: 'DIESEL GENERATOR SYSTEMS',
+                title: 'Diesel Generator Supply',
+                subtitle: 'RELIABLE POWER SOLUTIONS',
                 serviceId: '#PWR-01',
-                heading: 'Industrial Power Infrastructure',
-                description: 'Diesel generator solutions from 20 KVA to 3000 KVA with ATS, grid synchronization, and dependable backup continuity.',
+                heading: 'High-Quality Diesel Generators',
+                description: 'Focus Co. supplies high-quality diesel generators ranging from 30 kVA to 3.75 MVA, suitable for hospitals, critical facilities, construction sites, and industrial plants. Our generators are engineered for harsh conditions across Egypt and the Gulf region.',
                 stats: [
-                    { icon: 'offline_bolt', label: 'Power Range', value: '20-3000', unit: 'KVA', progress: 85 },
-                    { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'bolt', label: 'Power Delivered', value: '1.2', unit: 'GW', subtext: 'Total Delivered Capacity' }
+                    { icon: 'offline_bolt', label: 'Power Range', value: '30k-3.75M', unit: 'VA', progress: 100 },
+                    { icon: 'thermostat', label: 'Engineered For', value: 'Harsh', unit: 'Env', subtext: 'High Temp & Dusty Areas' },
+                    { icon: 'local_gas_station', label: 'Fuel System', value: 'Integrated', unit: '', subtext: 'Continuous Operation' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - GENSET SINGLE LINE', 'ATS / GRID READY' ],
-                diagramType: 'power'
+                diagramLabels: [ 'FIG 2.1 - DIESEL GENSET', 'POWER OUTPUT LOOP' ],
+                diagramType: 'diesel'
             },
             {
-                id: 'automation',
-                icon: 'precision_manufacturing',
-                title: 'SCADA & Industrial Automation',
-                subtitle: 'PLC / SCADA SYSTEMS',
-                serviceId: '#AUTO-01',
-                heading: 'Industrial Control Intelligence',
-                description: 'PLC and SCADA integration that gives teams better visibility, stronger control, and faster response on site.',
+                id: 'synchronization',
+                icon: 'sync',
+                title: 'Generator Synchronization',
+                subtitle: 'LOAD SHARING SYSTEMS',
+                serviceId: '#PWR-02',
+                heading: 'Generator Synchronization Panels',
+                description: 'We design and supply generator synchronization panels that allow multiple generators to operate efficiently in parallel, delivering balanced load sharing, built-in redundancy, and scalable system expansion.',
                 stats: [
-                    { icon: 'precision_manufacturing', label: 'Core Systems', value: 'PLC', unit: '/SCADA', progress: 100 },
-                    { icon: 'verified_user', label: 'Uptime Guarantee', value: '99.99', unit: '%', progress: 99.99 },
-                    { icon: 'lan', label: 'Control Network', value: 'Live', unit: '', subtext: 'Industrial Ethernet Architecture' }
+                    { icon: 'balance', label: 'Load Sharing', value: 'Balanced', unit: '', progress: 100 },
+                    { icon: 'library_add', label: 'Expansion', value: 'Scalable', unit: '', subtext: 'Easy Future Upgrades' },
+                    { icon: 'speed', label: 'Performance', value: 'Optimized', unit: '', subtext: 'High Efficiency' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - CONTROL ARCHITECTURE', 'PLC ⇄ SCADA LIVE' ],
-                diagramType: 'automation'
+                diagramLabels: [ 'FIG 2.2 - SYNC PANEL ARCHITECTURE', 'PARALLEL OPERATION' ],
+                diagramType: 'sync'
             },
             {
-                id: 'electromechanical',
-                icon: 'electrical_services',
-                title: 'ELECTROMECHANICAL CONTRACTING',
-                subtitle: 'SYSTEMS INTEGRATION',
-                serviceId: '#EM-01',
-                heading: 'Integrated Building Systems',
-                description: 'End-to-end electromechanical contracting for power distribution, systems integration, and coordinated field delivery.',
+                id: 'testing',
+                icon: 'fact_check',
+                title: 'Factory Testing (FAT)',
+                subtitle: 'QUALITY ASSURANCE',
+                serviceId: '#QA-01',
+                heading: 'Factory Testing & Quality Assurance',
+                description: 'All equipment undergoes rigorous factory testing and inspection before delivery. We perform full load testing, performance verification, and assure compliance with international standards.',
                 stats: [
-                    { icon: 'calendar_month', label: 'Years Experience', value: '6', unit: '+', progress: 70 },
-                    { icon: 'workspace_premium', label: 'Quality Standard', value: 'ISO', unit: '9001', progress: 100 },
-                    { icon: 'shield_with_heart', label: 'Safety Standard', value: 'ISO', unit: '45001', subtext: 'Certified Compliance' }
+                    { icon: 'battery_charging_full', label: 'Testing Scope', value: 'Full Load', unit: '', progress: 100 },
+                    { icon: 'workspace_premium', label: 'Compliance', value: 'Global', unit: 'Stds', subtext: 'International Standards' },
+                    { icon: 'speed', label: 'Commissioning', value: 'Faster', unit: '', subtext: 'Reduced Site Risks' }
                 ],
-                diagramLabels: [ 'FIG 3.0 - ELECTROMECH COORDINATION', 'SYSTEMS INTERLOCKED' ],
-                diagramType: 'electromechanical'
+                diagramLabels: [ 'FIG 2.3 - FAT PROCESS', 'PERFORMANCE VERIFICATION' ],
+                diagramType: 'testing'
+            },
+            {
+                id: 'installation',
+                icon: 'construction',
+                title: 'Installation & Commissioning',
+                subtitle: 'SITE DEPLOYMENT',
+                serviceId: '#OPS-01',
+                heading: 'Installation & Commissioning Services',
+                description: 'We provide complete installation and commissioning services, ensuring systems operate correctly from day one. This includes installation supervision, electrical and mechanical verification, and protection system testing.',
+                stats: [
+                    { icon: 'engineering', label: 'Supervision', value: 'Expert', unit: '', progress: 100 },
+                    { icon: 'verified', label: 'Verification', value: 'Full', unit: '', subtext: 'Electromechanical Check' },
+                    { icon: 'task_alt', label: 'Load Testing', value: 'Validated', unit: '', subtext: 'System Optimization' }
+                ],
+                diagramLabels: [ 'FIG 2.4 - COMMISSIONING WORKFLOW', 'SITE STARTUP' ],
+                diagramType: 'commissioning'
+            },
+            {
+                id: 'training',
+                icon: 'school',
+                title: 'Training & Handover',
+                subtitle: 'KNOWLEDGE TRANSFER',
+                serviceId: '#OPS-02',
+                heading: 'Operator Training & Handover',
+                description: 'Ensuring your team is ready to operate the equipment. We offer comprehensive operator training, maintenance guidance, and complete documentation delivery.',
+                stats: [
+                    { icon: 'person', label: 'Training', value: 'Operator', unit: '', progress: 100 },
+                    { icon: 'book', label: 'Guidance', value: 'Maint.', unit: '', subtext: 'Clear Instructions' },
+                    { icon: 'folder_open', label: 'Documentation', value: 'Complete', unit: '', subtext: 'Full Delivery' }
+                ],
+                diagramLabels: [ 'FIG 2.5 - HANDOVER PROCESS', 'TEAM READINESS' ],
+                diagramType: 'training'
+            },
+            {
+                id: 'support',
+                icon: 'support_agent',
+                title: 'After-Sales Support',
+                subtitle: 'MAINTENANCE SERVICES',
+                serviceId: '#SVC-01',
+                heading: 'After-Sales Support & Maintenance',
+                description: 'Dependable after-sales support and maintenance services to ensure long-term system reliability. We offer preventive maintenance contracts, emergency support, spare parts supply, and technical troubleshooting.',
+                stats: [
+                    { icon: 'build', label: 'Maintenance', value: 'Preventive', unit: '', progress: 100 },
+                    { icon: 'emergency', label: 'Support', value: 'Emergency', unit: '', subtext: 'Fast Response' },
+                    { icon: 'inventory', label: 'Spare Parts', value: 'Available', unit: '', subtext: 'Original Components' }
+                ],
+                diagramLabels: [ 'FIG 2.6 - SUPPORT NETWORK', 'LONG-TERM RELIABILITY' ],
+                diagramType: 'support'
             }
         ]
     },
@@ -147,17 +202,6 @@ const services = {
             {
                 id: 3,
                 number: '03',
-                title: 'Electromechanical & MEP Delivery',
-                description: 'Our teams execute electromechanical systems, power distribution, and MEP integration through coordinated field work.',
-                features: [
-                    { icon: 'verified_user', text: 'Electromechanical contracting execution' },
-                    { icon: 'local_shipping', text: 'MEP integration and commissioning' }
-                ],
-                metric: { value: '2', unit: '', label: 'Operational Regions' }
-            },
-            {
-                id: 4,
-                number: '04',
                 title: 'Safety and Quality Standards',
                 description: 'We align delivery with ISO 9001, ISO 45001, and ISO 8528 standards while maintaining a 99.99% uptime commitment.',
                 features: [
