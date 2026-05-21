@@ -1,26 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { useNavigate } from 'react-router-dom';
 import './Section7.css';
 import { useI18n } from '../../i18n/I18nProvider';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Section7 = () => {
     const { get, t } = useI18n();
     const navigate = useNavigate();
     const sectionRef = useRef(null);
     const statsRef = useRef(null);
+    const subCardsRef = useRef(null);
     const [counts, setCounts] = useState({
         projects: 0,
         years: 0,
         hours: 0,
         partners: 0
     });
+    const [activeCategory, setActiveCategory] = useState(null);
 
     const stats = get('home.section7.stats', []);
-    const cards = get('home.section7.cards', []);
+    const mainCards = get('home.section7.mainCards', {});
+    const subCards = get('home.section7.subCards', {});
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -67,8 +71,8 @@ const Section7 = () => {
                 once: true
             });
 
-            // Project cards stagger animation
-            const cards = sectionRef.current.querySelectorAll('.project-card');
+            // Main cards stagger animation
+            const cards = sectionRef.current.querySelectorAll('.category-card');
             gsap.fromTo(cards,
                 { y: 80, opacity: 0 },
                 {
@@ -89,11 +93,45 @@ const Section7 = () => {
         return () => ctx.revert();
     }, [stats]);
 
+    useEffect(() => {
+        if (activeCategory && subCardsRef.current) {
+            gsap.fromTo(subCardsRef.current.querySelectorAll('.sub-card-item'),
+                { y: 40, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: 'power2.out'
+                }
+            );
+            
+            // Scroll to sub-cards
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: { y: subCardsRef.current, offsetY: 100 },
+                ease: "power3.inOut"
+            });
+        }
+    }, [activeCategory]);
+
     const formatNumber = (num, shouldFormat) => {
         if (shouldFormat && num >= 1000000) {
             return '1M';
         }
         return num.toLocaleString();
+    };
+
+    const handleCategoryClick = (category) => {
+        if (activeCategory === category) {
+            setActiveCategory(null);
+        } else {
+            setActiveCategory(category);
+        }
+    };
+
+    const handleLearnMore = () => {
+        navigate('/services');
     };
 
     return (
@@ -117,93 +155,101 @@ const Section7 = () => {
                     ))}
                 </div>
 
-                {/* Project Showcase Grid */}
-                <div className="section7-projects">
-                    {/* Card 1 */}
-                    <div className="project-card">
+                {/* Category Showcase Grid */}
+                <div className="section7-categories section7-reveal">
+                    {Object.entries(mainCards).map(([key, card]) => (
                         <div 
-                            className="project-card-bg" 
-                            style={{
-                                backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRfspmuOD97SfvGzcmJ-X9lrLdI7Z2ZHq-5cP1vLghBJ3Huu4QkuTjFunHisxNG8VDsnu365fTVz1fInSWewJhLjwu1_vCCUTfgsqh4HyxRboasDY-TMoKcmH8YYIjTLFH4kaoNvfsLysP2ixw8aRercAR6n58huwwxHUlbPRJTIDHc_XpUCpk8xv5TVMDSkH_9apbGanWg-jWj-Dltd8h7SoK39yYE3UIENXYhNHAIkMdxmwv0Klj7px3rUTZW-XvX1l2eBgsmL39')`
-                            }}
-                        />
-                        <div className="project-card-overlay" />
-                        <div className="project-card-border" />
-                        <div className="project-card-content">
-                            <div className="project-card-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 className="project-card-title">{cards[0]?.title}</h3>
-                                <p className="project-card-desc">{cards[0]?.description}</p>
+                            key={key} 
+                            className={`category-card ${activeCategory === key ? 'active' : ''}`}
+                            onClick={() => handleCategoryClick(key)}
+                        >
+                            <div 
+                                className="category-card-bg"
+                                style={{ backgroundImage: `url("${card.mainImage}")` }}
+                            ></div>
+                            <div className="category-card-overlay"></div>
+                            <div className="category-card-border"></div>
+                            <div className="category-card-content">
+                                <div className="category-card-icon">
+                                    {key === 'energy' ? (
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M13 2L3 14h7v8l10-12h-7V2z"/>
+                                        </svg>
+                                    ) : (
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.58 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/>
+                                        </svg>
+                                    )}
+                                </div>
+                                <div className="category-card-text">
+                                    <h3 className="category-card-title">{card.title}</h3>
+                                    <p className="category-card-desc">{card.description}</p>
+                                    <div className="category-card-cta">
+                                        <div className="section7-cta-icon">
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M16.17 11l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2h12.17z"/>
+                                            </svg>
+                                        </div>
+                                        <span>{card.cta}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Card 2 */}
-                    <div className="project-card">
-                        <div 
-                            className="project-card-bg" 
-                            style={{
-                                backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_v1XVh3NkjasvDZQKhsg0BHcBxkWAFh888YE2Zaj9YbdGEuPMhxhgwqhJGoedamBUpA7F9RHV3FwEOWHTMpC3AM37RPJZl9zlzocYBFJvI7rbz02rluQJZrFCl1hpgviCa9Y7GyF8FqafTujlF4cwv1WL5fAniPKrTQJcDQJw0reN8OM1I3P7x0XUe1TDEhpfOQtw0E-EMf_o2BgeUxr2p0Db6vaO50Qw9Mm--wvgFTJVnGiO4i0wQyAwK61IfWRwKvmsPXg10lVN')`
-                            }}
-                        />
-                        <div className="project-card-overlay" />
-                        <div className="project-card-border" />
-                        <div className="project-card-content">
-                            <div className="project-card-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L3.16 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 className="project-card-title">{cards[1]?.title}</h3>
-                                <p className="project-card-desc">{cards[1]?.description}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Card 3 */}
-                    <div className="project-card">
-                        <div 
-                            className="project-card-bg" 
-                            style={{
-                                backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuC1TBag1OXu8AHIs-YaaAW8I3uz4QWFIl6gH_aw-etVo5Q6NKhAhGTWTtYC6so5xUoF15LzWyz1NMF9jo3RXO8yk80zzlqArnBhAt_7dLMgRqGVfWC_ar7ozkbhpo8loOh5hIihNSYufbOm5x-0FRYfmsL_E_AES3aoLmtaTNjd0iWPsMJ048PHt7GqSiOHOei6FiC3Zr8aC-TyoJVng7w7ux799o7RAWohsDVfUyGd9qBXsjw4qJVKOFyh4Jelit1Wg98sPmU-D-Pd')`
-                            }}
-                        />
-                        <div className="project-card-overlay" />
-                        <div className="project-card-border" />
-                        <div className="project-card-content">
-                            <div className="project-card-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 className="project-card-title">{cards[2]?.title}</h3>
-                                <p className="project-card-desc">{cards[2]?.description}</p>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
-                {/* CTA Button */}
-                <div className="section7-cta section7-reveal">
-                    <button 
-                        className="section7-cta-button" 
-                        onClick={() => {
-                            window.scrollTo(0, 0);
-                            navigate('/projects');
-                        }}
-                    >
-                        <span>{t('home.section7.cta')}</span>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
-                        </svg>
-                    </button>
-                </div>
+                {/* Sub-cards Display Area */}
+                {activeCategory && (
+                    <div ref={subCardsRef} className="sub-cards-container section7-reveal">
+                        <div className="sub-cards-header">
+                            <button className="back-button" onClick={() => setActiveCategory(null)}>
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                                </svg>
+                                <span>{mainCards[activeCategory]?.title}</span>
+                            </button>
+                        </div>
+                        <div className="sub-cards-grid">
+                            {subCards[activeCategory]?.map((sub) => (
+                                <div key={sub.id} className="sub-card-item">
+                                    <div className="sub-card-content">
+                                        <div className="sub-card-header">
+                                            <div className="sub-card-icon">
+                                                {sub.id === 'power-gen' && (
+                                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                                    </svg>
+                                                )}
+                                                {sub.id === 'solar-energy' && (
+                                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h3v-2H2v2zm17 0h3v-2h-3v2zM11 2v3h2V2h-2zm0 17v3h2v-3h-2zM5.22 4.81L3.81 6.22l2.12 2.12 1.41-1.41-2.12-2.12zm14.97 14.97l-1.41 1.41-2.12-2.12 1.41-1.41 2.12 2.12zM18.78 4.81l2.12 2.12-1.41 1.41-2.12-2.12 1.41-1.41zM6.22 20.19l-2.12-2.12 1.41-1.41 2.12 2.12-1.41 1.41z"/>
+                                                    </svg>
+                                                )}
+                                                {sub.id === 'scada-sys' && (
+                                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.58 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/>
+                                                    </svg>
+                                                )}
+                                            </div>
+                                            <h4 className="sub-card-title">{sub.title}</h4>
+                                        </div>
+                                        <p className="sub-card-description">{sub.description}</p>
+                                        <button className="sub-card-learn-more" onClick={handleLearnMore}>
+                                            <span>Learn More</span>
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div className="sub-card-image-wrapper">
+                                        <img src={sub.image} alt={sub.title} className="sub-card-image" />
+                                        <div className="sub-card-image-overlay" />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {/* Footer Visual Element */}
                 <footer className="section7-footer">

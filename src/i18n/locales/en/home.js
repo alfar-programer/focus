@@ -188,20 +188,47 @@ const home = {
             { key: 'hours', value: 1, suffix: '.2 GW', label: 'Total Power Delivered' },
             { key: 'partners', value: 99, suffix: '.99%', label: 'Uptime Guarantee' }
         ],
-        cards: [
-            {
-                title: 'Power Generation',
-                description: 'Diesel generator systems from 20 KVA to 3000 KVA built for mission-critical operations.'
+        mainCards: {
+            energy: {
+                title: 'Energy Solution',
+                description: 'Integrated energy solutions designed to deliver reliable, efficient, and sustainable power for every need.',
+                mainImage: '/Power generator.png',
+                cta: 'Explore Energy Solutions'
             },
-            {
-                title: 'Automation & Control',
-                description: 'PLC and SCADA integration for industrial environments where reliability is non-negotiable.'
-            },
-            {
-                title: 'Electromechanical & MEP',
-                description: 'Integrated electromechanical and MEP delivery across Egypt and Saudi Arabia.'
+            water: {
+                title: 'Water Solution',
+                description: 'Smart water management solutions combining advanced systems and infrastructure for a sustainable future.',
+                mainImage: '/SCADA.JPG',
+                cta: 'Explore Water Solutions'
             }
-        ],
+        },
+        subCards: {
+            energy: [
+                {
+                    id: 'power-gen',
+                    title: 'Power Generation',
+                    description: 'Focus for Trading & Contracting is an integrated service provider and one-stop shop for diesel power generation solutions, delivering complete end-to-end services across the full project lifecycle. From engineering and system design to equipment supply, installation, synchronization, testing, commissioning, operation, and maintenance, we provide seamless solutions tailored to ensure reliable and uninterrupted power for industrial, commercial, and critical infrastructure sectors. With extensive expertise in diesel power generators, generator paralleling and synchronization, electrical integration, automation, and lifecycle support services, we combine technical excellence with operational efficiency to deliver high-performance and dependable power systems. At Focus, we are committed to creating long-term value through quality execution, innovation, and trusted partnerships—powering our clients’ success with confidence and reliability.',
+                    image: '/Power generator.png',
+                    learnMore: 'Learn More'
+                },
+                {
+                    id: 'solar-energy',
+                    title: 'Solar Energy',
+                    description: 'Focus is a leader in innovative solar energy solutions, offering advanced photovoltaic systems and comprehensive energy management. We solar power solutions are designed to maximize efficiency and sustainability for a cleaner future.',
+                    image: '/Solar System.JPG',
+                    learnMore: 'Learn More'
+                }
+            ],
+            water: [
+                {
+                    id: 'scada-sys',
+                    title: 'SCADA and Electromagnetic System',
+                    description: 'Expertise in SCADA and electromechanical systems for water infrastructure. We provide integrated control and monitoring solutions that ensure optimal performance and safety for water supply and treatment facilities.',
+                    image: '/SCADA.JPG',
+                    learnMore: 'Learn More'
+                }
+            ]
+        },
         cta: 'View Full Portfolio'
     }
 };
