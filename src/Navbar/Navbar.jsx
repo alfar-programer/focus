@@ -69,45 +69,25 @@ const Navbar = () => {
     useEffect(() => {
         // Initial animation when page loads
         const nav = navRef.current;
-        gsap.set(nav, { y: -100, opacity: 0 });
-
-        gsap.to(nav, {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            delay: 0.3
-        });
-
-        // Set initial visibility based on route
-        if (location.pathname !== '/') {
-            setIsVisible(true);
+        // Initial state
+        if (location.pathname === '/') {
+            gsap.set(nav, { y: -100, opacity: 0 });
+            setIsVisible(window.scrollY > 50);
         } else {
-            setIsVisible(window.scrollY > 300);
+            // Always visible on other pages
+            setIsVisible(true);
         }
-
-        // Show/hide on scroll
-        let lastScrollY = window.scrollY;
 
         const trigger = ScrollTrigger.create({
             start: 'top top',
             end: 'max',
             onUpdate: (self) => {
                 const scrollY = self.scroll();
-                const velocity = scrollY - lastScrollY;
-
-                if (location.pathname !== '/') {
-                    setIsVisible(true);
+                if (location.pathname === '/') {
+                    setIsVisible(scrollY > 50);
                 } else {
-                    // Show navbar after scrolling past hero or when scrolling up
-                    if (scrollY > 300 || velocity < -5) {
-                        setIsVisible(true);
-                    } else if (scrollY < 100) {
-                        setIsVisible(false);
-                    }
+                    setIsVisible(true);
                 }
-
-                lastScrollY = scrollY;
             }
         });
 

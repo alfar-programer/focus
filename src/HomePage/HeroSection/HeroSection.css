@@ -370,17 +370,21 @@
 @media (max-width: 768px) {
   .hero-details {
     left: 24px;
-    top: 50px;
+    top: 30px;
   }
 
   .hero-details > .hero-desc {
     width: calc(100vw - 48px);
     max-width: 400px;
+    margin-top: 8px;
+    font-size: 0.85rem;
   }
 
   .hero-details > .hero-cta {
     width: auto;
     flex-wrap: wrap;
+    margin-top: 12px;
+    gap: 8px;
   }
 
   .hero-title-1,
@@ -415,17 +419,17 @@
 @media (max-width: 480px) {
   .hero-details {
     left: 16px;
-    top: 40px;
+    top: 25px;
   }
 
   .hero-title-1,
   .hero-title-2 {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .hero-title-box-1,
   .hero-title-box-2 {
-    height: 46px;
+    height: 40px;
   }
 
   .hero-details > .hero-desc {
@@ -451,5 +455,35 @@
 
   .hero-progress-sub-container {
     display: none;
+  }
+}
+
+@media (max-height: 720px) and (max-width: 768px) {
+  .hero-title-1,
+  .hero-title-2 {
+    font-size: 28px;
+  }
+  .hero-title-box-1,
+  .hero-title-box-2 {
+    height: 38px;
+  }
+  .hero-details > .hero-desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+  .hero-discover-btn,
+  .hero-contact-btn {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 12px;
+  }
+  .hero-arrow {
+    width: 44px;
+    height: 44px;
+  }
+  .hero-stats-bar {
+    bottom: 5px;
+    padding: 0.5rem 0.75rem;
   }
 }

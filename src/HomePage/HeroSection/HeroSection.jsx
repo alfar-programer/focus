@@ -78,9 +78,10 @@ const HeroSection = () => {
     let busy = false;
 
     const isMobile = window.innerWidth < 768;
-    const cardWidth = isMobile ? 220 : 300;
-    const cardHeight = isMobile ? 150 : 200;
-    const gap = isMobile ? 20 : 40;
+    const isShort = window.innerHeight < 720;
+    const cardWidth = isMobile ? (isShort ? 180 : 220) : 300;
+    const cardHeight = isMobile ? (isShort ? 120 : 150) : 200;
+    const gap = isMobile ? (isShort ? 15 : 20) : 40;
     const numberSize = isMobile ? 30 : 50;
     const ease = "sine.inOut";
     let offsetTop = 0;
@@ -108,11 +109,11 @@ const HeroSection = () => {
         offsetTop = h * 0.58;
         offsetLeft = 80;
       } else {
-        offsetTop = h - 380;
+        offsetTop = isShort ? h - 320 : h - 380;
         offsetLeft = 40;
       }
 
-      gsap.set("#hero-pagination", { top: offsetTop + (isMobile ? 180 : 230), left: offsetLeft, y: 200, opacity: 0, zIndex: 60 });
+      gsap.set("#hero-pagination", { top: offsetTop + (isMobile ? (isShort ? 140 : 180) : 230), left: offsetLeft, y: 200, opacity: 0, zIndex: 60 });
       gsap.set(gc(active), { x: 0, y: 0, width: w, height: h });
       gsap.set(gcc(active), { x: 0, y: 0, opacity: 0 });
       gsap.set(dA, { opacity: 0, zIndex: 22, x: -200 });
